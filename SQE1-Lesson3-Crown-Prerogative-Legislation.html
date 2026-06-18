@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SQE1 Week 1 Day 4 — Constitutional & Administrative Law</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    background: #ffffff;
+    color: #1a1a1a;
+    line-height: 1.7;
+    padding: 0;
+  }
+
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, #0d1b3e 0%, #1b3a6b 100%);
+    color: white;
+    padding: 40px 50px 30px;
+  }
+  .header .top-meta {
+    font-size: 13px;
+    opacity: 0.7;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .header h2 {
+    font-size: 18px;
+    font-weight: 400;
+    opacity: 0.85;
+  }
+  .header .chapters {
+    display: flex;
+    gap: 12px;
+    margin-top: 18px;
+  }
+  .header .chapters .tag {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+  }
+
+  /* Main content */
+  .content {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 40px 50px;
+  }
+
+  /* Part headers */
+  .part-header {
+    border-left: 5px solid #1b3a6b;
+    padding: 12px 20px;
+    margin: 50px 0 25px;
+    background: #f0f4fa;
+    border-radius: 0 8px 8px 0;
+  }
+  .part-header:first-of-type { margin-top: 0; }
+  .part-header h2 {
+    font-size: 22px;
+    color: #1b3a6b;
+  }
+  .part-header .subtitle {
+    font-size: 14px;
+    color: #5a6f94;
+    margin-top: 2px;
+  }
+
+  /* Section headers */
+  h3 {
+    font-size: 17px;
+    color: #1b3a6b;
+    margin: 30px 0 12px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #e0e6f0;
+  }
+  h4 {
+    font-size: 15px;
+    color: #2c4a7c;
+    margin: 20px 0 8px;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0 25px;
+    font-size: 14px;
+  }
+  table th {
+    background: #1b3a6b;
+    color: white;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 13px;
+  }
+  table td {
+    padding: 9px 14px;
+    border-bottom: 1px solid #e0e6f0;
+    vertical-align: top;
+  }
+  table tr:nth-child(even) td {
+    background: #f7f9fc;
+  }
+  table tr:hover td {
+    background: #edf1f8;
+  }
+
+  /* Key terms / definitions */
+  .keyterm {
+    background: #fffde7;
+    border-left: 4px solid #f9a825;
+    padding: 12px 16px;
+    margin: 15px 0;
+    border-radius: 0 6px 6px 0;
+    font-size: 14px;
+  }
+  .keyterm strong {
+    color: #e65100;
+  }
+
+  /* Exam warnings */
+  .exam-warning {
+    background: #fff3e0;
+    border-left: 4px solid #e65100;
+    padding: 12px 16px;
+    margin: 15px 0;
+    border-radius: 0 6px 6px 0;
+    font-size: 14px;
+  }
+  .exam-warning::before {
+    content: "⚠️ Exam Warning: ";
+    font-weight: 700;
+    color: #e65100;
+  }
+
+  /* Case boxes */
+  .case-box {
+    background: #f3f0ff;
+    border-left: 4px solid #5c35c9;
+    padding: 12px 16px;
+    margin: 15px 0;
+    border-radius: 0 6px 6px 0;
+    font-size: 14px;
+  }
+  .case-box .case-name {
+    font-weight: 700;
+    color: #5c35c9;
+  }
+
+  /* Practice examples */
+  .practice {
+    background: #e8f5e9;
+    border-left: 4px solid #2e7d32;
+    padding: 12px 16px;
+    margin: 15px 0;
+    border-radius: 0 6px 6px 0;
+    font-size: 14px;
+  }
+  .practice::before {
+    content: "📝 Practice Example: ";
+    font-weight: 700;
+    color: #2e7d32;
+  }
+
+  /* Principle boxes */
+  .principle {
+    background: #e3f2fd;
+    border: 1px solid #90caf9;
+    padding: 12px 16px;
+    margin: 15px 0;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+  .principle strong { color: #1565c0; }
+
+  /* Bullet lists */
+  ul, ol {
+    margin: 10px 0 15px 20px;
+    font-size: 14px;
+  }
+  li { margin-bottom: 5px; }
+
+  /* Flow chart */
+  .flow {
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+    padding: 16px 20px;
+    margin: 15px 0;
+    border-radius: 8px;
+    font-family: "SF Mono", Menlo, monospace;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  /* Summary box */
+  .summary-box {
+    background: #e8eaf6;
+    border: 2px solid #5c35c9;
+    padding: 16px 20px;
+    margin: 25px 0;
+    border-radius: 10px;
+  }
+  .summary-box h4 {
+    color: #5c35c9;
+    margin: 0 0 10px;
+    font-size: 16px;
+    border: none;
+    padding: 0;
+  }
+
+  /* Numbered principles */
+  .principles-list {
+    counter-reset: pnum;
+    list-style: none;
+    margin-left: 0;
+  }
+  .principles-list li {
+    counter-increment: pnum;
+    padding: 10px 14px 10px 44px;
+    position: relative;
+    margin-bottom: 8px;
+    background: #f5f7ff;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+  .principles-list li::before {
+    content: counter(pnum);
+    position: absolute;
+    left: 12px;
+    top: 10px;
+    background: #1b3a6b;
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 24px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  /* Print */
+  @media print {
+    body { padding: 0; }
+    .header { padding: 20px 30px; }
+    .content { padding: 20px 30px; }
+    .part-header { break-after: avoid; }
+    table { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="top-meta">SQE1 · Week 1 · Day 4 · Constitutional & Administrative Law</div>
+  <h1>The Crown, Royal Prerogative & Legislation</h1>
+  <h2>Chapter 4: The Crown and the Royal Prerogative · Chapter 5: Legislation: Primary and Secondary</h2>
+  <div class="chapters">
+    <span class="tag">Ch 4 — Crown & Prerogative</span>
+    <span class="tag">Ch 5 — Primary & Secondary Legislation</span>
+  </div>
+</div>
+
+<div class="content">
+
+<!-- ============================================================ -->
+<!-- KNOWLEDGE TREE -->
+<!-- ============================================================ -->
+
+<div class="part-header" style="border-left-color:#e65100; background:#fff8e1;">
+  <h2 style="color:#e65100;">🌳 知识树 — Day 4 全景</h2>
+  <div class="subtitle">本节课包含哪些内容？它们之间是什么关系？</div>
+</div>
+
+<div style="font-family: 'SF Mono', Menlo, 'Courier New', monospace; font-size:13px; line-height:2.2; background:#fafafa; border:1px solid #e0e0e0; border-radius:10px; padding:24px 28px; margin:20px 0 30px; overflow-x:auto; white-space:pre; color:#1a1a1a;"> Constitutional & Admin Law
+ ┃
+ ┣━━ <b>Ch4: The Crown & Royal Prerogative</b> （王室与特权）
+ ┃    ┃
+ ┃    ┣━━ 1. The Crown（王室）
+ ┃    ┃    ┣ 国王法律地位：法定元首，政府以国王名义行使
+ ┃    ┃    ┣ King personal immunity：不可被诉
+ ┃    ┃    ┗ Crown Proceedings Act 1947 ──→ 政府可被诉（合同/侵权）
+ ┃    ┃       但：无禁制令(s.21)、不受议会法约束(s.40)
+ ┃    ┃
+ ┃    ┣━━ 2. Royal Prerogative（王室特权）
+ ┃    ┃    ┣ 定义：行政权，不需议会许可
+ ┃    ┃    ┣ 五大类：政府/司法/安全/外交/国防
+ ┃    ┃    ┗ 法院判断哪些特权仍然存在
+ ┃    ┃
+ ┃    ┣━━ 3. Prerogative vs Statute ⭐核心
+ ┃    ┃    ┣ 制定法优于特权（De Keyser）
+ ┃    ┃    ┣ 不可用特权挫败议会（Fire Brigades Union）
+ ┃    ┃    ┣ 条约不改变国内法（Miller 2017）
+ ┃    ┃    ┗ 制定法废除 → 特权可恢复（revive）
+ ┃    ┃
+ ┃    ┣━━ 4. Judicial Review of Prerogative ⭐核心
+ ┃    ┃    ┣ GCHQ框架：可审查 vs 不可审查
+ ┃    ┃    ┣ 不可审查：国防、外交（高政策）
+ ┃    ┃    ┣ 可审查：护照、赦免、海外协助（个人权利）
+ ┃    ┃    ┗ 政策 vs 个人权利冲突时 → 政策优先（Bancoult）
+ ┃    ┃
+ ┃    ┗━━ 5. Parliamentary Accountability
+ ┃         ┣ 大臣拒绝回答的7类事项
+ ┃         ┗ 2013年后海外军事部署需下议院授权
+ ┃
+ ┣━━ <b>Ch5: Legislation — Primary & Secondary</b> （立法）
+ ┃    ┃
+ ┃    ┣━━ 6. Primary Legislation（主要立法）
+ ┃    ┃    ┣ 法案五类型（Public / Private Member's / Private / Hybrid / Money）
+ ┃    ┃    ┣ 议会六阶段程序（Pre-scrutiny → 三读）
+ ┃    ┃    ┣ Parliament Acts：上议院最多延迟1年
+ ┃    ┃    ┣ Royal Assent：形式性
+ ┃    ┃    ┗ 生效：通常由大臣指定日期，可能永远不生效
+ ┃    ┃
+ ┃    ┗━━ 7. Delegated Legislation（委代立法）⭐核心
+ ┃         ┣ 母法授权，每年约3,500项（vs 100部法案）
+ ┃         ┣ 类型：SI / Orders in Council / Bylaws / Budget resolutions
+ ┃         ┣ 审批：Negative(40天) / Affirmative / Super-affirmative(60天)
+ ┃         ┣ Henry VIII Clause：大臣可修改议会法案
+ ┃         ┗ 司法审查：ultra vires（违法/不合理/程序瑕疵/人权）
+ ┃            即使经affirmative批准仍可审查！
+ ┃
+ ┗━━ 📌 课程间关系（Day 1-4 已学内容）
+      Day1 Ch1宪法概述 ← Day2 Ch2议会主权 ← Day3 Ch8 HRA ← Day4 Ch4+Ch5
+      ┃                                         ┃                ┃
+      ┃                                         ┗ Ch8 HRA s.10 ─→ Remedial Order
+      ┃                                            修改不兼容法案 ──→ Ch5 Henry VIII Clause
+      ┃
+      ┣ Day3 Ch8 为 Day4 Ch4 提供背景：
+      ┃   HRA 1998 → Art 6(听证)→ Ch5 Ahmed案（冻结资产前须听证）
+      ┃   HRA 1998 → 宣告不兼容 → Ch5 Remedial Order（super-affirmative）
+      ┃
+      ┗ 待学（后续课程）：
+        ┣ Ch3 中央政府与权力下放
+        ┣ Ch6 公共秩序法（游行/集会/rave）
+        ┣ Ch7 司法审查（Administrative Law核心）
+        ┗ Ch9 欧盟法</div>
+
+<!-- ============================================================ -->
+<!-- PART 1: THE CROWN -->
+<!-- ============================================================ -->
+
+<div class="part-header">
+  <h2>Part 1: The Crown（王室）</h2>
+  <div class="subtitle">King's legal status, immunity, and the Crown Proceedings Act 1947</div>
+</div>
+
+<h3>1.1 国王的法律地位</h3>
+<p>The King is the <strong>legal head of state</strong>（法定国家元首），but by <strong>convention</strong>（惯例），the prime minister and government act in the King's name.</p>
+
+<h4>国王的法定角色</h4>
+<ul>
+  <li>Appointing the PM — 由能获得下议院多数支持的政党领袖出任</li>
+  <li>Appointing ministers — PM提名，King正式任命</li>
+  <li>Summoning / Proroguing / Dissolving Parliament — 现由PM决定（Fixed-Term Parliaments Act 2011，每5年大选，但下议院2/3多数可提前大选，或政府不信任投票且无替代政府时提前大选）</li>
+  <li>Royal Assent — 惯例上从不拒绝，纯属形式</li>
+  <li>Granting honours — 政府提名，King授予</li>
+</ul>
+
+<div class="keyterm">
+  <strong>Bagehot's trinity（三项权利）:</strong> The right to <em>advise, encourage, or warn</em> the PM or minister. 国王可表达意见，但最终由大臣决定。
+</div>
+
+<h3>1.2 Crown Proceedings（王室诉讼）</h3>
+
+<h4>King's personal immunity</h4>
+<p>The King can do no wrong. 不承担刑事责任、民事责任，不可被逮捕。<strong>此豁免不延伸至王室其他成员。</strong></p>
+
+<table>
+  <tr>
+    <th style="width:18%">Crown Proceedings Act 1947</th>
+    <th>Key Provisions</th>
+  </tr>
+  <tr>
+    <td>保留刑事豁免</td>
+    <td>Crown仍不受刑事起诉</td>
+  </tr>
+  <tr>
+    <td>s.1</td>
+    <td>政府可在<strong>合同</strong>中被诉（sued in contract）</td>
+  </tr>
+  <tr>
+    <td>s.2</td>
+    <td>政府在<strong>侵权</strong>中承担责任，包括 vicarious liability（代位责任）</td>
+  </tr>
+  <tr>
+    <td>s.21(1)</td>
+    <td><strong>禁止</strong>对 Crown 发出 injunction（禁制令）和 specific performance（强制令）</td>
+  </tr>
+  <tr>
+    <td>s.40(2)</td>
+    <td>Crown 不受议会法案约束，<strong>除非法案明文规定</strong></td>
+  </tr>
+  <tr>
+    <td>Armed forces</td>
+    <td>现役军人不可起诉，但 armed forces (Crown Proceedings) Act 1987 暂停此豁免（战时可恢复）</td>
+  </tr>
+</table>
+
+<div class="case-box">
+  <span class="case-name">M v Home Office [1994]</span> — 法院将"Crown"解释为女王<b>个人</b>。法院可对政府大臣发出禁制令，大臣如不遵守可被控 contempt of court（藐视法庭）。<br>
+  <span class="case-name">Factortame (No 2) [1991]</span> — 法院可对国务大臣发出 interim injunction（临时禁制令）。
+</div>
+
+<div class="keyterm">
+  <strong>Act of State（国家行为原则）:</strong> UK government actions taken against foreign citizens outside the UK are not actionable. Crown Proceedings Act 1947 未改变此原则。
+</div>
+
+<div class="practice">
+  内政部即将驱逐一名被认定为非法移民的人。其律师能否阻止？<br><br>
+  <strong>可以。</strong>如果被驱逐者有合法抗辩理由应留在英国，法院可发出 injunction 命令内政部不得驱逐。（M v Home Office）
+</div>
+
+<h3>1.3 Summary: The Crown</h3>
+<div class="summary-box">
+  <h4>What is the Crown?</h4>
+  <p>Either the King personally or His Majesty's government.</p>
+  <ul style="margin-top:8px;">
+    <li>King has many legal powers, used by the government after consultation</li>
+    <li>King personally cannot be sued, but the government <strong>can</strong> be sued</li>
+  </ul>
+</div>
+
+<!-- ============================================================ -->
+<!-- PART 2: THE ROYAL PREROGATIVE -->
+<!-- ============================================================ -->
+
+<div class="part-header">
+  <h2>Part 2: The Royal Prerogative（王室特权）</h2>
+  <div class="subtitle">Definition, remaining powers, and judicial identification</div>
+</div>
+
+<div class="keyterm">
+  <strong>Royal Prerogative（王室特权）:</strong> The remaining legal powers of the King, exercised by the government in his name. 属于 <em>executive powers</em>（行政权）— 法律上政府不需议会许可即可使用。甚至可不经议会同意制定 Orders in Council（枢密院令）。
+</div>
+
+<h3>2.1 仍然存在的特权权力</h3>
+<table>
+  <tr><th style="width:25%">Category</th><th>Examples</th></tr>
+  <tr><td>Government & Civil Service</td><td>控制文官系统，设立新机构（BBC由royal charter设立）</td></tr>
+  <tr><td>Justice System</td><td>维持王国治安，任命 King's Counsel</td></tr>
+  <tr><td>National Security</td><td>情报与安全服务</td></tr>
+  <tr><td>Foreign Affairs</td><td>与他国关系，签署和批准国际条约</td></tr>
+  <tr><td>Defence of the Realm</td><td>控制武装部队，部署军队</td></tr>
+</table>
+
+<h3>2.2 法院如何判断哪些特权仍然存在？</h3>
+<p>政府承认<strong>无法编制确定性的特权清单</strong>，争议由法院裁决。</p>
+
+<div class="case-box">
+  <span class="case-name">BBC v Johns [1965]</span> — BBC声称作为Crown的一部分可免税 → 法院：无历史先例 → 不存在此特权<br><br>
+  <span class="case-name">De Keyser's Royal Hotel [1920]</span> — 政府战时征用财产的特权存在，但须支付补偿<br><br>
+  <span class="case-name">ex parte Northumbria Police [1987]</span> — 法院确认政府始终有维持王国治安的特权
+</div>
+
+<h3>2.3 特权权力的范围</h3>
+
+<div class="case-box">
+  <span class="case-name">R (Miller) v The Prime Minister [2019] UKSC 41</span>（脱欧prorogation案）<br><br>
+  首相Johnson决定中止议会34天。最高法院裁定：不存在合法的中止议会如此长时间的特权权力。<br>
+  <strong>议会拥有主权，必须被允许立法和追究政府责任。行政机关不能阻止议会。</strong>
+</div>
+
+<div class="exam-warning">
+  通常能判断是否涉及特权 — 如果问题涉及 King 或 PM 的行为，很可能就是特权权力。
+</div>
+
+<h3>2.4 Summary: Royal Prerogative</h3>
+<div class="summary-box">
+  <h4>Key Facts</h4>
+  <ul>
+    <li><strong>What is it?</strong> The remaining legal powers of the King</li>
+    <li><strong>Who decides which remain?</strong> The courts</li>
+    <li><strong>Who uses it?</strong> The government acting in the King's name</li>
+  </ul>
+</div>
+
+<!-- ============================================================ -->
+<!-- PART 3: PREROGATIVE AND STATUTES -->
+<!-- ============================================================ -->
+
+<div class="part-header">
+  <h2>Part 3: Prerogative and Acts of Parliament（特权与议会法）</h2>
+  <div class="subtitle">Statute supersedes prerogative · Treaties · Revival</div>
+</div>
+
+<div class="principle">
+  <strong>Core Rule: Statute supersedes prerogative（制定法优于特权）</strong><br>
+  If the government has the same power under the prerogative and statute, it <strong>must</strong> use the statutory power. Parliament's sovereignty must be respected.
+</div>
+
+<div class="case-box">
+  <span class="case-name">De Keyser's Royal Hotel [1920]</span><br>
+  政府战时征用酒店。法院裁定：因已有 Defence of the Realm Act 1914，政府须依据该制定法补偿 → 制定法提供更好的公民保护。
+</div>
+
+<div class="case-box">
+  <span class="case-name">R v Secretary of State, ex parte Fire Brigades Union [1995]</span><br>
+  刑事伤害补偿方案最初由特权创立，后被 Criminal Justice Act 1988 取代，但大臣从未实施该法。大臣提议用特权创建补偿更低的方案。<br>
+  <strong>上议院裁定：行政机关不能用特权挫败议会意志。废除立法是议会的权力。</strong><br><br>
+  <em>→ 如果制定法被废除，特权权力可恢复（revive）。</em>
+</div>
+
+<h3>3.1 Treaties and Statute</h3>
+<div class="case-box">
+  <span class="case-name">R (Miller) v Secretary of State for Exiting the EU [2017] UKSC 5</span><br>
+  签署国际条约是特权权力，但<strong>条约本身不改变英国国内法</strong>。只有议会通过立法才能将条约内容纳入国内法。
+</div>
+
+<h3>3.2 Coexistence</h3>
+<p>政府通常拥有混合的制定法和特权权力。</p>
+<div class="keyterm">
+  <strong>Example:</strong> UK公民身份由制定法规定，但签发护照是特权权力（授权旅行，不创造身份）。
+</div>
+
+<!-- ============================================================ -->
+<!-- PART 4: JUDICIAL REVIEW OF PREROGATIVE -->
+<!-- ============================================================ -->
+
+<div class="part-header">
+  <h2>Part 4: Judicial Review of the Prerogative（特权的司法审查）</h2>
+  <div class="subtitle">GCHQ Case framework · Justiciable vs non-justiciable</div>
+</div>
+
+<div class="case-box">
+  <span class="case-name">Council of Civil Service Unions v Minister for the Civil Service [1985] AC 374</span>（GCHQ Case）<br><br>
+  Lord Diplock 确立：<br>
+  ① 法院<strong>可以审查</strong>某些特权（是否存在该权力、权力范围、行使方式）<br>
+  ② 但有些特权是 <strong>non-justiciable（不可司法审查）</strong>
+</div>
+
+<h3>4.1 Non-Justiciable Prerogatives</h3>
+<p>涉及高度政治性的政府决策 → 法院拒绝审查：</p>
+<ul>
+  <li>Defence（国防）：核武器、海外部署</li>
+  <li>Foreign policy（外交政策）：如加入EU条约</li>
+</ul>
+
+<h3>4.2 Justiciable Prerogatives</h3>
+<p>涉及<strong>个人权利</strong>而非政府政策 → 可被审查：</p>
+<ul>
+  <li>Refusal of a passport（拒发护照）</li>
+  <li>Refusal of a royal pardon（拒绝赦免）</li>
+  <li>Government assistance to UK nationals abroad（海外公民协助 — 除非完全不理性或严重违反人权）</li>
+</ul>
+
+<div class="case-box">
+  <span class="case-name">R (Bancoult) No 2 v Secretary of State [2016] UKSC 35</span><br>
+  英国驱逐查戈斯群岛居民为美军基地让路。看似严重侵犯人权，但政府以国防/安全为由 → 最高法院最终支持政府（政策优先于个人权利）。
+</div>
+
+<div class="flow">
+政府行使特权 → 是否涉及个人权利？
+├── 是 → 可能可审查（如拒发护照）
+└── 否（国防/外交等高政策）→ 不可审查（non-justiciable）
+</div>
+
+<div class="practice">
+  Jane被外国政府无审判羁押。家属要求英国政府交涉，政府拒绝。<br><br>
+  <strong>法院立场：</strong> 政府什么都不做可能是不理性的（通常应协助本国公民），但法院不会具体规定政府应该做什么 — 那是外交政策，不是个人权利问题。
+</div>
+
+<!-- ============================================================ -->
+<!-- PART 5: PARLIAMENTARY ACCOUNTABILITY -->
+<!-- ============================================================ -->
+
+<div class="part-header">
+  <h2>Part 5: Accountability to Parliament（议会对特权的问责）</h2>
+  <div class="subtitle">Ministerial refusals to answer · Military deployment convention</div>
+</div>
+
+<p>法院常解释拒绝审查的理由：<strong>政府须向议会说明理由，议会是更合适的政治问责场所。</strong></p>
+
+<h4>实践中大臣拒绝回答的特权事项</h4>
+<ul>
+  <li>PM's advice to the King（首相对国王的建议）</li>
+  <li>Grant of honours（授予荣誉）</li>
+  <li>Commercial contracts（商业合同）</li>
+  <li>Prosecution decisions（检控决定）</li>
+  <li>Public appointments（公共任命，如法官、主教）</li>
+  <li>Confidential foreign discussions（与外国的保密讨论）</li>
+  <li>Defence & national security（国防与国家安全）</li>
+</ul>
+
+<h4>近年变化</h4>
+<p>2013年下议院拒绝同意叙利亚军事干预后，政府接受：<strong>海外部署武装力量需事先经下议院投票授权。</strong>紧急情况或人道主义干预可以是例外。</p>
+
+<div class="practice">
+  一位议员强烈反对向X国出售武器。能否阻止？<br><br>
+  议员可在下议院提出质询或发起辩论。但政府可声称这是国防机密。政府出售武器不需议会许可。<strong>司法审查也不适用于国防等高政策领域。</strong>
+</div>
+
+<div class="exam-warning">
+  问题可能问的是 <em>convention（惯例）</em> 而非法律。仔细审题！
+</div>
+
+<!-- ============================================================ -->
+<!-- PART 6: PRIMARY LEGISLATION -->
+<!-- ============================================================ -->
+
+<div class="part-header">
+  <h2>Part 6: Primary Legislation — Acts of Parliament（主要立法）</h2>
+  <div class="subtitle">Bill types · Parliamentary procedure · Royal Assent</div>
+</div>
+
+<h3>6.1 法案类型</h3>
+<table>
+  <tr><th style="width:25%">Type</th><th>Description</th></tr>
+  <tr><td>Public Bill</td><td>适用于全社会的法律，通常由政府大臣提出</td></tr>
+  <tr><td>Private Member's Bill</td><td>也是公法案，但由普通议员（backbench MP）提出</td></tr>
+  <tr><td>Private Bill</td><td>仅适用于特定地区/个人/机构</td></tr>
+  <tr><td>Hybrid Bill</td><td>有普遍适用性但也影响私人利益（如HS2高铁法案）</td></tr>
+  <tr><td>Money Bill</td><td>仅含财政措施，上议院不能阻止</td></tr>
+</table>
+
+<div class="exam-warning">
+  Private Member's Bill ≠ Private Bill！前者是公法案（由普通议员提出），后者是适用于特定对象的法律。
+</div>
+
+<h3>6.2 议会法案程序（House of Commons）</h3>
+<table>
+  <tr><th style="width:22%">Stage</th><th>Description</th></tr>
+  <tr><td>Pre-legislative scrutiny</td><td>政府先发布<b>Green Paper</b>（可能政策征询意见）→<b>White Paper</b>（更确定提案）→议会法律顾问撰写法律文本→内阁委员会批准。专委会进一步咨询，人权联合委员会检查人权兼容性</td></tr>
+  <tr><td>First reading</td><td>宣读法案名称（无辩论）</td></tr>
+  <tr><td>Second reading</td><td>辩论并投票法案原则</td></tr>
+  <tr><td>Committee stage</td><td>Public Bill Committee（18-25名议员）逐条审查，可修正。重要法案由全院审议</td></tr>
+  <tr><td>Report stage</td><td>回到全院，决定是否接受委员会修正案</td></tr>
+  <tr><td>Third reading</td><td>纠正小错误，最终批准</td></tr>
+</table>
+
+<div class="keyterm">
+  <strong>Fast-track procedure:</strong> 紧急法案可一日通过所有阶段。例如 EU (Future Relationship) Act 2020。
+</div>
+
+<h3>6.3 House of Lords & Parliament Acts</h3>
+<ul>
+  <li>法案须在上议院走相同阶段（上议院由全院审议委员会阶段，讨论更详细）</li>
+  <li><strong>Parliament Acts 1911 & 1949:</strong> 上议院只能延迟，不能阻止普通法案（最多1年）；Money Bill最多1个月</li>
+</ul>
+
+<h3>6.4 Royal Assent & Commencement</h3>
+<ul>
+  <li>Royal Assent 是<strong>形式</strong>（国王不亲自参与）</li>
+  <li>大多数法案不立即生效 → 授权大臣发布命令规定生效日期</li>
+  <li>不同条款可在不同时间生效</li>
+  <li>部分法案可能<strong>永远不生效</strong>（如 Easter Act 1928）</li>
+</ul>
+
+<div class="keyterm">
+  <strong>Into force:</strong> An Act passed by Parliament is not the law until it is brought into force.
+</div>
+
+<div class="practice">
+  一项公法案在下议院和上议院走完了所有阶段，除了上议院没有三读。法案获得了御准。它是否有效？<br><br>
+  <strong>是的。</strong>法院不会调查议会程序是否存在缺陷。议会作为主权机构，有权自行决定如何处理。
+</div>
+
+<h3>6.5 Acts of Senedd Cymru（威尔士议会法案）</h3>
+<ul>
+  <li>仅适用于威尔士</li>
+  <li>四阶段：总原则 → 委员会审查 → 全院审查 → 最终表决</li>
+  <li>提案主体：威尔士政府、Senedd委员会、个别议员、Senedd Commission</li>
+</ul>
+
+<!-- ============================================================ -->
+<!-- PART 7: DELEGATED LEGISLATION -->
+<!-- ============================================================ -->
+
+<div class="part-header">
+  <h2>Part 7: Delegated Legislation（委代立法/次要立法）</h2>
+  <div class="subtitle">Types · Parliamentary procedure · Henry VIII clauses · Judicial review</div>
+</div>
+
+<div class="principle">
+  <strong>Key numbers:</strong> Parliament passes fewer than <strong>100</strong> Acts per year, but around <strong>3,500</strong> pieces of delegated legislation.<br>
+  Modern Acts provide an outline/framework; the detail is filled in by delegated legislation.
+</div>
+
+<h3>7.1 Types of Delegated Legislation</h3>
+<table>
+  <tr><th style="width:30%">Type</th><th>Description</th></tr>
+  <tr><td>Statutory Instruments (SI)</td><td>政府大臣制定的规则/规章/命令。引用格式：<strong>SI 1977/352</strong>（年份+编号）</td></tr>
+  <tr><td>Orders in Council</td><td>通过枢密院制定（用于重要/宪法事项）。国王也有特权制定Orders in Council</td></tr>
+  <tr><td>Supreme Court rules</td><td>最高法院自行制定程序规则</td></tr>
+  <tr><td>Bylaws</td><td>地方政府/公共机构制定</td></tr>
+  <tr><td>Budget resolutions</td><td>下议院决议变更税收（Provisional Collection of Taxes Act 1968赋予效力）</td></tr>
+</table>
+
+<h3>7.2 Parliamentary Procedure（议会审批程序）</h3>
+<table>
+  <tr><th style="width:22%">Procedure</th><th>Description</th></tr>
+  <tr><td>Negative Resolution</td><td>自动生效，除非议会在<strong>40天内</strong>投票否决。两种形式：①制定后生效+可否决；②先呈递草案+可阻止生效</td></tr>
+  <tr><td>Affirmative Resolution</td><td>议会必须批准。三种：①草案先批准才制定；②制定后生效前须批准；③立即生效+28/40天内不批准则失效</td></tr>
+  <tr><td>Super-Affirmative</td><td>议会有<strong>60天</strong>审议期（如HRA 1998的Remedial Orders）</td></tr>
+</table>
+
+<div class="keyterm">
+  <strong>Laid（呈递）:</strong> 委代立法必须呈递至议会，告知议员。这是程序性要求。
+</div>
+
+<h3>7.3 Henry VIII Clauses</h3>
+<div class="keyterm">
+  <strong>Henry VIII Clause:</strong> 议会法案中的条款，允许大臣通过委代立法<strong>修改或废除</strong>另一部议会法案的规定。<br>
+  允许行政机关（而非立法机关）修改法律 → <strong>极具争议，侵蚀议会主权。</strong>
+</div>
+
+<h4>Examples:</h4>
+<ul>
+  <li><strong>HRA 1998 s.10</strong> — Remedial Orders（法院宣告不兼容后，大臣可修改法案）</li>
+  <li>European Communities Act 1972</li>
+  <li>EU (Withdrawal) Act 2018</li>
+</ul>
+
+<div class="exam-warning">
+  Henry VIII clauses不仅用于HRA，也用于ECA 1972和EU(W)A 2018。
+</div>
+
+<h3>7.4 Judicial Review of Delegated Legislation</h3>
+
+<div class="principle">
+  <strong>Acts of Parliament cannot be judicially reviewed（议会法案不可被司法审查）.</strong><br>
+  But <strong>delegated legislation CAN</strong> — the court examines whether it is <em>ultra vires</em>（超越母法授权范围）.
+</div>
+
+<table>
+  <tr><th style="width:20%">Ground</th><th>Case</th><th>Key Point</th></tr>
+  <tr>
+    <td><strong>Illegality</strong></td>
+    <td>Public Law Project v Lord Chancellor [2016]</td>
+    <td>母法未要求居住条件 → 大臣无权添加法律援助居住要求</td>
+  </tr>
+  <tr>
+    <td><strong>Irrationality</strong></td>
+    <td>Javed v Secretary of State [2001]</td>
+    <td>将巴基斯坦指定为安全遣返国，与证据相反</td>
+  </tr>
+  <tr>
+    <td><strong>Procedural Impropriety</strong></td>
+    <td>Aylesbury Mushrooms [1972]</td>
+    <td>母法要求事先咨询 → 咨询必须是真实的</td>
+  </tr>
+  <tr>
+    <td><strong>Procedural Impropriety</strong></td>
+    <td>Alvi v Secretary of State [2012]</td>
+    <td>母法要求的议会审批程序未被遵守</td>
+  </tr>
+  <tr>
+    <td><strong>Breach of Human Rights</strong></td>
+    <td>Ahmed v HM Treasury [2010]</td>
+    <td>枢密院令冻结资产前未给予听证（违反Art 6 ECHR）</td>
+  </tr>
+</table>
+
+<div class="exam-warning">
+  即使委代立法已经通过议会 affirmative resolution 批准，仍可被司法审查（Javed, Public Law Project）。
+</div>
+
+<div class="practice">
+  Terrorism Act 2000 s.96 授权国务大臣"通过规章制定维护治安和秩序的规定"。能否据此授权无审判羁押恐怖嫌疑人？<br><br>
+  <strong>不能。</strong>s.96的措辞必须明确授权才能如此 — 否则违法，且违反人权。
+</div>
+
+<h3>7.5 Summary: Delegated Legislation</h3>
+<div class="summary-box">
+  <h4>Key Facts</h4>
+  <ul>
+    <li><strong>What is it?</strong> Secondary legislation made under the authority of an Act of Parliament</li>
+    <li><strong>Who uses it?</strong> Government ministers, local authorities, public bodies</li>
+    <li><strong>What power?</strong> Only the power granted by the parent Act</li>
+    <li>If parent Act repealed → delegated legislation under it <strong>ceases to have effect</strong></li>
+  </ul>
+</div>
+
+<!-- ============================================================ -->
+<!-- PART 8: EXAM PRINCIPLES -->
+<!-- ============================================================ -->
+
+<div class="part-header">
+  <h2>Part 8: Must-Know Exam Principles（考试必记原则）</h2>
+  <div class="subtitle">10 core principles for SQE1 MCQs</div>
+</div>
+
+<ol class="principles-list">
+  <li><strong>Statute supersedes prerogative</strong> — 政府有同等权力时必须用制定法（De Keyser）</li>
+  <li><strong>Treaties don't change domestic law</strong> — 只有议会立法才能将条约纳入国内法（Miller 2017）</li>
+  <li><strong>Prerogative can revive if statute repealed</strong> — 制定法废除后特权可恢复（Fire Brigades Union）</li>
+  <li><strong>Minister can't use prerogative to frustrate Parliament</strong> — 废除立法是议会的权力（Fire Brigades Union）</li>
+  <li><strong>Acts of Parliament cannot be judicially reviewed</strong> — 议会主权原则</li>
+  <li><strong>Delegated legislation CAN be judicially reviewed</strong> — ultra vires 原则</li>
+  <li><strong>Parent Act repealed → delegated legislation ceases</strong> — 母法废除则委代立法失效</li>
+  <li><strong>Parliamentary procedure defects → courts won't investigate</strong> — 法院不介入议会程序（HS2）</li>
+  <li><strong>Individual rights reviewable, high policy non-justiciable</strong> — 个人权利可审查，国防/外交不可（GCHQ）</li>
+  <li><strong>Crown can be sued in contract and tort</strong> — 但国王个人不可被诉（Crown Proceedings Act 1947）</li>
+</ol>
+
+<!-- ============================================================ -->
+<!-- PART 9: KEY TERMS REFERENCE -->
+<!-- ============================================================ -->
+
+<div class="part-header">
+  <h2>Part 9: Key Terms Reference（核心术语速查）</h2>
+</div>
+
+<table>
+  <tr><th style="width:28%">English Term</th><th>中文</th><th>Exam Focus</th></tr>
+  <tr><td>Royal Prerogative</td><td>王室特权</td><td>政府以国王名义行使的行政权</td></tr>
+  <tr><td>Crown Proceedings Act 1947</td><td>王室诉讼法</td><td>限制政府豁免（可被诉合同/侵权，但无禁制令）</td></tr>
+  <tr><td>Orders in Council</td><td>枢密院令</td><td>特权立法或委代立法的重要形式</td></tr>
+  <tr><td>Delegated Legislation</td><td>委代立法</td><td>母法授权制定的次要法律，可被司法审查</td></tr>
+  <tr><td>Statutory Instruments (SI)</td><td>法定文书</td><td>引用格式 SI 年份/编号</td></tr>
+  <tr><td>Negative/Affirmative Resolution</td><td>消极/积极决议</td><td>议会审批委代立法的两种程序</td></tr>
+  <tr><td>Henry VIII Clause</td><td>亨利八世条款</td><td>允许大臣修改议会法案，极具争议</td></tr>
+  <tr><td>Ultra Vires</td><td>越权</td><td>委代立法超出母法授权范围</td></tr>
+  <tr><td>Fast-track Procedure</td><td>快速通道</td><td>紧急法案一日通过所有阶段</td></tr>
+  <tr><td>Royal Assent</td><td>御准</td><td>形式性，国王从不拒绝</td></tr>
+  <tr><td>Non-justiciable</td><td>不可司法审查</td><td>涉及高政策（国防/外交）的特权</td></tr>
+  <tr><td>Into Force</td><td>生效</td><td>法案通过≠法律，须被生效才能适用</td></tr>
+  <tr><td>Laid</td><td>呈递</td><td>委代立法必须呈递至议会的程序要求</td></tr>
+  <tr><td>Super-Affirmative</td><td>超级积极决议</td><td>60天审议期（如HRA Remedial Orders）</td></tr>
+</table>
+
+</div><!-- /content -->
+
+</body>
+</html>
