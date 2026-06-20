@@ -251,6 +251,13 @@
     font-weight: 700;
   }
 
+  /* Knowledge Tree */
+  .knowledge-tree { background: #f5f0ff; border: 2px solid #6f42c1; border-radius: 10px; padding: 18px 22px; margin: 20px 0; }
+  .knowledge-tree h3 { color: #6f42c1; margin-bottom: 12px; font-size: 18px; border: none; padding: 0; }
+  .kt-node { display: inline-block; background: #e8daff; border-radius: 6px; padding: 4px 10px; margin: 3px; font-size: 0.9em; color: #4a2d8e; }
+  .kt-arrow { color: #6f42c1; font-weight: bold; margin: 0 4px; }
+  .kt-section { margin: 8px 0; line-height: 2; }
+
   /* Print */
   @media print {
     body { padding: 0; }
@@ -279,74 +286,65 @@
 <!-- KNOWLEDGE TREE -->
 <!-- ============================================================ -->
 
-<div class="part-header" style="border-left-color:#e65100; background:#fff8e1;">
-  <h2 style="color:#e65100;">🌳 知识树 — Day 4 全景</h2>
-  <div class="subtitle">本节课包含哪些内容？它们之间是什么关系？</div>
+<div class="knowledge-tree">
+<h3>🌳 Knowledge Tree</h3>
+
+<div class="kt-section">
+<strong>Branch 1: The Crown & Royal Prerogative (Ch 4)</strong><br>
+<span class="kt-node">The Crown (法定元首)</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Personal Immunity (不可被诉)</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Crown Proceedings Act 1947 (政府可被诉)</span>
 </div>
 
-<div style="font-family: 'SF Mono', Menlo, 'Courier New', monospace; font-size:13px; line-height:2.2; background:#fafafa; border:1px solid #e0e0e0; border-radius:10px; padding:24px 28px; margin:20px 0 30px; overflow-x:auto; white-space:pre; color:#1a1a1a;"> Constitutional & Admin Law
- ┃
- ┣━━ <b>Ch4: The Crown & Royal Prerogative</b> （王室与特权）
- ┃    ┃
- ┃    ┣━━ 1. The Crown（王室）
- ┃    ┃    ┣ 国王法律地位：法定元首，政府以国王名义行使
- ┃    ┃    ┣ King personal immunity：不可被诉
- ┃    ┃    ┗ Crown Proceedings Act 1947 ──→ 政府可被诉（合同/侵权）
- ┃    ┃       但：无禁制令(s.21)、不受议会法约束(s.40)
- ┃    ┃
- ┃    ┣━━ 2. Royal Prerogative（王室特权）
- ┃    ┃    ┣ 定义：行政权，不需议会许可
- ┃    ┃    ┣ 五大类：政府/司法/安全/外交/国防
- ┃    ┃    ┗ 法院判断哪些特权仍然存在
- ┃    ┃
- ┃    ┣━━ 3. Prerogative vs Statute ⭐核心
- ┃    ┃    ┣ 制定法优于特权（De Keyser）
- ┃    ┃    ┣ 不可用特权挫败议会（Fire Brigades Union）
- ┃    ┃    ┣ 条约不改变国内法（Miller 2017）
- ┃    ┃    ┗ 制定法废除 → 特权可恢复（revive）
- ┃    ┃
- ┃    ┣━━ 4. Judicial Review of Prerogative ⭐核心
- ┃    ┃    ┣ GCHQ框架：可审查 vs 不可审查
- ┃    ┃    ┣ 不可审查：国防、外交（高政策）
- ┃    ┃    ┣ 可审查：护照、赦免、海外协助（个人权利）
- ┃    ┃    ┗ 政策 vs 个人权利冲突时 → 政策优先（Bancoult）
- ┃    ┃
- ┃    ┗━━ 5. Parliamentary Accountability
- ┃         ┣ 大臣拒绝回答的7类事项
- ┃         ┗ 2013年后海外军事部署需下议院授权
- ┃
- ┣━━ <b>Ch5: Legislation — Primary & Secondary</b> （立法）
- ┃    ┃
- ┃    ┣━━ 6. Primary Legislation（主要立法）
- ┃    ┃    ┣ 法案五类型（Public / Private Member's / Private / Hybrid / Money）
- ┃    ┃    ┣ 议会六阶段程序（Pre-scrutiny → 三读）
- ┃    ┃    ┣ Parliament Acts：上议院最多延迟1年
- ┃    ┃    ┣ Royal Assent：形式性
- ┃    ┃    ┗ 生效：通常由大臣指定日期，可能永远不生效
- ┃    ┃
- ┃    ┗━━ 7. Delegated Legislation（委代立法）⭐核心
- ┃         ┣ 母法授权，每年约3,500项（vs 100部法案）
- ┃         ┣ 类型：SI / Orders in Council / Bylaws / Budget resolutions
- ┃         ┣ 审批：Negative(40天) / Affirmative / Super-affirmative(60天)
- ┃         ┣ Henry VIII Clause：大臣可修改议会法案
- ┃         ┗ 司法审查：ultra vires（违法/不合理/程序瑕疵/人权）
- ┃            即使经affirmative批准仍可审查！
- ┃
- ┗━━ 📌 课程间关系（Day 1-4 已学内容）
-      Day1 Ch1宪法概述 ← Day2 Ch2议会主权 ← Day3 Ch8 HRA ← Day4 Ch4+Ch5
-      ┃                                         ┃                ┃
-      ┃                                         ┗ Ch8 HRA s.10 ─→ Remedial Order
-      ┃                                            修改不兼容法案 ──→ Ch5 Henry VIII Clause
-      ┃
-      ┣ Day3 Ch8 为 Day4 Ch4 提供背景：
-      ┃   HRA 1998 → Art 6(听证)→ Ch5 Ahmed案（冻结资产前须听证）
-      ┃   HRA 1998 → 宣告不兼容 → Ch5 Remedial Order（super-affirmative）
-      ┃
-      ┗ 待学（后续课程）：
-        ┣ Ch3 中央政府与权力下放
-        ┣ Ch6 公共秩序法（游行/集会/rave）
-        ┣ Ch7 司法审查（Administrative Law核心）
-        ┗ Ch9 欧盟法</div>
+<div class="kt-section">
+<strong>Branch 2: Royal Prerogative</strong><br>
+<span class="kt-node">Prerogative Definition (行政权，不需议会许可)</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Five Categories (政府/司法/安全/外交/国防)</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Prerogative vs Statute ⭐ (制定法优先, De Keyser)</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Judicial Review ⭐ (GCHQ三分法)</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Parliamentary Accountability</span>
+</div>
+
+<div class="kt-section">
+<strong>Branch 3: Primary Legislation (Ch 5)</strong><br>
+<span class="kt-node">Bill Types (5 types)</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Legislative Process (Pre-scrutiny → 3 Readings)</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Parliament Acts (上院最多延迟1年)</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Royal Assent (形式性)</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Into Force (大臣指定日期)</span>
+</div>
+
+<div class="kt-section">
+<strong>Branch 4: Delegated Legislation ⭐</strong><br>
+<span class="kt-node">Parent Act Authorization</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Types: SI / Orders in Council / Bye-laws</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Scrutiny: Negative (40d) / Affirmative / Super-affirmative (60d)</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Henry VIII Clause (大臣可修改议会法案)</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Judicial Review (ultra vires)</span>
+</div>
+
+<div class="kt-section">
+<strong>🔗 Links to Previous Lessons</strong><br>
+Lesson 1 Ch1 宪法概述 → Lesson 2 Ch2 议会主权 → Lesson 3 Ch8 HRA 1998 → Lesson 4 Ch4+Ch5<br>
+Lesson 3 HRA s.10 Remedial Order (super-affirmative) → Lesson 4 Ch5 Henry VIII Clause<br>
+Lesson 3 HRA Art 6 (hearing) → Lesson 4 Ahmed 案 (冻结资产前须听证)<br>
+Lesson 4 Prerogative → Lesson 5 Home Secretary 权力 → Lesson 6 警方禁令权力
+</div>
+</div>
 
 <!-- ============================================================ -->
 <!-- PART 1: THE CROWN -->
