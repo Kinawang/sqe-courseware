@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SQE1 Week 1 — Lesson 6: Judicial Review</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Georgia', 'Times New Roman', serif; background: #fff; color: #222; line-height: 1.7; padding: 20px; max-width: 900px; margin: 0 auto; }
+h1 { font-size: 1.8em; text-align: center; color: #1a1a2e; margin: 30px 0 10px; border-bottom: 3px solid #16213e; padding-bottom: 10px; }
+h2 { font-size: 1.4em; color: #16213e; margin: 25px 0 12px; border-left: 5px solid #0f3460; padding-left: 12px; }
+h3 { font-size: 1.15em; color: #0f3460; margin: 18px 0 8px; }
+h4 { font-size: 1.05em; color: #e94560; margin: 14px 0 6px; }
+p, li { margin: 6px 0; }
+ul, ol { padding-left: 24px; }
+.case-box { background: #f0f4ff; border: 1px solid #b8c9e8; border-radius: 8px; padding: 14px 18px; margin: 14px 0; }
+.case-box .case-name { font-weight: bold; color: #0f3460; }
+.key-term { background: #fff3cd; border: 1px solid #ffc107; border-radius: 6px; padding: 10px 14px; margin: 10px 0; }
+.key-term strong { color: #856404; }
+.exam-tip { background: #d4edda; border: 1px solid #28a745; border-radius: 6px; padding: 10px 14px; margin: 10px 0; }
+.exam-tip strong { color: #155724; }
+.exam-warning { background: #f8d7da; border: 1px solid #dc3545; border-radius: 6px; padding: 10px 14px; margin: 10px 0; }
+.exam-warning strong { color: #721c24; }
+.summary-box { background: #e8f4fd; border: 2px solid #0f3460; border-radius: 10px; padding: 16px 20px; margin: 20px 0; }
+.qa-box { background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 14px 18px; margin: 12px 0; }
+.qa-box .question { font-weight: bold; color: #495057; margin-bottom: 6px; }
+.qa-box .answer { color: #28a745; }
+table { border-collapse: collapse; width: 100%; margin: 12px 0; }
+th, td { border: 1px solid #ccc; padding: 8px 10px; text-align: left; font-size: 0.95em; }
+th { background: #e9ecef; color: #343a40; }
+.knowledge-tree { background: #f5f0ff; border: 2px solid #6f42c1; border-radius: 10px; padding: 18px 22px; margin: 20px 0; }
+.knowledge-tree h3 { color: #6f42c1; margin-bottom: 12px; }
+.kt-node { display: inline-block; background: #e8daff; border-radius: 6px; padding: 4px 10px; margin: 3px; font-size: 0.9em; color: #4a2d8e; }
+.kt-arrow { color: #6f42c1; font-weight: bold; margin: 0 4px; }
+.kt-section { margin: 8px 0; line-height: 2; }
+</style>
+</head>
+<body>
+
+<h1>SQE1 Week 1 — Lesson 6<br>Chapter 7: Judicial Review</h1>
+
+<!-- ==================== Knowledge Tree ==================== -->
+<div class="knowledge-tree">
+<h3>🌳 Knowledge Tree</h3>
+
+<div class="kt-section">
+<strong>Branch 1: Application for Judicial Review</strong><br>
+<span class="kt-node">What is JR? (not an appeal)</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Leave (permission)</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Sufficient Interest (locus standi)</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Public Body only</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Remedies: Quashing / Prohibiting / Mandatory / Injunction / Declaration</span>
+</div>
+
+<div class="kt-section">
+<strong>Branch 2: Grounds of JR — Lord Diplock's Framework</strong><br>
+<span class="kt-node">Illegality (违法)</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Irrationality (Wednesbury unreasonableness)</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Procedural Impropriety (程序不当)</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Proportionality (ECHR/EU cases only)</span>
+</div>
+
+<div class="kt-section">
+<strong>Branch 3: Illegality Sub-categories</strong><br>
+<span class="kt-node">Misunderstanding the law</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Improper Purpose</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Relevant/Irrelevant Considerations</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Fettering of Discretion</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Unauthorised Delegation</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Error of Fact</span>
+</div>
+
+<div class="kt-section">
+<strong>Branch 4: Procedural Impropriety</strong><br>
+<span class="kt-node">Requirement to Consult</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Natural Justice (自然正义)</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Rule against Bias (偏见)</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Right to a Fair Hearing (公平听证)</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Legitimate Expectation (程序 / 实质)</span>
+</div>
+
+<div class="kt-section">
+🔗 <strong>Links to other lessons:</strong><br>
+<span class="kt-node">Lesson 1: Rule of Law</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Access to justice (Unison [2017])</span><br>
+<span class="kt-node">Lesson 2: HRA 1998</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Proportionality in JR (HRA cases)</span><br>
+<span class="kt-node">Lesson 3: Delegated Legislation</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">JR of delegated legislation (s3 HRA)</span>
+</div>
+</div>
+
+<!-- ==================== Part 1: What is Judicial Review ==================== -->
+<h2>📖 Part 1: What is Judicial Review?</h2>
+
+<h3>Core Definition</h3>
+<p><strong>Judicial Review (JR) (司法审查)</strong> is a procedure by which the High Court reviews the <strong>lawfulness</strong> of a decision, action, or failure to act by a public body.</p>
+
+<div class="exam-warning">
+<strong>⚠️ Exam Warning:</strong> JR is <strong>NOT an appeal</strong>. The court does NOT look at the merits of the decision (whether the judge agrees with it). JR only checks <strong>whether the decision was made legally</strong> — i.e., whether the decision-maker had the legal power to make that decision and followed the correct procedure.
+</div>
+
+<div class="summary-box">
+<p><strong>JR vs Appeal — key distinction:</strong></p>
+<ul>
+<li><strong>Appeal:</strong> The court reconsiders the merits and can substitute its own decision.</li>
+<li><strong>Judicial Review:</strong> The court checks legality only. If the decision is <em>ultra vires</em> (beyond powers), the court may quash it and remit it to the decision-maker to decide again — this time lawfully.</li>
+</ul>
+</div>
+
+<h3>Legal Basis</h3>
+<table>
+  <tr><th>Provision</th><th>Content</th></tr>
+  <tr><td><strong>Senior Courts Act 1981 s31</strong></td><td>Sets out the procedure for applying for judicial review</td></tr>
+  <tr><td><strong>Civil Procedure Rules Part 54</strong></td><td>Detailed procedural rules for JR claims</td></tr>
+  <tr><td><strong>Administrative Court</strong></td><td>The division of the High Court that hears JR claims</td></tr>
+</table>
+
+<!-- ==================== Part 2: Application Procedure ==================== -->
+<h2>📖 Part 2: Application for Judicial Review</h2>
+
+<h3>Step 1: Leave (Permission to Proceed)</h3>
+<p>Unlike ordinary civil claims, the claimant must <strong>first obtain permission</strong> to apply for JR. This is usually decided on the papers by a court official.</p>
+
+<table>
+  <tr><th>Permission GRANTED if:</th><th>Permission REFUSED if:</th></tr>
+  <tr><td>✅ The claim is <strong>arguable</strong> and has a reasonable prospect of success</td><td>❌ There is a <strong>suitable alternative remedy</strong> (e.g., a statutory appeal)</td></tr>
+  <tr><td>✅ The claim form is filed <strong>within 3 months</strong> of the grounds arising (6 weeks for planning decisions)</td><td>❌ The outcome would <strong>not have been substantially different</strong> even if the complaint is upheld</td></tr>
+  <tr><td></td><td>❌ The claimant has <strong>delayed</strong> excessively</td></tr>
+</table>
+
+<div class="case-box">
+<span class="case-name">Practice Example:</span> A client convicted in the magistrates' court wants to seek JR of his conviction. <strong>Advice:</strong> He has <strong>statutory rights of appeal</strong> (rehearing in Crown Court, or case stated to High Court). JR will almost certainly be refused — he must use the statutory appeal route first.
+</div>
+
+<h3>Step 2: Sufficient Interest (Locus Standi)</h3>
+<p>The claimant must have <strong>"sufficient interest"</strong> in the matter — meaning the decision affected some right or interest of the claimant.</p>
+
+<table>
+  <tr><th>Case</th><th>Result</th><th>Principle</th></tr>
+  <tr><td><strong>Schmidt v Secretary of State [1969]</strong></td><td>✅ Sufficient interest found</td><td>Students expelled from UK — affected their rights</td></tr>
+  <tr><td><strong>R v Liverpool Corporation [1972]</strong></td><td>✅ Taxi operators' association had sufficient interest</td><td>The decision affected their <strong>livelihood</strong></td></tr>
+  <tr><td><strong>Inland Revenue Commissioners v NFSE [1982]</strong></td><td>❌ NO sufficient interest</td><td>Tax assessments are confidential — federation not directly affected</td></tr>
+  <tr><td><strong>R v Foreign Secretary ex parte WDM [1995]</strong></td><td>✅ Pressure group had sufficient interest</td><td>Raised a <strong>serious legal issue</strong>; no one else could bring the case</td></tr>
+  <tr><td><strong>R (Miller) v Secretary of State [2017]</strong></td><td>✅ "Concerned citizen" Gina Miller had standing</td><td>Raised a constitutional issue of <strong>general public importance</strong></td></tr>
+</table>
+
+<h3>Step 3: Public Body Only</h3>
+<p>JR lies only against a person or body exercising a <strong>public function</strong>.</p>
+
+<table>
+  <tr><th>Case</th><th>Held</th><th>Principle</th></tr>
+  <tr><td><strong>R v City Panel on Takeover and Mergers [1987]</strong></td><td>✅ Public function — JR available</td><td>Panel regulated the Stock Exchange as part of the government's regulatory system — <strong>public function</strong> even though not statutory</td></tr>
+  <tr><td><strong>R v Jockey Club [1993]</strong></td><td>❌ NOT a public body — JR NOT available</td><td>Jockey Club was <strong>not created by statute</strong>, had no statutory powers, and was not part of any government regulatory system — only suable for breach of contract</td></tr>
+</table>
+
+<div class="exam-tip">
+<strong>Exam Tip:</strong> The test is whether the body performs a <strong>public function</strong>, not whether it is a "government department". Private bodies exercising public functions (e.g., the Takeover Panel) CAN be judicially reviewed.
+</div>
+
+<h3>Excluding Judicial Review</h3>
+<p>An Act of Parliament may <em>attempt</em> to prevent JR of a decision. However, the courts <strong>strongly resist</strong> such exclusion — they interpret the Act in an "extremely cunning way" to evade the restriction, because excluding JR restricts <strong>access to justice</strong>.</p>
+
+<div class="case-box">
+<span class="case-name">Anisminic v Foreign Compensation Commission [1969] 2 AC 147</span><br>
+<strong>Facts:</strong> The Foreign Compensation Act 1950 stated that a "determination" by the FCC "shall not be called in question in any court of law."<br>
+<strong>Held:</strong> If the FCC's "determination" was <em>ultra vires</em> (beyond its powers), it was <strong>not a valid "determination"</strong> at all. The wording of the Act only prevented review of a valid "determination" — it did NOT prevent review of a <strong>purported or incorrect determination</strong>.<br>
+<strong>Significance:</strong> A masterful interpretation that preserved judicial review despite apparently exclusionary language.
+</div>
+
+<h3>Remedies (救济)</h3>
+<table>
+  <tr><th>Remedy</th><th>English</th><th>Effect</th></tr>
+  <tr><td><strong>Quashing Order (撤销令)</strong></td><td>Quashing order</td><td>The decision is of no effect; the body must re-decide lawfully. The court <em>may</em> substitute its own decision.</td></tr>
+  <tr><td><strong>Prohibiting Order (禁止令)</strong></td><td>Prohibiting order</td><td>Orders the body <strong>not to make or implement</strong> an illegal decision.</td></tr>
+  <tr><td><strong>Mandatory Order (履行令)</strong></td><td>Mandatory order</td><td>Orders the body to <strong>fulfil its legal duties</strong>.</td></tr>
+  <tr><td><strong>Injunction (禁制令)</strong></td><td>Injunction</td><td>Order to do or not do something. Can be <strong>interim</strong> (pending full trial).</td></tr>
+  <tr><td><strong>Declaration (宣告)</strong></td><td>Declaration</td><td>The court states the <strong>legal position</strong>. Public bodies normally comply.</td></tr>
+  <tr><td><strong>Damages (损害赔偿)</strong></td><td>Damages</td><td>⚠️ <strong>NOT normally awarded</strong> in JR. Only available if there is also a successful claim in contract or tort alongside the JR.</td></tr>
+</table>
+
+<div class="exam-warning">
+<strong>⚠️ Warning:</strong> Even if the claimant proves the decision was <em>ultra vires</em>, the court has <strong>discretion</strong> whether to grant a remedy. The court may REFUSE if: (1) the claimant acted unreasonably; (2) a remedy would now be ineffective; or (3) it is not in the public interest.
+</div>
+
+<!-- ==================== Part 3: Grounds of JR ==================== -->
+<h2>📖 Part 3: The Grounds of Judicial Review — Lord Diplock's Framework</h2>
+
+<p>In <strong>Council for Civil Service Unions v Minister of State for Civil Service [1985] AC 374</strong> (the <em>GCHQ case</em>), Lord Diplock summarised the main grounds for JR as:</p>
+
+<div class="summary-box">
+<ol>
+<li><strong>Illegality (违法)</strong> — The decision-maker misunderstood the law or exceeded their powers.</li>
+<li><strong>Irrationality (不合理)</strong> — The decision is so absurd that no sensible person could have made it (<em>Wednesbury</em> unreasonableness).</li>
+<li><strong>Procedural Impropriety (程序不当)</strong> — Failure to follow procedural rules or natural justice.</li>
+<li><strong>Proportionality (相称性)</strong> — Added later for ECHR and EU law cases (now via HRA 1998 s6).</li>
+</ol>
+</div>
+
+<!-- ==================== Part 3a: Illegality ==================== -->
+<h2>📖 Part 3(a): Illegality (违法)</h2>
+
+<p>Illegality means the decision-maker <strong>did not have the legal power</strong> to make that decision, or misunderstood the law regulating their decision-making power.</p>
+
+<h3>Sub-categories of Illegality</h3>
+
+<h4>1. Misunderstanding the Law</h4>
+<p>The court interprets the wording of the Act of Parliament to decide what decisions are allowed. The statute must be read in the context of <strong>general constitutional principles</strong>.</p>
+
+<div class="case-box">
+<span class="case-name">Padfield v Minister of Agriculture [1968] AC 997</span><br>
+<strong>Facts:</strong> The minister had power to regulate milk prices and could establish a committee "if the minister in any case so directs." The wording <em>seemed</em> to give absolute discretion.<br>
+<strong>Held:</strong> The minister could NOT ignore regional price disparities. The court issued a <strong>mandatory order</strong> compelling him to constitute the committee.<br>
+<strong>Principle:</strong> Even apparently absolute discretion must be exercised consistently with the <strong>purpose</strong> of the Act.
+</div>
+
+<div class="case-box">
+<span class="case-name">R (Unison) v Lord Chancellor [2017] UKSC 51</span><br>
+<strong>Facts:</strong> The Lord Chancellor set excessively high employment tribunal fees under a statutory power to "set fees".<br>
+<strong>Held:</strong> Although the wording seemed to give a general power, it did <strong>NOT</strong> allow fees that denied <strong>access to justice</strong> — a basic right required by the Rule of Law.<br>
+<strong>Principle:</strong> Statutory powers must be interpreted in light of constitutional principles (here, access to courts).
+</div>
+
+<h4>2. Improper Purpose</h4>
+<p>A statutory power must NOT be used for a purpose for which it was not intended.</p>
+
+<div class="case-box">
+<span class="case-name">Porter v Magill [2002] 2 AC 357</span><br>
+<strong>Facts:</strong> A council used its statutory power to sell council houses — but used it to <strong>encourage buyers to vote for them</strong> in elections.<br>
+<strong>Held:</strong> This was an <strong>improper purpose</strong>. The power to sell council houses exists for housing policy purposes, NOT for electoral advantage.
+</div>
+
+<h4>3. Relevant and Irrelevant Considerations</h4>
+<p>The decision-maker must take into account <strong>all relevant considerations</strong> and must NOT take into account <strong>irrelevant considerations</strong>.</p>
+
+<h4>4. Fettering of Discretion</h4>
+<p>The decision-maker must NOT <strong>"fetter" (restrict)</strong> their own discretion by applying a rigid rule or policy without considering individual cases.</p>
+
+<div class="case-box">
+<span class="case-name">British Oxygen v Board of Trade [1971] AC 610</span><br>
+<strong>Principle:</strong> A decision-maker MAY adopt a general policy, but must be willing to <strong>consider individual cases</strong> that fall outside the policy. A total refusal to consider individual circumstances = fettering of discretion.
+</div>
+
+<h4>5. Unauthorised Delegation</h4>
+<p>The decision-maker must NOT delegate their decision-making power to another person unless the statute expressly permits it.</p>
+
+<h4>6. Error of Fact</h4>
+<p>Traditionally, errors of fact (as opposed to errors of law) could NOT be challenged by JR. However, this rule has been relaxed — if the error is <strong>jurisdictional</strong> or the decision-maker made a <strong>wrong factual assumption</strong> that goes to the heart of the decision, JR may lie.</p>
+
+<!-- ==================== Part 3b: Irrationality ==================== -->
+<h2>📖 Part 3(b): Irrationality (Wednesbury Unreasonableness)</h2>
+
+<p>Irrationality means the decision is so <strong>outrageous in its defiance of logic or accepted moral standards</strong> that no sensible person could have made it. This is also called <strong>"Wednesbury unreasonableness"</strong>.</p>
+
+<div class="case-box">
+<span class="case-name">Associated Provincial Picture Houses v Wednesbury Corp [1948] 1 KB 223</span><br>
+<strong>Facts:</strong> Wednesbury Corporation licensed cinemas but imposed a condition: <strong>no children under 15 admitted on Sundays</strong>.<br>
+<strong>Held:</strong> Lord Greene MR stated: "A conclusion so unreasonable that <strong>no reasonable authority could have come to it</strong>." On the facts, the condition was NOT unreasonable (at that time, Sunday religious observance was common).<br>
+<strong>Test:</strong> "So absurd that no sensible person could have reached it."
+</div>
+
+<h3>What is "Unreasonable"?</h3>
+
+<table>
+  <tr><th>Case</th><th>Decision</th><th>Reasonable?</th></tr>
+  <tr><td><strong>Roberts v Hopwood [1925] AC 528</strong></td><td>Council paid ALL employees (male and female) £4/week regardless of market rates (average £2.50)</td><td>❌ <strong>UNREASONABLE</strong> — A socialist policy at excessive expense to ratepayers; not a proper exercise of discretion</td></tr>
+  <tr><td><strong>R v Ministry of Defence ex parte Smith [1996]</strong></td><td>Ministry's policy: homosexuality incompatible with armed service</td><td>⚠️ <strong>NOT irrational</strong> — Although judges <em>personally disagreed</em>, the policy was <em>within the range</em> of responses available to a reasonable decision-maker</td></tr>
+</table>
+
+<div class="exam-tip">
+<strong>Exam Tip:</strong> "Irrationality" is a <strong>very high bar</strong>. The court is NOT asking whether <em>it</em> agrees with the decision. It asks: could <em>any</em> reasonable decision-maker have made this decision? If yes → NOT irrational.
+</div>
+
+<h3>Human Rights Cases — Closer Scrutiny</h3>
+<p>In cases involving <strong>ECHR rights (via HRA 1998)</strong>, the court will investigate reasonableness <strong>more closely</strong> — but it is still difficult to prove irrationality.</p>
+
+<!-- ==================== Part 3c: Procedural Impropriety ==================== -->
+<h2>📖 Part 3(c): Procedural Impropriety (程序不当)</h2>
+
+<p>Procedural impropriety means the decision-maker failed to follow <strong>procedural rules</strong> laid down in legislation, or failed to follow the <strong>basic rules of natural justice</strong>.</p>
+
+<h3>1. The Requirement to Consult</h3>
+<p>An Act may require the decision-maker to <strong>consult interested parties</strong> before making a decision. The court decides whether the consultation requirement is <strong>mandatory</strong> (must be followed) or <strong>directory</strong> (optional).</p>
+
+<table>
+  <tr><th>Case</th><th>Held</th></tr>
+  <tr><td><strong>Bradbury v Enfield LBC [1967]</strong></td><td>Enfield HAD to give public notice before closing schools. Failure to consult = unlawful. Lord Denning ordered notice to be given.</td></tr>
+  <tr><td><strong>Agricultural etc Training Board v Aylesbury Mushrooms [1972]</strong></td><td>Minister must consult "any organisation appearing... to be representative". Consulting ONLY the National Farmers' Union was <strong>insufficient</strong> — must consult ALL affected organisations.</td></tr>
+</table>
+
+<h3>2. Natural Justice (自然正义)</h3>
+<p><strong>Natural Justice</strong> applies when a decision of a public body <strong>affects the rights</strong> of an individual. It has <strong>two basic principles</strong>:</p>
+
+<div class="summary-box">
+<p><strong>Two principles of natural justice:</strong></p>
+<ol>
+<li><strong>The rule against bias (禁止偏见)</strong> — No one should be a judge in their own cause (<em>nemo judex in causa sua</em>).</li>
+<li><strong>The right to a fair hearing (公平听证权)</strong> — The accused must be told the case against them and allowed to respond.</li>
+</ol>
+</div>
+
+<h4>The Rule Against Bias</h4>
+<p>It is <strong>NOT necessary to prove actual bias</strong>. It is enough that a <strong>"fair-minded and informed observer"</strong> would conclude there was a <strong>real possibility of bias</strong>.</p>
+
+<table>
+  <tr><th>Case</th><th>Bias?</th><th>Explanation</th></tr>
+  <tr><td><strong>Ridge v Baldwin [1964] AC 40</strong></td><td>✅ Bias</td><td>Council dismissed chief constable based on <strong>newspaper reports</strong> of a trial. They had already decided he was unsuitable — incapable of giving him a fair hearing.</td></tr>
+  <tr><td><strong>Dimes v Grand Junction Canal [1852]</strong></td><td>✅ Bias</td><td>Lord Chancellor Cottenham decided a case in which he was a <strong>substantial shareholder</strong>. Decision was quashed.</td></tr>
+  <tr><td><strong>R v Bow Street Magistrate ex parte Pinochet [2000]</strong></td><td>✅ Bias</td><td>Lord Hoffman, a member of Amnesty International, sat on a human rights case where Amnesty gave evidence. The case had to be <strong>heard again</strong> without Lord Hoffman.</td></tr>
+</table>
+
+<h4>The Right to a Fair Hearing</h4>
+<p>What amounts to a "fair hearing" depends on the circumstances. The <strong>more serious the consequences</strong>, the <strong>more rights</strong> the claimant has.</p>
+
+<table>
+  <tr><th>Case</th><th>Fair Hearing Required?</th><th>Explanation</th></tr>
+  <tr><td><strong>Ridge v Baldwin [1964]</strong></td><td>✅ YES — Full hearing</td><td>Dismissal of chief constable — required notice of charges and opportunity to respond</td></tr>
+  <tr><td><strong>Lloyds v McMahon [1987]</strong></td><td>⚠️ Written hearing sufficient</td><td>Tax penalty case — less serious consequences; written representations sufficient (plus right of appeal to High Court)</td></tr>
+  <tr><td><strong>Osborn v Parole Board [2013] UKSC 61</strong></td><td>✅ YES — Oral hearing</td><td>Parole Board decisions affecting <strong>liberty</strong>. Important facts in dispute → witnesses must be questioned. <strong>Oral hearing required.</strong></td></tr>
+  <tr><td><strong>R (G) v Governors of X School [2012]</strong></td><td>✅ YES — Legal representation</td><td>Teacher banned from teaching — deprivation of livelihood. Legal representation appropriate.</td></tr>
+  <tr><td><strong>R v Home Department ex parte Doody [1994]</strong></td><td>✅ YES — Duty to give reasons</td><td>Life prisoners must be <strong>told the reasons</strong> for their minimum detention period. General duty to give reasons unless justified not to.</td></tr>
+</table>
+
+<div class="exam-tip">
+<strong>Exam Tip:</strong> The key question for fair hearing is: <strong>What is the consequence for the individual?</strong> The more serious the consequence (loss of liberty > loss of money > minor penalty), the more elaborate the procedural rights.
+</div>
+
+<h3>3. Legitimate Expectation (合法期待)</h3>
+
+<p>There are <strong>two types</strong> of legitimate expectation:</p>
+
+<h4>(a) Procedural Legitimate Expectation</h4>
+<p>As part of natural justice, a claimant may have a legitimate expectation that they will be <strong>consulted</strong> about a change in rules or a decision affecting them.</p>
+
+<div class="case-box">
+<span class="case-name">Council for Civil Service Unions v Minister (GCHQ) [1985]</strong></span><br>
+<strong>Facts:</strong> The minister proposed to ban trade union membership for civil servants at GCHQ. The council had <strong>previously been consulted</strong> about changes to terms and conditions.<br>
+<strong>Held:</strong> The council had a <strong>procedural legitimate expectation</strong> that they would be consulted. The minister should have consulted (though in this case national security justified skipping consultation).
+</div>
+
+<h4>(b) Substantive Legitimate Expectation</h4>
+<p>In certain circumstances, public bodies may be <strong>obliged to keep a promise</strong> they have made about their future policies.</p>
+
+<div class="case-box">
+<span class="case-name">R v North and East Devon Health Authority ex parte Coughlan [2001] QB 213</span><br>
+<strong>Facts:</strong> Coughlan and 7 other severely disabled patients were <strong>promised</strong> they could stay in their NHS accommodation <strong>for life</strong>. Later, Devon decided to close the facility.<br>
+<strong>Held:</strong> The patients had a <strong>substantive legitimate expectation</strong>. Devon MUST keep its promise. It would be <strong>unfair and an abuse of power</strong> to close. Devon could NOT show an "overriding public interest" that justified closure.<br>
+<strong>Test (from R (Niazi) v Home Secretary [2008]):</strong> (1) A <strong>clear and unequivocal undertaking</strong> given to a particular group/individual; (2) The defendant can defeat the claim by showing <strong>good reason</strong> for departing from the undertaking.
+</div>
+
+<!-- ==================== Part 3d: Proportionality ==================== -->
+<h2>📖 Part 3(d): Proportionality (相称性)</h2>
+
+<p><strong>Proportionality</strong> was identified by Lord Diplock as a ground that would <strong>"eventually become part of judicial review"</strong>. It is now a standard ground in <strong>ECHR cases (via HRA 1998)</strong> and <strong>EU law cases</strong>.</p>
+
+<p>The <strong>four-step proportionality test</strong> (see Lesson 2) applies:</p>
+<ol>
+<li>Is there a <strong>legitimate aim</strong>?</li>
+<li>Is the measure <strong>rationally connected</strong> to the aim?</li>
+<li>Are there <strong>less intrusive means</strong> available?</li>
+<li>Is there a <strong>fair balance</strong> between the right and the community need?</li>
+</ol>
+
+<div class="exam-tip">
+<strong>Exam Tip (Revision Tip from textbook):</strong> Proportionality is <strong>NOT</strong> a separate ground of JR in ordinary (non-HRA, non-EU) cases. It is part of the <strong>irrationality</strong> ground in those cases. But in HRA cases, it is a <strong>separate and explicit ground</strong>.
+</div>
+
+<!-- ==================== Key Terms ==================== -->
+<h2>🔑 Key Terms — Bilingual Glossary（核心词汇中英文对照）</h2>
+<table>
+  <tr><th style="width:30%">English Term</th><th>中文</th><th>Exam Focus</th></tr>
+  <tr><td>Judicial Review (JR)</td><td>司法审查</td><td>Checks legality, NOT merits; NOT an appeal</td></tr>
+  <tr><td>Ultra vires</td><td>越权（超越权限）</td><td>Decision beyond the decision-maker's legal power</td></tr>
+  <tr><td>Leave / Permission</td><td>许可（申请司法审查的许可）</td><td>Must be obtained BEFORE JR proceeds; arguable claim</td></tr>
+  <tr><td>Sufficient Interest</td><td>充分利益（起诉资格）</td><td>Also called <em>locus standi</em>; flexible test (<em>Miller [2017]</em>)</td></tr>
+  <tr><td>Public Body</td><td>公共机构</td><td> Body exercising public function; includes non-statutory bodies (<em>Datafin</em>)</td></tr>
+  <tr><td>Quashing Order</td><td>撤销令</td><td>Decision of no effect; may be remitted for re-decision</td></tr>
+  <tr><td>Mandatory Order</td><td>履行令</td><td>Orders public body to fulfil legal duties</td></tr>
+  <tr><td>Prohibiting Order</td><td>禁止令</td><td>Prevents making/implementing illegal decision</td></tr>
+  <tr><td>Injunction</td><td>禁制令</td><td>Order to do or not do something; can be interim</td></tr>
+  <tr><td>Declaration</td><td>宣告（法院宣告法律地位）</td><td>States legal position; no direct enforcement</td></tr>
+  <tr><td>Illegality</td><td>违法（不合法）</td><td>Misunderstanding law / Improper purpose / Fettering discretion</td></tr>
+  <tr><td>Irrationality</td><td>不合理</td><td><em>Wednesbury</em> unreasonableness; very high bar</td></tr>
+  <tr><td>Procedural Impropriety</td><td>程序不当</td><td>Failure to follow procedure / Natural justice breach</td></tr>
+  <tr><td>Proportionality</td><td>相称性</td><td>Standard ground in HRA/EU cases; part of irrationality in ordinary cases</td></tr>
+  <tr><td>Natural Justice</td><td>自然正义</td><td>Rule against bias + Right to fair hearing</td></tr>
+  <tr><td>Rule against Bias</td><td>禁止偏见规则</td><td>"Fair-minded and informed observer" test (<em>Porter v Magill</em>)</td></tr>
+  <tr><td>Fair Hearing</td><td>公平听证</td><td>More rights if more serious consequences (<em>Osborn [2013]</em>)</td></tr>
+  <tr><td>Legitimate Expectation</td><td>合法期待</td><td>Procedural (consultation) + Substantive (promise must be kept)</td></tr>
+  <tr><td>Wednesbury Unreasonableness</td><td>温斯伯里不合理性</td><td>"So absurd no sensible person could have made it"</td></tr>
+  <tr><td>Fettering of Discretion</td><td>拘束裁量权</td><td>Applying rigid policy without considering individual cases</td></tr>
+  <tr><td>Anisminic v FCC [1969]</td><td>阿尼斯米尼克案</td><td>"Determination" that is ultra vires is NOT a determination at all</td></tr>
+  <tr><td>Council for Civil Service Unions [1985] (GCHQ)</td><td>GCHQ案</td><td>Lord Diplock's 3 grounds; procedural legitimate expectation</td></tr>
+</table>
+
+<!-- ==================== Practice Questions ==================== -->
+<h2>📝 Practice Questions</h2>
+
+<div class="qa-box">
+<div class="question">Q1: What is the key difference between Judicial Review and an appeal?</div>
+<div class="answer">JR checks the <strong>lawfulness</strong> of a decision (whether it was made legally). An appeal reconsiders the <strong>merits</strong> of the decision and the court can substitute its own decision. JR does NOT look at whether the judge agrees with the decision.</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q2: What are the four grounds of judicial review set out by Lord Diplock in the GCHQ case?</div>
+<div class="answer">(1) <strong>Illegality</strong> — misunderstanding the law or exceeding powers; (2) <strong>Irrationality</strong> — Wednesbury unreasonableness; (3) <strong>Procedural Impropriety</strong> — failing to follow procedural rules or natural justice; (4) <strong>Proportionality</strong> — in HRA/EU cases.</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q3: A local council refuses planning permission to a building firm. The planning inspector who upheld the refusal is the <strong>brother of the council chair</strong>. Which ground of JR is most likely to succeed?</div>
+<div class="answer"><strong>Procedural Impropriety — breach of natural justice (rule against bias).</strong> The planning inspector and council chair are related. A "fair-minded and informed observer" would conclude there was a real possibility of bias. (This is the fact pattern of an SQE1-style question.)</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q4: In <em>Anisminic v FCC [1969]</em>, how did the House of Lords preserve judicial review despite exclusionary language in the statute?</div>
+<div class="answer">The statute said a "determination" "shall not be called in question in any court." The House of Lords held that if the FCC's determination was <strong>ultra vires</strong>, it was <strong>not a valid "determination"</strong> at all — so the exclusionary clause did not apply. A purported/invalid determination can always be reviewed.</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q5: What is "sufficient interest" and how flexible is the test?</div>
+<div class="answer">Sufficient interest (also called <em>locus standi</em>) means the claimant's rights or interests are <strong>affected</strong> by the decision. The test is <strong>flexible</strong> — it is more likely to be granted if the claimant has a strong case or raises an important issue (<em>Miller [2017]</em> — a "concerned citizen" had standing for a constitutional issue). It does NOT have to be financial.</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q6: Can a <strong>private body</strong> be subject to judicial review?</div>
+<div class="answer">YES — if the body is exercising a <strong>public function</strong>. In <em>R v City Panel on Takeover and Mergers [1987]</em>, the Panel (appointed by the Stock Exchange, not statutory) was subject to JR because it was part of the government's regulatory system. But in <em>R v Jockey Club [1993]</em>, the Jockey Club was NOT subject to JR because it had no statutory powers and was not part of any government regulatory system.</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q7: What are the two principles of natural justice?</div>
+<div class="answer">(1) <strong>The rule against bias</strong> — no one should be a judge in their own cause; test is "fair-minded and informed observer" (<em>Porter v Magill</em>); (2) <strong>The right to a fair hearing</strong> — the person must be told the case against them and allowed to respond. The more serious the consequence, the more elaborate the hearing rights.</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q8: In <em>Coughlan [2001]</em>, what is a "substantive legitimate expectation" and when can the public body defeat the claim?</div>
+<div class="answer">A substantve legitimate expectation arises when a public body makes a <strong>clear and unequivocal promise</strong> about its future policies to a particular individual/group. The body is obliged to keep the promise. It can defeat the claim by showing <strong>good reason</strong> (e.g., an overriding public interest) for departing from the promise (<em>Niazi [2008]</em>).</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q9: A council has power to grant taxi licences. It adopts a policy of <strong>"no more licences"</strong> and refuses all applications without considering individual circumstances. What ground of JR is this?</div>
+<div class="answer"><strong>Illegality — fettering of discretion.</strong> The council has applied a rigid rule without considering individual applications. This is an illegal use of power. JR is the correct procedure. (This is the fact pattern of an SQE1-style question.)</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q10: When does the court NOT grant a remedy even if the decision is found to be ultra vires?</div>
+<div class="answer">The court has <strong>discretion</strong>. It may REFUSE a remedy if: (1) the claimant <strong>acted unreasonably</strong>; (2) a remedy would <strong>now be ineffective</strong>; or (3) it is <strong>not in the public interest</strong>. Also, damages are NOT normally awarded in JR (only if there is a successful contract/tort claim alongside).</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q11: What is the Wednesbury test for irrationality?</div>
+<div class="answer">A decision is irrational (Wednesbury unreasonable) if it is <strong>"so outrageous in its defiance of logic or of accepted moral standards that no sensible person who had applied his mind to the question to be decided could have arrived at it."</strong> It is a very high bar — the court does NOT ask whether it agrees with the decision.</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q12: In <em>Padfield v Minister of Agriculture [1968]</em>, how did the House of Lords interpret an apparently "absolute discretion"?</div>
+<div class="answer">The statute gave the minister power to establish a committee "if the minister in any case so directs" — wording that <em>seemed</em> to give absolute discretion. The House of Lords held that the power must be exercised <strong>consistently with the purpose</strong> of the Act. The minister could NOT ignore regional price disparities. He was ordered to constitute the committee. This shows: <strong>even apparently absolute discretion is limited by the purpose of the Act.</strong></div>
+</div>
+
+<p style="text-align:center; color:#999; margin-top:30px;">Based on <em>Revise SQE Constitutional and Administrative Law</em> (2nd edn, Richard Clements)</p>
+
+</body>
+</html>
