@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SQE1 Week1 — Lesson 7: EU Law & Retained EU Law</title>
+<style>
+* { box-sizing: border-box; margin:0; padding:0; }
+body { font-family: 'Georgia', 'Times New Roman', serif; background: #fff; color: #222; line-height:1.7; padding:20px; max-width:900px; margin:0 auto; }
+h1 { font-size:1.8em; text-align:center; color:#1a1a2e; margin:30px 0 10px; border-bottom:3px solid #16213e; padding-bottom:10px; }
+h2 { font-size:1.4em; color:#16213e; margin:25px 0 12px; border-left:5px solid #0f3460; padding-left:12px; }
+h3 { font-size:1.15em; color:#0f3460; margin:18px 0 8px; }
+h4 { font-size:1.05em; color:#e94560; margin:14px 0 6px; }
+p, li { margin:6px 0; }
+ul, ol { padding-left:24px; }
+.case-box { background:#f0f4ff; border:1px solid #b8c9e8; border-radius:8px; padding:14px 18px; margin:14px 0; }
+.case-box .case-name { font-weight:bold; color:#0f3460; }
+.key-term { background:#fff3cd; border:1px solid #ffc107; border-radius:6px; padding:10px 14px; margin:10px 0; }
+.key-term strong { color:#856404; }
+.exam-tip { background:#d4edda; border:1px solid #28a745; border-radius:6px; padding:10px 14px; margin:10px 0; }
+.exam-tip strong { color:#155724; }
+.exam-warning { background:#f8d7da; border:1px solid #dc3545; border-radius:6px; padding:10px 14px; margin:10px 0; }
+.exam-warning strong { color:#721c24; }
+.summary-box { background:#e8f4fd; border:2px solid #0f3460; border-radius:10px; padding:16px 20px; margin:20px 0; }
+.qa-box { background:#f8f9fa; border:1px solid #dee2e6; border-radius:8px; padding:14px 18px; margin:12px 0; }
+.qa-box .question { font-weight:bold; color:#495057; margin-bottom:6px; }
+.qa-box .answer { color:#28a745; }
+table { border-collapse:collapse; width:100%; margin:12px 0; }
+th, td { border:1px solid #ccc; padding:8px 10px; text-align:left; font-size:0.95em; }
+th { background:#e9ecef; color:#343a40; }
+.knowledge-tree { background:#f5f0ff; border:2px solid #6f42c1; border-radius:10px; padding:18px 22px; margin:20px 0; }
+.knowledge-tree h3 { color:#6f42c1; margin-bottom:12px; }
+.kt-node { display:inline-block; background:#e8daff; border-radius:6px; padding:4px 10px; margin:3px; font-size:0.9em; color:#4a2d8e; }
+.kt-arrow { color:#6f42c1; font-weight:bold; margin:0 4px; }
+.kt-section { margin:8px 0; line-height:2; }
+</style>
+</head>
+<body>
+
+<h1>SQE1 Week1 — Lesson 7<br>Chapter 9: EU Law & Retained EU Law</h1>
+
+<!-- ==================== Knowledge Tree ==================== -->
+<div class="knowledge-tree">
+<h3>🌳 Knowledge Tree</h3>
+
+<div class="kt-section">
+<strong>Branch 1: EU Law Before Brexit</strong><br>
+<span class="kt-node">EU Law-Making Powers</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Direct Effect (vertical + horizontal)</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Types: Regulations / Decisions / Articles / Directives</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Supremacy (Costa v ENEL)</span>
+</div>
+
+<div class="kt-section">
+<strong>Branch 2: EU Law in the UK (ECA 1972)</strong><br>
+<span class="kt-node">ECA 1972 s2(1): EU law part of UK law</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">s2(2): Delegated legislation to implement directives</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">s3: Courts interpret UK law to comply with EU law</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Factortame: EU law supremacy over UK Acts</span>
+</div>
+
+<div class="kt-section">
+<strong>Branch 3: Withdrawal from the EU</strong><br>
+<span class="kt-node">Art 50 TEU (withdrawal procedure)</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Miller [2017]: Parliament must authorize withdrawal</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Exit Day: 31 Jan 2020</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">IP Completion Day: 31 Dec 2020</span>
+</div>
+
+<div class="kt-section">
+<strong>Branch 4: Retained EU Law (EU(Withdrawal) Act 2018)</strong><br>
+<span class="kt-node">s2: EU-derived domestic legislation retained</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">s3: Direct EU legislation retained</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">s4: Rights/obligations retained</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">s5: Supremacy of EU law ENDS for new UK law</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">s6: No more CJEU references; may have regard to post-IP day CJEU decisions</span>
+</div>
+
+<div class="kt-section">
+<strong>Branch 5: The Withdrawal Agreement (TCA)</strong><br>
+<span class="kt-node">EU(Withdrawal Agreement) Act 2020</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">TCA provisions enforceable in UK courts</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">UK courts must interpret UK law compatibly with TCA</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Parliamentary sovereignty reaffirmed (s38)</span>
+</div>
+
+<div class="kt-section">
+🔗 <strong>Links to other lessons:</strong><br>
+<span class="kt-node">Lesson 1: Parliamentary Sovereignty</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Factortame: Sovereignty limited by ECA 1972</span><br>
+<span class="kt-node">Lesson 2: HRA 1998</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Both HRA and ECA give effect to international obligations</span><br>
+<span class="kt-node">Lesson 6: Judicial Review</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Delegated legislation under EU(Withdrawal) Act 2018 can be JRd</span>
+</div>
+</div>
+
+<!-- ==================== Part 1: The EU's Law-Making Powers ==================== -->
+<h2>📖 Part 1: The EU's Law-Making Powers & Direct Effect</h2>
+
+<h3>Why EU Law Still Matters after Brexit</h3>
+<p>Two reasons why you still need to know EU law for SQE1:</p>
+<ol>
+<li><strong>Retained EU law:</strong> EU law that applied in the UK before "exit day" (31 Jan 2020) remains in force as <strong>retained EU law</strong> (a new category of domestic UK law).</li>
+<li><strong>The Withdrawal Agreement (TCA):</strong> The TCA between the UK and EU is <strong>directly enforceable</strong> in UK courts and must be interpreted in accordance with EU law principles.</li>
+</ol>
+
+<h3>The Court of Justice of the European Union (CJEU)</h3>
+<p>The CJEU (formerly ECJ) interprets EU law and ensures uniform application across all member states. Before Brexit, any UK court or tribunal could refer a question of EU law to the CJEU. The <strong>Supreme Court was obliged to make a reference</strong> if a case involved EU law. The EU (Withdrawal) Act 2018 <strong>ended this referral obligation</strong>.</p>
+
+<h3>Direct Effect (直接效力)</h3>
+<p>The CJEU devised the principle of <strong>direct effect</strong> to ensure EU law is obeyed and interpreted the same way in every member state.</p>
+
+<div class="key-term">
+<strong>Direct Effect:</strong> Claimants can <strong>enforce rights</strong> created by EU law in <strong>national courts</strong> (without needing to go to the CJEU). There are two types:
+<ul>
+<li><strong>Vertical direct effect:</strong> The EU law may be enforced <strong>against a state authority</strong> (a "public body", "an emanation of the state").</li>
+<li><strong>Horizontal direct effect:</strong> The EU law may <strong>also be enforced against private persons and organisations</strong>.</li>
+</ul>
+</div>
+
+<h3>The Different Types of EU Law</h3>
+
+<table>
+<tr><th>Type</th><th>Direct Effect?</th><th>Vertical/Horizontal?</th><th>Implementation Required?</th></tr>
+<tr><td><strong>Regulations (法规)</strong></td><td>✅ YES (if wording clear, precise, unconditional)</td><td>✅ Both vertical AND horizontal</td><td>❌ NO — directly applicable in all member states</td></tr>
+<tr><td><strong>Decisions (决定)</strong></td><td>✅ YES (against the addressee)</td><td>✅ Both vertical AND horizontal</td><td>❌ NO — binding on the member state to which addressed</td></tr>
+<tr><td><strong>Articles of EU Treaties (条约条款)</strong></td><td>✅ YES (if clear, unconditional, precise — <em>Van Gend en Loos [1963]</em>)</td><td>✅ Both vertical AND horizontal</td><td>❌ NO — directly enforceable; UK estimated 48 TFEU articles had direct effect at exit</td></tr>
+<tr><td><strong>Directives (指令)</strong></td><td>⚠️ <strong>Vertical ONLY</strong> (against public bodies); indirect effect for private parties</td><td>✅ Vertical ONLY (NO horizontal effect)</td><td>⚠️ YES — member states must implement by specified date, but choose <em>how</em></td></tr>
+</table>
+
+<div class="case-box">
+<span class="case-name">Van Gend en Loos v Nederlandse Administratie der Belastingen [1963] ECR 1</span><br>
+<strong>Principle:</strong> Articles in the EU Treaty can have <strong>direct effect</strong>. If the wording is clear, unconditional, and precise, the article creates an individual right enforceable in national courts — even if it contradicts national law. Member states have "limited their sovereign rights" by joining the EU.
+</div>
+
+<h3>Directives and Vertical Direct Effect</h3>
+<p>Directives <strong>cannot be enforced against a non-state, private defendant</strong>. To enforce directives against private parties, the CJEU developed:</p>
+<ul>
+<li><strong>Indirect effect:</strong> Even if a directive does not have direct effect, the national court is required to <strong>interpret national law to give effect to the directive</strong>.</li>
+<li><strong>The Francovich principle (损害赔偿):</strong> In <em>Francovich v Italian State [1992]</em>, the CJEU ordered a state to <strong>pay damages</strong> to individuals injured by its failure to implement a directive. This has been extended to serious breaches of other types of EU law (regulations, articles) that injure individuals.</li>
+</ul>
+
+<div class="case-box">
+<span class="case-name">Francovich v Italian State [1992] IRLR 84</span><br>
+<strong>Facts:</strong> Italy failed to implement an EU directive on employee protection in insolvency. Employees lost money.<br>
+<strong>Held:</strong> A state must <strong>pay damages</strong> to individuals for injury caused by failure to implement a directive. This is now a general principle: if a state commits a <strong>serious breach of EU law</strong> causing damage to an individual, the state must compensate.<br>
+<strong>⚠️ SQE1 note:</strong> The EU (Withdrawal) Act 2018 s4 states that the right to damages under <em>Francovich</em> <strong>ceased to apply on or after IP completion day</strong>.
+</div>
+
+<h3>Supremacy of EU Law (欧盟法至上性)</h3>
+
+<div class="case-box">
+<span class="case-name">Costa v ENEL [1964] ECR 585</span><br>
+<strong>Principle:</strong> Member states have made "partial transfers of sovereignty" to the EU and therefore <strong>cannot make laws incompatible with EU law</strong>. EU law has <strong>supremacy</strong> over national law. National courts must set aside conflicting national laws.<br>
+<strong>Significance:</strong> This is the foundation of the conflict between EU law and parliamentary sovereignty in the UK (resolved by <em>Factortame</em>).
+</div>
+
+<!-- ==================== Part 2: EU Law and UK Law ==================== -->
+<h2>📖 Part 2: EU Law and UK Law (ECA 1972)</h2>
+
+<h3>The European Communities Act 1972 (ECA 1972)</h3>
+<p>When the UK joined the EU in 1973, the ECA 1972 gave effect to EU law in UK law. Its main provisions:</p>
+
+<table>
+<tr><th>Section</th><th>Effect</th></tr>
+<tr><td><strong>s2(1)</strong></td><td>Made <strong>existing EU law</strong> part of UK law; permitted the EU to <strong>legislate for the UK in the future</strong> (no need for new UK legislation to implement new EU laws).</td></tr>
+<tr><td><strong>s2(2)</strong></td><td>Delegated legislation could be used to make <strong>EU law (particularly new directives)</strong> part of UK law. Also allowed delegated legislation to <strong>repeal or amend</strong> existing Acts of Parliament (to implement EU law).</td></tr>
+<tr><td><strong>s2(4)</strong></td><td>Any enactment (past or future) "shall be construed and have effect <strong>subject to</strong>" the ECA 1972 — i.e., UK courts must <strong>interpret UK law to comply with EU law</strong>.</td></tr>
+<tr><td><strong>s3</strong></td><td>Instructed UK courts to enforce EU law and decide cases "in accordance with the principles laid down by... the European Court".</td></tr>
+</table>
+
+<h3>Key Case: Factortame (EU Law Supremacy in the UK)</h3>
+
+<div class="case-box">
+<span class="case-name">R v Secretary of State for Transport, ex parte Factortame (No 2) [1991] AC 603</span><br>
+<strong>Facts:</strong> Spanish fisherman challenged UK legislation that restricted fishing rights. The UK law <strong>explicitly contradicted</strong> directly effective articles of the TFEU. UK courts could not interpret the UK law to make it compatible with EU law.<br>
+<strong>Held (House of Lords):</strong>
+<ol>
+<li>The ECA 1972 <strong>voluntarily gave permission</strong> to the EU to legislate for the UK.</li>
+<li>The Act also made clear that <strong>EU law had supremacy over UK Acts of Parliament</strong>.</li>
+<li>A UK court must "<strong>override any rule of national law</strong> found to be in conflict with any directly enforceable rule of community law".</li>
+</ol>
+<strong>Significance:</strong> This was a <strong>constitutional revolution</strong>: parliamentary sovereignty was <strong>temporarily limited</strong> by the ECA 1972. EU law could override UK primary legislation.
+</div>
+
+<div class="exam-warning">
+<strong>⚠️ SQE1 Exam Warning:</strong> The ECA 1972 has been <strong>repealed</strong> with Brexit. BUT you still need to know about it because: (1) retained EU law derives from it; (2) the <em>Withdrawal Agreement Act 2020</em> contains <strong>similar provisions</strong> for the TCA (temporary limitation on sovereignty again).
+</div>
+
+<!-- ==================== Part 3: Withdrawal from the EU ==================== -->
+<h2>📖 Part 3: Withdrawal from the EU</h2>
+
+<h3>The Withdrawal Process (Art 50 TEU)</h3>
+<p>Article 50 of the Treaty on European Union (TEU) sets out the procedure for a member state to withdraw:</p>
+<ul>
+<li>A member state must give <strong>notice of withdrawal</strong> to the EU "in accordance with its own constitutional requirements".</li>
+<li>The UK government considered that joining/leaving treaties was a matter of the <strong>royal prerogative</strong> and wished to notify the EU without Parliament's consent.</li>
+</ul>
+
+<div class="case-box">
+<span class="case-name">R (Miller) v Secretary of State for Exiting the EU [2017] UKSC 5</span><br>
+<strong>Facts:</strong> The government argued it could trigger Art 50 using prerogative power. Gina Miller (a concerned citizen) challenged this.<br>
+<strong>Held (Supreme Court):</strong> Because leaving the EU would <strong>change UK domestic law</strong> by altering the constitutional position and changing rights of residents, <strong>an Act of Parliament was required</strong> (see Lesson 4 on prerogative).<br>
+<strong>Result:</strong> The <strong>EU (Notification of Withdrawal) Act 2017</strong> was passed to authorise notification.
+</div>
+
+<h3>Key Dates</h3>
+
+<table>
+<tr><th>Term</th><th>Date</th><th>Meaning</th></tr>
+<tr><td><strong>Exit Day (脱欧日)</strong></td><td>31 January 2020</td><td>The day the UK <strong>ceased to be a member</strong> of the EU.</td></tr>
+<tr><td><strong>IP Completion Day (过渡期结束日)</strong></td><td>31 December 2020</td><td>The day the <strong>implementation period ended</strong>; EU law ceased to have effect in the UK. Also called "implementation period completion day".</td></tr>
+</table>
+
+<div class="exam-tip">
+<strong>Exam Tip:</strong> Remember the difference! <strong>Exit Day = 31 Jan 2020</strong> (UK left EU); <strong>IP Completion Day = 31 Dec 2020</strong> (transition period ended, EU law stopped applying). SQE1 questions may test this distinction.
+</div>
+
+<!-- ==================== Part 4: EU (Withdrawal) Act 2018 ==================== -->
+<h2>📖 Part 4: The EU (Withdrawal) Act 2018 and Retained EU Law</h2>
+
+<p>The 2018 Act repeals the ECA 1972 but <strong>converts existing EU law into domestic law</strong> (called "retained EU law") to avoid a legal vacuum.</p>
+
+<h3>Section-by-Section Analysis</h3>
+
+<h4>s1: Repeal of ECA 1972</h4>
+<p>The ECA 1972 is repealed on <strong>exit day</strong>, but continued to have effect until <strong>IP completion day</strong>. Parliament has <strong>withdrawn its permission</strong> for the EU to make laws for the UK. <strong>No new EU laws will be accepted.</strong></p>
+
+<h4>s2: EU-Derived Domestic Legislation Retained</h4>
+<p>All <strong>delegated legislation</strong> made under s2(2) ECA 1972 to implement EU law <strong>remains in force</strong>. Also, any other UK legislation enacted to implement EU law is retained.</p>
+
+<h4>s3: Direct EU Legislation Retained ("Retained EU Law")</h4>
+<p><strong>Direct EU legislation</strong> — meaning EU <strong>regulations, EU decisions</strong> directed at the UK, and EU tertiary legislation — which were in force <strong>immediately before exit day</strong>, become part of domestic law as <strong>retained EU law</strong>.</p>
+
+<div class="key-term">
+<strong>Retained EU Law (保留欧盟法):</strong> EU law that was in force in the UK <strong>before "exit day" (31 Jan 2020)</strong> remains in force. It is <strong>no longer EU law</strong> — it is converted into <strong>domestic UK law</strong> by the EU (Withdrawal) Act 2018.
+</div>
+
+<h4>s4: Rights and Obligations Retained</h4>
+<p>Any <strong>rights, powers, liabilities, obligations, restrictions, remedies and procedures</strong> that were available under the ECA 1972 before exit day are also retained. This covers <strong>articles and directives</strong> that had been held by courts to have direct effect <strong>before exit day</strong>.</p>
+
+<div class="exam-warning">
+<strong>⚠️ Warning:</strong> s4 also states that the right to damages under the <em>Francovich</em> principle <strong>ceased to apply on or after IP completion day</strong>.
+</div>
+
+<h4>s5: The Supremacy of EU Law ENDS (for new laws)</h4>
+<p>The principle of the supremacy of EU law <strong>does not apply</strong> to any enactment passed <strong>after exit day</strong>.</p>
+<p><strong>However:</strong> As <em>existing</em> EU law is retained, the supremacy principle <strong>continues to apply</strong> where retained EU law is incompatible with <strong>domestic law made before exit day</strong>. If retained EU law conflicts with UK law made before exit day, the <strong>retained EU law must be applied in preference</strong>.</p>
+
+<table>
+<tr><th>Scenario</th><th>Which law wins?</th></tr>
+<tr><td>Retained EU law vs UK law made <strong>BEFORE</strong> exit day</td><td>✅ <strong>Retained EU law wins</strong> (supremacy preserved)</td></tr>
+<tr><td>Retained EU law vs UK law made <strong>AFTER</strong> exit day</td><td>✅ <strong>UK law wins</strong> (supremacy of EU law does NOT apply to post-exit-day UK law)</td></tr>
+</table>
+
+<h4>s6: Court Interpretation of Retained EU Law</h4>
+<ul>
+<li>UK courts <strong>cannot refer</strong> cases to the CJEU on or after IP completion day.</li>
+<li>UK courts are <strong>not bound by</strong> CJEU decisions made on or after IP completion day.</li>
+<li>UK courts <strong>must decide</strong> the meaning of retained EU law "in accordance with any retained case law and retained general principles of EU law".</li>
+<li>UK courts <strong>may consider</strong> (but are not bound by) CJEU decisions made <strong>after</strong> IP completion day to help them decide.</li>
+<li>The <strong>Supreme Court is NOT bound</strong> by any retained EU case law and may depart from it (using the <strong>1966 Practice Statement</strong> test — same as for domestic law).</li>
+<li>The <strong>Court of Appeal is also NOT bound</strong> by retained EU case law.</li>
+<li><strong>Lower courts and tribunals ARE bound</strong> by retained EU case law.</li>
+</ul>
+
+<h4>Delegated Legislation Powers (s8 ff)</h4>
+<p>The 2018 Act grants extensive power to ministers to make <strong>delegated legislation</strong> (for 2 years after IP completion day) to deal with problems caused by retained EU law. This secondary legislation <strong>may amend or repeal Acts of Parliament</strong> (a rare power for delegated legislation).</p>
+<p>The <strong>devolved legislatures</strong> (Scotland, Wales, NI) also have these powers, but only within their devolved competence. The UK Parliament can <strong>override</strong> the devolved legislatures. The <strong>UK Internal Markets Act 2020</strong> grants similar powers to UK government ministers to prevent devolved institutions replacing retained EU law with laws inconsistent with UK government wishes.</p>
+
+<!-- ==================== Part 5: The Withdrawal Agreement ==================== -->
+<h2>📖 Part 5: The Withdrawal Agreement (TCA) and EU(Withdrawal Agreement) Act 2020</h2>
+
+<h3>The Trade and Cooperation Agreement (TCA)</h3>
+<p>The UK finalised its Withdrawal Agreement with the EU in late 2020. The TCA contains provisions on:</p>
+<ul>
+<li>Trade</li>
+<li>Protection of rights of <strong>EU citizens</strong> resident in the UK, and UK citizens resident in the EU</li>
+<li>The <strong>Northern Ireland Protocol</strong> (aims to keep the border between ROI and NI open)</li>
+</ul>
+
+<h3>The TCA is Enforceable in UK Law</h3>
+
+<div class="key-term">
+<strong>EU (Withdrawal Agreement) Act 2020:</strong> Gives the TCA legal effect in UK law. Adds <strong>s7A</strong> to the EU (Withdrawal) Act 2018. This gives existing and future rights under the TCA legal effect in the UK and allows them to be enforced in UK courts.
+</div>
+
+<p>Key provisions:</p>
+<ul>
+<li><strong>Article 4:</strong> The UK agreed to use <strong>EU law</strong> to decide the meaning of the Withdrawal Agreement and apply it <strong>in preference to UK law</strong>. Incompatible UK laws must be <strong>disapplied</strong>.</li>
+<li>The agreement can be <strong>enforced in UK courts</strong>; rights granted can have <strong>direct effect</strong> in UK courts.</li>
+<li>CJEU cases decided <strong>before</strong> the end of the transition period must be followed; UK courts must <strong>have regard to</strong> CJEU cases decided <strong>after</strong> the end of that period.</li>
+<li>UK law must be <strong>interpreted to be compatible with the Withdrawal Agreement</strong>.</li>
+</ul>
+
+<div class="case-box">
+<span class="case-name">Practice Example 9.2 (from textbook):</span><br>
+<strong>Facts:</strong> A client has a contract to ship goods to France. A UK Act of Parliament <strong>seems to contradict</strong> an article in the TCA.<br>
+<strong>Advice:</strong> The 2020 Acts require that, if possible, the UK Act must be <strong>interpreted to be compatible</strong> with the TCA. If that is not possible, the issue of parliamentary sovereignty arises. The (Withdrawal Agreement) Act suggests that the TCA article would have <strong>supremacy</strong> — unless the UK Act was passed <strong>after 2020</strong> and is <strong>expressly worded</strong> to contradict the TCA.
+</div>
+
+<h3>Parliamentary Sovereignty Reaffirmed</h3>
+<p><strong>s38 of the EU (Withdrawal Agreement) Act 2020</strong> reaffirm that "<strong>the Parliament of the UK is sovereign</strong>" and "nothing in this Act derogates from" this.</p>
+<p>This means: the UK Parliament is <strong>allowing</strong> the EU to "legislate" (via the TCA) for limited purposes, but can, if it wishes, <strong>withdraw that permission with a later Act of Parliament</strong>.</p>
+
+<div class="exam-warning">
+<strong>⚠️ Exam Warning:</strong> There is still uncertainty about how the TCA will be interpreted. UK courts must decide which articles of the TCA have <strong>direct effect</strong>, and whether, if they conflict with UK law, they <strong>override Acts of Parliament</strong>. Watch for first cases on this.
+</div>
+
+<!-- ==================== Summary ==================== -->
+<div class="summary-box">
+<h3>📋 Chapter Summary: EU Law & Retained EU Law</h3>
+<ol>
+<li><strong>EU law-making:</strong> Regulations (direct effect, vertical+horizontal); Directives (vertical direct effect only); Articles (direct effect if clear/precise/unconditional); Francovich (state liability for non-implementation).</li>
+<li><strong>ECA 1972:</strong> Gave effect to EU law in UK; Factortame held EU law had supremacy over UK Acts of Parliament.</li>
+<li><strong>Withdrawal:</strong> Art 50 TEU; Miller [2017] (Parliament must authorize); Exit Day 31 Jan 2020; IP Completion Day 31 Dec 2020.</li>
+<li><strong>EU (Withdrawal) Act 2018:</strong> Repeals ECA 1972; converts EU law into "retained EU law"; supremacy preserved for retained EU law vs pre-exit-day UK law ONLY; no more CJEU references; Supreme Court NOT bound by retained EU case law.</li>
+<li><strong>TCA / 2020 Act:</strong> Withdrawal Agreement enforceable in UK courts; UK law must be interpreted compatibly; parliamentary sovereignty reaffirmed (s38).</li>
+</ol>
+</div>
+
+<!-- ==================== Key Terms ==================== -->
+<h2>🔑 Key Terms — Bilingual Glossary（核心词汇中英文对照）</h2>
+<table>
+<tr><th style="width:30%">English Term</th><th>中文</th><th>Exam Focus</th></tr>
+<tr><td>Retained EU Law</td><td>保留欧盟法</td><td>EU law in force before exit day, converted to UK domestic law by the 2018 Act</td></tr>
+<tr><td>Direct Effect (直接效力)</td><td>直接效力</td><td>Right to enforce EU law in national courts; vertical (vs state) + horizontal (vs private party)</td></tr>
+<tr><td>Vertical Direct Effect</td><td>垂直直接效力</td><td>Enforceable against a PUBLIC BODY only (directives)</td></tr>
+<tr><td>Horizontal Direct Effect</td><td>水平直接效力</td><td>Enforceable against PRIVATE persons/organisations (regulations, articles)</td></tr>
+<tr><td>Regulation (法规)</td><td>欧盟法规</td><td>Binding, directly applicable; vertical+horizontal direct effect</td></tr>
+<tr><td>Directive (指令)</td><td>欧盟指令</td><td>Requires implementation by member state; vertical direct effect ONLY</td></tr>
+<tr><td>Indirect Effect</td><td>间接效力</td><td>National court must interpret domestic law to give effect to a directive (even without direct effect)</td></tr>
+<tr><td>Francovich Principle</td><td>Francovich原则（国家赔偿）</td><td>State liable in damages for failure to implement EU law; ⚠️ ceased 31 Dec 2020</td></tr>
+<tr><td>Supremacy of EU Law</td><td>欧盟法至上性</td><td>EU law overrides national law (Costa v ENEL); ended for post-exit-day UK law</td></tr>
+<tr><td>ECA 1972</td><td>《1972年欧洲共同体法》</td><td>Gave effect to EU law in UK; repealed by 2018 Act</td></tr>
+<tr><td>Exit Day</td><td>脱欧日</td><td>31 January 2020 — UK ceased to be an EU member</td></tr>
+<tr><td>IP Completion Day</td><td>过渡期结束日</td><td>31 December 2020 — implementation period ended; EU law ceased to apply</td></tr>
+<tr><td>EU (Withdrawal) Act 2018</td><td>《2018年欧盟（脱欧）法》</td><td>Repeals ECA 1972; creates "retained EU law"; sets interpretation rules</td></tr>
+<tr><td>Withdrawal Agreement / TCA</td><td>脱欧协议 / 贸易合作协议</td><td>Finalised late 2020; enforceable in UK courts; supremacy for TCA provisions</td></tr>
+<tr><td>EU (Withdrawal Agreement) Act 2020</td><td>《2020年欧盟（脱欧协议）法》</td><td>Gives TCA legal effect in UK law; adds s7A to 2018 Act</td></tr>
+<tr><td>CJEU (CJEU)</td><td>欧盟法院</td><td>No more references from UK after IP completion day; may "have regard to" post-Brexit CJEU decisions</td></tr>
+<tr><td>Miller [2017]</td><td>Miller案</td><td>Parliament must authorize triggering Art 50 (not prerogative alone)</td></tr>
+<tr><td>Factortame [1991]</td><td>Factortame案</td><td>EU law supremacy over UK Acts of Parliament (via ECA 1972 s2(4))</td></tr>
+</table>
+
+<!-- ==================== Practice Questions ==================== -->
+<h2>📝 Practice Questions</h2>
+
+<div class="qa-box">
+<div class="question">Q1: What is the difference between "exit day" and "IP completion day"?</div>
+<div class="answer"><strong>Exit day = 31 Jan 2020:</strong> The UK ceased to be a member of the EU. <strong>IP completion day = 31 Dec 2020:</strong> The implementation period ended; EU law ceased to have effect in the UK. EU law made before 31 Jan 2020 becomes retained EU law; EU law made between 31 Jan and 31 Dec 2020 also remained in force until IP completion day.</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q2: Can a directive be enforced against a private employer? Which case established this?</div>
+<div class="answer">NO. Directives have <strong>vertical direct effect ONLY</strong> — they can only be enforced against a <strong>public body</strong> ("an emanation of the state"). They <strong>cannot</strong> be enforced against a private employer. However, the court must use <strong>indirect effect</strong> — interpret domestic law to give effect to the directive. (This is the fact pattern of an SQE1-style question.)</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q3: What did the EU (Withdrawal) Act 2018 s5 provide about the supremacy of EU law?</div>
+<div class="answer">s5 states that the principle of the supremacy of EU law <strong>does not apply</strong> to any enactment passed <strong>after exit day</strong>. However, for <em>existing</em> law (retained EU law), the supremacy principle <strong>continues</strong> where retained EU law conflicts with UK law made <strong>before exit day</strong>. Retained EU law wins over pre-exit-day UK law; post-exit-day UK law wins over retained EU law.</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q4: Can UK courts still refer questions to the CJEU after Brexit? Are they bound by post-Brexit CJEU decisions?</div>
+<div class="answer">NO. Under s6 of the 2018 Act, UK courts <strong>cannot refer</strong> cases to the CJEU, and are <strong>not bound by</strong> CJEU decisions made on or after IP completion day. However, they <strong>"may have regard to"</strong> (may consider) post-Brexit CJEU decisions to help interpret retained EU law. The <strong>Supreme Court is NOT bound</strong> by any retained EU case law (can depart using 1966 Practice Statement).</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q5: A client's equal pay claim relies on an EU directive that gives her greater rights than UK legislation. Can she rely on it after Brexit?</div>
+<div class="answer">The directive only applies in the UK (as retained EU law) if the CJEU decided it had <strong>direct effect BEFORE exit day</strong>. If it did, it has supremacy over UK legislation <strong>if that legislation was also enacted before exit day</strong>. Also warn her: directives only have <strong>vertical direct effect</strong> — she can only enforce it if her employer is a <strong>state employer</strong>, NOT a private employer.</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q6: What is the Francovich principle and does it still apply after Brexit?</div>
+<div class="answer"><strong>Francovich [1992]:</strong> A state must <strong>pay damages</strong> to individuals injured by its failure to implement a directive (or serious breach of other EU law). <strong>After Brexit:</strong> s4 of the EU (Withdrawal) Act 2018 states that the right to damages under <em>Francovich</em> <strong>ceased to apply on or after IP completion day</strong> (31 Dec 2020). It is no longer available for new claims.</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q7: What did the Supreme Court hold in Miller [2017] and why was it constitutionally significant?</div>
+<div class="answer">The Supreme Court held that the government <strong>could NOT use prerogative power</strong> to trigger Art 50 TEU (giving notice of withdrawal from the EU). Because leaving the EU would <strong>change UK domestic law</strong> and alter rights of residents, <strong>an Act of Parliament was required</strong>. This reaffirmed that <strong>prerogative cannot be used to change domestic law</strong> (consistent with Lesson 4 on prerogative limitations).</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q8: Under the Withdrawal Agreement (TCA), how must UK courts interpret UK law? Does the TCA have supremacy over UK Acts of Parliament?</div>
+<div class="answer">Under the 2020 Act, <strong>every enactment (past and future)</strong> must be read and given effect <strong>"subject to"</strong> the TCA requirements — i.e., UK courts must <strong>interpret UK law to be compatible</strong> with the TCA. If interpretation is not possible, the TCA <strong>would have supremacy</strong> over UK law — <strong>unless</strong> the UK Act was passed <strong>after 2020</strong> and is <strong>expressly worded</strong> to contradict the TCA. (This is still untested in courts.)</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q9: Which courts are bound by "retained EU case law" and which are not?</div>
+<div class="answer"><strong>NOT bound:</strong> Supreme Court (can depart under 1966 Practice Statement); Court of Appeal (can also depart). <strong>Bound:</strong> Lower courts and tribunals MUST follow retained EU case law. This is the same hierarchy as for domestic case law — retained EU case law is now just another category of domestic precedent.</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q10: Can delegated legislation be used to amend or repeal Acts of Parliament under the EU (Withdrawal) Act 2018?</div>
+<div class="answer">YES — but only for a <strong>limited time</strong> (2 years after IP completion day). The 2018 Act grants ministers extensive power to make delegated legislation to deal with problems caused by retained EU law. This delegated legislation <strong>may amend or repeal Acts of Parliament</strong> — a rare and significant power. The devolved legislatures have similar powers within their competence.</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q11: Does the EU (Withdrawal Agreement) Act 2020 permanently limit parliamentary sovereignty?</div>
+<div class="answer">NO. s38 <strong>reaffirms</strong> that "the Parliament of the UK is sovereign". The UK Parliament is <strong>allowing</strong> the EU to "legislate" for the UK for the <strong>limited purposes of the TCA</strong>, but can withdraw that permission with a later Act. This is the same <strong>temporary limitation</strong> mechanism as the ECA 1972 — Parliament can always repeal.</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q12: A case in a UK court involves a question about the interpretation of retained EU law. There is a relevant CJEU decision from 2023. What should the court do?</div>
+<div class="answer">Under s6 of the 2018 Act, the UK court is <strong>NOT bound</strong> by the 2023 CJEU decision. However, it <strong>"may have regard to"</strong> (may consider) that decision to help it decide the meaning of retained EU law. The court must also follow any <strong>retained EU case law</strong> (CJEU decisions made before IP completion day). If it is the Supreme Court or Court of Appeal, it may <strong>depart</strong> from retained EU case law using the 1966 Practice Statement test.</div>
+</div>
+
+<p style="text-align:center; color:#999; margin-top:30px;">Based on <em>Revise SQE Constitutional and Administrative Law</em> (2nd edn, Richard Clements), Chapter 9</p>
+
+</body>
+</html>
