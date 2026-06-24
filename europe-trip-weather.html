@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>妈妈欧洲行 · 每日天气</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif; background: #f0f4f8; color: #333; }
+
+  .header {
+    background: linear-gradient(135deg, #2E4057, #4a6fa5);
+    color: white;
+    padding: 28px 20px 20px;
+    text-align: center;
+  }
+  .header h1 { font-size: 22px; font-weight: 600; margin-bottom: 6px; }
+  .header p { font-size: 13px; opacity: 0.85; }
+  .header .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 12px;
+    margin-top: 8px;
+  }
+
+  .summary-strip {
+    display: flex;
+    overflow-x: auto;
+    gap: 8px;
+    padding: 12px 16px;
+    background: white;
+    border-bottom: 1px solid #e0e6ed;
+    scrollbar-width: none;
+  }
+  .summary-strip::-webkit-scrollbar { display: none; }
+
+  .day-btn {
+    flex-shrink: 0;
+    padding: 8px 14px;
+    border-radius: 16px;
+    border: 1.5px solid #d0d9e4;
+    background: white;
+    color: #555;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .day-btn:hover { border-color: #4a6fa5; color: #4a6fa5; }
+  .day-btn.active {
+    background: #2E4057;
+    border-color: #2E4057;
+    color: white;
+  }
+  .day-btn .temp { font-size: 11px; opacity: 0.8; margin-top: 1px; }
+
+  .main-card {
+    max-width: 680px;
+    margin: 16px auto;
+    padding: 0 16px 40px;
+  }
+
+  .card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    overflow: hidden;
+    display: none;
+    animation: fadeIn 0.3s ease;
+  }
+  .card.show { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  .card-head {
+    padding: 18px 20px 14px;
+    border-bottom: 1px solid #f0f4f8;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .card-head .day-tag {
+    background: #2E4057;
+    color: white;
+    border-radius: 10px;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .card-head .route { font-size: 14px; color: #555; flex: 1; }
+  .card-head .temp-big {
+    font-size: 28px;
+    font-weight: 700;
+    color: #2E4057;
+    text-align: right;
+  }
+  .card-head .temp-big span { font-size: 14px; font-weight: 400; color: #888; margin-left: 2px; }
+
+  .weather-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: #f0f4f8;
+    margin: 0;
+  }
+  .wg-item {
+    background: white;
+    padding: 14px 16px;
+  }
+  .wg-item .label { font-size: 11px; color: #999; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .wg-item .value { font-size: 14px; color: #333; line-height: 1.5; }
+  .wg-item .value.hot { color: #e74c3c; }
+  .wg-item .value.cool { color: #2980b9; }
+  .wg-item .value.warn { color: #e67e22; font-weight: 600; }
+  .wg-item.full { grid-column: 1 / -1; }
+
+  .icon-row {
+    display: flex;
+    gap: 6px;
+    margin-top: 4px;
+    font-size: 13px;
+  }
+  .icon-chip {
+    background: #eaf2f8;
+    color: #2980b9;
+    border-radius: 6px;
+    padding: 3px 8px;
+    font-size: 12px;
+  }
+
+  .clothes-section {
+    margin: 0;
+    background: #fdf8ff;
+    border-top: 1px solid #f0f4f8;
+    padding: 16px 20px;
+  }
+  .clothes-section .sec-title {
+    font-size: 12px;
+    color: #9b59b6;
+    font-weight: 600;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .clothes-section .sec-title::before { content: '👗'; }
+  .clothes-section p { font-size: 14px; color: #6c3483; line-height: 1.7; }
+
+  .tips-section {
+    background: #f0faf0;
+    border-top: 1px solid #e8f5e9;
+    padding: 14px 20px 16px;
+  }
+  .tips-section .sec-title {
+    font-size: 12px;
+    color: #27ae60;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .tips-section .sec-title::before { content: '💡'; }
+  .tips-section ul { list-style: none; padding: 0; }
+  .tips-section li {
+    font-size: 13px;
+    color: #2e7d32;
+    padding: 5px 0;
+    border-bottom: 1px dashed #d4edda;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    line-height: 1.5;
+  }
+  .tips-section li:last-child { border-bottom: none; }
+  .tips-section li::before { content: '•'; color: #27ae60; font-weight: bold; flex-shrink: 0; margin-top: 1px; }
+
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    border-top: 1px solid #e0e6ed;
+    display: flex;
+    justify-content: space-around;
+    padding: 8px 0 max(8px, env(safe-area-inset-bottom));
+    z-index: 100;
+  }
+  .bn-btn {
+    background: #2E4057;
+    color: white;
+    border: none;
+    border-radius: 24px;
+    padding: 10px 28px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .bn-btn:hover { background: #1a3350; }
+
+  .weather-icon {
+    font-size: 28px;
+    text-align: center;
+    padding: 16px 0 4px;
+  }
+
+  .rain-bar {
+    height: 6px;
+    background: #e0e6ed;
+    border-radius: 3px;
+    margin-top: 6px;
+    overflow: hidden;
+  }
+  .rain-fill {
+    height: 100%;
+    border-radius: 3px;
+    background: linear-gradient(90deg, #27ae60, #f39c12, #e74c3c);
+    transition: width 0.5s ease;
+  }
+
+  .alert-box {
+    background: #fff3cd;
+    border-left: 4px solid #e67e22;
+    border-radius: 0 8px 8px 0;
+    padding: 10px 14px;
+    margin: 0 20px 16px;
+    font-size: 13px;
+    color: #856404;
+    line-height: 1.6;
+  }
+  .alert-box strong { color: #d35400; }
+
+  .page-footer {
+    text-align: center;
+    padding: 24px 16px 120px;
+    color: #aaa;
+    font-size: 12px;
+  }
+
+  .hot-cold-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 2px;
+  }
+  .hot-cold-bar .scale {
+    display: flex;
+    gap: 2px;
+    align-items: center;
+  }
+  .scale-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ddd;
+  }
+  .scale-dot.filled { background: #e74c3c; }
+  .scale-dot.cool { background: #2980b9; }
+
+  @media (min-width: 600px) {
+    .weather-grid { grid-template-columns: 1fr 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🌍 妈妈欧洲行 · 每日天气</h1>
+  <p>6月25日 — 7月6日 · 匈牙利·波兰·德国·捷克·奥地利·斯洛伐克</p>
+  <div class="badge">☀️ 点击日期查看详情</div>
+</div>
+
+<!-- Day selector strip -->
+<div class="summary-strip" id="dayStrip">
+</div>
+
+<div class="main-card" id="mainCard">
+  <!-- Cards injected by JS -->
+</div>
+
+<div class="page-footer">
+  数据来源：wttr.in & 历史气候均值 · 祝旅途愉快！
+</div>
+
+<!-- Bottom nav -->
+<div class="bottom-nav">
+  <button class="bn-btn" id="prevBtn">◀ 上一页</button>
+  <button class="bn-btn" id="nextBtn">下一页 ▶</button>
+</div>
+
+<script>
+const days = [
+  {
+    day: "D1", date: "6月25日 · 周三",
+    route: "宁波 → 布达佩斯",
+    temp: "17~28℃", tempNum: 28,
+    icon: "🌤️",
+    weather: "晴间多云",
+    rain: "几乎无雨",
+    rainPct: 8,
+    sun: "日照充足，紫外线中等",
+    high: "下午2-4点 约28℃",
+    low: "清晨 约17℃",
+    spot: "机场/市区体感舒适，晚风约20℃",
+    clothes: "短袖为主，随身备薄开衫/针织外套；飞机上空调冷，再带一件薄外套",
+    tips: [
+      "傍晚到达后气温下降快，出机场就穿上薄外套",
+      "飞行时间长（11小时），穿宽松舒适衣物",
+      "第一天倒时差，注意保暖防感冒"
+    ],
+    alert: "☝️ 晚风偏凉，薄外套出机场就用得上"
+  },
+  {
+    day: "D2", date: "6月26日 · 周四",
+    route: "布达佩斯 → 克拉科夫（波兰）",
+    temp: "13~24℃", tempNum: 24,
+    icon: "☀️",
+    weather: "以晴为主，偶有多云",
+    rain: "小概率阵雨（<15%）",
+    rainPct: 12,
+    sun: "日间阳光充足，石板路反射强",
+    high: "午后1-3点 约24℃",
+    low: "清晨夜晚 约13℃",
+    spot: "老城石板路日间体感约26℃；🚨 盐矿洞内恒温约12℃，明显凉",
+    clothes: "日间短袖+薄长裤；🚨 进盐矿必带薄卫衣/薄外套；备折叠小雨伞",
+    tips: [
+      "🚨 盐矿洞内12℃恒温，进去后体感很凉，务必加薄卫衣",
+      "老城石板路走路多，穿舒适平底鞋",
+      "克拉科夫纬度更高，天黑晚（约21点）"
+    ],
+    alert: "🚨 盐矿洞内只有12℃，进洞前必须穿薄卫衣！"
+  },
+  {
+    day: "D3", date: "6月27日 · 周五",
+    route: "克拉科夫 → 华沙 → 罗兹",
+    temp: "13~25℃", tempNum: 25,
+    icon: "☀️",
+    weather: "晴天，华沙平原日照好",
+    rain: "降雨概率极低（<5%）",
+    rainPct: 3,
+    sun: "平原日晒强，紫外线指数较高",
+    high: "午后12-3点 约25℃",
+    low: "清晨深夜 约13℃",
+    spot: "华沙城区午后体感约27-28℃；傍晚约18℃；入夜仅14℃",
+    clothes: "短袖+薄长裤，早晚加针织薄开衫；做好防晒",
+    tips: [
+      "华沙平原风大日晒足，帽子+防晒霜必备",
+      "昼夜温差约12℃，薄外套随身带",
+      "罗兹小镇入夜降温更快"
+    ],
+    alert: "☝️ 昼夜温差大（12℃），早起晚归都要备外套"
+  },
+  {
+    day: "D4", date: "6月28日 · 周六",
+    route: "罗兹 → 柏林（德国）",
+    temp: "14~26℃", tempNum: 26,
+    icon: "🌤️",
+    weather: "晴间多云，柏林城市开阔风偏大",
+    rain: "降雨概率低（<10%）",
+    rainPct: 7,
+    sun: "柏林墙等露天景点日晒充足",
+    high: "午后 约26℃",
+    low: "清晨 约14℃",
+    spot: "柏林墙露天游览体感约25-27℃；风大时体感约22℃；傍晚河畔风凉约19℃",
+    clothes: "短袖+休闲长裤，做好防晒；随身防风薄外套备用",
+    tips: [
+      "柏林风大，建议防风薄外套而非仅针织开衫",
+      "柏林墙游览完全露天，防晒霜+遮阳帽必备",
+      "德国北部傍晚起风明显"
+    ],
+    alert: "☝️ 柏林风大，防风外套比薄开衫更实用"
+  },
+  {
+    day: "D5", date: "6月29日 · 周日",
+    route: "柏林 → 波茨坦 → 德累斯顿",
+    temp: "13~25℃", tempNum: 25,
+    icon: "☀️",
+    weather: "以晴为主，午后偶有多云",
+    rain: "降雨概率低",
+    rainPct: 6,
+    sun: "无忧宫园林完全开阔，暴晒！",
+    high: "午后 约25℃",
+    low: "清晨 约13℃",
+    spot: "无忧宫园林暴晒体感约28℃；易北河畔风凉体感约21℃；傍晚约19℃",
+    clothes: "短袖为主，逛园林戴遮阳帽+防晒衣；傍晚添薄外套",
+    tips: [
+      "🚨 无忧宫园林几乎无遮挡，遮阳帽+防晒霜+防晒衣三件套",
+      "傍晚河畔散步偏凉，薄外套披上",
+      "从柏林到德累斯顿一路向南，气温微升"
+    ],
+    alert: "🚨 无忧宫园林完全露天暴晒，防晒三件套必备！"
+  },
+  {
+    day: "D6", date: "6月30日 · 周一",
+    route: "德累斯顿 → 卡罗维发利 → 布拉格",
+    temp: "12~25℃", tempNum: 25,
+    icon: "⛅",
+    weather: "山城多云偶雨，布拉格转晴",
+    rain: "卡罗维发利山区阵雨概率约25%；布拉格几乎不下雨",
+    rainPct: 18,
+    sun: "山间多云紫外线偏弱；布拉格日间晴好",
+    high: "卡罗维发利23℃，布拉格25℃",
+    low: "卡罗维发利12℃，布拉格14℃",
+    spot: "卡罗维发利山谷体感约18-20℃（比预报凉）；温泉回廊处约23℃；布拉格市区午后约25℃",
+    clothes: "山城穿薄长袖/防晒衫，布拉格日间短袖；🚨 两地温差大，外套随身携带",
+    tips: [
+      "卡罗维发利是山城，早晚明显凉，海拔比布拉格高",
+      "此日温差最大（山城12℃↔布拉格25℃），叠穿是关键",
+      "备折叠伞，山城阵雨概率较高"
+    ],
+    alert: "☝️ 此日温差最大（12~25℃），一定要叠穿方便增减"
+  },
+  {
+    day: "D7", date: "7月1日 · 周二",
+    route: "布拉格全天游览",
+    temp: "14~26℃", tempNum: 26,
+    icon: "🌤️",
+    weather: "晴间多云，午后偏热",
+    rain: "降雨概率低",
+    rainPct: 9,
+    sun: "老城石板路吸热强，午后体感偏热；城堡山海拔略高风凉",
+    high: "午后1-4点 约26℃",
+    low: "清晨 约14℃",
+    spot: "老城广场午后体感约28℃（石板路吸热）；城堡山风大体感约22℃；教堂内部阴凉约18℃",
+    clothes: "短袖+透气长裤，爬山备轻薄防晒衣；🚨 进教堂带薄披肩遮肩膝",
+    tips: [
+      "🚨 教堂入内不可露肩露膝！带一条大薄围巾/披肩，进教堂时披上",
+      "老城到城堡山全程步行较多，穿舒适运动鞋",
+      "午后老城偏热多补水；城堡山反而风凉"
+    ],
+    alert: "🚨 教堂进内需遮肩膝！大披肩是最实用的解决方案"
+  },
+  {
+    day: "D8", date: "7月2日 · 周三",
+    route: "百威小镇 → CK克鲁姆洛夫 → 林茨",
+    temp: "12~24℃", tempNum: 24,
+    icon: "⛅",
+    weather: "CK河谷多云/晴，林茨晴为主",
+    rain: "河谷偶有小雨概率（约20%），林茨少雨",
+    rainPct: 16,
+    sun: "CK河谷日照偏弱，林茨平原日照好",
+    high: "CK小镇约24℃，林茨约25℃",
+    low: "CK小镇约12℃，河谷早晚偏凉",
+    spot: "CK河谷早晨体感约14℃偏凉；中午城堡区约24℃舒适；林茨午后约25℃",
+    clothes: "短袖打底，外搭薄卫衣/防晒外套；河谷漫步体感清爽，早晚加外套",
+    tips: [
+      "CK小镇在河谷中，早晚比预报更凉，出门就穿薄外套",
+      "百威小镇和CK之间车程约30分钟",
+      "林茨进入奥地利，天气转好偏暖"
+    ],
+    alert: "☝️ CK河谷早晚体感比预报数字更凉，外套不要离身"
+  },
+  {
+    day: "D9", date: "7月3日 · 周四",
+    route: "萨尔茨堡 → 哈尔施塔特 → 维也纳",
+    temp: "10~25℃", tempNum: 25,
+    icon: "🌧️",
+    weather: "湖区多云有雨概率，维也纳晴好",
+    rain: "🚨 湖区降雨概率较高（30-40%），可能有小雨；维也纳少雨",
+    rainPct: 38,
+    sun: "湖区云量多紫外线弱；维也纳日照好",
+    high: "湖区约22℃，维也纳约27℃",
+    low: "🚨 湖区最低约10℃，全天最冷",
+    spot: "🚨 湖边风力大体感仅约15-18℃（比数字凉很多）；哈尔施塔特镇内约19℃；维也纳到达后约24℃",
+    clothes: "🚨 湖区必须穿薄外套+长裤，湖边加薄卫衣；维也纳日间短袖即可",
+    tips: [
+      "🚨 全程最冷日！哈尔施塔特湖边体感仅15-18℃，比数字看起来凉很多",
+      "🚨 湖边风大，建议防风外套而非仅针织衫",
+      "🚨 备折叠伞，湖区阵雨概率高",
+      "从湖区到维也纳温差约10℃，车上可换装"
+    ],
+    alert: "⚠️ 全程最冷一天！哈尔施塔特湖边体感15-18℃，必须穿薄外套+长裤！"
+  },
+  {
+    day: "D10", date: "7月4日 · 周五",
+    route: "维也纳全天游览",
+    temp: "15~27℃", tempNum: 27,
+    icon: "☀️",
+    weather: "晴为主，午后市区闷热",
+    rain: "降雨概率低",
+    rainPct: 7,
+    sun: "美泉宫园林完全露天暴晒，紫外线强",
+    high: "午后1-4点 约27℃",
+    low: "清晨 约15℃",
+    spot: "美泉宫园林暴晒体感约29-30℃；市区建筑间午后闷热约28℃；傍晚约22℃舒适",
+    clothes: "透气短袖+长裤，遮阳帽必备；傍晚逛街区加薄开衫",
+    tips: [
+      "🚨 美泉宫园林暴晒路段长，防晒霜+遮阳帽+墨镜三件套",
+      "市区午后闷热，多进室内/咖啡厅歇凉",
+      "傍晚维也纳河畔散步很舒适"
+    ],
+    alert: "☝️ 美泉宫园林暴晒，三件套防晒必备"
+  },
+  {
+    day: "D11", date: "7月5日 · 周六",
+    route: "维也纳 → 布拉迪斯拉发 → 布达佩斯",
+    temp: "16~29℃", tempNum: 29,
+    icon: "☀️",
+    weather: "全程晴好偏热，布达佩斯最热",
+    rain: "降雨概率极低",
+    rainPct: 4,
+    sun: "大晴天，日晒强烈",
+    high: "🚨 布达佩斯约29℃，全天最热",
+    low: "布拉迪斯拉发约16℃",
+    spot: "布达佩斯到达后约28-29℃；🚨 多瑙河游船甲板风大体感约22℃（比气温低）",
+    clothes: "轻薄短袖为主，长裤透气款；🚨 多瑙河游船风大随身带薄外套",
+    tips: [
+      "🚨 全程最热一天！穿最薄最透气的衣服",
+      "🚨 多瑙河游船甲板风大，虽然气温29℃，船上风冷效应明显",
+      "多补水防中暑，游船时穿薄外套防风"
+    ],
+    alert: "⚠️ 全程最热日（29℃），但多瑙河游船甲板风大！薄外套不能忘"
+  },
+  {
+    day: "D12", date: "7月6日 · 周日",
+    route: "布达佩斯全天 → 返程航班",
+    temp: "17~28℃", tempNum: 28,
+    icon: "🌤️",
+    weather: "晴间多云，适合游览",
+    rain: "降雨概率低",
+    rainPct: 8,
+    sun: "白天日照好，城堡山风大偏凉",
+    high: "午后 约28℃",
+    low: "清晨 约17℃",
+    spot: "城堡山高处风凉体感约22℃；市区河畔偏暖约27℃；夜间返程约20℃",
+    clothes: "日常夏装即可，登山观景临时添薄外套；飞机上空调冷备薄外套",
+    tips: [
+      "城堡山风大，拍照时头发容易乱，可备发夹",
+      "市区游览舒适偏暖",
+      "返程航班同样空调冷，薄外套随身"
+    ],
+    alert: "☝️ 城堡山风大，登山时加薄外套"
+  }
+];
+
+let current = 0;
+
+function renderStrip() {
+  const strip = document.getElementById('dayStrip');
+  strip.innerHTML = days.map((d, i) => {
+    const isActive = i === current;
+    return `<button class="day-btn${isActive ? ' active' : ''}" onclick="showDay(${i})">
+      <div>${d.day}</div>
+      <div class="temp">${d.temp}</div>
+    </button>`;
+  }).join('');
+}
+
+function getRainColor(pct) {
+  if (pct <= 10) return '#27ae60';
+  if (pct <= 25) return '#f39c12';
+  return '#e74c3c';
+}
+
+function showDay(idx) {
+  current = idx;
+  const d = days[idx];
+  const card = document.getElementById('mainCard');
+
+  const rainColor = getRainColor(d.rainPct);
+  const rainWidth = Math.min(d.rainPct, 60) + '%';
+
+  card.innerHTML = `
+    <div class="card show">
+      <div class="weather-icon">${d.icon}</div>
+      <div class="card-head">
+        <div class="day-tag">${d.day}</div>
+        <div class="route">${d.date}<br><small style="color:#888">${d.route}</small></div>
+        <div class="temp-big">${d.temp.split('~')[0]}<span>~${d.temp.split('~')[1]}</span></div>
+      </div>
+
+      <div class="weather-grid">
+        <div class="wg-item full">
+          <div class="label">天气状况</div>
+          <div class="value">${d.weather}</div>
+        </div>
+        <div class="wg-item">
+          <div class="label">最高温时段</div>
+          <div class="value hot">${d.high}</div>
+        </div>
+        <div class="wg-item">
+          <div class="label">最低温时段</div>
+          <div class="value cool">${d.low}</div>
+        </div>
+        <div class="wg-item full">
+          <div class="label">降雨概率</div>
+          <div class="value">${d.rain}</div>
+          <div class="rain-bar">
+            <div class="rain-fill" style="width:${rainWidth}; background:${rainColor}"></div>
+          </div>
+        </div>
+        <div class="wg-item full">
+          <div class="label">日照</div>
+          <div class="value">${d.sun}</div>
+        </div>
+        <div class="wg-item full" style="background:#fff8e1;">
+          <div class="label">景点体感温度</div>
+          <div class="value" style="color:#b45309;">${d.spot}</div>
+        </div>
+      </div>
+
+      <div class="alert-box"><strong>${d.alert}</strong></div>
+
+      <div class="clothes-section">
+        <div class="sec-title">穿搭建议</div>
+        <p>${d.clothes}</p>
+      </div>
+
+      <div class="tips-section">
+        <div class="sec-title">贴心小贴士</div>
+        <ul>
+          ${d.tips.map(t => `<li>${t}</li>`).join('')}
+        </ul>
+      </div>
+    </div>
+  `;
+
+  renderStrip();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+document.getElementById('prevBtn').addEventListener('click', () => {
+  if (current > 0) showDay(current - 1);
+});
+document.getElementById('nextBtn').addEventListener('click', () => {
+  if (current < days.length - 1) showDay(current + 1);
+});
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowLeft' && current > 0) showDay(current - 1);
+  if (e.key === 'ArrowRight' && current < days.length - 1) showDay(current + 1);
+});
+
+// Init
+showDay(0);
+</script>
+</body>
+</html>
