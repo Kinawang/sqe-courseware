@@ -569,7 +569,8 @@ const QUESTIONS = [
       "The advertisement is an invitation to treat, not an offer — words like 'may sell' and 'contact me if you wish to buy' show no intention to be bound. The woman's letter was an offer that the man rejected.",
       "The advertisement is a unilateral offer that the woman accepted by posting her letter.",
       "The advertisement is a bilateral offer that the woman accepted by post under the postal rule.",
-      "The advertisement is an offer because it states a specific price (£100) for a specific item."
+      "The advertisement is an offer because it states a specific price (£100) for a specific item.",
+      "The advertisement is merely a promotional statement and has no legal effect whatsoever."
     ],
     "best": 0,
     "principle": "Advertisements are generally invitations to treat, not offers. The wording 'may sell' and 'contact me if you wish to buy' is not conducive with contractual intent. If it were an offer, there would be a problem of multi-acceptance (only one camera but potentially unlimited acceptances).",
@@ -678,12 +679,13 @@ const QUESTIONS = [
     "chapter": "2 · Unilateral Offers",
     "text": "A zookeeper offers a £100 reward in the local paper to the first person who returns a lost goat. A man finds the goat but does NOT see the advertisement. He returns the goat to the zoo. Later, a colleague tells him about the reward. Can the man claim the £100?",
     "options": [
-      "No — the man was not aware of the offer when he performed the act, so he cannot have accepted it. Awareness of the offer is always required, even for unilateral offers.",
-      "Yes — performing the requested act is sufficient to accept a unilateral offer, regardless of awareness.",
-      "Yes — the man performed the exact act requested, so acceptance is complete.",
-      "No — the man accepted a chocolate bar from the zookeeper, which counts as alternative performance."
+      "The zookeeper is not obliged to pay the man the £100 reward because the man did not claim the reward when he returned the goat to the zoo.",
+      "The zookeeper is obliged to pay the man the £100 reward because the man accepted the zookeeper's offer by exactly performing the act requested in the advertisement.",
+      "The man can only claim the reward of £100 if he was aware of the advertisement when he brought the goat to the zoo.",
+      "By accepting the chocolate bar, the man accepted alternative performance by the zookeeper of the reward and is estopped from claiming the £100.",
+      "The man's act of returning the goat amounts to acceptance of a unilateral offer so it is irrelevant whether or not he knew of the reward."
     ],
-    "best": 0,
+    "best": 2,
     "principle": "It is a key requirement of acceptance that the person purporting to accept must be aware of the offer. Even for unilateral offers, performing the requested act without knowledge of the offer does not constitute acceptance.",
     "cite": "Revise SQE Contract Law, Ch 1",
     "principleCN": "接受要约的一个关键要求是：接受者必须知道要约的存在。即使是单方要约，在不知道要约的情况下完成了要求的行为，也不构成接受。",
@@ -742,12 +744,13 @@ const QUESTIONS = [
     "chapter": "3 · Communication of Acceptance",
     "text": "A supplier emails a customer offering 10 tons of apples for £2,000. The customer telephones to accept, but the line is bad and the supplier cannot hear the acceptance despite the customer repeating it twice before the call drops. Is there a binding contract?",
     "options": [
-      "No — in a bilateral offer, the offeree must communicate acceptance effectively. It is the offeree's responsibility to ensure the offeror actually hears the acceptance. No contract was formed.",
-      "Yes — the customer tried twice to communicate acceptance, so the supplier bears the risk of the bad line.",
-      "Yes — the customer's attempt to accept by telephone is sufficient even if the supplier did not hear.",
-      "No — but the supplier must call the customer back to check what was said."
+      "The customer's acceptance has created a binding contract so the supplier must start delivering apples to the customer in accordance with the terms of their agreement.",
+      "The supplier is responsible for calling the customer back and checking what she said.",
+      "It is the customer's responsibility to ensure that the supplier hears her acceptance.",
+      "Given that the customer has tried two times to tell the supplier that she accepts her offer, the supplier will be in breach of contract if she does not deliver the apples.",
+      "It was the supplier's fault that she did not hear the customer's acceptance of her offer so she must take the consequences of not delivering the apples."
     ],
-    "best": 0,
+    "best": 2,
     "principle": "In a bilateral offer, acceptance must be communicated to and received by the offeror. It is the offeree's responsibility to ensure acceptance is actually received. If the offeror does not hear the acceptance (e.g., bad phone line), no contract is formed. The offeror has no duty to chase the acceptance.",
     "cite": "Revise SQE Contract Law, Ch 1",
     "principleCN": "在双边要约中，接受必须有效传达给要约人。受要约人有责任确保要约人确实收到接受。如果要约人没有听到接受（如电话线路不好），合同不成立。",
@@ -790,12 +793,13 @@ const QUESTIONS = [
     "chapter": "3 · Postal Rule",
     "text": "A man writes to a woman offering to sell his gold watch for £5,000, promising to keep the offer open for five days. The woman receives the letter two days later and immediately posts her acceptance by Royal Mail. The letter is delayed and arrives seven days after the offer was sent. Meanwhile, on day six, the man sells the watch to a third party. Has the man breached a contract with the woman?",
     "options": [
-      "Yes — the postal rule makes acceptance effective when posted (day 2), before the man sold the watch (day 6). The promise to keep the offer open for five days was not binding (no consideration), but the acceptance was still effective within that period.",
-      "No — the woman's acceptance arrived after the five-day period, so the offer had lapsed.",
-      "No — the man's promise to keep the offer open was not supported by consideration, so he was free to sell to anyone.",
-      "No — the postal rule does not apply when the offer specifies a time limit."
+      "The man is not in breach of contract as his promise to keep the offer open for five days was not supported by consideration.",
+      "The man is in breach of contract as his promise to keep the offer open for five days was legally binding.",
+      "The man is not in breach of contract as the woman's letter of acceptance was received after the offer had lapsed.",
+      "The man is in breach of contract as the woman's letter of acceptance was effective when posted two days after receipt of the offer, before the man sold the watch to a third party.",
+      "The man is not in breach of contract as the woman's acceptance was not communicated to the man before the offer had lapsed."
     ],
-    "best": 0,
+    "best": 3,
     "principle": "The postal rule: acceptance by post is effective when posted, not when received. The woman's acceptance was effective on day 2 (when posted), before the man sold the watch on day 6. The promise to keep the offer open for 5 days was not binding (no consideration), but the acceptance was effective within that period anyway.",
     "cite": "Revise SQE Contract Law, Ch 1; FLK1 Practice 180 Q",
     "principleCN": "邮政规则：通过邮寄接受的，在投寄时生效，而非收到时。女方的接受在第2天（投寄时）生效，早于男方在第6天出售手表。承诺保持要约开放5天没有约束力（没有对价），但接受在此期间内生效。",
@@ -854,12 +858,13 @@ const QUESTIONS = [
     "chapter": "4 · Counter-Offer",
     "text": "A man offers to sell his bicycle to a colleague for £500, requiring a response within two days. The colleague replies by post: 'I will buy it for £400.' The man ignores the letter. The colleague then tries to accept the original £500 offer. Is there a contract at £500?",
     "options": [
-      "No — the colleague's response (£400) is a counter-offer that destroys the original offer. The original offer can no longer be accepted. Authority: Hyde v Wrench.",
-      "Yes — the colleague's letter was merely a request for information about price flexibility, so the original offer remains open.",
-      "Yes — the postal rule means the colleague's counter-offer was effective when posted, but the original offer can still be accepted.",
-      "No — but only because the two-day time limit has expired."
+      "Provided the colleague put the correct address on the letter, the contract is formed when she posts it with Royal Mail.",
+      "The colleague's letter amounts to a counter-offer that destroys the man's offer.",
+      "The colleague's letter is a unilateral offer that the man can accept by conduct.",
+      "Pursuant to the postal acceptance rule a contract between the colleague and the man is formed at the moment that the colleague posts the letter.",
+      "The colleague's communication was an enquiry as to flexibility in payment terms so the man's offer remains open for the colleague to accept at £500."
     ],
-    "best": 0,
+    "best": 1,
     "principle": "A counter-offer destroys the original offer so it can no longer be accepted (Hyde v Wrench [1840]). The mirror-image rule requires exact acceptance — any change to terms (price, quantity, etc.) is a counter-offer, not an acceptance. A request for information (e.g., 'can I pay in instalments?') would NOT destroy the offer.",
     "cite": "Hyde v Wrench (1840) 3 Beav 334",
     "principleCN": "反要约会摧毁原要约，使其不能再被接受（Hyde v Wrench [1840]）。镜像原则要求完全一致的接受——对条款的任何修改都是反要约，而非接受。",
@@ -918,10 +923,11 @@ const QUESTIONS = [
     "chapter": "5 · Revocation",
     "text": "A shopkeeper, in a panic, posts a letter to an insurance company offering to pay 45% more rent per year. After checking her finances, she realises she cannot afford this. She urgently needs to revoke the offer. What is the BEST method?",
     "options": [
-      "Telephone the insurance company immediately — revocation must be communicated to the offeree before acceptance. A third party (e.g., the shopkeeper's lawyer) can communicate the revocation. Speed is essential to prevent acceptance.",
-      "Send a revocation letter by Royal Mail — the postal rule means the revocation is effective when posted.",
-      "Do nothing — the offer is not binding because it was made in panic.",
-      "Wait for the insurance company to accept, then refuse to pay."
+      "The lawyer (on behalf of the shopkeeper) should immediately telephone the insurance company to tell them that the shopkeeper has revoked her offer to pay a 45% increase. This will prevent the insurance company from accepting the shopkeeper's offer to form a binding contract.",
+      "The shopkeeper should revoke her offer to the insurance company immediately by sending a letter by courier to the insurance company as this will be effective as soon as it is posted.",
+      "The shopkeeper was bound by her offer to the insurance company from the moment she posted her letter.",
+      "The shopkeeper should revoke her offer to the insurance company by post because the postal acceptance rule provides that revocation is effective when posted.",
+      "The shopkeeper should send a letter to the insurance company to investigate whether the insurance company would be prepared to accept a lower increase."
     ],
     "best": 0,
     "principle": "An offer can be revoked before acceptance. Revocation must be communicated to the offeree (received, not posted — the postal rule does NOT apply to revocations). A third party may communicate revocation on behalf of the offeror. The fastest method (telephone) is best to prevent the offeree from accepting first.",
@@ -932,15 +938,16 @@ const QUESTIONS = [
   {
     "key": "c24",
     "chapter": "5 · Revocation",
-    "text": "A man advertises in a trade magazine: 'LENOVO laptop for £200. I will sell to the first person who brings £200 to my office at 1 Oxford Street by 1 PM Friday.' On Tuesday he changes his mind and places a revocation notice in a national newspaper published Wednesday. On Friday, a woman brings £200 to his office at 11 AM, having seen the original ad on Monday. Must he sell to her?",
+    "text": "A man advertises in a trade magazine: 'LENOVO laptop for £200. I will sell to the first person who brings £200 to my office at 1 Oxford Street by 1 PM Friday.' On Tuesday he changes his mind and places a revocation notice in a national newspaper published Wednesday. Based on the original advert, which of the following is correct?",
     "options": [
-      "Yes — the revocation was ineffective because it was not given the same notoriety as the original offer. The original was in a trade magazine; the revocation was in a national newspaper — different readership.",
-      "No — the revocation in a national newspaper is effective because it reaches a wider audience than the trade magazine.",
-      "No — the man can revoke any offer at any time before acceptance, regardless of method.",
-      "Yes — because the woman performed the requested act before 1 PM Friday."
+      "On Friday, a woman, having seen the advert on Monday, brings £200 to the man's office at 11:00 AM. The man must sell the laptop to her because the revocation was ineffective — it was not given the same notoriety as the original offer (trade magazine vs national newspaper).",
+      "The man can revoke his offer at any time before acceptance by any method he chooses.",
+      "On Friday, a student arrives with £200 at 10:15 AM. The man must sell to the student because the student arrived first.",
+      "The revocation in the national newspaper is effective because it reaches a wider audience than the trade magazine.",
+      "The man is not obliged to sell the laptop to anyone because he revoked the offer on Wednesday."
     ],
     "best": 0,
-    "principle": "Revocation of a unilateral offer must be communicated using the same method or notoriety as the original offer (Shuey v US [1875]). The original was in a trade magazine; the revocation in a national newspaper has different readership, so the revocation is ineffective.",
+    "principle": "Revocation of a unilateral offer must be communicated using the same method or notoriety as the original offer (Shuey v US [1875]). The original was in a trade magazine; the revocation in a national newspaper has a different readership, so the revocation is ineffective. The woman who brings £200 on Friday is entitled to buy the laptop.",
     "cite": "Shuey v United States (1875); Revise SQE Contract Law, Ch 1",
     "principleCN": "撤销单方要约必须使用与原要约相同的方式或知名度（Shuey v US [1875]）。原要约在行业杂志上；撤销在全国性报纸上——读者群不同，所以撤销无效。",
     "citeCN": "Shuey v US (1875); Revise SQE 合同法, 第1章"
@@ -1078,12 +1085,13 @@ const QUESTIONS = [
     "chapter": "8 · Consideration Basics",
     "text": "A man's will allows his wife to live in the matrimonial home for life. The executors agree she can stay if she pays £1 per year rent. The family challenges this, saying £1 is insufficient. Can the woman enforce the agreement?",
     "options": [
-      "Yes — £1 per year is sufficient consideration. The courts are not concerned with the adequacy of consideration, only that it has some economic value, however small.",
-      "No — £1 per year is not adequate consideration because it does not reflect market rent.",
-      "No — £1 per year has minimal economic value and cannot support a contract.",
-      "Yes — but only because the woman relied on the executors' promise."
+      "Yes, as the woman has relied upon the promise of the executors.",
+      "No, as payment of £1 per year is not adequate as consideration.",
+      "Yes, as payment of £1 per year is sufficient consideration.",
+      "No, as payment of £1 per year has minimal economic value.",
+      "No, as the woman's consideration was in the past."
     ],
-    "best": 0,
+    "best": 2,
     "principle": "Consideration need only be sufficient (have some economic value), not adequate (match market value). £1 per year is sufficient. The courts will not assess the fairness of the bargain — a peppercorn can be good consideration.",
     "cite": "Revise SQE Contract Law, Ch 2; FLK1 Practice 180 Q",
     "principleCN": "对价只需充分（有某种经济价值），不需要等价（匹配市场价值）。每年£1是充分的对价。法院不评估交易是否公平——一粒胡椒也可以是有效对价。",
@@ -1094,12 +1102,13 @@ const QUESTIONS = [
     "chapter": "8 · Part-Payment of Debt",
     "text": "A lender is owed £120,000 in 12 instalments of £10,000. The business pays 11 instalments. Before the final instalment, the lender promises to accept £5,000 instead. In exchange, the business provides free staff training to the lender's employees. The business pays £5,000 and provides the training. Later, the lender demands the remaining £5,000. Must the business pay?",
     "options": [
-      "No — the provision of staff training is a separate service that goes beyond existing obligations. This is an exception to the rule that part-payment of a debt is not good consideration.",
-      "No — part-payment of a debt is always sufficient consideration.",
-      "Yes — part-payment of a debt is never good consideration, regardless of any additional service.",
-      "Yes — the staff training was free and had no economic value."
+      "The business is not liable to pay the amount claimed as their payment of £115,000 under the agreement will constitute a practical benefit to the lender.",
+      "The business is liable to pay the amount claimed as the staff training was free and had no economic value.",
+      "The business is not liable to pay the amount claimed as the business can rely upon the doctrine of promissory estoppel.",
+      "The business is liable to pay the amount claimed as part-payment of a debt is not good consideration.",
+      "The business is not liable to pay the amount claimed as the provision of the staff development is sufficient consideration which goes beyond the business's existing obligations."
     ],
-    "best": 0,
+    "best": 4,
     "principle": "The general rule is that part-payment of a debt is not good consideration (Foakes v Beer [1884]). However, providing a separate service (staff training) that goes beyond existing obligations IS good consideration.",
     "cite": "Foakes v Beer (1884); FLK1 Practice 180 Q",
     "principleCN": "一般规则是部分还款不是有效对价（Foakes v Beer [1884]）。但是，提供超出现有义务的单独服务（员工培训）是有效对价。",
@@ -1196,7 +1205,6 @@ function renderQuestion() {
     btn.textContent = opt;
     const answered = state.answered.includes(q.key);
     if (answered) {
-      btn.classList.add('disabled');
       if (i === q.best) btn.classList.add('correct');
       if (state.wrong[q.key] === i) btn.classList.add('wrong');
     }
@@ -1251,14 +1259,32 @@ function toggleBookmark() {
 
 function selectOption(i) {
   const q = getCurrentQuestions()[state.qIndex];
-  if (state.answered.includes(q.key)) return;
+  const wasAnswered = state.answered.includes(q.key);
+  const wasWrong = state.wrong[q.key] !== undefined;
 
-  state.answered.push(q.key);
+  if (wasAnswered) {
+    // Re-answering: remove old record
+    if (wasWrong) {
+      delete state.wrong[q.key];
+    }
+    // Don't add coins again if they already got it right before
+    // But if they got it wrong before and right now, give coins
+    if (i === q.best && wasWrong) {
+      state.coins += 20;
+      renderCoins();
+    }
+    // If they got it right before and wrong now, no coin deduction
+  } else {
+    // First time answering
+    state.answered.push(q.key);
+    if (i === q.best) {
+      state.coins += 20;
+      renderCoins();
+    }
+  }
+
   if (i !== q.best) {
     state.wrong[q.key] = i;
-  } else {
-    state.coins += 20;
-    renderCoins();
   }
   save();
   renderQuestion();
