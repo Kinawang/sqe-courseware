@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>SQE1 Quiz · Sticker Collector</title>
+<style>
+  :root {
+    --paper: #f4ecd8;
+    --paper-2: #e8dcb8;
+    --ink: #2a2620;
+    --ink-soft: #5a5246;
+    --seal: #8b1a1a;
+    --gold: #b8860b;
+    --gold-light: #daa520;
+    --ok: #2e6b3e;
+    --line: #8a7a5c;
+    --fs-body: 18px;
+    --fs-h1: 24px;
+    --fs-h2: 20px;
+    --fs-card: 18px;
+    --fs-small: 14px;
+  }
+  body.fs-lg { --fs-body: 22px; --fs-h1: 28px; --fs-h2: 24px; --fs-card: 22px; --fs-small: 17px; }
+  body.fs-xl { --fs-body: 26px; --fs-h1: 32px; --fs-h2: 28px; --fs-card: 26px; --fs-small: 20px; }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: #1a1812;
+    font-family: 'Georgia', 'Times New Roman', 'Songti SC', serif;
+    color: var(--ink);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  #app {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: var(--paper);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ===== TOP BAR ===== */
+  .topbar {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 10px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid var(--gold);
+    position: sticky; top: 0; z-index: 100;
+  }
+  .topbar .title { font-size: var(--fs-h2); font-weight: bold; color: var(--gold-light); letter-spacing: 1px; }
+  .topbar .right { display: flex; gap: 12px; align-items: center; }
+  .topbar .coins { font-size: var(--fs-body); }
+  .topbar .coins .val { color: var(--gold-light); font-weight: bold; }
+  .topbar .fs-btn {
+    background: transparent; color: var(--paper);
+    border: 1px solid var(--paper-2);
+    padding: 2px 10px; font-family: inherit;
+    cursor: pointer; font-size: var(--fs-small);
+  }
+  .topbar .fs-btn:hover { background: var(--paper-2); color: var(--ink); }
+
+  /* ===== MAIN LAYOUT: left stickers | center quiz | right stickers ===== */
+  .main {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 120px 1fr 120px;
+    gap: 0;
+  }
+
+  /* Sticker columns */
+  .sticker-col {
+    background: var(--paper-2);
+    border-right: 1px dashed var(--line);
+    padding: 8px 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-height: 400px;
+  }
+  .sticker-col.right { border-right: none; border-left: 1px dashed var(--line); }
+  .sticker-col .col-label {
+    font-size: 11px; color: var(--ink-soft);
+    text-align: center; letter-spacing: 1px;
+    text-transform: uppercase; margin-bottom: 4px;
+  }
+  .sticker-slot {
+    aspect-ratio: 1;
+    background: rgba(255,255,255,0.3);
+    border: 1px dashed var(--ink-soft);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; position: relative;
+    font-size: 28px;
+  }
+  .sticker-slot.filled { background: rgba(255,255,255,0.6); border-style: solid; border-color: var(--gold); }
+  .sticker-slot.filled:hover .remove-x { display: block; }
+  .sticker-slot .remove-x {
+    display: none;
+    position: absolute; top: 0; right: 2px;
+    background: var(--seal); color: white;
+    width: 16px; height: 16px;
+    font-size: 10px; line-height: 16px;
+    text-align: center; cursor: pointer;
+    border-radius: 2px;
+  }
+  .sticker-slot .empty-hint { font-size: 11px; color: var(--ink-soft); opacity: 0.5; }
+
+  /* ===== CENTER QUIZ AREA ===== */
+  .quiz {
+    padding: 20px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .quiz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: var(--fs-small);
+    color: var(--ink-soft);
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 8px;
+  }
+  .quiz-header .progress { font-weight: bold; color: var(--seal); }
+
+  .question {
+    font-size: var(--fs-body);
+    line-height: 1.7;
+    padding: 14px 16px;
+    background: rgba(255,255,255,0.5);
+    border-left: 4px solid var(--gold);
+  }
+  .question .q-label {
+    display: block;
+    font-size: var(--fs-small);
+    color: var(--seal);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 6px;
+  }
+
+  .options { display: flex; flex-direction: column; gap: 10px; }
+  .option {
+    background: white;
+    border: 2px solid var(--line);
+    padding: 14px 16px;
+    font-family: inherit;
+    font-size: var(--fs-card);
+    line-height: 1.5;
+    text-align: left;
+    color: var(--ink);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .option::before {
+    content: '○';
+    margin-right: 8px;
+    color: var(--gold);
+    font-weight: bold;
+  }
+  .option:hover { transform: translateX(3px); border-color: var(--gold); box-shadow: 2px 2px 0 var(--paper-2); }
+  .option.selected { background: rgba(184,134,11,0.12); border-color: var(--gold); }
+  .option.selected::before { content: '●'; }
+  .option.revealed { opacity: 0.5; pointer-events: none; }
+  .option.best { background: rgba(46,107,62,0.12); border-color: var(--ok); opacity: 1; }
+  .option.best::before { content: '✓'; color: var(--ok); }
+
+  .feedback {
+    background: linear-gradient(135deg, rgba(184,134,11,0.1), rgba(46,107,62,0.1));
+    border-left: 4px solid var(--ok);
+    padding: 12px 16px;
+    font-size: var(--fs-body);
+    line-height: 1.6;
+    display: none;
+  }
+  .feedback.show { display: block; animation: fadeIn 0.3s; }
+  .feedback .fb-label { font-size: var(--fs-small); color: var(--ok); font-weight: bold; letter-spacing: 1px; text-transform: uppercase; }
+  .feedback .fb-principle { margin-top: 6px; font-style: italic; }
+  .feedback .fb-principle-cn { margin-top: 4px; font-size: var(--fs-small); color: var(--ink-soft); line-height: 1.6; }
+  .feedback .fb-cite { margin-top: 4px; font-size: var(--fs-small); color: var(--ink-soft); }
+  .feedback .fb-cite-cn { margin-top: 2px; font-size: var(--fs-small); color: var(--ink-soft); }
+  .feedback .fb-reward { margin-top: 8px; color: var(--gold); font-weight: bold; }
+
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+  .quiz-actions { display: flex; gap: 10px; }
+  .btn {
+    background: var(--ink); color: var(--paper);
+    border: none; padding: 12px 20px;
+    font-family: inherit; font-size: var(--fs-body);
+    cursor: pointer; letter-spacing: 1px;
+    text-transform: uppercase; flex: 1;
+  }
+  .btn:hover { background: var(--seal); }
+  .btn.gold { background: var(--gold); color: var(--ink); }
+  .btn.gold:hover { background: var(--seal); color: var(--paper); }
+  .btn:disabled { opacity: 0.4; cursor: default; }
+
+  /* ===== SHOP MODAL ===== */
+  .shop-modal {
+    position: fixed; inset: 0;
+    background: rgba(26,24,18,0.85);
+    z-index: 200;
+    display: none;
+    align-items: center; justify-content: center;
+    padding: 16px;
+  }
+  .shop-modal.show { display: flex; }
+  .shop-content {
+    background: var(--paper);
+    border: 3px solid var(--gold);
+    padding: 20px;
+    max-width: 560px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+  .shop-content h2 { color: var(--seal); font-size: var(--fs-h1); margin-bottom: 12px; text-align: center; }
+  .shop-content .shop-coins { text-align: center; font-size: var(--fs-h2); color: var(--gold); font-weight: bold; margin-bottom: 14px; }
+  .shop-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+  }
+  .shop-item {
+    background: white;
+    border: 2px solid var(--line);
+    padding: 10px 6px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .shop-item:hover:not(.unaffordable):not(.owned) { transform: translateY(-2px); box-shadow: 0 3px 0 var(--paper-2); border-color: var(--gold); }
+  .shop-item.unaffordable { opacity: 0.4; cursor: not-allowed; }
+  .shop-item.owned { background: rgba(46,107,62,0.1); border-color: var(--ok); cursor: pointer; }
+  .shop-item .si-icon { font-size: 32px; line-height: 1; }
+  .shop-item .si-name { font-size: var(--fs-small); margin-top: 4px; }
+  .shop-item .si-price { color: var(--gold); font-weight: bold; margin-top: 4px; font-size: var(--fs-small); }
+  .shop-item.owned .si-price::after { content: ' ✓'; }
+  .shop-item.unaffordable .si-price::after { content: ' (need more)'; font-size: 0.8em; }
+  .shop-close {
+    display: block;
+    margin: 16px auto 0;
+    background: var(--ink); color: var(--paper);
+    border: none; padding: 10px 24px;
+    font-family: inherit; font-size: var(--fs-body);
+    cursor: pointer; letter-spacing: 1px;
+  }
+  .shop-close:hover { background: var(--seal); }
+
+  /* ===== PLACEMENT MODE ===== */
+  .placement-hint {
+    position: fixed; bottom: 16px; left: 50%;
+    transform: translateX(-50%);
+    background: var(--seal); color: white;
+    padding: 10px 20px; font-size: var(--fs-small);
+    z-index: 300; border-radius: 4px;
+    display: none;
+  }
+  .placement-hint.show { display: block; }
+  .sticker-col.placement-mode .sticker-slot { border-color: var(--gold); background: rgba(184,134,11,0.15); }
+  .sticker-col.placement-mode .sticker-slot:hover { background: rgba(184,134,11,0.3); }
+
+  /* ===== MOBILE ===== */
+  @media (max-width: 700px) {
+    .main { grid-template-columns: 70px 1fr 70px; }
+    .sticker-col { padding: 6px 4px; }
+    .sticker-slot { font-size: 20px; }
+    .sticker-slot .empty-hint { display: none; }
+    .quiz { padding: 14px 12px; }
+    .topbar .title { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="app">
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="title">⚖ SQE Quiz</div>
+    <div class="right">
+      <div class="coins">💰 <span class="val" id="coins">0</span></div>
+      <button class="fs-btn" onclick="changeFS(-1)">A-</button>
+      <button class="fs-btn" onclick="changeFS(1)">A+</button>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+    <!-- LEFT STICKER COLUMN -->
+    <div class="sticker-col left" id="col-left">
+      <div class="col-label">Left</div>
+    </div>
+
+    <!-- CENTER QUIZ -->
+    <div class="quiz" id="quiz">
+      <div class="quiz-header">
+        <span>Question <span class="progress" id="q-num">1</span> / <span id="q-total">20</span></span>
+        <span>Chapter <span id="q-chapter">—</span></span>
+        <button id="btn-bookmark" class="fs-btn" style="background:transparent; border:1px solid var(--line); color:var(--ink-soft); font-size:var(--fs-h2); padding:2px 8px; cursor:pointer;">☆</button>
+      </div>
+      <div class="question">
+        <span class="q-label">The Brief</span>
+        <span id="q-text">—</span>
+      </div>
+      <div class="options" id="options"></div>
+      <div class="feedback" id="feedback">
+        <div class="fb-label">📜 Principle</div>
+        <div class="fb-principle" id="fb-principle">—</div>
+        <div class="fb-principle-cn" id="fb-principle-cn">—</div>
+        <div class="fb-cite" id="fb-cite">—</div>
+        <div class="fb-cite-cn" id="fb-cite-cn">—</div>
+        <div class="fb-reward" id="fb-reward">—</div>
+      </div>
+      <div class="quiz-actions">
+        <button class="btn gold" id="btn-shop" onclick="openShop()">🏪 Shop</button>
+        <button class="btn" id="btn-next" onclick="nextQuestion()" disabled>Next →</button>
+      </div>
+    </div>
+
+    <!-- RIGHT STICKER COLUMN -->
+    <div class="sticker-col right" id="col-right">
+      <div class="col-label">Right</div>
+    </div>
+  </div>
+</div>
+
+<!-- SHOP MODAL -->
+<div class="shop-modal" id="shop-modal">
+  <div class="shop-content">
+    <h2>🏪 Sticker Shop</h2>
+    <div class="shop-coins">💰 You have <span id="shop-coins-val">0</span> coins</div>
+    <div class="shop-grid" id="shop-grid"></div>
+    <button class="shop-close" onclick="closeShop()">Close</button>
+  </div>
+</div>
+
+<!-- PLACEMENT HINT -->
+<div class="placement-hint" id="placement-hint">
+  Click a slot on the left or right column to place your sticker
+</div>
+
+<script>
+/* ===== STATE ===== */
+const STORAGE_KEY = 'sqe-l1-stickers-v6';
+const DEFAULT_STATE = {
+  coins: 0,
+  qIndex: 0,
+  answered: [],       // question keys answered (all)
+  wrong: {},           // { qKey: { selected: idx, best: idx } } — only wrong answers saved
+  bookmarked: [],     // question keys manually starred
+  stickers: {},       // { itemId: { side: 'left'|'right', slot: 0-9 } }
+  placementItem: null,
+  fsLevel: 0,
+  reviewMode: false,
+  reviewQueue: []
+};
+let state = JSON.parse(JSON.stringify(DEFAULT_STATE));
+
+function load() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) state = Object.assign(state, JSON.parse(raw));
+  } catch(e) {}
+  applyFS();
+}
+function save() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {}
+}
+
+/* ===== FONT SIZE ===== */
+const FS_CLASSES = ['', 'fs-lg', 'fs-xl'];
+function applyFS() { document.body.className = FS_CLASSES[state.fsLevel] || ''; }
+function changeFS(d) {
+  state.fsLevel = Math.max(0, Math.min(2, state.fsLevel + d));
+  applyFS(); save();
+}
+
+/* ===== QUESTIONS ===== */
+// Each: key, chapter, text (scenario), 4 options (all correct statements, 1 is "best fit")
+// "best" = index of the best answer. No wrong answers — just "most fitting".
+const QUESTIONS = [
+  {
+    "key": "q1",
+    "chapter": "1 · UK Constitution",
+    "text": "A journalist writes: \"Britain has no constitution.\" Your editor asks for the precise correction. What do you tell her?",
+    "options": [
+      "The UK constitution is uncodified — drawn from many sources, not one single document. \"Uncodified\" is the correct term, not \"unwritten\".",
+      "The UK constitution was abolished in 1972.",
+      "The UK has a constitution but it is not legally binding.",
+      "The UK constitution is based entirely on conventions with no statutory sources."
+    ],
+    "best": 0,
+    "principle": "The UK constitution is \"uncodified\" — multiple sources, not one document. It is NOT \"unwritten\": Magna Carta 1215, Bill of Rights 1689, HRA 1998 are all written constitutional statutes.",
+    "cite": "Revise SQE, Ch 1, p.5",
+    "principleCN": "英国宪法是\"不成文法\"——来源于多种法源，不是一份单一文件。但它不是\" unwritten\"：《大宪章》(1215)、《权利法案》(1689)、《人权法》(1998) 都是成文的宪法性法律。",
+    "citeCN": "Revise SQE, 第1章, 第5页"
+  },
+  {
+    "key": "q2",
+    "chapter": "1 · UK Constitution",
+    "text": "A student asks: \"Is the UK constitution hard to change like the US one?\" What is the accurate answer?",
+    "options": [
+      "The UK constitution is unentrenched and flexible — ordinary legislation suffices for amendment. The US is rigid (super-majority required).",
+      "The UK constitution can only be amended by the Supreme Court.",
+      "Both the UK and US constitutions are equally rigid.",
+      "The UK constitution is entrenched and requires a referendum to amend."
+    ],
+    "best": 0,
+    "principle": "Unentrenched + Flexible: ordinary legislative procedure suffices. Contrast US (rigid): two-thirds of both Houses + three-quarters of state legislatures (Art V).",
+    "cite": "Revise SQE, Ch 1, p.6",
+    "principleCN": "非刚性 + 灵活：普通立法程序即可修改。对比美国（刚性）：参众两院各三分之二 + 四分之三州立法机关批准（宪法第五条）。",
+    "citeCN": "Revise SQE, 第1章, 第6页"
+  },
+  {
+    "key": "q3",
+    "chapter": "1 · UK Constitution",
+    "text": "A colleague says: \"The HRA 1998 is a higher form of law than a normal Act.\" What do you say?",
+    "options": [
+      "In form, no — there is no hierarchy. The HRA 1998 and a local byelaw are both Acts of Parliament. But Thoburn [2002] gave certain statutes special protection from implied repeal.",
+      "The HRA 1998 is above Parliament but below the EU treaties.",
+      "The HRA 1998 has no constitutional status at all.",
+      "Yes, the HRA 1998 is supreme law and cannot be repealed."
+    ],
+    "best": 0,
+    "principle": "No Supreme Law: constitutional statutes and ordinary statutes are formally equal. Both are Acts of Parliament. Thoburn v Sunderland [2002] gave constitutional statutes immunity from implied repeal — but not supremacy.",
+    "cite": "Revise SQE, Ch 1, p.6; Thoburn [2002]",
+    "principleCN": "无最高法：宪法性法律和普通法律在形式上完全平等，都是议会立法。Thoburn [2002] 赋予宪法性法律免于默示废止的保护——但不是至上地位。",
+    "citeCN": "Revise SQE, 第1章, 第6页; Thoburn [2002]"
+  },
+  {
+    "key": "q4",
+    "chapter": "1 · UK Constitution",
+    "text": "Which list correctly identifies the four characteristics of the UK constitution?",
+    "options": [
+      "Written, Entrenched, Flexible, Supreme Law.",
+      "Uncodified, Unentrenched, Flexible, No Supreme Law.",
+      "Codified, Entrenched, Rigid, Supreme Law.",
+      "Unwritten, Unentrenched, Rigid, No Supreme Law."
+    ],
+    "best": 1,
+    "principle": "Four characteristics: (1) Uncodified (2) Unentrenched (3) Flexible (4) No Supreme Law. These are not separate ideas — they describe the same system from four angles.",
+    "cite": "Revise SQE, Ch 1, p.6",
+    "principleCN": "四大特征：(1) 不成文法 (2) 非刚性 (3) 灵活 (4) 无最高法。这四个不是独立概念——是从四个角度描述同一套体系。",
+    "citeCN": "Revise SQE, 第1章, 第6页"
+  },
+  {
+    "key": "q5",
+    "chapter": "1 · UK Constitution",
+    "text": "A client asks: \"Can a UK court strike down an Act of Parliament the way the US Supreme Court strikes down federal statutes?\"",
+    "options": [
+      "UK courts can strike down Acts but only with permission from the Lord Chancellor.",
+      "UK courts can strike down Acts but only if they violate the HRA.",
+      "Yes, UK courts have the same power as the US Supreme Court.",
+      "No. UK courts cannot strike down Acts of Parliament — Pickin v British Railways Board [1974]. The US Supreme Court can (Marbury v Madison)."
+    ],
+    "best": 3,
+    "principle": "Pickin v British Railways Board [1974] AC 765: the validity of an Act of Parliament is not subject to review by the courts. Contrast US: Marbury v Madison (1803) established judicial review of federal statutes.",
+    "cite": "[1974] AC 765",
+    "principleCN": "Pickin v British Railways Board [1974]：议会立法的有效性不受法院审查。对比美国：Marbury v Madison (1803) 确立了对联邦立法的司法审查权。",
+    "citeCN": "[1974] AC 765"
+  },
+  {
+    "key": "q6",
+    "chapter": "2 · Sovereignty",
+    "text": "A minister asks: \"Can Parliament make any law it wants?\" What is the most accurate statement of the principle?",
+    "options": [
+      "Parliament can make any law but only with the consent of the Crown.",
+      "Parliamentary Sovereignty: Parliament has the supreme legal authority to make or unmake any law, and no person or body has the right to override it.",
+      "Parliament can make any law except laws that violate human rights.",
+      "Parliament can make any law but the Supreme Court can strike it down."
+    ],
+    "best": 1,
+    "principle": "Parliamentary Sovereignty: Parliament has the supreme legal authority to make or unmake any law. No person or body has the right to override or set aside legislation made by Parliament.",
+    "cite": "Revise SQE, Ch 2, p.138",
+    "principleCN": "议会主权：议会拥有最高法律权威，可以制定或废除任何法律。没有任何个人或机构有权推翻或搁置议会制定的法律。",
+    "citeCN": "Revise SQE, 第2章, 第138页"
+  },
+  {
+    "key": "q7",
+    "chapter": "2 · Sovereignty",
+    "text": "The Home Office argues that a tribunal's error of law is final and cannot be challenged. Your client disagrees. Which case is your authority?",
+    "options": [
+      "M v Home Office [1994] — ministers must comply with court orders.",
+      "Anisminic v Foreign Compensation Commission [1969] — a tribunal's \"decision\" involving an error of law is not a true decision and can be declared void.",
+      "Miller v SS for Exiting the EU [2017] — the Prerogative cannot override Parliament.",
+      "Pickin v British Railways Board [1974] — courts cannot review Acts of Parliament."
+    ],
+    "best": 1,
+    "principle": "Anisminic v FCC [1969] 2 AC 147: a tribunal's \"decision\" involving an error of law is not a true decision and can be declared void. Greatly expanded the scope of judicial review.",
+    "cite": "[1969] 2 AC 147",
+    "principleCN": "Anisminic v FCC [1969]：裁判所涉及法律错误的\"决定\"不是真正的决定，可以被宣告无效。极大扩展了司法审查的范围。",
+    "citeCN": "[1969] 2 AC 147"
+  },
+  {
+    "key": "q8",
+    "chapter": "2 · Sovereignty",
+    "text": "A new Act conflicts with the Act of Union 1707. The government argues the new Act impliedly repeals it. What is the correct position?",
+    "options": [
+      "The Act of Union 1707 is a constitutional statute and cannot be impliedly repealed — Thoburn v Sunderland [2002]. Only express repeal works.",
+      "The Queen can decide which Act prevails in case of conflict.",
+      "The Act of Union 1707 has been fully abolished and is no longer law.",
+      "The new Act automatically repeals the Act of Union 1707 by implication."
+    ],
+    "best": 0,
+    "principle": "Thoburn v Sunderland [2002]: constitutional statutes (Magna Carta, Bill of Rights 1689, Act of Union 1707, Scotland Act 1998, ECA 1972) cannot be impliedly repealed — only expressly.",
+    "cite": "Thoburn [2002] EWHC 195 (Admin)",
+    "principleCN": "Thoburn v Sunderland [2002]：宪法性法律（《大宪章》、《权利法案》1689、《联合法案》1707、《苏格兰法》1998、《欧洲共同体法》1972）不能被默示废止——只能明示废止。",
+    "citeCN": "Thoburn [2002] EWHC 195 (Admin)"
+  },
+  {
+    "key": "q9",
+    "chapter": "2 · Sovereignty",
+    "text": "The government wants to trigger Article 50 using the Royal Prerogative, without parliamentary approval. What did Miller [2017] decide?",
+    "options": [
+      "The Supreme Court has no power to rule on Prerogative matters.",
+      "The government must obtain parliamentary authorisation first — only Parliament can alter UK law. The Prerogative cannot override Parliament.",
+      "A referendum result is sufficient to trigger Article 50 without Parliament.",
+      "The government can use the Prerogative freely in foreign affairs."
+    ],
+    "best": 1,
+    "principle": "Miller v SS for Exiting the EU [2017] UKSC 5: (8:3) the government must obtain parliamentary authorisation before giving Article 50 notice. Only Parliament can alter UK law.",
+    "cite": "[2017] UKSC 5",
+    "principleCN": "Miller v SS for Exiting the EU [2017]：(8:3) 政府在发出第50条通知前必须获得议会授权。只有议会才能改变英国法律。",
+    "citeCN": "[2017] UKSC 5"
+  },
+  {
+    "key": "q10",
+    "chapter": "2 · Sovereignty",
+    "text": "A court finds that an Act breaches a Convention right under the HRA 1998. What can the court do?",
+    "options": [
+      "Strike down the Act immediately as unconstitutional.",
+      "Order the government to repeal the Act within 30 days.",
+      "Refer the matter to the European Court of Human Rights for a binding ruling.",
+      "Issue a Declaration of Incompatibility under s.4 HRA 1998 — the Act remains valid, but Parliament is flagged to consider amendment."
+    ],
+    "best": 3,
+    "principle": "HRA 1998 s.4: courts may issue a Declaration of Incompatibility. The Act remains VALID. Parliament decides whether to amend. Sovereignty preserved.",
+    "cite": "HRA 1998, s.4",
+    "principleCN": "《人权法》1998 第4条：法院可以作出\"不一致宣告\"。该法律仍然有效。由议会决定是否修改。主权得以保留。",
+    "citeCN": "《人权法》1998, 第4条"
+  },
+  {
+    "key": "q11",
+    "chapter": "2 · Sovereignty",
+    "text": "Which is NOT a corollary of Parliamentary Sovereignty?",
+    "options": [
+      "Parliament cannot bind its successors.",
+      "All Acts of Parliament are equal in form.",
+      "Courts cannot question the validity of an Act of Parliament.",
+      "The Crown can disapply Acts of Parliament in matters of national security."
+    ],
+    "best": 3,
+    "principle": "Three corollaries: (1) Parliament cannot bind its successors (2) All Acts are equal in form (3) Courts cannot question validity. The Crown CANNOT disapply Acts — that would violate sovereignty.",
+    "cite": "Revise SQE, Ch 2, p.138",
+    "principleCN": "三个推论：(1) 议会不能约束继任议会 (2) 所有法案在形式上一律平等 (3) 法院不能质疑法案的有效性。国王不能废止议会立法——那将违反主权原则。",
+    "citeCN": "Revise SQE, 第2章, 第138页"
+  },
+  {
+    "key": "q12",
+    "chapter": "3 · Rule of Law",
+    "text": "A client asks: \"What does the Rule of Law actually mean?\" Which is the most complete Diceyan formulation?",
+    "options": [
+      "The Rule of Law means the government must always win in court.",
+      "The Rule of Law means the police can enforce law without courts.",
+      "The Rule of Law means Parliament must pass laws that are fair.",
+      "Dicey's three pillars: (1) government actions authorised by law; (2) equality before the law; (3) courts protect individual liberty."
+    ],
+    "best": 3,
+    "principle": "Dicey's three pillars (1885): (1) All government actions should be authorised by law; (2) Equality before the law; (3) The courts protect individual liberty.",
+    "cite": "Revise SQE, Ch 2, p.43",
+    "principleCN": "戴雪三大支柱(1885)：(1) 政府行为应有法律授权；(2) 法律面前人人平等；(3) 法院保护个人自由。",
+    "citeCN": "Revise SQE, 第2章, 第43页"
+  },
+  {
+    "key": "q13",
+    "chapter": "3 · Rule of Law",
+    "text": "The Home Secretary sets a policy on prisoner minimum terms that goes beyond what the statute allows. Which case is your authority that this is unlawful?",
+    "options": [
+      "R (Pierson) v SSHD [1998] — the policy exceeded legal authorisation and violated the Rule of Law.",
+      "Thoburn v Sunderland [2002] — constitutional statutes cannot be impliedly repealed.",
+      "Pickin v British Railways Board [1974] — courts cannot review Acts of Parliament.",
+      "Miller v SS for Exiting the EU [2017] — the Prerogative cannot override Parliament."
+    ],
+    "best": 0,
+    "principle": "R (Pierson) v SSHD [1998] AC 539: the Home Secretary's policy exceeded legal authorisation and violated the Rule of Law. Dicey Pillar 1 in action.",
+    "cite": "[1998] AC 539",
+    "principleCN": "R (Pierson) v SSHD [1998]：内政部长的政策超出了法律授权，违反法治原则。戴雪第一支柱的实际应用。",
+    "citeCN": "[1998] AC 539"
+  },
+  {
+    "key": "q14",
+    "chapter": "3 · Rule of Law",
+    "text": "A minister defies a High Court order, claiming Crown immunity. Which case establishes that this is contempt of court?",
+    "options": [
+      "Miller [2017] — the Prerogative cannot override Parliament.",
+      "M v Home Office [1994] — the minister was in contempt. The executive must comply with judicial orders.",
+      "Anisminic v FCC [1969] — tribunal errors of law can be declared void.",
+      "Pickin [1974] — courts cannot review Acts of Parliament."
+    ],
+    "best": 1,
+    "principle": "M v Home Office [1994] AC 377: a minister who defied a High Court order was in contempt of court — a criminal offence. Crown immunity modified by Crown Proceedings Act 1947.",
+    "cite": "[1994] AC 377",
+    "principleCN": "M v Home Office [1994]：违抗高等法院命令的部长构成藐视法庭罪——一种刑事犯罪。国王豁免权受《国王诉讼法》1947限制。",
+    "citeCN": "[1994] AC 377"
+  },
+  {
+    "key": "q15",
+    "chapter": "3 · Rule of Law",
+    "text": "Which is NOT one of the modern extensions of the Rule of Law?",
+    "options": [
+      "Independence of the judiciary — free from political interference.",
+      "Accessibility of law — laws must be public and comprehensible.",
+      "The government has absolute discretion in all administrative decisions.",
+      "Natural justice — hear the other side + no one may be a judge in their own cause."
+    ],
+    "best": 2,
+    "principle": "Modern extensions: (1) Accessibility (2) Judicial independence (3) Natural justice (4) Proportionality. The government does NOT have absolute discretion — all actions must be authorised by law.",
+    "cite": "Revise SQE, Ch 2, p.45",
+    "principleCN": "现代延伸：(1) 法律的可及性 (2) 司法独立 (3) 自然正义 (4) 比例原则。政府没有绝对裁量权——一切行为必须有法律授权。",
+    "citeCN": "Revise SQE, 第2章, 第45页"
+  },
+  {
+    "key": "q16",
+    "chapter": "3 · Rule of Law",
+    "text": "Which principle does Dicey's second pillar (equality before the law) most directly support?",
+    "options": [
+      "The same laws and courts apply to everyone, including the government. The government should not have special immunities.",
+      "The government can pass laws that only apply to certain groups.",
+      "Government officials have immunity from prosecution while in office.",
+      "The Prime Minister is above the law in matters of national security."
+    ],
+    "best": 0,
+    "principle": "Dicey Pillar 2: equality before the law. The same laws and courts apply to everyone, including the government. The Crown Proceedings Act 1947 and M v Home Office [1994] apply this.",
+    "cite": "Revise SQE, Ch 2, p.43",
+    "principleCN": "戴雪第二支柱：法律面前人人平等。同样的法律和法院适用于所有人，包括政府。《国王诉讼法》1947和M v Home Office [1994]体现了这一原则。",
+    "citeCN": "Revise SQE, 第2章, 第43页"
+  },
+  {
+    "key": "q17",
+    "chapter": "4 · Separation",
+    "text": "A student asks: \"Does the UK have a strict separation of powers like the US?\" What is the accurate answer?",
+    "options": [
+      "The UK has a partial separation — the PM sits in Parliament and ministers are MPs. The US has a strict separation (President outside Congress).",
+      "The UK has a separation of powers but the judiciary controls Parliament.",
+      "The UK has a strict separation identical to the US system.",
+      "The UK has no separation of powers at all."
+    ],
+    "best": 0,
+    "principle": "UK = partial separation (fused executive and legislature). US = absolute separation. PM and ministers must be MPs. The House of Lords was historically both legislature and supreme court.",
+    "cite": "Revise SQE, Ch 2, p.52",
+    "principleCN": "英国=部分分权（行政与立法融合）。美国=绝对分权。首相和部长必须是议员。上议院历史上同时是立法机关和最高法院。",
+    "citeCN": "Revise SQE, 第2章, 第52页"
+  },
+  {
+    "key": "q18",
+    "chapter": "4 · Separation",
+    "text": "Which scenario best illustrates the UK's partial separation of powers?",
+    "options": [
+      "The Supreme Court can strike down Acts of Parliament.",
+      "The Prime Minister is an MP and sits in Parliament — fusing executive and legislative branches.",
+      "The House of Lords is purely a judicial body with no legislative function.",
+      "The Lord Chancellor has no role in any branch of government."
+    ],
+    "best": 1,
+    "principle": "Three reasons the UK separation is partial: (1) PM and ministers must be MPs (2) House of Lords was historically both legislature and court (3) Lord Chancellor historically held roles across all three branches.",
+    "cite": "Revise SQE, Ch 2, p.52",
+    "principleCN": "英国分权不完整的三个原因：(1) 首相和部长必须是议员 (2) 上议院历史上同时是立法机关和法院 (3) 大法官历史上在三个分支中都有职务。",
+    "citeCN": "Revise SQE, 第2章, 第52页"
+  },
+  {
+    "key": "q19",
+    "chapter": "4 · Separation",
+    "text": "The Home Secretary refuses to comply with a court order regarding an asylum seeker. What is the constitutional significance of M v Home Office [1994]?",
+    "options": [
+      "It ruled that the Home Secretary can override court orders in national security cases.",
+      "It established that ministers have immunity from court orders in immigration matters.",
+      "It confirmed that the executive must comply with judicial orders — even a minister can be held in contempt. Judicial independence holds against the executive.",
+      "It held that the Crown is completely immune from judicial process."
+    ],
+    "best": 2,
+    "principle": "M v Home Office [1994]: a minister defying a court order is contempt — a criminal offence. Significance: judicial independence confirmed even against the executive. No minister is above the law.",
+    "cite": "[1994] AC 377",
+    "principleCN": "M v Home Office [1994]：部长违抗法院命令即构成藐视法庭——刑事犯罪。意义：司法独立即使面对行政也得到确认。没有部长可以凌驾于法律之上。",
+    "citeCN": "[1994] AC 377"
+  },
+  {
+    "key": "q20",
+    "chapter": "4 · Separation",
+    "text": "The Lord Chancellor historically held roles in all three branches of government. Which combination is correct?",
+    "options": [
+      "Legislative (Speaker of House of Lords), Executive (Cabinet minister), Judicial (head of judiciary).",
+      "Legislative (Lord Temporal), Executive (Home Secretary), Judicial (Court of Appeal judge).",
+      "Legislative (MP), Executive (Prime Minister), Judicial (Supreme Court Justice).",
+      "Legislative (Lord Spiritual), Executive (Chancellor of the Exchequer), Judicial (head of the Bar)."
+    ],
+    "best": 0,
+    "principle": "Lord Chancellor historically: Speaker of the House of Lords (legislative), Cabinet minister (executive), head of the judiciary (judicial). Constitutional Reform Act 2005 removed the judicial role.",
+    "cite": "Revise SQE, Ch 2, p.52",
+    "principleCN": "大法官历史上：上议院议长（立法）、内阁部长（行政）、司法首脑（司法）。《宪制改革法》2005取消了其司法职能。",
+    "citeCN": "Revise SQE, 第2章, 第52页"
+  }
+];
+
+/* ===== STICKERS ===== */
+const STICKERS = [
+  { id: 'daisy',       name: 'Daisy',           icon: '🌼', price: 50 },
+  { id: 'tulip',       name: 'Tulip',           icon: '🌷', price: 50 },
+  { id: 'rose',        name: 'Rose',            icon: '🌹', price: 80 },
+  { id: 'sunflower',   name: 'Sunflower',       icon: '🌻', price: 80 },
+  { id: 'clover',      name: 'Clover',          icon: '🍀', price: 100 },
+  { id: 'cactus',      name: 'Cactus',          icon: '🌵', price: 120 },
+  { id: 'palm',        name: 'Palm',            icon: '🌴', price: 150 },
+  { id: 'fir',         name: 'Fir Tree',        icon: '🌲', price: 150 },
+  { id: 'book',        name: 'Law Book',        icon: '📕', price: 100 },
+  { id: 'scroll',      name: 'Scroll',          icon: '📜', price: 120 },
+  { id: 'trophy',      name: 'Trophy',          icon: '🏆', price: 200 },
+  { id: 'medal',       name: 'Medal',           icon: '🎖', price: 200 },
+  { id: 'ribbon',      name: 'Ribbon',          icon: '🎗', price: 150 },
+  { id: 'star',        name: 'Star',            icon: '⭐', price: 100 },
+  { id: 'gem',         name: 'Gem',             icon: '💎', price: 300 },
+  { id: 'crown',       name: 'Crown',           icon: '👑', price: 500 }
+];
+
+/* ===== SLOTS per column ===== */
+const SLOTS_PER_COL = 8;
+
+/* ===== RENDER ===== */
+function renderCoins() {
+  document.getElementById('coins').textContent = state.coins;
+}
+
+function renderQuestion() {
+  const q = QUESTIONS[state.qIndex];
+  const total = state.reviewMode ? state.reviewQueue.length : QUESTIONS.length;
+  const num = state.reviewMode ? (state.reviewQueue.indexOf(state.qIndex) + 1) : (state.qIndex + 1);
+
+  const qNumEl = document.getElementById('q-num');
+  const qTotalEl = document.getElementById('q-total');
+  const qChEl = document.getElementById('q-chapter');
+  if (qNumEl) qNumEl.textContent = num;
+  if (qTotalEl) qTotalEl.textContent = total;
+  if (qChEl) qChEl.textContent = q.chapter;
+  document.getElementById('q-text').textContent = q.text;
+
+  // Bookmark button
+  const bmBtn = document.getElementById('btn-bookmark');
+  if (bmBtn) {
+    const isMarked = state.bookmarked.includes(q.key);
+    bmBtn.textContent = isMarked ? '★' : '☆';
+    bmBtn.style.color = isMarked ? 'var(--gold)' : 'var(--ink-soft)';
+    bmBtn.onclick = () => toggleBookmark(q.key);
+  }
+
+  // Shuffle options each time — don't let player memorise position
+  const indices = q.options.map((_, i) => i);
+  for (let i = indices.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [indices[i], indices[j]] = [indices[j], indices[i]];
+  }
+  q._displayOrder = indices; // displayOrder[displayIdx] = originalIdx
+  q._bestDisplay = indices.indexOf(q.best);
+
+  const optsEl = document.getElementById('options');
+  optsEl.innerHTML = '';
+
+  indices.forEach((origIdx, displayIdx) => {
+    const btn = document.createElement('button');
+    btn.className = 'option';
+    btn.textContent = q.options[origIdx];
+    btn.onclick = () => selectOption(displayIdx);
+    optsEl.appendChild(btn);
+  });
+
+  document.getElementById('feedback').classList.remove('show');
+  document.getElementById('btn-next').disabled = true;
+
+  renderReviewBtn();
+}
+
+function toggleBookmark(key) {
+  const idx = state.bookmarked.indexOf(key);
+  if (idx >= 0) {
+    state.bookmarked.splice(idx, 1);
+  } else {
+    state.bookmarked.push(key);
+  }
+  save();
+  renderQuestion();
+}
+
+function selectOption(displayIdx) {
+  const q = QUESTIONS[state.qIndex];
+  const opts = document.querySelectorAll('.option');
+  opts.forEach((el, idx) => {
+    el.classList.add('revealed');
+    if (idx === q._bestDisplay) el.classList.add('best');
+    if (idx === displayIdx) el.classList.add('selected');
+  });
+
+  const isBest = (displayIdx === q._bestDisplay);
+  if (!state.answered.includes(q.key)) state.answered.push(q.key);
+
+  if (isBest) {
+    // Correct — remove from wrong if it was there
+    delete state.wrong[q.key];
+  } else {
+    // Wrong — save it (store original option index, not display position)
+    state.wrong[q.key] = { selectedOrig: q._displayOrder[displayIdx], best: q.best };
+  }
+
+  const reward = isBest ? 30 : 0;
+  if (isBest) state.coins += reward;
+  save();
+  renderCoins();
+
+  const fbLabel = isBest ? '✓ Best answer · +' + reward + ' 💰' : '⚠ No coins — added to review';
+  document.getElementById('fb-principle').textContent = q.principle;
+  document.getElementById('fb-principle-cn').textContent = q.principleCN || '';
+  document.getElementById('fb-cite').textContent = '📜 ' + q.cite;
+  document.getElementById('fb-cite-cn').textContent = q.citeCN || '';
+  document.getElementById('fb-reward').innerHTML = '<span style="color:' + (isBest ? 'var(--gold)' : 'var(--seal)') + ';">' + fbLabel + '</span>';
+  document.getElementById('feedback').classList.add('show');
+  document.getElementById('btn-next').disabled = false;
+  renderReviewBtn();
+}
+
+function nextQuestion() {
+  if (state.reviewMode) {
+    // In review mode, go to next in reviewQueue
+    const curPos = state.reviewQueue.indexOf(state.qIndex);
+    if (curPos + 1 < state.reviewQueue.length) {
+      state.qIndex = state.reviewQueue[curPos + 1];
+    } else {
+      // Review done
+      exitReviewMode();
+      return;
+    }
+    save();
+    renderQuestion();
+    return;
+  }
+
+  if (state.qIndex + 1 < QUESTIONS.length) {
+    state.qIndex++;
+  } else {
+    state.qIndex = 0; // loop back to start
+  }
+  save();
+  renderQuestion();
+}
+
+/* ===== REVIEW MODE ===== */
+function getReviewQuestions() {
+  // Wrong answers + bookmarked questions, deduplicated, sorted by index
+  const set = new Set();
+  // Wrong answers
+  QUESTIONS.forEach((q, i) => {
+    if (state.wrong[q.key]) set.add(i);
+  });
+  // Bookmarked
+  QUESTIONS.forEach((q, i) => {
+    if (state.bookmarked.includes(q.key)) set.add(i);
+  });
+  return [...set].sort((a, b) => a - b);
+}
+
+function renderReviewBtn() {
+  const reviewList = getReviewQuestions();
+  let btn = document.getElementById('btn-review');
+  if (!btn) {
+    btn = document.createElement('button');
+    btn.id = 'btn-review';
+    btn.className = 'btn';
+    btn.style.cssText = 'background: var(--seal); flex: 1; display: none;';
+    document.querySelector('.quiz-actions').insertBefore(btn, document.getElementById('btn-shop'));
+  }
+  if (reviewList.length > 0) {
+    const wrongCount = Object.keys(state.wrong).length;
+    const bmCount = state.bookmarked.length;
+    btn.style.display = 'block';
+    btn.textContent = '📋 Review (' + reviewList.length + ')';
+    btn.onclick = () => startReview();
+  } else {
+    btn.style.display = 'none';
+  }
+}
+
+function startReview() {
+  state.reviewMode = true;
+  state.reviewQueue = getReviewQuestions();
+  if (state.reviewQueue.length === 0) return;
+  state.qIndex = state.reviewQueue[0];
+  save();
+  document.getElementById('btn-review').style.display = 'none';
+  // Show exit button
+  let exitBtn = document.getElementById('btn-exit-review');
+  if (!exitBtn) {
+    exitBtn = document.createElement('button');
+    exitBtn.id = 'btn-exit-review';
+    exitBtn.className = 'btn';
+    exitBtn.style.cssText = 'background: var(--ink-soft); flex: 1;';
+    exitBtn.textContent = '✕ Exit Review';
+    exitBtn.onclick = () => exitReviewMode();
+    document.querySelector('.quiz-actions').appendChild(exitBtn);
+  }
+  exitBtn.style.display = 'block';
+  renderQuestion();
+}
+
+function exitReviewMode() {
+  state.reviewMode = false;
+  state.reviewQueue = [];
+  save();
+  const exitBtn = document.getElementById('btn-exit-review');
+  if (exitBtn) exitBtn.style.display = 'none';
+  // Go to first unanswered or back to start
+  const firstUnanswered = QUESTIONS.findIndex(q => !state.answered.includes(q.key));
+  state.qIndex = firstUnanswered >= 0 ? firstUnanswered : 0;
+  save();
+  renderQuestion();
+  renderReviewBtn();
+}
+
+/* ===== STICKER COLUMNS ===== */
+function renderStickers() {
+  ['left', 'right'].forEach(side => {
+    const col = document.getElementById('col-' + side);
+    // Clear except label
+    const label = col.querySelector('.col-label');
+    col.innerHTML = '';
+    col.appendChild(label);
+
+    for (let i = 0; i < SLOTS_PER_COL; i++) {
+      const slot = document.createElement('div');
+      slot.className = 'sticker-slot';
+
+      // Find if any sticker is placed here
+      let placedItem = null;
+      for (const [id, data] of Object.entries(state.stickers)) {
+        if (data.side === side && data.slot === i) {
+          placedItem = STICKERS.find(s => s.id === id);
+          break;
+        }
+      }
+
+      if (placedItem) {
+        slot.classList.add('filled');
+        slot.innerHTML = placedItem.icon;
+        const x = document.createElement('div');
+        x.className = 'remove-x';
+        x.textContent = '×';
+        x.onclick = (e) => { e.stopPropagation(); removeSticker(placedItem.id); };
+        slot.appendChild(x);
+      } else {
+        slot.innerHTML = '<span class="empty-hint">+</span>';
+      }
+
+      slot.onclick = () => placeSticker(side, i);
+      col.appendChild(slot);
+    }
+  });
+}
+
+function removeSticker(itemId) {
+  delete state.stickers[itemId];
+  save();
+  renderStickers();
+}
+
+function placeSticker(side, slotIdx) {
+  if (!state.placementItem) return;
+
+  // Remove from current position if any
+  if (state.stickers[state.placementItem]) {
+    delete state.stickers[state.placementItem];
+  }
+
+  // Check if target slot is occupied
+  for (const [id, data] of Object.entries(state.stickers)) {
+    if (data.side === side && data.slot === slotIdx) {
+      delete state.stickers[id]; // remove occupant
+    }
+  }
+
+  state.stickers[state.placementItem] = { side, slot: slotIdx };
+  state.placementItem = null;
+  document.getElementById('placement-hint').classList.remove('show');
+  document.querySelectorAll('.sticker-col').forEach(c => c.classList.remove('placement-mode'));
+  save();
+  renderStickers();
+}
+
+/* ===== SHOP ===== */
+function openShop() {
+  document.getElementById('shop-coins-val').textContent = state.coins;
+  const grid = document.getElementById('shop-grid');
+  grid.innerHTML = '';
+  STICKERS.forEach(s => {
+    const owned = state.stickers[s.id] !== undefined || state.placementItem === s.id;
+    const canAfford = state.coins >= s.price;
+    const div = document.createElement('div');
+    div.className = 'shop-item';
+    if (owned) div.classList.add('owned');
+    else if (!canAfford) div.classList.add('unaffordable');
+    div.innerHTML = `
+      <div class="si-icon">${s.icon}</div>
+      <div class="si-name">${s.name}</div>
+      <div class="si-price">${s.price} 💰</div>
+    `;
+    if (!owned && canAfford) {
+      div.onclick = () => buySticker(s.id);
+    } else if (owned) {
+      div.onclick = () => startPlacement(s.id);
+    }
+    grid.appendChild(div);
+  });
+  document.getElementById('shop-modal').classList.add('show');
+}
+
+function closeShop() {
+  document.getElementById('shop-modal').classList.remove('show');
+}
+
+function buySticker(id) {
+  const s = STICKERS.find(ss => ss.id === id);
+  if (state.coins < s.price) return;
+  state.coins -= s.price;
+  // Store as owned but unplaced
+  state.stickers[id] = { side: null, slot: -1 };
+  save();
+  renderCoins();
+  openShop(); // refresh
+  // Immediately start placement
+  startPlacement(id);
+}
+
+function startPlacement(id) {
+  state.placementItem = id;
+  closeShop();
+  document.getElementById('placement-hint').classList.add('show');
+  document.querySelectorAll('.sticker-col').forEach(c => c.classList.add('placement-mode'));
+}
+
+/* ===== INIT ===== */
+function init() {
+  load();
+  // Resume from first unanswered question
+  const firstUnanswered = QUESTIONS.findIndex(q => !state.answered.includes(q.key));
+  if (firstUnanswered >= 0 && firstUnanswered !== state.qIndex) {
+    state.qIndex = firstUnanswered;
+  }
+  renderCoins();
+  renderQuestion();
+  renderStickers();
+}
+init();
+</script>
+</body>
+</html>
