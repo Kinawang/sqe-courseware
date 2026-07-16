@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SQE1 Lesson 8: Offer and Acceptance</title>
+<style>
+* { box-sizing: border-box; margin:0; padding:0; }
+body { font-family: 'Georgia', 'Times New Roman', serif; background: #fff; color: #222; line-height:1.7; padding:20px; max-width:900px; margin:0 auto; }
+h1 { font-size:1.8em; text-align:center; color:#1a1a2e; margin:30px 0 10px; border-bottom:3px solid #16213e; padding-bottom:10px; }
+h2 { font-size:1.4em; color:#16213e; margin:25px 0 12px; border-left:5px solid #0f3460; padding-left:12px; }
+h3 { font-size:1.15em; color:#0f3460; margin:18px 0 8px; }
+h4 { font-size:1.05em; color:#e94560; margin:14px 0 6px; }
+p, li { margin:6px 0; }
+ul, ol { padding-left:24px; }
+.case-box { background:#f0f4ff; border:1px solid #b8c9e8; border-radius:8px; padding:14px 18px; margin:14px 0; }
+.case-box .case-name { font-weight:bold; color:#0f3460; }
+.key-term { background:#fff3cd; border:1px solid #ffc107; border-radius:6px; padding:10px 14px; margin:10px 0; }
+.key-term strong { color:#856404; }
+.exam-tip { background:#d4edda; border:1px solid #28a745; border-radius:6px; padding:10px 14px; margin:10px 0; }
+.exam-tip strong { color:#155724; }
+.exam-warning { background:#f8d7da; border:1px solid #dc3545; border-radius:6px; padding:10px 14px; margin:10px 0; }
+.exam-warning strong { color:#721c24; }
+.summary-box { background:#e8f4fd; border:2px solid #0f3460; border-radius:10px; padding:16px 20px; margin:20px 0; }
+.qa-box { background:#f8f9fa; border:1px solid #dee2e6; border-radius:8px; padding:14px 18px; margin:12px 0; }
+.qa-box .question { font-weight:bold; color:#495057; margin-bottom:6px; }
+.qa-box .answer { color:#28a745; }
+table { border-collapse:collapse; width:100%; margin:12px 0; }
+th, td { border:1px solid #ccc; padding:8px 10px; text-align:left; font-size:0.95em; }
+th { background:#e9ecef; color:#343a40; }
+.knowledge-tree { background:#f5f0ff; border:2px solid #6f42c1; border-radius:10px; padding:18px 22px; margin:20px 0; }
+.knowledge-tree h3 { color:#6f42c1; margin-bottom:12px; }
+.kt-node { display:inline-block; background:#e8daff; border-radius:6px; padding:4px 10px; margin:3px; font-size:0.9em; color:#4a2d8e; }
+.kt-arrow { color:#6f42c1; font-weight:bold; margin:0 4px; }
+.kt-section { margin:8px 0; line-height:2; }
+</style>
+</head>
+<body>
+
+<h1>SQE1 Lesson 8<br>Chapter 1: Offer and Acceptance</h1>
+
+<!-- ==================== Knowledge Tree ==================== -->
+<div class="knowledge-tree">
+<h3>🌳 Knowledge Tree</h3>
+
+<div class="kt-section">
+<strong>Branch 1: The Four Elements of a Contract</strong><br>
+<span class="kt-node">1. Offer</span>
+<span class="kt-arrow">+</span>
+<span class="kt-node">2. Acceptance</span>
+<span class="kt-arrow">+</span>
+<span class="kt-node">3. Consideration (Ch2)</span>
+<span class="kt-arrow">+</span>
+<span class="kt-node">4. Intention to create legal relations (Ch3)</span>
+</div>
+
+<div class="kt-section">
+<strong>Branch 2: Offer vs Invitation to Treat</strong><br>
+<span class="kt-node">Advertisement / Display of goods / Website / Auction / Tender</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Invitation to Treat (要约邀请)</span><br>
+<span class="kt-node">Unilateral offer / Auction without reserve / Tender most competitive / Vending machine</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Offer (要约)</span>
+</div>
+
+<div class="kt-section">
+<strong>Branch 3: Two Types of Offers</strong><br>
+<span class="kt-node">Bilateral offer</span>
+<span class="kt-arrow">= promise ↔ promise</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Acceptance by communication (Receipt Rule)</span><br>
+<span class="kt-node">Unilateral offer</span>
+<span class="kt-arrow">= promise ↔ act</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Acceptance by performance (no communication needed)</span>
+</div>
+
+<div class="kt-section">
+<strong>Branch 4: Termination of Offers</strong><br>
+<span class="kt-node">Bilateral: Revocation communicated / Counter-offer / Lapse of time / New offer</span>
+<br>
+<span class="kt-node">Unilateral: Same method/notoriety of original offer</span>
+</div>
+
+<div class="kt-section">
+🔗 <strong>Links to other topics:</strong><br>
+<span class="kt-node">Consideration (Ch2)</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Other essential element of contract formation</span><br>
+<span class="kt-node">Intention to create legal relations (Ch3)</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">The 4th essential element</span><br>
+<span class="kt-node">Misrepresentation (Ch8)</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Statements made BEFORE offer & acceptance (pre-contractual)</span>
+</div>
+</div>
+
+<!-- ==================== Part 1: Introduction ==================== -->
+<h2>📖 Part 1: Introduction to Offer and Acceptance</h2>
+
+<p>Offer and acceptance are <strong>two of the four elements</strong> required to form a legally binding contract. The other two are:</p>
+<ul>
+<li><strong>Consideration</strong> (covered in Chapter 2)</li>
+<li><strong>Intention to create legal relations</strong> (covered in Chapter 3)</li>
+</ul>
+
+<p>To form a binding contract, the <strong>offeror</strong> (the person who makes the offer) must make an offer, which is <strong>accepted</strong> by the <strong>offeree</strong> (the person to whom the offer is made).</p>
+
+<div class="key-term">
+<strong>Offeror (要约人):</strong> The person who makes the offer.<br>
+<strong>Offeree (受要约人):</strong> The person to whom the offer is made.
+</div>
+
+<div class="exam-warning">
+<strong>⚠️ Exam Warning:</strong> Although there are usually four elements required to form a legally binding contract, when a question is asking you to focus on <strong>offer and acceptance</strong>, focus on these elements, <strong>not</strong> intention to create legal relations and consideration.
+</div>
+
+<h3>The Objective Test (客观标准)</h3>
+
+<p>The courts generally use an <strong>objective test</strong> to determine the existence of a binding agreement. This means that the courts consider how the interaction between the parties looks to a <strong>reasonable person</strong>.</p>
+
+<div class="key-term">
+<strong>The objective test (客观标准):</strong> The test used by the courts to determine whether an agreement has been formed. The courts analyse the interaction between the parties from the point of view of a <strong>reasonable person</strong>.
+</div>
+
+<h3>The Subjective Test (主观标准) — Exception</h3>
+
+<p>In some specified circumstances, the courts apply a <strong>subjective test</strong> instead of an objective test. The subjective test is applied where the <strong>offeree knew, or ought to have known, that the offeror has made a mistake</strong>.</p>
+
+<p>If the offeree knew or ought to have known that the offeror is mistaken, the offeror is <strong>not bound</strong> by the terms of the contract.</p>
+
+<div class="exam-tip">
+<strong>📌 Important:</strong> This exception only applies if the mistake relates to a <strong>term of the contract</strong> (such as the price) rather than a <strong>collateral matter</strong> (such as the colour of an item).
+</div>
+
+<!-- ==================== Part 2: Offer vs Invitation to Treat ==================== -->
+<h2>📖 Part 2: Offer vs Invitation to Treat</h2>
+
+<p>You must be able to determine whether a communication from a person is an <strong>offer</strong> or an <strong>invitation to treat</strong>. <strong>Only an offer</strong> can be accepted to form a legally binding contract.</p>
+
+<div class="key-term">
+<strong>Offer (要约):</strong> A communication from a person in which that person <strong>agrees to be legally bound</strong> to contract with another party (the offeree) on <strong>specified terms</strong> if the offeree accepts.<br><br>
+<strong>Invitation to treat (要约邀请):</strong> A communication that a person <strong>would like to negotiate or discuss the terms</strong> on which goods may be sold, or services may be provided, that will lead to a contract at a <strong>later date</strong>.
+</div>
+
+<h3>How to Identify an Invitation to Treat</h3>
+
+<p>Specific words help determine whether a communication is an offer or an invitation to treat. For example, the words <strong>"may be prepared to sell"</strong> are unlikely to be viewed as an offer because the phrase is <strong>conditional</strong> and does not oblige the statement-maker to sell if the other party replies "yes".</p>
+
+<h3>Table 1.1: Examples of Invitations to Treat</h3>
+
+<table>
+<tr><th>Situation</th><th>General Rule</th><th>Explanation</th></tr>
+<tr><td><strong>Advertisements</strong></td><td>Invitation to treat</td><td>Reader should make an offer that the advertiser can accept or reject. Classifying advertisements as invitations to treat reflects <strong>business common sense</strong> — it allows the supplier to decide whether to make a legally binding contract.</td></tr>
+<tr><td><strong>Display of goods</strong></td><td>Invitation to treat</td><td>Goods on display in a shop are an invitation to treat, not an offer. The <strong>offer is made by the customer</strong> who wishes to buy them.</td></tr>
+<tr><td><strong>Websites</strong></td><td>Invitation to treat</td><td>Generally, a website through which goods can be bought is an invitation to treat. The <strong>order</strong> made by the person wishing to buy is the offer.</td></tr>
+<tr><td><strong>Auction sales</strong></td><td>Invitation to treat</td><td>Auctioneer's request for bids is an invitation to treat (even when it says "offered for sale"). A bidder's offer is accepted by the auctioneer when he <strong>taps the hammer down</strong>.</td></tr>
+<tr><td><strong>Tenders (requests for quotes/bids)</strong></td><td>Invitation to treat</td><td>The person making the requests for quotes can decide whether to accept the bids.</td></tr>
+</table>
+
+<div class="exam-warning">
+<strong>⚠️ Exam Warning:</strong> When you identify a clue (e.g., "advertisement"), and the general rule is "invitation to treat", <strong>stress-test your initial conclusion</strong> and check whether an <strong>exception</strong> applies that could change your answer.
+</div>
+
+<h3>How to Identify an Offer</h3>
+
+<p>Two key requirements to identify an offer:</p>
+
+<ol>
+<li>The communication must be <strong>precise enough</strong>, with <strong>no further details to be agreed</strong>, so that the person can answer "Yes" to form a binding contract.</li>
+<li>The person making the communication must have the <strong>intention to be bound</strong>. The courts decide this through an <strong>objective analysis</strong> of the words used.</li>
+</ol>
+
+<div class="case-box">
+<span class="case-name">Storer v Manchester City Council [1974] 1 WLR 1403</span><br>
+<strong>Facts:</strong> Manchester City Council sent Storer an agreement for sale and asked him to sign the agreement and return it if he accepted the offer.<br>
+<strong>Held:</strong> This language was <strong>certain</strong> and showed a clear intention to be bound if the offeree signed and returned it — so it was an <strong>offer</strong>.
+</div>
+
+<h3>Table 1.2: Examples of Offers (Exceptions to the General Rules)</h3>
+
+<table>
+<tr><th>Situation</th><th>General Rule</th><th>Explanation</th></tr>
+<tr><td><strong>Unilateral advertisements</strong></td><td><strong>Offer</strong></td><td>An offeror makes a promise in exchange for the offeree performing an act. Example: a promise of a <strong>reward</strong> for the person who finds a lost cat. The offeree is not obliged to perform the act, but if he does, he has accepted the offer.</td></tr>
+<tr><td><strong>Auctions "without reserve"</strong></td><td><strong>Offer</strong></td><td>Categorised as <strong>unilateral offers</strong> — a promise to sell the goods to the highest bidder.</td></tr>
+<tr><td><strong>Tenders to accept the most competitive bid</strong></td><td><strong>Offer</strong></td><td>Treated as <strong>unilateral offers</strong> accepted by the party who submits the most competitive bid.</td></tr>
+<tr><td><strong>Automatic vending machines</strong></td><td><strong>Offer</strong></td><td>Goods displayed or offered by vending machines are offers. A person who <strong>puts money in</strong> the vending machine accepts the offer.</td></tr>
+</table>
+
+<div class="case-box">
+<span class="case-name">Carlill v Carbolic Smoke Ball Company [1893] 1 QB 256 (CA)</span><br>
+<strong>Facts:</strong> A medical company advertised that they would pay £100 to anyone who caught flu after using their product in a specified way for a specified period. Mrs Carlill used the product as prescribed and caught flu.<br>
+<strong>Held:</strong> The Court of Appeal held that the claimant was entitled to the £100 because the advertisement was a <strong>unilateral offer</strong> that the claimant had accepted by the <strong>act</strong> of buying and using the product in the prescribed way.
+</div>
+
+<!-- ==================== Part 3: Bilateral vs Unilateral ==================== -->
+<h2>📖 Part 3: Bilateral Offers vs Unilateral Offers</h2>
+
+<p>It is critical that you can identify the difference between these two types of offers.</p>
+
+<div class="key-term">
+<strong>Bilateral offer (双务要约):</strong> An offer or <strong>promise</strong> in exchange for an offer or <strong>promise</strong>. Example: Olga promises to pay £10 for a book in exchange for Bogdan agreeing to sell the book for £10.<br><br>
+<strong>Unilateral offer (单务要约):</strong> An offer in exchange for a <strong>specified act</strong>, made either to a specific person, or to a wider group of persons (including the public). Example: Bogdan offers to sell the book to the first person who brings him £10.
+</div>
+
+<h3>Communication Requirement for Acceptance</h3>
+
+<p>An offer must be <strong>communicated</strong> to the offeree to be effective. A person cannot accept an offer if he does not know about it.</p>
+
+<p>Provided the offeree knows about the offer, his <strong>motive</strong> in performing the act that constitutes acceptance is <strong>irrelevant</strong>. For example, where an offer is made to give a £100 reward for information about a crime, a person who provides the information will be entitled to the reward (provided he knew about it), even if his motive was to clear his conscience.</p>
+
+<!-- ==================== Part 4: Acceptance ==================== -->
+<h2>📖 Part 4: Acceptance</h2>
+
+<h3>The Mirror-Image Rule (镜像原则)</h3>
+
+<div class="key-term">
+<strong>Acceptance (承诺):</strong> The <strong>complete agreement</strong> to the terms of the offer.<br><br>
+<strong>Mirror-image rule (镜像原则):</strong> An acceptance must be <strong>exactly the same</strong> as the offer to which it relates. If the response is not the mirror image (e.g., because the offeree has introduced a new term), then it is not a valid acceptance.
+</div>
+
+<p>Acceptance can be made through <strong>words or by conduct</strong>. Where a person who receives an offer does not communicate a response in writing or orally but nonetheless <strong>starts to perform his obligations</strong> in accordance with the terms of the offer, this performance will amount to <strong>acceptance by conduct</strong>.</p>
+
+<div class="case-box">
+<span class="case-name">Brogden v Metropolitan Railway Co (1876-1877) LR 2 App CA 666 (HL)</span><br>
+<strong>Facts:</strong> Ali sent a draft contract to Benazir. Benazir filled in the name of the arbitrator, marked the draft as approved, and sent it back. Both parties started to perform their respective obligations.<br>
+<strong>Held:</strong> Benazir's response was a <strong>counter-offer</strong> (filling in the arbitrator's name). Ali's <strong>performance</strong> was held to be acceptance by conduct, forming a binding contract.
+</div>
+
+<h3>Counter-Offers and Requests for Information</h3>
+
+<div class="key-term">
+<strong>Counter-offer (反要约):</strong> A response to an offer that <strong>introduces new terms</strong> to what is offered. A counter-offer is <strong>not</strong> an acceptance, and <strong>destroys the original offer</strong>, which can no longer be accepted by the person who makes the counter-offer.
+</div>
+
+<p>Important: distinguish between a counter-offer and a <strong>request for flexibility in payment terms</strong>. A request for flexibility in payment terms is a response to an offer that enquires whether the amount required for the offered goods can be paid in instalments or later than set out in the offer, and <strong>leaves the original offer open for acceptance</strong>. Such communications are <strong>not</strong> counter-offers, so they do not terminate the offer.</p>
+
+<div class="case-box">
+<span class="case-name">Hyde v Wrench (1840) 49 ER 132</span><br>
+<strong>Facts:</strong> Wrench offered to sell land for £1,000. Hyde offered £950 in response. When Wrench refused, Hyde said he accepted the original offer for £1,000.<br>
+<strong>Held:</strong> Hyde's offer of £950 was a <strong>counter-offer</strong> that <strong>destroyed</strong> Wrench's original offer. So there was <strong>no offer</strong> to be accepted by Hyde when he tried to accept the original offer.
+</div>
+
+<h3>The Battle of the Forms</h3>
+
+<p>When parties send each other their own standard terms of business with the aim of persuading the other party to use the first party's standard terms, this is often called the <strong>battle of the forms</strong>.</p>
+
+<p>The general rule is that <strong>"the last shot" prevails</strong>. The <strong>last set of terms</strong> sent by one party to the other party before the other party starts to perform his obligations will apply to the contract.</p>
+
+<!-- ==================== Part 5: Communication of Acceptance ==================== -->
+<h2>📖 Part 5: Communication of Acceptance</h2>
+
+<h3>Forms of Acceptance for Bilateral Offers</h3>
+
+<p>The legal position in respect of <strong>bilateral offers</strong> is different from the position for <strong>unilateral offers</strong>.</p>
+
+<p>The general rule: an acceptance of a bilateral offer must be <strong>communicated to the offeror</strong> to create a legally binding contract. This is called the <strong>receipt rule</strong>.</p>
+
+<div class="key-term">
+<strong>Receipt rule (收到规则):</strong> The rule that an offeror must <strong>actually receive</strong> an acceptance for the acceptance to be valid.
+</div>
+
+<p>The requirement for communication underpins the rule that <strong>silence cannot amount to acceptance</strong>. If an offeror tells an offeree that he will assume that his offer has been accepted if he does not hear from him, this has <strong>no legal effect</strong>.</p>
+
+<h4>Two main issues for form of acceptance:</h4>
+<ol>
+<li>If the offeror has <strong>specified or implied</strong> that acceptance must be in a specific form (e.g., in person), then the acceptance must be communicated as specified.</li>
+<li>If the offeror has <strong>not made it very clear</strong> that acceptance must only be made in a specified form, then the offeree can use another form, provided it is <strong>no slower</strong>. For example, if the offeror required acceptance by telephone, acceptance by personal visit would be sufficient, provided it was not significantly slower.</li>
+</ol>
+
+<h3>The Postal Acceptance Rule (邮政承诺规则)</h3>
+
+<p>If the interaction between the offeror and offeree makes it clear that the <strong>post might be used</strong> to communicate acceptance, the postal acceptance rule will apply. The rule provides that the offeree's acceptance is <strong>effective as soon as the acceptance is posted</strong>. So even if the offeror never receives the acceptance, he is still bound by the contract.</p>
+
+<p>For the rule to apply, certain requirements must be satisfied:</p>
+<ul>
+<li>The letter of acceptance must be <strong>properly addressed</strong>.</li>
+<li>Posted through a <strong>post office</strong> or a <strong>Royal Mail postbox</strong>.</li>
+<li>The rule does <strong>not</strong> apply to letters handed to the postperson or sent through a courier company.</li>
+<li>Parties are free to <strong>exclude</strong> the rule (e.g., by the offeror stating acceptance must not be sent by post).</li>
+</ul>
+
+<div class="exam-warning">
+<strong>⚠️ Exam Warning:</strong> The <strong>postal acceptance rule only applies to acceptances</strong>, NOT to revocations of offers.
+</div>
+
+<h3>Table 1.3: Communicating Acceptance Outside the Postal Rule</h3>
+
+<table>
+<tr><th>Means of Communication</th><th>General Position</th></tr>
+<tr><td><strong>Instantaneous media (telephone, fax, telex)</strong></td><td>The <strong>receipt rule applies</strong>. The offeree is responsible for ensuring the offeror has received the acceptance. For telephone, treated as face-to-face — if the offeror does not hear or understand, it will not have been communicated.</td></tr>
+<tr><td><strong>Instantaneous media during office hours</strong></td><td>Acceptance is communicated at the time it is <strong>actually received</strong> by the fax.</td></tr>
+<tr><td><strong>Instantaneous media outside office hours</strong></td><td>Deemed to be received at the <strong>start of the following working day</strong>.</td></tr>
+<tr><td><strong>Acceptance by email</strong></td><td>The general position is that the <strong>receipt rule applies</strong>.</td></tr>
+<tr><td><strong>Acceptance through a website</strong></td><td>Unless the parties are businesses and agree otherwise, the order and acknowledgement will be deemed received when the parties are <strong>able to access them</strong>.</td></tr>
+</table>
+
+<div class="exam-warning">
+<strong>⚠️ Exam Warning:</strong> Clearly identify whether a question on acceptance relates to a <strong>bilateral offer or a unilateral offer</strong> because the rules are different. Also identify whether the question tests the <strong>receipt rule</strong> or the <strong>postal acceptance rule</strong>, and remember the limitations to the postal acceptance rule.
+</div>
+
+<h3>Forms of Acceptance for Unilateral Offers</h3>
+
+<p>The rules for acceptance of unilateral offers are <strong>different</strong> from bilateral offers. The key difference: the offeree accepts a unilateral offer <strong>by conduct</strong>, and this acceptance does <strong>not need to be communicated</strong> to the offeror to form a binding contract.</p>
+
+<!-- ==================== Part 6: Termination of Offers ==================== -->
+<h2>📖 Part 6: Termination of Offers</h2>
+
+<p>Once an offer has been terminated, it <strong>cannot be accepted</strong>.</p>
+
+<h3>Termination of Bilateral Offers</h3>
+
+<table>
+<tr><th>Method</th><th>Rule</th></tr>
+<tr><td><strong>Revocation by the offeror</strong></td><td>An offeror is free to revoke an offer before it is accepted. However, if the offeror has agreed to keep the offer open for a specific time, the offeror is bound to do so. <strong>Revocation must be communicated</strong> to the offeree to be effective. It makes no difference whether it is the offeror or a <strong>third party</strong> who communicates the revocation.</td></tr>
+<tr><td><strong>Counter-offer</strong></td><td>A counter-offer destroys the original offer (Hyde v Wrench).</td></tr>
+<tr><td><strong>Lapse of time</strong></td><td>An offer may be stated to be open for a specific period. In cases where no time frame is mentioned, if the offeree takes longer than a <strong>reasonable time</strong> to respond, the offer may have expired.</td></tr>
+<tr><td><strong>Making a new offer</strong></td><td>If the offeror makes a new offer to the same offeree, the second offer will <strong>terminate the first offer</strong>.</td></tr>
+</table>
+
+<div class="exam-warning">
+<strong>⚠️ Exam Warning:</strong> The <strong>postal acceptance rule does NOT apply to revocation of offers</strong>. Revocation of an offer must be <strong>received</strong> by the offeree to be effective. This is because the postal acceptance rule only applies to <strong>acceptances</strong>.
+</div>
+
+<h3>Termination of Unilateral Offers</h3>
+
+<p>Different rules apply because there can be a <strong>lack of proximity</strong> between the offeror and offeree of a unilateral offer (e.g., where the offer is made in a newspaper).</p>
+
+<table>
+<tr><th>Rule</th><th>Explanation</th></tr>
+<tr><td><strong>Once performance begins, the offeror cannot revoke</strong></td><td>As a general rule, an offeror who makes a unilateral offer <strong>cannot revoke it</strong> once the offeree has <strong>started to perform</strong> the act specified. The offeror must let the offeree finish performing.</td></tr>
+<tr><td><strong>Communication of revocation</strong></td><td>In contrast to bilateral offers, the offeror can effectively revoke a unilateral offer <strong>without the revocation being communicated</strong> to the offeree. All that is required is that the offeror must <strong>use the same means</strong> to revoke as he used to make the offer in the first place (i.e., the revocation must have the <strong>same notoriety</strong> as the original offer).</td></tr>
+</table>
+
+<!-- ==================== Part 7: Summary ==================== -->
+<div class="summary-box">
+<h3>📋 Chapter Summary: Offer and Acceptance</h3>
+<ol>
+<li><strong>Four elements</strong> of a contract: offer, acceptance, consideration, intention to create legal relations.</li>
+<li><strong>Objective test</strong> is the general rule for determining if a contract has been formed (subjective test exception if offeree knew of offeror's mistake about a term).</li>
+<li><strong>Invitation to treat</strong>: advertisements, display of goods, websites, auction sales, tenders (general rule).</li>
+<li><strong>Offer</strong>: unilateral advertisements, auctions "without reserve", tenders promising to accept most competitive bid, automatic vending machines.</li>
+<li><strong>Bilateral offer</strong> = promise for promise. Acceptance must be <strong>communicated</strong> (receipt rule), with postal acceptance rule as an exception.</li>
+<li><strong>Unilateral offer</strong> = promise for act. Acceptance by <strong>performance</strong>, no communication needed.</li>
+<li><strong>Mirror-image rule</strong>: acceptance must be exactly the same as the offer.</li>
+<li><strong>Counter-offer</strong> destroys the original offer (Hyde v Wrench).</li>
+<li><strong>Battle of the forms</strong>: last shot prevails.</li>
+<li><strong>Termination</strong>: revocation (must be communicated for bilateral; same method for unilateral), counter-offer, lapse of time, new offer.</li>
+</ol>
+</div>
+
+<!-- ==================== Key Terms ==================== -->
+<h2>🔑 Key Terms — Bilingual Glossary（核心词汇中英文对照）</h2>
+<table>
+<tr><th style="width:30%">English Term</th><th>中文</th><th>Exam Focus</th></tr>
+<tr><td>Offeror</td><td>要约人</td><td>The person who makes the offer</td></tr>
+<tr><td>Offeree</td><td>受要约人</td><td>The person to whom the offer is made</td></tr>
+<tr><td>Offer</td><td>要约</td><td>Communication where the maker agrees to be legally bound on specified terms if accepted</td></tr>
+<tr><td>Invitation to Treat</td><td>要约邀请</td><td>Communication indicating willingness to negotiate; NOT directly acceptable (ads, displays, websites, auctions, tenders)</td></tr>
+<tr><td>Objective Test</td><td>客观标准</td><td>How would a reasonable person interpret the interaction? (general rule)</td></tr>
+<tr><td>Subjective Test</td><td>主观标准</td><td>Exception: offeree knew/ought to have known of offeror's mistake about a term</td></tr>
+<tr><td>Bilateral Offer</td><td>双务要约</td><td>Promise in exchange for a promise; acceptance must be communicated</td></tr>
+<tr><td>Unilateral Offer</td><td>单务要约</td><td>Promise in exchange for a specified act; acceptance by performance, no communication needed</td></tr>
+<tr><td>Acceptance</td><td>承诺</td><td>Complete agreement to the terms of the offer</td></tr>
+<tr><td>Mirror-Image Rule</td><td>镜像原则</td><td>Acceptance must be exactly the same as the offer</td></tr>
+<tr><td>Counter-Offer</td><td>反要约</td><td>Response introducing new terms; NOT an acceptance; destroys the original offer (Hyde v Wrench)</td></tr>
+<tr><td>Request for Flexibility in Payment Terms</td><td>付款灵活性询问</td><td>Asking if payment can be in instalments; leaves original offer open</td></tr>
+<tr><td>Receipt Rule</td><td>收到规则</td><td>Offeror must actually receive acceptance for it to be valid (default rule)</td></tr>
+<tr><td>Postal Acceptance Rule</td><td>邮政承诺规则</td><td>Acceptance by post is effective when properly posted; applies only to acceptances (not revocations)</td></tr>
+<tr><td>Battle of the Forms</td><td>格式之战</td><td>When parties exchange standard terms; "last shot" prevails</td></tr>
+<tr><td>Revocation</td><td>撤销</td><td>Withdrawal of an offer before acceptance; must be communicated (bilateral) or use same method (unilateral)</td></tr>
+<tr><td>Lapse of Time</td><td>期限届满</td><td>Offer terminates after specified period, or after reasonable time if no period specified</td></tr>
+<tr><td>Storer v Manchester CC</td><td>—</td><td>Agreement with clear terms + "sign and return" = offer</td></tr>
+<tr><td>Carlill v Carbolic Smoke Ball</td><td>—</td><td>Unilateral offer: reward advertisement accepted by performing the act</td></tr>
+<tr><td>Hyde v Wrench</td><td>—</td><td>Counter-offer destroys the original offer</td></tr>
+<tr><td>Brogden v Metropolitan Railway</td><td>—</td><td>Acceptance by conduct: starting to perform obligations</td></tr>
+</table>
+
+<!-- ==================== Practice Questions ==================== -->
+<h2>📝 Practice Questions</h2>
+
+<div class="qa-box">
+<div class="question">Q1: A shop displays a £500 watch in its window. A customer walks in and says "I'll take it." Who made the offer — the shop or the customer?</div>
+<div class="answer">The <strong>customer</strong> made the offer. The display of goods in a shop is an <strong>invitation to treat</strong>, not an offer. The customer makes the offer by stating he will buy, and the shopkeeper can accept or reject. (General rule: Display of goods = invitation to treat.)</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q2: A company places an automatic vending machine in a hallway. A person inserts a £1 coin. Is the contract formed when the machine is placed or when the coin is inserted?</div>
+<div class="answer">The contract is formed when the <strong>coin is inserted</strong>. Vending machines are <strong>offers</strong> (exception to the general rule that display of goods is an invitation to treat). The act of inserting the coin is <strong>acceptance</strong> by conduct, completing the contract.</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q3: A man offers to sell his bicycle for £500 to a colleague by post. The colleague writes back offering £400 and posts the letter. Has a contract been formed?</div>
+<div class="answer"><strong>NO</strong> — the colleague's offer of £400 is a <strong>counter-offer</strong> that <strong>destroys</strong> the original offer of £500 (Hyde v Wrench). The counter-offer cannot be accepted by the colleague later, and the original offer no longer exists. (Correct answer: B in the textbook multiple choice.)</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q4: A goat escapes. A zookeeper offers £100 reward in the local paper. A man who DID NOT see the notice finds the goat and returns it. Later he learns of the reward. Is he entitled to it?</div>
+<div class="answer"><strong>NO</strong> — an offer (including a unilateral offer) must be <strong>communicated to the offeree</strong> to be effective. A person cannot accept an offer if he does not know about it. The man did not know about the offer when he performed the act, so no contract was formed. (Correct answer: C in the textbook multiple choice.)</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q5: A supplier emails a customer offering 10 tons of apples for £2,000, saying delivery starts when the customer accepts. The customer calls to accept, but the line is bad and the supplier cannot hear — even after the customer repeats it. Is there a contract?</div>
+<div class="answer"><strong>NO</strong> — in a bilateral offer scenario, the offeree must communicate acceptance for it to be effective. By telephone, the offeree (customer) is responsible for ensuring the offeror (supplier) hears the acceptance. If the supplier does not hear it, acceptance has not been communicated, and <strong>no contract is formed</strong>. (Correct answer: C in the textbook multiple choice.)</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q6: A man sends a letter to an insurance company offering to pay 45% more rent. He panics and wants to revoke before the insurance company accepts. What's the safest way to revoke?</div>
+<div class="answer">The safest way is for the <strong>lawyer (a third party) to telephone the insurance company</strong> to communicate the revocation. Revocation is effective when <strong>received by the offeree</strong> (it doesn't matter if communicated by the offeror or a third party). Other options fail because: courier is too slow (insurance company could accept in the meantime); the postal acceptance rule does <strong>NOT</strong> apply to revocations; and the offer is not yet a contract so Option E is wrong. (Correct answer: A in the textbook multiple choice.)</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q7: A man advertises his computer "£200 to the first person who brings £200 to my office by 1 PM Friday" in a trade magazine. On Tuesday he changes his mind and places a revocation notice in a national newspaper on Wednesday. Who is the man obliged to sell to?</div>
+<div class="answer">The man is obliged to sell to the <strong>woman who arrives at 11:00 AM on Friday with £200</strong> (Option A). The man's revocation was <strong>NOT effective</strong> because the revocation of a unilateral offer must be given the <strong>same notoriety</strong> as the original advertisement. A trade magazine and a national newspaper have <strong>different readerships</strong>. Option B (student) made a counter-offer (£190) that destroyed the offer. Option C (programmer) arrived after the deadline. Option D (accountant) was not the first to arrive. (Correct answer: A in the textbook multiple choice.)</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q8: What is the difference between a counter-offer and a request for flexibility in payment terms?</div>
+<div class="answer">A <strong>counter-offer</strong> introduces new substantive terms to what is offered (e.g., "I will pay £800 instead of £1,000"). It <strong>destroys</strong> the original offer (Hyde v Wrench). A <strong>request for flexibility in payment terms</strong> is just enquiring whether payment can be made in instalments or later than set out in the offer. It <strong>leaves the original offer open</strong> for acceptance. SQE1 questions often test the ability to distinguish these two concepts.</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q9: When does the postal acceptance rule NOT apply?</div>
+<div class="answer">The postal acceptance rule does NOT apply in the following situations: (1) When the letter is <strong>not properly addressed</strong>; (2) When the letter is <strong>handed to the postperson</strong> (not posted); (3) When sent through a <strong>courier company</strong> (not Royal Mail); (4) When the offeror has <strong>excluded</strong> the rule by specifying an alternative means of communication; (5) When the acceptance is being sent by <strong>instantaneous media</strong> (telephone, fax, email) instead of post; and (6) <strong>Most importantly</strong>: the rule does NOT apply to <strong>revocations of offers</strong> — only to acceptances.</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q10: What is the "battle of the forms" and which terms prevail?</div>
+<div class="answer">The <strong>battle of the forms</strong> occurs when parties send each other their own standard terms of business with the aim of persuading the other party to use the first party's standard terms. The general rule is that <strong>"the last shot" prevails</strong> — the last set of terms sent by one party to the other party <strong>before the other party starts to perform</strong> his obligations will apply to the contract.</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q11: An advertisement says: "£100 reward for return of lost dog." A person who knows about the offer finds the dog and returns it, but his motive is not to get the reward (he just likes dogs). Is he entitled to the reward?</div>
+<div class="answer"><strong>YES</strong> — provided the offeree knows about the offer, his <strong>motive</strong> in performing the act that constitutes acceptance is <strong>irrelevant</strong>. He accepted the unilateral offer by performing the specified act (finding and returning the dog), regardless of his subjective motive. The objective test applies — what matters is the act, not the reason behind it.</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q12: How does the revocation of a unilateral offer differ from the revocation of a bilateral offer?</div>
+<div class="answer"><strong>Bilateral offers:</strong> Revocation must be <strong>communicated to the offeree</strong> to be effective (the postal acceptance rule does NOT apply to revocations). It can be communicated by the offeror or a third party. <strong>Unilateral offers:</strong> Revocation does NOT need to be <strong>communicated to the offeree</strong>. All that is required is that the offeror uses the <strong>same means</strong> (same notoriety) to revoke as he used to make the offer (e.g., advertising in the same publication). Additionally, for unilateral offers, once the offeree has <strong>started to perform</strong> the specified act, the offeror <strong>cannot revoke</strong> — the offeror must let the offeree finish.</div>
+</div>
+
+<p style="text-align:center; color:#999; margin-top:30px;">Based on <em>Revise SQE Contract Law</em> (2nd edn, Michael Pugh), Chapter 1</p>
+
+</body>
+</html>
