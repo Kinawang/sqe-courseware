@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SQE1 Lesson 8: Misrepresentation</title>
+<style>
+* { box-sizing: border-box; margin:0; padding:0; }
+body { font-family: 'Georgia', 'Times New Roman', serif; background: #fff; color: #222; line-height:1.7; padding:20px; max-width:900px; margin:0 auto; }
+h1 { font-size:1.8em; text-align:center; color:#1a1a2e; margin:30px 0 10px; border-bottom:3px solid #16213e; padding-bottom:10px; }
+h2 { font-size:1.4em; color:#16213e; margin:25px 0 12px; border-left:5px solid #0f3460; padding-left:12px; }
+h3 { font-size:1.15em; color:#0f3460; margin:18px 0 8px; }
+h4 { font-size:1.05em; color:#e94560; margin:14px 0 6px; }
+p, li { margin:6px 0; }
+ul, ol { padding-left:24px; }
+.case-box { background:#f0f4ff; border:1px solid #b8c9e8; border-radius:8px; padding:14px 18px; margin:14px 0; }
+.case-box .case-name { font-weight:bold; color:#0f3460; }
+.key-term { background:#fff3cd; border:1px solid #ffc107; border-radius:6px; padding:10px 14px; margin:10px 0; }
+.key-term strong { color:#856404; }
+.exam-tip { background:#d4edda; border:1px solid #28a745; border-radius:6px; padding:10px 14px; margin:10px 0; }
+.exam-tip strong { color:#155724; }
+.exam-warning { background:#f8d7da; border:1px solid #dc3545; border-radius:6px; padding:10px 14px; margin:10px 0; }
+.exam-warning strong { color:#721c24; }
+.summary-box { background:#e8f4fd; border:2px solid #0f3460; border-radius:10px; padding:16px 20px; margin:20px 0; }
+.qa-box { background:#f8f9fa; border:1px solid #dee2e6; border-radius:8px; padding:14px 18px; margin:12px 0; }
+.qa-box .question { font-weight:bold; color:#495057; margin-bottom:6px; }
+.qa-box .answer { color:#28a745; }
+table { border-collapse:collapse; width:100%; margin:12px 0; }
+th, td { border:1px solid #ccc; padding:8px 10px; text-align:left; font-size:0.95em; }
+th { background:#e9ecef; color:#343a40; }
+.knowledge-tree { background:#f5f0ff; border:2px solid #6f42c1; border-radius:10px; padding:18px 22px; margin:20px 0; }
+.knowledge-tree h3 { color:#6f42c1; margin-bottom:12px; }
+.kt-node { display:inline-block; background:#e8daff; border-radius:6px; padding:4px 10px; margin:3px; font-size:0.9em; color:#4a2d8e; }
+.kt-arrow { color:#6f42c1; font-weight:bold; margin:0 4px; }
+.kt-section { margin:8px 0; line-height:2; }
+</style>
+</head>
+<body>
+
+<h1>SQE1 Lesson 8<br>Chapter 8: Misrepresentation</h1>
+
+<!-- ==================== Knowledge Tree ==================== -->
+<div class="knowledge-tree">
+<h3>🌳 Knowledge Tree</h3>
+
+<div class="kt-section">
+<strong>Branch 1: What is Misrepresentation?</strong><br>
+<span class="kt-node">Definition</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Unambiguous</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">False statement of fact/law</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Addressed to representee</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Induces the contract</span>
+</div>
+
+<div class="kt-section">
+<strong>Branch 2: The Four Tests for Inducement</strong><br>
+<span class="kt-node">1. Statement is material</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">2. Representee is aware</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">3. Representor intends representee to act on it</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">4. Representee acts on it (material contribution)</span>
+</div>
+
+<div class="kt-section">
+<strong>Branch 3: Three Categories of Misrepresentation</strong><br>
+<span class="kt-node">Fraudulent (欺诈)</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Negligent (疏忽): Common Law + MA 1967</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Innocent (无辜)</span>
+</div>
+
+<div class="kt-section">
+<strong>Branch 4: Remedies</strong><br>
+<span class="kt-node">Rescission (撤销合同)</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Damages (损害赔偿)</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Barriers to rescission (Affirmation / Destruction / Third Party)</span>
+</div>
+
+<div class="kt-section">
+🔗 <strong>Links to other topics:</strong><br>
+<span class="kt-node">Contract Formation (Ch1-3)</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Statements made before contract</span><br>
+<span class="kt-node">Mistake (Ch9)</span>
+<span class="kt-arrow">→</span>
+<span class="kt-node">Vitiating factors: misrep vs mistake</span>
+</div>
+</div>
+
+<!-- ==================== Part 1: Definition ==================== -->
+<h2>📖 Part 1: What is Misrepresentation?</h2>
+
+<div class="key-term">
+<strong>Misrepresentation (虚假陈述):</strong> An <strong>unambiguous, false statement of fact (or law)</strong> addressed to the representee that <strong>induces the representee to enter into the contract</strong>.
+</div>
+
+<h3>Distinction from Terms</h3>
+<p>Misrepresentations are <strong>pre-contractual statements</strong> that are NOT incorporated into the contract as terms. If a statement IS a term, the contract is breached, and the <strong>terms rules</strong> apply (not misrepresentation).</p>
+
+<p><strong>Separate regimes:</strong></p>
+<ul>
+<li><strong>B2B (Business to Business):</strong> Common law + Misrepresentation Act 1967 (this chapter's focus)</li>
+<li><strong>B2C (Business to Consumer):</strong> Consumer Rights Act 2015 s50 (services) + Consumer Protection from Unfair Trading Regulations 2008 (goods). These treat trader statements as <strong>terms</strong>, not misrepresentations.</li>
+</ul>
+
+<!-- ==================== Part 2: Establishing Misrepresentation ==================== -->
+<h2>📖 Part 2: The Five Elements</h2>
+
+<p>To establish a misrepresentation, the <strong>representee</strong> must prove <strong>FIVE elements</strong>:</p>
+
+<div class="summary-box">
+<ol>
+<li>The statement was <strong>unambiguous</strong></li>
+<li>The statement was a <strong>statement of fact or law</strong> (not opinion/intention)</li>
+<li>The statement was <strong>false</strong> (false when contract concluded)</li>
+<li>The statement was <strong>addressed to the representee</strong></li>
+<li>The statement <strong>induced</strong> the contract (four sub-tests)</li>
+</ol>
+</div>
+
+<h3>Element 1: Unambiguous</h3>
+<p>The test is <strong>objective</strong> — how would a reasonable person interpret the statement?</p>
+<p>If a statement is <strong>ambiguous or unclear</strong>, it should be given the meaning that:</p>
+<ul>
+<li>The <strong>representor intended</strong>, OR</li>
+<li>The representor <strong>knew the representee would understand</strong>.</li>
+</ul>
+<p>A representee cannot claim that a true statement is a misrepresentation simply because he interpreted it unreasonably.</p>
+
+<h3>Element 2: Statement (Words, Conduct, or Silence)</h3>
+<p>The requirement for a "statement" covers <strong>words</strong> communicated to the representee. But a misrepresentation can also be made by:</p>
+
+<table>
+<tr><th>Method</th><th>Case</th><th>Held</th></tr>
+<tr><td><strong>Conduct (行为)</strong></td><td><em>Gordon v Selico (1986)</em></td><td>Seller painted over dry rot to hide it. This <strong>conduct</strong> conveyed a false impression that there was no dry rot — <strong>misrepresentation</strong> by conduct.</td></tr>
+<tr><td><strong>Not the whole truth (未披露全部事实)</strong></td><td><em>Dimmock v Hallett (1866-67)</em></td><td>Seller described property as "let to Prudential at £800,000/yr" but <strong>failed to disclose</strong> that Prudential had given notice to end the rental. The <strong>half-truth</strong> misled the buyer — <strong>misrepresentation</strong>.</td></tr>
+<tr><td><strong>Silence (沉默)</strong></td><td>General rule</td><td>There is <strong>no general duty of disclosure</strong> under English law. A party is <strong>not</strong> obliged to disclose all relevant facts.</td></tr>
+</table>
+
+<div class="exam-warning">
+<strong>⚠️ Exam Warning:</strong> Although silence generally does NOT amount to misrepresentation, watch for scenarios where one party <strong>knows more than the other</strong> but fails to disclose the <strong>full story</strong>, or behaves in a way that does not disclose the full story — these CAN be misrepresentations.
+</div>
+
+<h3>Special Case: Change of Circumstances</h3>
+<p>A statement that is <strong>true when made</strong> can become a misrepresentation if it becomes <strong>false before the contract is concluded</strong>. The representor is under a <strong>duty to correct</strong> the statement.</p>
+
+<div class="case-box">
+<span class="case-name">With v O'Flanagan [1936] Ch 575 CA</span><br>
+<strong>Facts:</strong> Seller told buyer the medical practice generated £50,000/year. This was true at the time. Before the sale, the income fell to £20,000/year. The seller did not correct the statement.<br>
+<strong>Held:</strong> The seller was under a duty to correct the statement. Failure to do so = <strong>misrepresentation</strong>.
+</div>
+
+<h3>Element 3: Statements of Fact or Law</h3>
+<p>The general position: a misrepresentation must be a statement of <strong>fact or law</strong>, NOT of opinion, belief, or intention.</p>
+
+<table>
+<tr><th>Type</th><th>General Rule</th><th>Exception</th></tr>
+<tr><td><strong>Opinion / Belief (意见/信念)</strong></td><td>❌ NOT misrepresentation if representor is <strong>NOT in a better position</strong> to know the facts.</td><td>✅ <strong>IS</strong> misrepresentation if representor <strong>IS in a better position to know</strong> the facts (because opinions imply knowledge of underlying facts).</td></tr>
+<tr><td><strong>Intention (意图)</strong></td><td>❌ NOT misrepresentation (statement of present intention).</td><td>✅ <strong>IS</strong> misrepresentation if the representor <strong>fraudulently claims an intention he does not have</strong> (treated as false statement of fact).</td></tr>
+</table>
+
+<div class="case-box">
+<span class="case-name">Bisset v Wilkinson [1927] AC 177 (PC, NZ)</span><br>
+<strong>Facts:</strong> Seller said the land could support 2,000 sheep. Buyer knew the land had never been used as a sheep farm.<br>
+<strong>Held:</strong> NOT a misrepresentation. The seller was NOT in a better position to know — the statement was a statement of <strong>opinion</strong>, not fact.
+</div>
+
+<div class="case-box">
+<span class="case-name">Smith v Land & House Property Corporation (1884)</span><br>
+<strong>Facts:</strong> Hotel chain described a tenant as a "most desirable tenant". The tenant was actually behind with her rent.<br>
+<strong>Held:</strong> <strong>IS</strong> a misrepresentation. The seller (hotel chain) was in a <strong>better position to know</strong> the facts about the tenant, so the opinion implied a statement of fact.
+</div>
+
+<div class="case-box">
+<span class="case-name">Edgington v Fitzmaurice (1885)</span><br>
+<strong>Facts:</strong> Company said it was issuing shares to grow the business. In fact, the money was needed to pay off liabilities.<br>
+<strong>Held:</strong> <strong>IS</strong> a misrepresentation. A <strong>fraudulent</strong> statement of present intention is treated as a false statement of fact.
+</div>
+
+<div class="exam-warning">
+<strong>⚠️ Exam Warning:</strong> Look carefully for words indicating <strong>belief</strong> or <strong>intention</strong> — these lead to the assumption that the statement is opinion/belief (not misrepresentation by default). <strong>THEN check:</strong> (1) Is the representor in a better position to know the underlying facts? (2) Is the representor falsely stating an intention? If yes to either → it IS a misrepresentation.
+</div>
+
+<!-- ==================== Part 3: Inducement ==================== -->
+<h2>📖 Part 3: The Four Tests for Inducement</h2>
+
+<p>Once the first three elements are established, the representee must prove that the statement <strong>induced</strong> the contract. The representee must satisfy <strong>FOUR conditions</strong>:</p>
+
+<div class="summary-box">
+<ol>
+<li>The statement must be <strong>material</strong> (重要的)</li>
+<li>The <strong>representee must be aware</strong> of the statement</li>
+<li>The <strong>representor must intend</strong> the representee to act on the statement</li>
+<li>The <strong>representee must act on</strong> the statement</li>
+</ol>
+</div>
+
+<h3>Test 1: Material</h3>
+<p>A statement is material if it would <strong>affect the judgment of a reasonable person</strong> in deciding whether to enter into the contract, or one that would <strong>induce him to enter without making such enquiries</strong> as he would otherwise make.</p>
+
+<div class="exam-tip">
+<strong>Exam Tip:</strong> If the scenario shows a buyer asking "is this in good condition?" and the seller answers "yes" and the buyer then buys → the statement is <strong>material</strong>. The scenario itself usually gives you the answer.
+</div>
+
+<h3>Test 2: Representee is Aware</h3>
+<p>The person must be aware of the misrepresentation <strong>before or at the time of contracting</strong>. If a person buys a damaged vase made to look perfect <strong>without inspecting it</strong>, the buyer was NOT aware — and <strong>cannot rescind</strong>.</p>
+
+<div class="case-box">
+<span class="case-name">Practice Example (from textbook, Question 3):</span><br>
+<strong>Facts:</strong> Shopkeeper paints over a damaged gun barrel, puts the gun in a wooden case. A woman in a hurry points to the case from across the room and buys it. When she opens the case, she sees the defect.<br>
+<strong>Held:</strong> She <strong>CANNOT</strong> rescind — she was not <strong>aware</strong> of the misrepresentation when she bought the gun.
+</div>
+
+<h3>Test 3: Representor Intends Representee to Act on It</h3>
+<p>The representor must have <strong>intended</strong> the representee to act on the statement. Statements made to specific people do NOT extend to random overhearers.</p>
+
+<div class="case-box">
+<span class="case-name">Revision Tip (from textbook):</span><br>
+<strong>Example:</strong> A seller tells a prospective buyer in a car showroom that a car is in good condition. A random person using the toilet overhears. The random person <strong>cannot</strong> claim misrepresentation — the representor was unaware of the random person and did not intend the statement for them.
+</div>
+
+<h3>Test 4: Representee Acts on the Statement</h3>
+<p>There must be a link between the statement and the action. Ask: would the representee have acted as he did <strong>but for the statement?</strong></p>
+
+<p><strong>"Material contribution" test:</strong> Even if the statement was <strong>NOT the sole reason</strong>, the representee may still claim if the statement made a <strong>material contribution</strong> (played a real and substantial part) in his decision.</p>
+
+<h3>Factors That Undermine Inducement</h3>
+
+<table>
+<tr><th>Factor</th><th>Effect</th></tr>
+<tr><td><strong>Representee fully relies on his own investigations</strong></td><td>❌ <strong>Undermines</strong> inducement — he did NOT act on the statement.</td></tr>
+<tr><td><strong>Representee fails to test accuracy</strong> (when offered opportunity)</td><td>⚠️ Can still claim, but <strong>damages may be reduced</strong> for contributory negligence.</td></tr>
+</table>
+
+<div class="exam-tip">
+<strong>Exam Tip:</strong> The <strong>material contribution</strong> test makes inducement easier to prove than the "sole cause" test. SQE1-style questions often hinge on whether the representee had some reliance on the statement.
+</div>
+
+<!-- ==================== Part 4: Three Categories ==================== -->
+<h2>📖 Part 4: The Three Categories of Misrepresentation</h2>
+
+<table>
+<tr><th>Category</th><th>What the Representee Must Prove</th><th>Remedies</th></tr>
+<tr><td><strong>Fraudulent (欺诈性)</strong></td><td>Representor <strong>knew</strong> the statement was false, OR did <strong>not believe</strong> it was true, OR was <strong>reckless</strong> (not caring whether true or false).</td><td><strong>Rescission</strong> + <strong>Damages</strong> (all direct loss, regardless of foreseeability)</td></tr>
+<tr><td><strong>Negligent (疏忽性)</strong> — Common Law</td><td><strong>Special relationship</strong> + <strong>duty of care</strong> (tort of negligence).</td><td><strong>Rescission</strong> + <strong>Damages</strong> (all direct loss <strong>if reasonably foreseeable</strong>)</td></tr>
+<tr><td><strong>Negligent</strong> — MA 1967</td><td>Once statement is false, the <strong>representor</strong> must prove he had <strong>reasonable grounds</strong> to make the statement + <strong>believed</strong> it was true at the time of contracting.</td><td><strong>Rescission</strong> + <strong>Damages</strong> (all direct loss)</td></tr>
+<tr><td><strong>Innocent (无辜性)</strong></td><td>Statement was not fraudulent or negligent. Representor had <strong>reasonable grounds</strong> to make the statement.</td><td><strong>Rescission</strong>. Damages at court's discretion under MA 1967 s2(2).</td></tr>
+</table>
+
+<h3>Key Distinction: Common Law vs. MA 1967 for Negligent Misrepresentation</h3>
+
+<table>
+<tr><th>Aspect</th><th>Common Law (Tort)</th><th>Misrepresentation Act 1967</th></tr>
+<tr><td><strong>Burden of Proof</strong></td><td>Representee must prove <strong>special relationship</strong> + duty of care + breach.</td><td>Representor must prove he had <strong>reasonable grounds</strong> to believe the statement was true.</td></tr>
+<tr><td><strong>Advantages</strong></td><td>Can claim against a person who is <strong>not a party to the contract</strong> (if duty of care exists).</td><td><strong>Easier to prove</strong> for the representee — burden shifts to representor.</td></tr>
+</table>
+
+<h3>Damages — Comparison</h3>
+
+<table>
+<tr><th>Category</th><th>Scope of Damages</th><th>Standard</th></tr>
+<tr><td><strong>Fraudulent</strong></td><td>All <strong>direct loss</strong> flowing from the transaction</td><td><strong>Regardless of foreseeability</strong></td></tr>
+<tr><td><strong>Negligent (both Common Law and MA 1967)</strong></td><td>All <strong>direct loss</strong> flowing from the transaction</td><td><strong>Provided reasonably foreseeable</strong></td></tr>
+<tr><td><strong>Innocent</strong></td><td>No automatic right. <strong>Court's discretion</strong> under MA 1967 s2(2).</td><td>Court may award damages <strong>instead of rescission</strong>.</td></tr>
+</table>
+
+<div class="exam-warning">
+<strong>⚠️ Exam Warning:</strong> The aim of damages for ALL categories is the same: to put the representee in the position he would have been in <strong>if the contract had not been made</strong>. (This is the tort measure, not the contract measure — different from breach of contract damages which aim to put the party in the position <em>if the contract had been performed</em>.)
+</div>
+
+<!-- ==================== Part 5: Rescission ==================== -->
+<h2>📖 Part 5: Rescission and Barriers</h2>
+
+<h3>Rescission (撤销合同)</h3>
+<p>Rescission unwinds the contract — parties are returned to their pre-contract position. It is available as a remedy for <strong>all three categories</strong> of misrepresentation.</p>
+
+<h3>When is Rescission Unavailable?</h3>
+
+<div class="key-term">
+<strong>Three Key Reasons Rescission is Unavailable:</strong>
+</div>
+
+<table>
+<tr><th>Barrier</th><th>Example</th></tr>
+<tr><td><strong>Affirmation (追认)</strong></td><td>Representee, being <strong>aware of the misrepresentation</strong> and right to rescind, communicates to the representor his intention to <strong>continue with the contract</strong> (through actions or words). Examples: continuing to hold shares bought on basis of misrepresentation; continuing to use a defective vehicle.</td></tr>
+<tr><td><strong>Destruction of Subject Matter (标的物灭失)</strong></td><td>Representee has <strong>demolished</strong> buildings acquired on the basis of a misrepresentation.</td></tr>
+<tr><td><strong>Third Party Rights (第三方权利)</strong></td><td>Goods acquired on the basis of misrepresentation have passed under contract to an <strong>innocent third party without notice</strong>.</td></tr>
+</table>
+
+<h3>Damages Instead of Rescission (Innocent Misrepresentation)</h3>
+
+<p>For <strong>innocent misrepresentation</strong>, the court has <strong>discretion under MA 1967 s2(2)</strong> to award damages <strong>instead of</strong> rescission. This is exercised when rescission would be a <strong>disproportionately severe remedy</strong> and damages would be adequate.</p>
+
+<div class="case-box">
+<span class="case-name">William Sindall plc v Cambridgeshire County Council [1994] 1 WLR 1016</span><br>
+<strong>Facts:</strong> Land sold for £3M with misrepresentation that nothing hindered development. Developer found a colony of newts costing £2,000 to rehome.<br>
+<strong>Held:</strong> Court <strong>exercised its discretion</strong> to award <strong>damages</strong> instead of rescission, considering:<br>
+<ul>
+<li>The £2,000 cost was of <strong>minor importance</strong> compared to the £3M purchase price</li>
+<li>The loss that could be caused to the buyer if the contract were not rescinded</li>
+<li>The loss that would be caused to the county council by rescission</li>
+</ul>
+<strong>Principle:</strong> Rescission is a <strong>very strong remedy</strong>. The court may consider it <strong>disproportionate</strong> compared to the effect of the misrepresentation.
+</div>
+
+<!-- ==================== Part 6: Summary ==================== -->
+<div class="summary-box">
+<h3>📋 Chapter Summary: Misrepresentation</h3>
+<ol>
+<li><strong>Definition:</strong> Unambiguous, false statement of fact/law that induces the contract.</li>
+<li><strong>Five elements:</strong> Unambiguous + Statement of fact (not opinion) + False + Addressed to representee + Induced the contract.</li>
+<li><strong>Three categories:</strong> Fraudulent (knew/reckless) / Negligent (no reasonable grounds) / Innocent (had reasonable grounds).</li>
+<li><strong>Remedies:</strong> Rescission (all three) + Damages (fraudulent: all direct loss; negligent: reasonably foreseeable; innocent: discretionary).</li>
+<li><strong>Barriers to rescission:</strong> Affirmation, destruction, third party rights.</li>
+</ol>
+</div>
+
+<!-- ==================== Key Terms ==================== -->
+<h2>🔑 Key Terms — Bilingual Glossary（核心词汇中英文对照）</h2>
+<table>
+<tr><th style="width:30%">English Term</th><th>中文</th><th>Exam Focus</th></tr>
+<tr><td>Misrepresentation</td><td>虚假陈述</td><td>Unambiguous, false statement of fact/law inducing the contract</td></tr>
+<tr><td>Representor</td><td>陈述人（作出陈述一方）</td><td>Party who made the statement</td></tr>
+<tr><td>Representee</td><td>受述人（接受陈述一方）</td><td>Party to whom the statement was made and who relied on it</td></tr>
+<tr><td>Fraudulent Misrepresentation</td><td>欺诈性虚假陈述</td><td>Knew statement was false / did not believe it / was reckless; damages regardless of foreseeability</td></tr>
+<tr><td>Negligent Misrepresentation</td><td>疏忽性虚假陈述</td><td>Honest but careless; no reasonable grounds; damages if foreseeable</td></tr>
+<tr><td>Innocent Misrepresentation</td><td>无辜性虚假陈述</td><td>Had reasonable grounds to believe; rescission + discretionary damages under MA 1967 s2(2)</td></tr>
+<tr><td>Rescission</td><td>撤销合同</td><td>Unwinds the contract; available for ALL three categories; barred by affirmation/destruction/3rd party</td></tr>
+<tr><td>Affirmation</td><td>追认（确认合同有效）</td><td>Actions or words showing intention to continue with the contract after discovering the misrepresentation</td></tr>
+<tr><td>Material Contribution</td><td>实质性促成</td><td>The statement need not be the sole reason — it must play a real and substantial part</td></tr>
+<tr><td>Material Statement</td><td>实质性陈述</td><td>Affects the judgment of a reasonable person</td></tr>
+<tr><td>Misrepresentation Act 1967 (MA 1967)</td><td>《1967年虚假陈述法》</td><td>Statutory basis for negligent misrepresentation; s2(2) gives court discretion to award damages instead of rescission for innocent misrep</td></tr>
+<tr><td>Special Relationship</td><td>特殊关系</td><td>Required for common law negligent misrepresentation (Hedley Byrne principle)</td></tr>
+<tr><td>Statement of Opinion / Belief</td><td>意见/信念陈述</td><td>Generally NOT misrepresentation; EXCEPTION if representor in better position to know the facts</td></tr>
+<tr><td>Statement of Intention</td><td>意图陈述</td><td>Generally NOT misrepresentation; EXCEPTION if fraudulent (Edgington v Fitzmaurice)</td></tr>
+<tr><td>Conduct Misrepresentation</td><td>行为构成的虚假陈述</td><td>Conveying a false impression by actions (e.g., painting over defects)</td></tr>
+<tr><td>Not the Whole Truth</td><td>未披露全部事实</td><td>Half-truths can be misrepresentations (Dimmock v Hallett)</td></tr>
+<tr><td>Change of Circumstances</td><td>情况变更</td><td>True statement at time made can become misrepresentation if circumstances change before contract (With v O'Flanagan)</td></tr>
+</table>
+
+<!-- ==================== Practice Questions ==================== -->
+<h2>📝 Practice Questions</h2>
+
+<div class="qa-box">
+<div class="question">Q1: What are the three categories of misrepresentation and what distinguishes them?</div>
+<div class="answer"><strong>Fraudulent:</strong> Representor knew statement was false / did not believe it / was reckless. <strong>Negligent:</strong> Representor did NOT have reasonable grounds to believe the statement was true (was careless). <strong>Innocent:</strong> Representor HAD reasonable grounds to believe the statement was true. Key difference: fraudulent = intentional dishonesty; negligent = carelessness; innocent = had reasonable basis.</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q2: A seller paints over a damaged gun barrel and puts it in a wooden case. The buyer in a hurry points to the case from across the room and buys it without opening it. Can the buyer rescind?</div>
+<div class="answer"><strong>NO</strong> — the buyer was NOT <strong>aware</strong> of the misrepresentation when she bought the gun. She had not inspected it. A key test for inducement is that the representee must be AWARE of the misrepresentation at or before the time of contracting. Without awareness, the misrepresentation did not "induce" the contract. (This is the fact pattern of textbook Question 3.)</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q3: A pop group sponsors a tour. All five group members participate in promotional activities, but they all know the fifth member is not planning to participate. The company discovers this in June and wants to rescind. Can they?</div>
+<div class="answer"><strong>YES</strong> — the pop group's conduct (participating in promotional activities as a group of five) amounted to a <strong>misrepresentation by conduct</strong> that all five would be on the tour. This misrepresentation <strong>induced</strong> the sponsorship contract. The remedy of rescission is available for ALL types of misrepresentation. (Correct answer: D in the textbook multiple choice.)</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q4: An art gallery owner tells a man a painting is by a famous artist (it is not — it was painted by her baby). The man takes a photograph and asks an art expert who confirms it is by the famous artist. The man buys the painting. Can he rescind?</div>
+<div class="answer"><strong>YES</strong> — this is <strong>fraudulent misrepresentation</strong> (the woman was dishonest). A representee's own investigations do <strong>NOT</strong> undermine his ability to claim if the misrepresentation was fraudulent. Rescission is available. (Correct answer: B in the textbook multiple choice.)</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q5: A landowner told a developer there was nothing on a £3M land plot that would hinder development. The developer found newts costing £2,000 to rehome. Can the developer rescind?</div>
+<div class="answer">Although rescission is theoretically available for innocent misrepresentation, the court is <strong>very likely to exercise its discretion under MA 1967 s2(2)</strong> to award <strong>damages instead of rescission</strong>. The £2,000 cost is of <strong>minor importance</strong> compared to the £3M purchase price — rescission would be a <strong>disproportionately severe remedy</strong>. (Correct answer: C — Sindall [1994] principle.)</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q6: A transport company buys a lorry after being told it's in good condition. After discovering faults, the seller pays half the repair costs. The company uses the lorry a second time, and it breaks down again. Can the company rescind?</div>
+<div class="answer"><strong>NO</strong> — using the lorry for a <strong>second time</strong> after knowing the misrepresentation amounts to <strong>affirmation</strong>. Affirmation can be by actions (not just words). Once the representee knows the truth and acts inconsistently with rescission, the right to rescind is lost. (Correct answer: D in the textbook multiple choice.)</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q7: What is the difference between negligent misrepresentation at common law and under the Misrepresentation Act 1967?</div>
+<div class="answer"><strong>Common Law (tort of negligence):</strong> Representee must prove a <strong>special relationship</strong> + <strong>duty of care</strong> + breach. Advantage: can claim against a person who is NOT party to the contract (if duty of care exists). <strong>MA 1967 (statute):</strong> Once statement is shown to be false, the BURDEN shifts to the <strong>representor</strong> to prove he had reasonable grounds to believe the statement was true. Easier for the representee.</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q8: Does silence (failing to disclose facts) amount to misrepresentation?</div>
+<div class="answer"><strong>Generally NO</strong> — there is NO general duty of disclosure under English law. However, there are <strong>exceptions</strong>: (1) Change of circumstances (With v O'Flanagan) — if a true statement becomes false, the representor must correct it. (2) Not the whole truth (Dimmock v Hallett) — a half-truth that misleads can be a misrepresentation.</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q9: What damages are available for fraudulent misrepresentation? How does this differ from negligent?</div>
+<div class="answer"><strong>Fraudulent:</strong> All <strong>direct loss</strong> flowing from the transaction, <strong>regardless of foreseeability</strong>. The aim: put the representee in the position he would have been in if the contract had not been made. <strong>Negligent:</strong> All <strong>direct loss</strong>, but <strong>provided it was reasonably foreseeable</strong>. Fraudulent misrepresentation gives broader damages because of the representor's dishonesty.</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q10: What are the three key reasons that make rescission unavailable?</div>
+<div class="answer">(1) <strong>Affirmation</strong> — the representee, knowing of the misrepresentation and the right to rescind, communicates (by actions or words) his intention to continue with the contract. (2) <strong>Destruction of subject matter</strong> — the representee has destroyed the subject of the contract (e.g., demolished buildings). (3) <strong>Third party rights</strong> — goods have passed to an innocent third party without notice.</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q11: A farmer says his land can support 2,000 sheep. The buyer knows the land has never been used for sheep farming. Is this a misrepresentation?</div>
+<div class="answer"><strong>NO</strong> — based on Bisset v Wilkinson [1927]. The seller was NOT in a better position to know the facts. The statement was an <strong>opinion</strong>, not a fact. The buyer knew the land had never been used as a sheep farm, so the seller could not have superior knowledge about sheep-farming capacity. Statements of opinion are not misrepresentation UNLESS the representor is in a better position to know the facts.</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q12: A company says it is issuing shares to grow the business, but in fact the money is to pay off liabilities. Is this a misrepresentation?</div>
+<div class="answer"><strong>YES</strong> — based on Edgington v Fitzmaurice (1885). A fraudulent statement of present intention is treated as a <strong>false statement of fact</strong>. The company did NOT have the intention it claimed to have. This is fraudulent misrepresentation — the representor fraudulently claimed an intention he did not have.</div>
+</div>
+
+<p style="text-align:center; color:#999; margin-top:30px;">Based on <em>Revise SQE Contract Law</em> (2nd edn, Michael Pugh), Chapter 8</p>
+
+</body>
+</html>
