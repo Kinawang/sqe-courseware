@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SQE1 Lesson 4: Central Government & Devolution — Practice Game</title>
+<style>
+:root {
+    --paper: #f4ecd8;
+    --paper-2: #e8dcb8;
+    --ink: #2a2620;
+    --ink-soft: #5a5246;
+    --seal: #8b1a1a;
+    --gold: #b8860b;
+    --gold-light: #daa520;
+    --ok: #2e6b3e;
+    --line: #8a7a5c;
+    --fs-body: 18px;
+    --fs-h1: 24px;
+    --fs-h2: 20px;
+    --fs-card: 18px;
+    --fs-small: 14px;
+}
+body.fs-lg { --fs-body: 22px; --fs-h1: 28px; --fs-h2: 24px; --fs-card: 22px; --fs-small: 17px; }
+body.fs-xl { --fs-body: 26px; --fs-h1: 32px; --fs-h2: 28px; --fs-card: 26px; --fs-small: 20px; }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: var(--fs-body);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+.topbar { display: flex; align-items: center; justify-content: space-between; padding: 10px 20px; background: var(--paper-2); border-bottom: 2px solid var(--line); flex-wrap: wrap; gap: 8px; }
+.topbar .title { font-size: var(--fs-h1); font-weight: bold; color: var(--ink); white-space: nowrap; }
+.topbar .right { display: flex; align-items: center; gap: 8px; }
+.topbar .coins { font-size: var(--fs-body); font-weight: bold; color: var(--gold); background: var(--paper); padding: 4px 12px; border-radius: 20px; border: 1px solid var(--gold-light); }
+.topbar .fs-btn { background: var(--paper); border: 1px solid var(--line); border-radius: 4px; padding: 4px 10px; cursor: pointer; font-size: var(--fs-small); color: var(--ink); font-family: Georgia, serif; }
+.topbar .fs-btn:hover { background: var(--paper-2); }
+
+.stars { display: flex; gap: 2px; align-items: center; }
+.stars .star { font-size: var(--fs-h2); color: var(--ink-soft); opacity: 0.3; }
+.stars .star.filled { color: var(--gold); opacity: 1; }
+
+.main { display: grid; grid-template-columns: 200px 1fr 200px; gap: 0; min-height: calc(100vh - 60px); }
+
+.sticker-col { width: 200px; padding: 8px 6px; background: var(--paper-2); border-right: 1px solid var(--line); border-left: 1px solid var(--line); }
+.sticker-col.col-right { border-right: none; border-left: 1px solid var(--line); }
+.sticker-col .col-label { text-align: center; font-size: var(--fs-small); color: var(--ink-soft); margin-bottom: 8px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
+.sticker-col .sticker-grid { display: grid; grid-template-columns: 1fr; gap: 6px; }
+.sticker-slot { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; font-size: 24px; background: var(--paper); border: 1px dashed var(--line); border-radius: 8px; cursor: pointer; position: relative; transition: background 0.2s; }
+.sticker-slot:hover { background: var(--paper-2); }
+.sticker-slot.filled { border-style: solid; border-color: var(--gold); background: var(--paper); }
+.sticker-slot .empty-hint { color: var(--ink-soft); opacity: 0.4; font-size: var(--fs-h2); }
+.sticker-slot .remove-x { position: absolute; top: -2px; right: 2px; color: var(--seal); font-size: 14px; font-weight: bold; cursor: pointer; line-height: 1; background: var(--paper); border-radius: 50%; width: 16px; height: 16px; display: flex; align-items: center; justify-content: center; }
+
+.quiz-area { padding: 20px 30px; max-width: 900px; margin: 0 auto; width: 100%; }
+.quiz-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; flex-wrap: wrap; gap: 8px; }
+.quiz-header .chapter { font-size: var(--fs-small); color: var(--seal); font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
+.quiz-header .progress { font-size: var(--fs-small); color: var(--ink-soft); }
+.quiz-header .nav-btns { display: flex; gap: 6px; }
+.quiz-header .nav-btns button { background: var(--paper-2); border: 1px solid var(--line); border-radius: 4px; padding: 2px 10px; cursor: pointer; font-size: var(--fs-small); font-family: Georgia, serif; color: var(--ink); }
+.quiz-header .nav-btns button:disabled { opacity: 0.4; cursor: default; }
+.quiz-header .nav-btns button:hover:not(:disabled) { background: var(--paper); }
+.bookmark-btn { background: none; border: none; cursor: pointer; font-size: var(--fs-h2); color: var(--ink-soft); opacity: 0.5; }
+.bookmark-btn.active { color: var(--gold); opacity: 1; }
+
+.question-text { font-size: var(--fs-body); margin: 16px 0; line-height: 1.7; }
+.options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+.option { padding: 12px 16px; background: var(--paper); border: 2px solid var(--line); border-radius: 8px; cursor: pointer; font-size: var(--fs-body); font-family: Georgia, serif; color: var(--ink); text-align: left; transition: all 0.2s; }
+.option:hover { border-color: var(--gold); background: var(--paper-2); }
+.option.selected { border-color: var(--gold); background: var(--paper-2); }
+.option.correct { border-color: var(--ok); background: #d4edda; }
+.option.wrong { border-color: var(--seal); background: #f8d7da; }
+.option.disabled { cursor: default; }
+
+.feedback { margin: 16px 0; padding: 14px 18px; border-radius: 8px; font-size: var(--fs-body); display: none; }
+.feedback.show { display: block; }
+.feedback.correct { background: #d4edda; border: 1px solid var(--ok); color: var(--ok); }
+.feedback.wrong { background: #f8d7da; border: 1px solid var(--seal); color: var(--seal); }
+.feedback .principle { margin-top: 8px; font-size: var(--fs-body); color: var(--ink); }
+.feedback .principle-cn { margin-top: 6px; font-size: var(--fs-small); color: var(--ink-soft); }
+.feedback .cite { margin-top: 6px; font-size: var(--fs-small); color: var(--ink-soft); font-style: italic; }
+
+.next-btn { background: var(--seal); color: var(--paper); border: none; padding: 10px 28px; border-radius: 8px; font-size: var(--fs-body); font-family: Georgia, serif; cursor: pointer; display: none; }
+.next-btn.show { display: inline-block; }
+.next-btn:hover { background: #6b1414; }
+
+.review-btn { background: var(--gold); color: var(--paper); border: none; padding: 8px 20px; border-radius: 8px; font-size: var(--fs-small); font-family: Georgia, serif; cursor: pointer; margin-left: 10px; }
+.review-btn:hover { background: var(--gold-light); }
+
+.shop-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 100; justify-content: center; align-items: center; }
+.shop-overlay.show { display: flex; }
+.shop-modal { background: var(--paper); border-radius: 12px; padding: 20px; max-width: 700px; width: 90%; max-height: 80vh; overflow-y: auto; border: 2px solid var(--gold); }
+.shop-modal h2 { font-size: var(--fs-h1); color: var(--ink); margin-bottom: 4px; text-align: center; }
+.shop-modal .shop-coins { text-align: center; font-size: var(--fs-body); color: var(--gold); font-weight: bold; margin-bottom: 16px; }
+.shop-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
+.shop-item { background: var(--paper-2); border: 1px solid var(--line); border-radius: 8px; padding: 10px; text-align: center; cursor: pointer; transition: all 0.2s; }
+.shop-item:hover { border-color: var(--gold); }
+.shop-item.owned { opacity: 0.5; cursor: default; }
+.shop-item.owned::after { content: '✓ owned'; display: block; font-size: var(--fs-small); color: var(--ok); margin-top: 4px; }
+.shop-item .icon { font-size: 36px; }
+.shop-item .name { font-size: var(--fs-small); color: var(--ink); margin-top: 4px; }
+.shop-item .price { font-size: var(--fs-small); color: var(--gold); font-weight: bold; margin-top: 4px; }
+.shop-item button { background: var(--seal); color: var(--paper); border: none; padding: 4px 12px; border-radius: 4px; cursor: pointer; font-size: var(--fs-small); font-family: Georgia, serif; margin-top: 6px; }
+.shop-item button:disabled { background: var(--ink-soft); cursor: default; }
+.shop-close { display: block; margin: 16px auto 0; background: var(--ink-soft); color: var(--paper); border: none; padding: 8px 24px; border-radius: 8px; cursor: pointer; font-size: var(--fs-body); font-family: Georgia, serif; }
+
+.placement-banner { display: none; background: var(--gold); color: var(--paper); padding: 8px 20px; text-align: center; font-size: var(--fs-body); font-weight: bold; }
+.placement-banner.show { display: block; }
+.placement-banner .cancel-btn { background: var(--paper); color: var(--gold); border: none; padding: 2px 12px; border-radius: 4px; cursor: pointer; font-size: var(--fs-small); font-family: Georgia, serif; margin-left: 12px; }
+
+@media (max-width: 768px) {
+    .main { grid-template-columns: 80px 1fr 80px; }
+    .sticker-col { width: 80px; padding: 4px 3px; }
+    .sticker-col .sticker-grid { gap: 3px; }
+    .sticker-slot { font-size: 18px; }
+    .sticker-slot .empty-hint { font-size: var(--fs-small); }
+    .quiz-area { padding: 12px 8px; }
+    .topbar { padding: 8px 10px; }
+    .topbar .title { font-size: var(--fs-h2); }
+    .shop-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="title">⚖ SQE1 · Lesson 4: Central Government & Devolution</div>
+  <div class="stars" id="stars-top"></div>
+  <div class="right">
+    <div class="coins">💰 <span class="val" id="coins">0</span></div>
+    <button class="fs-btn" onclick="changeFS(-1)">A-</button>
+    <button class="fs-btn" onclick="changeFS(1)">A+</button>
+  </div>
+</div>
+
+<div class="placement-banner" id="placement-banner">
+  Tap a slot to place your sticker!
+  <button class="cancel-btn" onclick="cancelPlacement()">Cancel</button>
+</div>
+
+<div class="main">
+  <div class="sticker-col col-left" id="col-left">
+    <div class="col-label">Left</div>
+  </div>
+  <div class="quiz-area">
+    <div class="quiz-header">
+      <div>
+        <span class="chapter" id="chapter"></span>
+        <span class="progress" id="progress" style="margin-left:12px;"></span>
+      </div>
+      <div class="nav-btns">
+        <button id="prev-btn" onclick="prevQuestion()">← Prev</button>
+        <button id="review-btn" class="review-btn" onclick="startReview()" style="display:none;">Review Wrong</button>
+        <button id="next-nav-btn" onclick="nextQuestion()">Next →</button>
+        <button class="bookmark-btn" id="bookmark-btn" onclick="toggleBookmark()">☆</button>
+      </div>
+    </div>
+    <div class="stars" id="stars-quiz" style="justify-content:center; margin: 4px 0;"></div>
+    <div class="question-text" id="question-text"></div>
+    <div class="options" id="options"></div>
+    <div class="feedback" id="feedback"></div>
+    <button class="next-btn" id="next-btn" onclick="nextQuestion()">Next →</button>
+  </div>
+  <div class="sticker-col col-right" id="col-right">
+    <div class="col-label">Right</div>
+  </div>
+</div>
+
+<div class="shop-overlay" id="shop-overlay">
+  <div class="shop-modal">
+    <h2>🏷️ Sticker Shop</h2>
+    <div class="shop-coins">💰 Coins: <span id="shop-coins">0</span></div>
+    <div class="shop-grid" id="shop-grid"></div>
+    <button class="shop-close" onclick="closeShop()">Close</button>
+  </div>
+</div>
+
+<script>
+const STORAGE_KEY = 'sqe-l4-stickers-v1';
+const SLOTS_PER_COL = 10;
+
+const DEFAULT_STATE = {
+  coins: 0, qIndex: 0, answered: [], wrong: {}, bookmarked: [], stickers: {}, placementItem: null, fsLevel: 0, reviewMode: false, reviewQueue: []
+};
+
+const STICKERS = [
+  { id: 'daisy', name: 'Daisy', icon: '🌼', price: 50 },
+  { id: 'tulip', name: 'Tulip', icon: '🌷', price: 50 },
+  { id: 'rose', name: 'Rose', icon: '🌹', price: 80 },
+  { id: 'sunflower', name: 'Sunflower', icon: '🌻', price: 80 },
+  { id: 'clover', name: 'Clover', icon: '🍀', price: 100 },
+  { id: 'cactus', name: 'Cactus', icon: '🌵', price: 120 },
+  { id: 'palm', name: 'Palm', icon: '🌴', price: 150 },
+  { id: 'fir', name: 'Fir Tree', icon: '🌲', price: 150 },
+  { id: 'book', name: 'Law Book', icon: '📕', price: 100 },
+  { id: 'scroll', name: 'Scroll', icon: '📜', price: 120 },
+  { id: 'trophy', name: 'Trophy', icon: '🏆', price: 200 },
+  { id: 'medal', name: 'Medal', icon: '🎖', price: 200 },
+  { id: 'ribbon', name: 'Ribbon', icon: '🎗', price: 150 },
+  { id: 'star', name: 'Star', icon: '⭐', price: 100 },
+  { id: 'gem', name: 'Gem', icon: '💎', price: 300 },
+  { id: 'crown', name: 'Crown', icon: '👑', price: 500 },
+  { id: 'anchor', name: 'Anchor', icon: '⚓', price: 250 },
+  { id: 'key', name: 'Key', icon: '🔑', price: 180 },
+  { id: 'balance', name: 'Scales', icon: '⚖', price: 350 },
+  { id: 'gavel', name: 'Gavel', icon: '🔨', price: 400 }
+];
+
+const QUESTIONS = [
+  { "key": "cg-1", "chapter": "Ch 3: Central Government & Devolution", "text": "The Prime Minister wishes to appoint a leading expert on education policy as a government minister. The expert is not a Member of Parliament and is not a member of the House of Lords. What is the constitutional position?", "options": [ "The appointment is valid because the PM has the power to appoint ministers. Convention requires that the minister be a member of either House of Parliament.", "The appointment is invalid because the person is not a member of Parliament.", "The appointment is valid but the minister must be accountable to Parliament.", "The appointment is valid but the person must become a member of Parliament.", "The appointment is invalid because only MPs can be ministers." ], "best": 0, "principle": "The PM has the prerogative power to appoint ministers, so the appointment is legally valid. However, convention requires that a minister be a member of either House of Parliament for accountability. If not already a member, the convention expects them to be given a peerage.", "cite": "Revise SQE Const. & Admin. Law Ch.3", "principleCN": "首相有特权任命部长，因此任命在法律上有效。但惯例要求部长是议会任一院的成员以确保问责。如果还不是成员，惯例期望其被授予贵族身份。", "citeCN": "Revise SQE 宪法与行政法 第3章" },
+  { "key": "cg-2", "chapter": "Ch 3: Central Government & Devolution", "text": "A civil servant in a government department makes a serious error in implementing policy, causing significant financial loss to a member of the public who was entitled to a grant. The affected individual seeks to hold someone responsible. Who is legally responsible?", "options": [ "The civil servant personally.", "The head of the civil service.", "The government minister in charge of the department.", "The prime minister.", "The Crown." ], "best": 2, "principle": "Under the Carltona principle, the government minister in charge of the department takes legal responsibility for what happens in their department. Civil servants act on behalf of the minister, and their actions are treated in law as the minister's actions.", "cite": "Revise SQE Const. & Admin. Law Ch.3; Carltona principle", "principleCN": "根据Carltona原则，主管部门的政府部长对部门内发生的事情承担法律责任。公务员代表部长行事，其行为在法律上被视为部长的行为。", "citeCN": "Revise SQE 宪法与行政法 第3章; Carltona原则" },
+  { "key": "cg-3", "chapter": "Ch 3: Central Government & Devolution", "text": "A government minister is being investigated for several potential breaches of the Ministerial Code, including breach of Cabinet confidentiality, compromising the political impartiality of the Civil Service, and knowingly misleading Parliament. Which of these specifically requires resignation?", "options": [ "Breach of Cabinet confidentiality.", "Compromising the political impartiality of the Civil Service.", "Failure to declare a financial interest.", "Misuse of government resources.", "Knowingly misleading Parliament." ], "best": 4, "principle": "Only knowingly misleading Parliament specifically requires resignation under the Ministerial Code. For other breaches, resignation is left to the discretion of the Prime Minister. The Code is not a legal document — it is a set of conventions and principles.", "cite": "Revise SQE Const. & Admin. Law Ch.3; Ministerial Code", "principleCN": "根据部长守则，只有故意误导议会特别要求辞职。对于其他违规行为，辞职由首相裁量决定。守则不是法律文件——它是一套惯例和原则。", "citeCN": "Revise SQE 宪法与行政法 第3章; 部长守则" },
+  { "key": "cg-4", "chapter": "Ch 3: Central Government & Devolution", "text": "The First Minister of Northern Ireland wishes to appoint a member of his political party, John, as a minister in the Northern Ireland Executive. How is this appointment made?", "options": [ "The first minister nominates John and the monarch appoints him.", "The first minister appoints John.", "The first minister appoints John with the agreement of the deputy first minister.", "A political party in the Northern Ireland Assembly nominates John.", "The first minister appoints John with the agreement of the secretary of state for Northern Ireland." ], "best": 3, "principle": "The devolution legislation for Northern Ireland requires that ministerial appointments be made by nomination by a political party in the Northern Ireland Assembly (using the d'Hondt system). This ensures ministerial positions are allocated proportionally, reflecting the power-sharing design of the Good Friday Agreement.", "cite": "Revise SQE Const. & Admin. Law Ch.3; devolution", "principleCN": "北爱尔兰的权力下放立法要求部长任命由北爱尔兰议会中的政党提名（使用d'Hondt制度）。这确保部长职位按比例分配，反映《耶稣受难日协议》的权力共享设计。", "citeCN": "Revise SQE 宪法与行政法 第3章; 权力下放" },
+  { "key": "cg-5", "chapter": "Ch 3: Central Government & Devolution", "text": "An Act of the Scottish Parliament is passed, with a simple majority, declaring that Scotland is an independent country and no longer part of the United Kingdom. What is the legal effect of this Act?", "options": [ "The Act would only be law in Scotland.", "The Act would not be law because it is outside the legislative competence of the Scottish Parliament.", "The Act would not be law because a two-thirds majority is required.", "The Act would be law if the Supreme Court agreed.", "The Act would be law for all of the UK." ], "best": 1, "principle": "The Scotland Act 1998 does not allow the Scottish Parliament to legislate on the Union with England or matters relating to the constitution of the UK. These are reserved matters. An Act purporting to declare Scottish independence would be outside the legislative competence of the Scottish Parliament and therefore not law.", "cite": "Revise SQE Const. & Admin. Law Ch.3; Scotland Act 1998", "principleCN": "《1998年苏格兰法》不允许苏格兰议会就与英格兰的联合或英国宪法相关事项立法。这些是保留事项。宣称苏格兰独立的法案超出苏格兰议会的立法权限，因此不是法律。", "citeCN": "Revise SQE 宪法与行政法 第3章; 1998年苏格兰法" },
+  { "key": "cg-6", "chapter": "Ch 3: Central Government & Devolution", "text": "Which of the following best describes the role of the Cabinet in the UK government?", "options": [ "The Cabinet is a statutory body created by an Act of Parliament.", "The Cabinet is the supreme decision-making body of the government, composed of senior ministers chosen by the PM, operating on the principle of collective responsibility.", "The Cabinet must approve all legislation before it is introduced in Parliament.", "The Cabinet is elected by Parliament from among its members.", "The Cabinet is a purely advisory body with no decision-making power." ], "best": 1, "principle": "The Cabinet is the supreme decision-making body of the government. It is composed of senior ministers chosen by the PM. It operates on the principle of collective responsibility — once a decision is made, all Cabinet members must publicly support it or resign. The Cabinet is not a statutory body; it exists by convention.", "cite": "Revise SQE Const. & Admin. Law Ch.3", "principleCN": "内阁是政府的最高决策机构。由首相选定的高级部长组成。它基于集体责任原则运作——一旦做出决定，所有内阁成员必须公开支持或辞职。内阁不是法定机构；它因惯例而存在。", "citeCN": "Revise SQE 宪法与行政法 第3章" },
+  { "key": "cg-7", "chapter": "Ch 3: Central Government & Devolution", "text": "The Civil Service is described as politically impartial. Which of the following best explains what this means in practice?", "options": [ "Civil servants cannot vote in general elections.", "Civil servants must be members of no political party.", "Civil servants must serve the government of the day regardless of its political persuasion, and must not engage in party political activity in their professional capacity.", "Civil servants are appointed by the monarch and are independent of the government.", "Civil servants can publicly criticise government policy if they disagree with it." ], "best": 2, "principle": "Civil servants must serve the government of the day regardless of political persuasion. They must not engage in party political activity in their professional capacity. They can be members of political parties in their personal capacity (subject to restrictions), but must maintain impartiality in their work. This ensures continuity and professionalism across changes of government.", "cite": "Revise SQE Const. & Admin. Law Ch.3; Civil Service Code", "principleCN": "公务员必须为当届政府服务，不论其政治倾向。他们不能在职业身份中从事党派政治活动。他们可以在个人身份下成为政党成员（受限制），但在工作中必须保持公正。这确保了政府更替时的连续性和专业性。", "citeCN": "Revise SQE 宪法与行政法 第3章; 公务员守则" },
+  { "key": "cg-8", "chapter": "Ch 3: Central Government & Devolution", "text": "Under the Carltona principle, a civil servant in a government department issues a decision that adversely affects a citizen. The citizen challenges the decision. Which statement is correct?", "options": [ "The civil servant is personally liable for the decision because they issued it.", "The decision is invalid because only ministers can make such decisions.", "The civil servant's decision is treated in law as the minister's decision, because civil servants act on behalf of their minister under the Carltona principle.", "The decision is automatically invalid because it was not personally made by the minister.", "The citizen must sue the civil servant in their personal capacity." ], "best": 2, "principle": "Under the Carltona principle (Carltona Ltd v Commissioners of Works [1943]), a civil servant's actions are treated in law as the minister's actions. Ministers cannot personally make every decision, so they delegate to civil servants who act in the minister's name. The minister remains legally responsible and accountable to Parliament.", "cite": "Carltona Ltd v Commissioners of Works [1943]; Revise SQE Const. & Admin. Law Ch.3", "principleCN": "根据Carltona原则（Carltona Ltd v Commissioners of Works [1943]），公务员的行为在法律上被视为部长的行为。部长无法亲自做出每个决定，因此委托公务员以部长名义行事。部长仍承担法律责任并向议会负责。", "citeCN": "Carltona Ltd v Commissioners of Works [1943]; Revise SQE 宪法与行政法 第3章" },
+  { "key": "cg-9", "chapter": "Ch 3: Central Government & Devolution", "text": "The Prime Minister loses a vote of no confidence in the House of Commons. What is the constitutional consequence?", "options": [ "The PM must immediately call a general election.", "The PM must immediately resign and the monarch appoints a new PM.", "The PM may try to form a new government that can command confidence within 14 days; if unable, a general election is triggered.", "The monarch must dissolve Parliament and call a new election immediately.", "The Cabinet takes over government functions until a new PM is elected." ], "best": 2, "principle": "Under the Fixed-term Parliaments Act 2011 (now repealed but the convention remains), if the PM loses a vote of no confidence, there is a 14-day period during which a new government can be formed that commands confidence. If no government can command confidence within 14 days, Parliament is dissolved and a general election is held. The PM is not required to resign immediately.", "cite": "Revise SQE Const. & Admin. Law Ch.3; confidence convention", "principleCN": "如果首相在不信任投票中失败，有14天的期间可以组建能获得信任的新政府。如果在14天内无法组建，议会解散并举行大选。首相无需立即辞职。", "citeCN": "Revise SQE 宪法与行政法 第3章; 信任惯例" },
+  { "key": "cg-10", "chapter": "Ch 3: Central Government & Devolution", "text": "Which of the following best describes the principle of collective ministerial responsibility?", "options": [ "All ministers must personally agree with every government decision before it is made.", "Once the Cabinet makes a decision, all ministers must publicly support it or resign, even if they personally disagreed with it during Cabinet discussions.", "Each minister is individually responsible for their own department's decisions only.", "Ministers must collectively vote in Parliament according to the PM's instructions.", "All ministers must be members of the same political party." ], "best": 1, "principle": "Collective ministerial responsibility requires that once the Cabinet makes a decision, all ministers must publicly support it, even if they personally disagreed during private discussions. If a minister cannot support a decision, they must resign. Cabinet proceedings are confidential to encourage frank discussion.", "cite": "Revise SQE Const. & Admin. Law Ch.3", "principleCN": "集体部长责任要求内阁做出决定后，所有部长必须公开支持，即使他们在私下讨论中个人不同意。如果部长不能支持某决定，必须辞职。内阁 proceedings保密以鼓励坦诚讨论。", "citeCN": "Revise SQE 宪法与行政法 第3章" },
+  { "key": "cg-11", "chapter": "Ch 3: Central Government & Devolution", "text": "The Welsh Parliament (Senedd Cymru) wishes to pass legislation on a matter. Which test determines whether the Senedd has legislative competence to pass the legislation?", "options": [ "The matter must be listed as a 'devolved matter' in the Wales Act 2017.", "The matter must not relate to a 'reserved matter' listed in the Wales Act 2017, and the legislation must not breach ECHR rights or be incompatible with EU law (as retained).", "The matter must be explicitly listed as a devolved matter in Schedule 7A of the Government of Wales Act 2006.", "The UK Parliament must consent to the legislation before it is passed.", "The Supreme Court must rule on competence before the legislation is passed." ], "best": 1, "principle": "Under the Wales Act 2017, the Welsh Parliament has competence to legislate on any matter that is NOT a reserved matter. This is a 'reserved powers' model (similar to Scotland). The Senedd cannot legislate on reserved matters, and cannot legislate incompatibly with ECHR rights. The UK Parliament retains sovereignty and can legislate for Wales on any matter.", "cite": "Wales Act 2017; Revise SQE Const. & Admin. Law Ch.3", "principleCN": "根据《2017年威尔士法》，威尔士议会有权就非保留事项立法。这是一种'保留权力'模式（类似苏格兰）。Senedd不能就保留事项立法，也不能以与ECHR不兼容的方式立法。英国议会保留主权，可以就任何事项为威尔士立法。", "citeCN": "2017年威尔士法; Revise SQE 宪法与行政法 第3章" },
+  { "key": "cg-12", "chapter": "Ch 3: Central Government & Devolution", "text": "Which of the following correctly describes individual ministerial responsibility?", "options": [ "A minister is responsible for voting in Parliament according to the PM's wishes.", "A minister is responsible to Parliament for the actions of their department and is expected to resign if there is a serious failing within the department, even if the minister was not personally at fault.", "A minister is only responsible for decisions they personally make.", "A minister is responsible for ensuring all civil servants in their department are members of the same political party.", "A minister is responsible for appointing all judges in their department's jurisdiction." ], "best": 1, "principle": "Individual ministerial responsibility means a minister is accountable to Parliament for the actions of their department. In cases of serious departmental failure, the minister is expected to resign, even if not personally at fault. In practice, modern resignations are more likely when the minister is personally at fault, but the constitutional principle remains broader.", "cite": "Revise SQE Const. & Admin. Law Ch.3", "principleCN": "个人部长责任意味着部长就其部门的行为向议会负责。在部门严重失职的情况下，部长应辞职，即使不是个人过失。实践中现代辞职更多发生在部长个人有过失时，但宪法原则仍然更广泛。", "citeCN": "Revise SQE 宪法与行政法 第3章" },
+  { "key": "cg-13", "chapter": "Ch 3: Central Government & Devolution", "text": "The Scotland Act 1998 sets out the devolution settlement for Scotland. Which of the following is a 'reserved matter' that the Scottish Parliament CANNOT legislate on?", "options": [ "Health and social services.", "Education and training.", "Defence and national security.", "Environment.", "Transport." ], "best": 2, "principle": "Defence and national security are reserved matters under Schedule 5 of the Scotland Act 1998 — the Scottish Parliament cannot legislate on them. Health, education, environment, and transport are devolved matters within Scottish Parliament competence. Reserved matters include defence, foreign affairs, immigration, macro-economic policy, and the constitution of the UK.", "cite": "Scotland Act 1998, Sch 5; Revise SQE Const. & Admin. Law Ch.3", "principleCN": "国防和国家安全是《1998年苏格兰法》附表5下的保留事项——苏格兰议会不能就此立法。卫生、教育、环境和交通是苏格兰议会权限内的下放事项。保留事项包括国防、外交、移民、宏观经济政策和英国宪法。", "citeCN": "1998年苏格兰法, 附表5; Revise SQE 宪法与行政法 第3章" },
+  { "key": "cg-14", "chapter": "Ch 3: Central Government & Devolution", "text": "What is the 'Sewel Convention' in the context of UK devolution?", "options": [ "The UK Parliament will not normally legislate on devolved matters without the consent of the relevant devolved legislature.", "The Scottish Parliament must seek UK Parliament approval before passing any legislation.", "The Welsh Parliament must consult the Scottish Parliament before legislating on shared matters.", "The UK Supreme Court must approve all devolved legislation before it takes effect.", "The PM must consult devolved first ministers before appointing ministers." ], "best": 0, "principle": "The Sewel Convention provides that the UK Parliament will not normally legislate on devolved matters without the consent of the relevant devolved legislature (via a Legislative Consent Motion). This respects the devolution settlement while preserving UK Parliament sovereignty. The convention was codified in the Scotland Act 2016 and the Wales Act 2017.", "cite": "Revise SQE Const. & Admin. Law Ch.3; Sewel Convention", "principleCN": "Sewel惯例规定，英国议会通常不会在未经相关权力下放立法机构同意（通过立法同意动议）的情况下就下放事项立法。这尊重权力下放安排同时保留英国议会主权。", "citeCN": "Revise SQE 宪法与行政法 第3章; Sewel惯例" },
+  { "key": "cg-15", "chapter": "Ch 3: Central Government & Devolution", "text": "Who has the power to appoint the First Minister of Scotland?", "options": [ "The UK Prime Minister nominates and the monarch appoints.", "The Scottish Parliament nominates and the monarch appoints.", "The Scottish Parliament nominates and the UK PM appoints.", "The Scottish people directly elect the First Minister.", "The monarch appoints at their discretion." ], "best": 1, "principle": "Under the Scotland Act 1998, the Scottish Parliament nominates the First Minister, and the monarch formally appoints them. The First Minister must be an MSP and is typically the leader of the largest party. This is different from Northern Ireland where d'Hondt is used, and reflects the Scottish Parliament's democratic mandate.", "cite": "Scotland Act 1998; Revise SQE Const. & Admin. Law Ch.3", "principleCN": "根据《1998年苏格兰法》，苏格兰议会提名首席部长，君主正式任命。首席部长必须是苏格兰议会议员(MSP)，通常是最大党的领袖。这与北爱尔兰使用d'Hondt制度不同。", "citeCN": "1998年苏格兰法; Revise SQE 宪法与行政法 第3章" },
+  { "key": "cg-16", "chapter": "Ch 3: Central Government & Devolution", "text": "The Northern Ireland Assembly has been suspended multiple times since 1998. What happens to the governance of Northern Ireland during such suspensions?", "options": [ "The Irish government takes over governance of Northern Ireland.", "Direct rule from Westminster applies, with the Secretary of State for Northern Ireland running the devolved functions.", "The monarch assumes direct control of Northern Ireland.", "All devolved functions cease and no government operates in Northern Ireland.", "The Scottish Parliament temporarily assumes responsibility." ], "best": 1, "principle": "During suspensions of the Northern Ireland Assembly, direct rule from Westminster applies. The Secretary of State for Northern Ireland runs the devolved functions. This has happened several times since 1998 (most recently 2017-2020). The UK government can suspend the Assembly under the Northern Ireland Act 2000 (now repealed) or through other statutory mechanisms.", "cite": "Revise SQE Const. & Admin. Law Ch.3; Northern Ireland devolution", "principleCN": "在北爱尔兰议会暂停期间，适用威斯敏斯特直接统治。北爱尔兰国务大臣管理下放职能。自1998年以来这已发生多次（最近一次2017-2020年）。", "citeCN": "Revise SQE 宪法与行政法 第3章; 北爱尔兰权力下放" },
+  { "key": "cg-17", "chapter": "Ch 3: Central Government & Devolution", "text": "Which of the following best describes the legal status of the Ministerial Code?", "options": [ "It is a statutory document with the force of law.", "It is a non-statutory document published by the PM, setting out conventions and principles of ministerial conduct. It is not legally enforceable but has political force.", "It is a code drafted by Parliament and enforced by the Speaker.", "It is an international treaty obligation.", "It is legally enforceable by the Supreme Court." ], "best": 1, "principle": "The Ministerial Code is a non-statutory document published by the Prime Minister. It sets out the conventions and principles of ministerial conduct. It is not legally enforceable in the courts — breaches are handled politically. However, it has significant political force and breaches can lead to resignations or dismissal by the PM.", "cite": "Revise SQE Const. & Admin. Law Ch.3; Ministerial Code", "principleCN": "部长守则是首相发布的非法定文件。它规定了部长行为的惯例和原则。在法院中不可强制执行——违规通过政治方式处理。但它具有重大的政治影响力，违规可能导致辞职或被首相免职。", "citeCN": "Revise SQE 宪法与行政法 第3章; 部长守则" },
+  { "key": "cg-18", "chapter": "Ch 3: Central Government & Devolution", "text": "The UK Supreme Court is asked to determine whether an Act of the Scottish Parliament is within legislative competence. Which factor is NOT relevant to the court's determination?", "options": [ "Whether the Act relates to a reserved matter.", "Whether the Act is incompatible with Convention rights (ECHR).", "Whether the Act modifies certain protected provisions of the Scotland Act 1998.", "Whether the Act has public support in Scotland.", "Whether the Act breaches EU law (as retained after Brexit)." ], "best": 3, "principle": "The Supreme Court determines legislative competence by checking: (1) whether the Act relates to reserved matters, (2) whether it is incompatible with ECHR rights, (3) whether it modifies protected provisions of the Scotland Act, (4) whether it breaches retained EU law. Public support in Scotland is not a legal factor — competence is a legal question, not a political one.", "cite": "Scotland Act 1998, s.29; Revise SQE Const. & Admin. Law Ch.3", "principleCN": "最高法院通过以下标准确定立法权限：(1)是否涉及保留事项，(2)是否与ECHR权利不兼容，(3)是否修改了苏格兰法的保护条款，(4)是否违反保留的欧盟法。苏格兰的公众支持不是法律因素——权限是法律问题，不是政治问题。", "citeCN": "1998年苏格兰法, s.29; Revise SQE 宪法与行政法 第3章" },
+  { "key": "cg-19", "chapter": "Ch 3: Central Government & Devolution", "text": "The Prime Minister wishes to reorganise government departments. What legal authority, if any, is needed?", "options": [ "The PM needs an Act of Parliament to reorganise government departments.", "The PM needs the approval of the House of Commons.", "The PM can reorganise government departments under the royal prerogative without statutory authority, although some functions established by statute may require legislative changes.", "The PM needs the agreement of the Cabinet.", "The PM needs the consent of the Civil Service Commission." ], "best": 2, "principle": "The PM can reorganise government departments under the royal prerogative. The creation, merger, and abolition of departments is generally a prerogative act. However, where departmental functions are established by statute, transferring those functions may require legislative changes. In practice, significant reorganisations often involve both prerogative acts and statutory instruments.", "cite": "Revise SQE Const. & Admin. Law Ch.3", "principleCN": "首相可以根据皇家特权重组政府部门。部门的创建、合并和废除通常是特权行为。但当部门职能由法规设立时，转移这些职能可能需要立法变更。实际上，重大重组通常涉及特权行为和法定文书两者。", "citeCN": "Revise SQE 宪法与行政法 第3章" },
+  { "key": "cg-20", "chapter": "Ch 3: Central Government & Devolution", "text": "Which of the following is a correct statement about the differences between devolution in Scotland, Wales, and Northern Ireland?", "options": [ "All three devolved legislatures have the same powers.", "Scotland has the most extensive devolved powers; Wales and Northern Ireland have different models with different degrees of devolution, reflecting their distinct constitutional histories and settlements.", "Wales has more devolved powers than Scotland.", "Northern Ireland has no devolved legislature.", "All three devolved legislatures were established by the same Act of Parliament." ], "best": 1, "principle": "Devolution differs across the three nations. Scotland has the most extensive devolved powers under the Scotland Act 1998 (reserved powers model). Wales started with more limited powers but expanded under the Wales Act 2017 (also reserved powers model). Northern Ireland has a unique power-sharing model under the Good Friday Agreement, with the d'Hondt system for ministerial appointments. Each reflects distinct constitutional histories and political settlements.", "cite": "Revise SQE Const. & Admin. Law Ch.3", "principleCN": "三个地区的权力下放各不相同。苏格兰根据《1998年苏格兰法》拥有最广泛的下放权力（保留权力模式）。威尔士起步权力较小但在《2017年威尔士法》下扩展（也是保留权力模式）。北爱尔兰在《耶稣受难日协议》下有独特的权力共享模式，使用d'Hondt制度任命部长。各自反映了不同的宪法历史和政治协议。", "citeCN": "Revise SQE 宪法与行政法 第3章" }
+]
+;
+
+let state = JSON.parse(JSON.stringify(DEFAULT_STATE));
+
+function load() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      const saved = JSON.parse(raw);
+      state = Object.assign(JSON.parse(JSON.stringify(DEFAULT_STATE)), saved);
+    }
+  } catch(e) { console.warn('Load failed:', e); }
+}
+
+function save() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  } catch(e) { console.warn('Save failed:', e); }
+}
+
+function applyFS() {
+  document.body.classList.remove('fs-lg', 'fs-xl');
+  if (state.fsLevel === 1) document.body.classList.add('fs-lg');
+  else if (state.fsLevel === 2) document.body.classList.add('fs-xl');
+}
+
+function changeFS(dir) {
+  state.fsLevel = Math.max(0, Math.min(2, state.fsLevel + dir));
+  applyFS();
+  save();
+}
+
+function renderCoins() { document.getElementById('coins').textContent = state.coins; }
+
+function renderStars() {
+  const count = Object.keys(state.stickers).filter(id => {
+    const s = state.stickers[id];
+    return s.side !== null && s.slot >= 0;
+  }).length;
+  const filled = Math.floor(count / 4);
+  const html = Array.from({length: 5}, (_, i) =>
+    `<span class="star ${i < filled ? 'filled' : ''}">${i < filled ? '★' : '☆'}</span>`
+  ).join('');
+  const top = document.getElementById('stars-top');
+  const quiz = document.getElementById('stars-quiz');
+  if (top) top.innerHTML = html;
+  if (quiz) quiz.innerHTML = html;
+}
+
+function getCurrentQuestions() {
+  if (state.reviewMode && state.reviewQueue.length > 0) { return state.reviewQueue; }
+  return QUESTIONS;
+}
+
+function renderQuestion() {
+  const qs = getCurrentQuestions();
+  const idx = state.qIndex;
+  const q = qs[idx];
+  document.getElementById('chapter').textContent = q.chapter;
+  document.getElementById('progress').textContent = `Question ${idx + 1} / ${qs.length}`;
+  document.getElementById('question-text').textContent = q.text;
+  const optsDiv = document.getElementById('options');
+  optsDiv.innerHTML = '';
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'option';
+    btn.textContent = opt;
+    const answered = state.answered.includes(q.key);
+    if (answered) {
+      if (i === q.best) btn.classList.add('correct');
+      if (state.wrong[q.key] === i) btn.classList.add('wrong');
+    }
+    btn.onclick = () => selectOption(i);
+    optsDiv.appendChild(btn);
+  });
+  const fb = document.getElementById('feedback');
+  const nextBtn = document.getElementById('next-btn');
+  if (state.answered.includes(q.key)) {
+    const isCorrect = state.wrong[q.key] === undefined;
+    fb.className = 'feedback show ' + (isCorrect ? 'correct' : 'wrong');
+    let html = isCorrect ? '✅ Correct!' : '❌ Not quite.';
+    html += `<div class="principle"><strong>Principle:</strong> ${q.principle}</div>`;
+    html += `<div class="principle-cn">${q.principleCN}</div>`;
+    html += `<div class="cite">📚 ${q.cite}</div>`;
+    html += `<div class="cite">${q.citeCN}</div>`;
+    fb.innerHTML = html;
+    nextBtn.classList.add('show');
+    nextBtn.textContent = idx + 1 < qs.length ? 'Next →' : 'Finish';
+  } else {
+    fb.className = 'feedback';
+    fb.innerHTML = '';
+    nextBtn.classList.remove('show');
+  }
+  const bmBtn = document.getElementById('bookmark-btn');
+  if (state.bookmarked.includes(q.key)) { bmBtn.classList.add('active'); bmBtn.textContent = '★'; }
+  else { bmBtn.classList.remove('active'); bmBtn.textContent = '☆'; }
+  document.getElementById('prev-btn').disabled = idx === 0;
+  document.getElementById('next-nav-btn').disabled = idx === qs.length - 1;
+  renderReviewBtn();
+}
+
+function toggleBookmark() {
+  const q = getCurrentQuestions()[state.qIndex];
+  const i = state.bookmarked.indexOf(q.key);
+  if (i >= 0) state.bookmarked.splice(i, 1);
+  else state.bookmarked.push(q.key);
+  save();
+  renderQuestion();
+}
+
+function selectOption(i) {
+  const q = getCurrentQuestions()[state.qIndex];
+  const wasAnswered = state.answered.includes(q.key);
+  const wasWrong = state.wrong[q.key] !== undefined;
+  if (wasAnswered) {
+    if (wasWrong) { delete state.wrong[q.key]; }
+    if (i === q.best && wasWrong) { state.coins += 20; renderCoins(); }
+  } else {
+    state.answered.push(q.key);
+    if (i === q.best) { state.coins += 20; renderCoins(); }
+  }
+  if (i !== q.best) { state.wrong[q.key] = i; }
+  save();
+  renderQuestion();
+}
+
+function nextQuestion() {
+  const qs = getCurrentQuestions();
+  if (state.qIndex < qs.length - 1) { state.qIndex++; save(); renderQuestion(); }
+  else {
+    if (state.reviewMode) { exitReviewMode(); }
+    else { state.qIndex = 0; save(); renderQuestion(); }
+  }
+}
+
+function prevQuestion() { if (state.qIndex > 0) { state.qIndex--; save(); renderQuestion(); } }
+
+function getReviewQuestions() { return QUESTIONS.filter(q => state.wrong[q.key] !== undefined); }
+
+function renderReviewBtn() {
+  const reviewBtn = document.getElementById('review-btn');
+  const wrongQs = getReviewQuestions();
+  if (wrongQs.length > 0 && !state.reviewMode) {
+    reviewBtn.style.display = '';
+    reviewBtn.textContent = `Review Wrong (${wrongQs.length})`;
+  } else { reviewBtn.style.display = 'none'; }
+}
+
+function startReview() {
+  const wrongQs = getReviewQuestions();
+  if (wrongQs.length === 0) return;
+  state.reviewMode = true;
+  state.reviewQueue = wrongQs;
+  state.qIndex = 0;
+  save();
+  renderQuestion();
+}
+
+function exitReviewMode() {
+  state.reviewMode = false;
+  state.reviewQueue = [];
+  state.qIndex = 0;
+  save();
+  renderQuestion();
+}
+
+function renderStickers() {
+  ['left', 'right'].forEach(side => {
+    const col = document.getElementById('col-' + side);
+    const label = col.querySelector('.col-label');
+    col.innerHTML = '';
+    col.appendChild(label);
+    const grid = document.createElement('div');
+    grid.style.cssText = 'display:grid; grid-template-columns: 1fr; gap: 6px;';
+    for (let i = 0; i < SLOTS_PER_COL; i++) {
+      const slot = document.createElement('div');
+      slot.className = 'sticker-slot';
+      let placedItem = null;
+      for (const [id, data] of Object.entries(state.stickers)) {
+        if (data.side === side && data.slot === i) { placedItem = STICKERS.find(s => s.id === id); break; }
+      }
+      if (placedItem) {
+        slot.classList.add('filled');
+        slot.innerHTML = placedItem.icon;
+        const x = document.createElement('div');
+        x.className = 'remove-x';
+        x.textContent = '×';
+        x.onclick = (e) => { e.stopPropagation(); removeSticker(placedItem.id); };
+        slot.appendChild(x);
+      } else { slot.innerHTML = '<span class="empty-hint">+</span>'; }
+      slot.onclick = () => placeSticker(side, i);
+      grid.appendChild(slot);
+    }
+    col.appendChild(grid);
+  });
+  renderStars();
+}
+
+function removeSticker(id) { state.stickers[id] = { side: null, slot: -1 }; save(); renderStickers(); }
+
+function placeSticker(side, slot) {
+  if (!state.placementItem) return;
+  for (const [id, data] of Object.entries(state.stickers)) {
+    if (data.side === side && data.slot === slot && id !== state.placementItem) { state.stickers[id] = { side: null, slot: -1 }; break; }
+  }
+  state.stickers[state.placementItem] = { side: side, slot: slot };
+  state.placementItem = null;
+  document.getElementById('placement-banner').classList.remove('show');
+  save();
+  renderStickers();
+}
+
+function cancelPlacement() { state.placementItem = null; document.getElementById('placement-banner').classList.remove('show'); save(); }
+
+function openShop() {
+  document.getElementById('shop-coins').textContent = state.coins;
+  const grid = document.getElementById('shop-grid');
+  grid.innerHTML = '';
+  STICKERS.forEach(s => {
+    const item = document.createElement('div');
+    item.className = 'shop-item';
+    const owned = state.stickers[s.id] !== undefined;
+    const placed = owned && state.stickers[s.id].side !== null && state.stickers[s.id].slot >= 0;
+    if (owned) item.classList.add('owned');
+    item.innerHTML = `<div class="icon">${s.icon}</div><div class="name">${s.name}</div><div class="price">💰 ${s.price}</div>`;
+    if (!owned) {
+      const btn = document.createElement('button');
+      btn.textContent = 'Buy';
+      btn.disabled = state.coins < s.price;
+      btn.onclick = () => buySticker(s.id);
+      item.appendChild(btn);
+    } else if (!placed) {
+      const btn = document.createElement('button');
+      btn.textContent = 'Stick';
+      btn.onclick = () => startPlacement(s.id);
+      item.appendChild(btn);
+    }
+    grid.appendChild(item);
+  });
+  document.getElementById('shop-overlay').classList.add('show');
+}
+
+function closeShop() { document.getElementById('shop-overlay').classList.remove('show'); }
+
+function buySticker(id) {
+  const s = STICKERS.find(x => x.id === id);
+  if (!s) return;
+  if (state.coins < s.price) return;
+  state.coins -= s.price;
+  state.stickers[id] = { side: null, slot: -1 };
+  save();
+  renderCoins();
+  openShop();
+  startPlacement(id);
+}
+
+function startPlacement(id) {
+  state.placementItem = id;
+  document.getElementById('placement-banner').classList.add('show');
+  closeShop();
+}
+
+function init() {
+  load();
+  applyFS();
+  renderCoins();
+  renderStickers();
+  renderStars();
+  renderQuestion();
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 's' && e.shiftKey) { e.preventDefault(); openShop(); }
+  });
+  const rightDiv = document.querySelector('.topbar .right');
+  if (rightDiv) {
+    const shopBtn = document.createElement('button');
+    shopBtn.className = 'fs-btn';
+    shopBtn.textContent = '🏷️';
+    shopBtn.style.marginRight = '4px';
+    shopBtn.onclick = openShop;
+    rightDiv.insertBefore(shopBtn, rightDiv.firstChild);
+  }
+}
+
+init();
+</script>
+</body>
+</html>
