@@ -125,7 +125,7 @@ body {
 }
 .sticker-col .sticker-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 6px;
 }
 .sticker-slot {
@@ -1329,7 +1329,7 @@ function renderStickers() {
     col.innerHTML = '';
     col.appendChild(label);
     const grid = document.createElement('div');
-    grid.style.cssText = 'display:grid; grid-template-columns: 1fr 1fr; gap: 6px;';
+    grid.style.cssText = 'display:grid; grid-template-columns: 1fr; gap: 6px;';
     for (let i = 0; i < SLOTS_PER_COL; i++) {
       const slot = document.createElement('div');
       slot.className = 'sticker-slot';
@@ -1360,15 +1360,21 @@ function renderStickers() {
 }
 
 function removeSticker(id) {
-  delete state.stickers[id];
+  state.stickers[id] = { side: null, slot: -1 };
   save();
   renderStickers();
 }
 
 function placeSticker(side, slot) {
   if (!state.placementItem) return;
-  // Remove from any existing slot
-  delete state.stickers[state.placementItem];
+  // If target slot has a sticker, kick it back to stash
+  for (const [id, data] of Object.entries(state.stickers)) {
+    if (data.side === side && data.slot === slot && id !== state.placementItem) {
+      state.stickers[id] = { side: null, slot: -1 };
+      break;
+    }
+  }
+  // Place the new sticker
   state.stickers[state.placementItem] = { side: side, slot: slot };
   state.placementItem = null;
   document.getElementById('placement-banner').classList.remove('show');
@@ -1390,6 +1396,7 @@ function openShop() {
     const item = document.createElement('div');
     item.className = 'shop-item';
     const owned = state.stickers[s.id] !== undefined;
+    const placed = owned && state.stickers[s.id].side !== null && state.stickers[s.id].slot >= 0;
     if (owned) item.classList.add('owned');
     item.innerHTML = `
       <div class="icon">${s.icon}</div>
@@ -1402,8 +1409,12 @@ function openShop() {
       btn.disabled = state.coins < s.price;
       btn.onclick = () => buySticker(s.id);
       item.appendChild(btn);
-    }
-    grid.appendChild(item);
+    } else if (!placed) {
+      const btn = document.createElement('button');
+      btn.textContent = 'Stick';
+      btn.onclick = () => startPlacement(s.id);
+      item.appendChild(btn);
+    } // placed items show no button
   });
   document.getElementById('shop-overlay').classList.add('show');
 }
