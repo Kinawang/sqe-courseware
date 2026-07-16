@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SQE1 Lesson 5: Public Order Law — Practice Game</title>
+<style>
+:root {
+    --paper: #f4ecd8;
+    --paper-2: #e8dcb8;
+    --ink: #2a2620;
+    --ink-soft: #5a5246;
+    --seal: #8b1a1a;
+    --gold: #b8860b;
+    --gold-light: #daa520;
+    --ok: #2e6b3e;
+    --line: #8a7a5c;
+    --fs-body: 18px;
+    --fs-h1: 24px;
+    --fs-h2: 20px;
+    --fs-card: 18px;
+    --fs-small: 14px;
+}
+body.fs-lg { --fs-body: 22px; --fs-h1: 28px; --fs-h2: 24px; --fs-card: 22px; --fs-small: 17px; }
+body.fs-xl { --fs-body: 26px; --fs-h1: 32px; --fs-h2: 28px; --fs-card: 26px; --fs-small: 20px; }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: var(--fs-body);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background: var(--paper-2);
+    border-bottom: 2px solid var(--line);
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.topbar .title {
+    font-size: var(--fs-h1);
+    font-weight: bold;
+    color: var(--ink);
+    white-space: nowrap;
+}
+.topbar .right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.topbar .coins {
+    font-size: var(--fs-body);
+    font-weight: bold;
+    color: var(--gold);
+    background: var(--paper);
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--gold-light);
+}
+.topbar .fs-btn {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 4px 10px;
+    cursor: pointer;
+    font-size: var(--fs-small);
+    color: var(--ink);
+    font-family: Georgia, serif;
+}
+.topbar .fs-btn:hover { background: var(--paper-2); }
+
+.stars {
+    display: flex;
+    gap: 2px;
+    align-items: center;
+}
+.stars .star {
+    font-size: var(--fs-h2);
+    color: var(--ink-soft);
+    opacity: 0.3;
+}
+.stars .star.filled {
+    color: var(--gold);
+    opacity: 1;
+}
+
+.main {
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+    gap: 0;
+    min-height: calc(100vh - 60px);
+}
+
+.sticker-col {
+    width: 200px;
+    padding: 8px 6px;
+    background: var(--paper-2);
+    border-right: 1px solid var(--line);
+    border-left: 1px solid var(--line);
+}
+.sticker-col.col-right {
+    border-right: none;
+    border-left: 1px solid var(--line);
+}
+.sticker-col .col-label {
+    text-align: center;
+    font-size: var(--fs-small);
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.sticker-col .sticker-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 6px;
+}
+.sticker-slot {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    background: var(--paper);
+    border: 1px dashed var(--line);
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+    transition: background 0.2s;
+}
+.sticker-slot:hover { background: var(--paper-2); }
+.sticker-slot.filled {
+    border-style: solid;
+    border-color: var(--gold);
+    background: var(--paper);
+}
+.sticker-slot .empty-hint {
+    color: var(--ink-soft);
+    opacity: 0.4;
+    font-size: var(--fs-h2);
+}
+.sticker-slot .remove-x {
+    position: absolute;
+    top: -2px;
+    right: 2px;
+    color: var(--seal);
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+    background: var(--paper);
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quiz-area {
+    padding: 20px 30px;
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+}
+.quiz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.quiz-header .chapter {
+    font-size: var(--fs-small);
+    color: var(--seal);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.quiz-header .progress {
+    font-size: var(--fs-small);
+    color: var(--ink-soft);
+}
+.quiz-header .nav-btns {
+    display: flex;
+    gap: 6px;
+}
+.quiz-header .nav-btns button {
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 2px 10px;
+    cursor: pointer;
+    font-size: var(--fs-small);
+    font-family: Georgia, serif;
+    color: var(--ink);
+}
+.quiz-header .nav-btns button:disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+.quiz-header .nav-btns button:hover:not(:disabled) {
+    background: var(--paper);
+}
+.bookmark-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: var(--fs-h2);
+    color: var(--ink-soft);
+    opacity: 0.5;
+}
+.bookmark-btn.active { color: var(--gold); opacity: 1; }
+
+.question-text {
+    font-size: var(--fs-body);
+    margin: 16px 0;
+    line-height: 1.7;
+}
+.options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+.option {
+    padding: 12px 16px;
+    background: var(--paper);
+    border: 2px solid var(--line);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: var(--fs-body);
+    font-family: Georgia, serif;
+    color: var(--ink);
+    text-align: left;
+    transition: all 0.2s;
+}
+.option:hover { border-color: var(--gold); background: var(--paper-2); }
+.option.selected {
+    border-color: var(--gold);
+    background: var(--paper-2);
+}
+.option.correct {
+    border-color: var(--ok);
+    background: #d4edda;
+}
+.option.wrong {
+    border-color: var(--seal);
+    background: #f8d7da;
+}
+.option.disabled { cursor: default; }
+
+.feedback {
+    margin: 16px 0;
+    padding: 14px 18px;
+    border-radius: 8px;
+    font-size: var(--fs-body);
+    display: none;
+}
+.feedback.show { display: block; }
+.feedback.correct {
+    background: #d4edda;
+    border: 1px solid var(--ok);
+    color: var(--ok);
+}
+.feedback.wrong {
+    background: #f8d7da;
+    border: 1px solid var(--seal);
+    color: var(--seal);
+}
+.feedback .principle {
+    margin-top: 8px;
+    font-size: var(--fs-body);
+    color: var(--ink);
+}
+.feedback .principle-cn {
+    margin-top: 6px;
+    font-size: var(--fs-small);
+    color: var(--ink-soft);
+}
+.feedback .cite {
+    margin-top: 6px;
+    font-size: var(--fs-small);
+    color: var(--ink-soft);
+    font-style: italic;
+}
+
+.next-btn {
+    background: var(--seal);
+    color: var(--paper);
+    border: none;
+    padding: 10px 28px;
+    border-radius: 8px;
+    font-size: var(--fs-body);
+    font-family: Georgia, serif;
+    cursor: pointer;
+    display: none;
+}
+.next-btn.show { display: inline-block; }
+.next-btn:hover { background: #6b1414; }
+
+.review-btn {
+    background: var(--gold);
+    color: var(--paper);
+    border: none;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: var(--fs-small);
+    font-family: Georgia, serif;
+    cursor: pointer;
+    margin-left: 10px;
+}
+.review-btn:hover { background: var(--gold-light); }
+
+.shop-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
+}
+.shop-overlay.show { display: flex; }
+.shop-modal {
+    background: var(--paper);
+    border-radius: 12px;
+    padding: 20px;
+    max-width: 700px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    border: 2px solid var(--gold);
+}
+.shop-modal h2 {
+    font-size: var(--fs-h1);
+    color: var(--ink);
+    margin-bottom: 4px;
+    text-align: center;
+}
+.shop-modal .shop-coins {
+    text-align: center;
+    font-size: var(--fs-body);
+    color: var(--gold);
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+.shop-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+}
+.shop-item {
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.shop-item:hover { border-color: var(--gold); }
+.shop-item.owned { opacity: 0.5; cursor: default; }
+.shop-item.owned::after {
+    content: '✓ owned';
+    display: block;
+    font-size: var(--fs-small);
+    color: var(--ok);
+    margin-top: 4px;
+}
+.shop-item .icon { font-size: 36px; }
+.shop-item .name { font-size: var(--fs-small); color: var(--ink); margin-top: 4px; }
+.shop-item .price { font-size: var(--fs-small); color: var(--gold); font-weight: bold; margin-top: 4px; }
+.shop-item button {
+    background: var(--seal);
+    color: var(--paper);
+    border: none;
+    padding: 4px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: var(--fs-small);
+    font-family: Georgia, serif;
+    margin-top: 6px;
+}
+.shop-item button:disabled { background: var(--ink-soft); cursor: default; }
+.shop-close {
+    display: block;
+    margin: 16px auto 0;
+    background: var(--ink-soft);
+    color: var(--paper);
+    border: none;
+    padding: 8px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: var(--fs-body);
+    font-family: Georgia, serif;
+}
+
+.placement-banner {
+    display: none;
+    background: var(--gold);
+    color: var(--paper);
+    padding: 8px 20px;
+    text-align: center;
+    font-size: var(--fs-body);
+    font-weight: bold;
+}
+.placement-banner.show { display: block; }
+.placement-banner .cancel-btn {
+    background: var(--paper);
+    color: var(--gold);
+    border: none;
+    padding: 2px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: var(--fs-small);
+    font-family: Georgia, serif;
+    margin-left: 12px;
+}
+
+@media (max-width: 768px) {
+    .main {
+        grid-template-columns: 80px 1fr 80px;
+    }
+    .sticker-col {
+        width: 80px;
+        padding: 4px 3px;
+    }
+    .sticker-col .sticker-grid {
+        gap: 3px;
+    }
+    .sticker-slot {
+        font-size: 18px;
+    }
+    .sticker-slot .empty-hint {
+        font-size: var(--fs-small);
+    }
+    .quiz-area {
+        padding: 12px 8px;
+    }
+    .topbar {
+        padding: 8px 10px;
+    }
+    .topbar .title {
+        font-size: var(--fs-h2);
+    }
+    .shop-grid {
+        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="title">⚖ SQE · Public Order Law</div>
+  <div class="stars" id="stars-top"></div>
+  <div class="right">
+    <div class="coins">💰 <span class="val" id="coins">0</span></div>
+    <button class="fs-btn" onclick="changeFS(-1)">A-</button>
+    <button class="fs-btn" onclick="changeFS(1)">A+</button>
+  </div>
+</div>
+
+<div class="placement-banner" id="placement-banner">
+  Tap a slot to place your sticker!
+  <button class="cancel-btn" onclick="cancelPlacement()">Cancel</button>
+</div>
+
+<div class="main">
+  <div class="sticker-col col-left" id="col-left">
+    <div class="col-label">Left</div>
+  </div>
+
+  <div class="quiz-area">
+    <div class="quiz-header">
+      <div>
+        <span class="chapter" id="chapter"></span>
+        <span class="progress" id="progress" style="margin-left:12px;"></span>
+      </div>
+      <div class="nav-btns">
+        <button id="prev-btn" onclick="prevQuestion()">← Prev</button>
+        <button id="review-btn" class="review-btn" onclick="startReview()" style="display:none;">Review Wrong</button>
+        <button id="next-nav-btn" onclick="nextQuestion()">Next →</button>
+        <button class="bookmark-btn" id="bookmark-btn" onclick="toggleBookmark()">☆</button>
+      </div>
+    </div>
+    <div class="stars" id="stars-quiz" style="justify-content:center; margin: 4px 0;"></div>
+    <div class="question-text" id="question-text"></div>
+    <div class="options" id="options"></div>
+    <div class="feedback" id="feedback"></div>
+    <button class="next-btn" id="next-btn" onclick="nextQuestion()">Next →</button>
+  </div>
+
+  <div class="sticker-col col-right" id="col-right">
+    <div class="col-label">Right</div>
+  </div>
+</div>
+
+<div class="shop-overlay" id="shop-overlay">
+  <div class="shop-modal">
+    <h2>🏷️ Sticker Shop</h2>
+    <div class="shop-coins">💰 Coins: <span id="shop-coins">0</span></div>
+    <div class="shop-grid" id="shop-grid"></div>
+    <button class="shop-close" onclick="closeShop()">Close</button>
+  </div>
+</div>
+
+<script>
+const STORAGE_KEY = 'sqe-l5-stickers-v1';
+const SLOTS_PER_COL = 10;
+
+const DEFAULT_STATE = {
+  coins: 0,
+  qIndex: 0,
+  answered: [],
+  wrong: {},
+  bookmarked: [],
+  stickers: {},
+  placementItem: null,
+  fsLevel: 0,
+  reviewMode: false,
+  reviewQueue: []
+};
+
+const STICKERS = [
+  { id: 'daisy',       name: 'Daisy',           icon: '🌼', price: 50 },
+  { id: 'tulip',       name: 'Tulip',           icon: '🌷', price: 50 },
+  { id: 'rose',        name: 'Rose',            icon: '🌹', price: 80 },
+  { id: 'sunflower',   name: 'Sunflower',       icon: '🌻', price: 80 },
+  { id: 'clover',      name: 'Clover',          icon: '🍀', price: 100 },
+  { id: 'cactus',      name: 'Cactus',          icon: '🌵', price: 120 },
+  { id: 'palm',        name: 'Palm',            icon: '🌴', price: 150 },
+  { id: 'fir',         name: 'Fir Tree',        icon: '🌲', price: 150 },
+  { id: 'book',        name: 'Law Book',        icon: '📕', price: 100 },
+  { id: 'scroll',      name: 'Scroll',          icon: '📜', price: 120 },
+  { id: 'trophy',      name: 'Trophy',          icon: '🏆', price: 200 },
+  { id: 'medal',       name: 'Medal',           icon: '🎖', price: 200 },
+  { id: 'ribbon',      name: 'Ribbon',          icon: '🎗', price: 150 },
+  { id: 'star',        name: 'Star',            icon: '⭐', price: 100 },
+  { id: 'gem',         name: 'Gem',             icon: '💎', price: 300 },
+  { id: 'crown',       name: 'Crown',           icon: '👑', price: 500 },
+  { id: 'anchor',      name: 'Anchor',          icon: '⚓', price: 250 },
+  { id: 'key',         name: 'Key',             icon: '🔑', price: 180 },
+  { id: 'balance',     name: 'Scales',          icon: '⚖', price: 350 },
+  { id: 'gavel',       name: 'Gavel',           icon: '🔨', price: 400 }
+];
+
+const QUESTIONS = [
+  {
+    "key": "po1",
+    "chapter": "Ch 6: Public Order Law",
+    "text": "The police learn that a man plans to lead a public procession through the streets of a major town to protest police violence. He has not notified the police of the procession in advance. What is the consequence of this failure to notify?",
+    "options": [
+      "The failure to notify means the police may ban the procession.",
+      "The police may ban with the permission of the home secretary.",
+      "The police may ban with the permission of the local council and home secretary.",
+      "The police may impose conditions on the route.",
+      "The failure to notify means the police may prosecute the man for an offence."
+    ],
+    "best": 4,
+    "principle": "Under the Public Order Act 1986, the organiser of a public procession must give the police advance notice (at least 6 days before, or as soon as reasonably practicable). Failure to notify is an offence committed by the organiser. However, the failure to notify does not give the police the power to ban the procession or automatically impose conditions. The power to ban or impose conditions depends on the senior officer reasonably believing that serious disorder, damage, disruption, or intimidation may result.",
+    "principleCN": "根据1986年《公共秩序法》，公共游行的组织者必须提前通知警方（至少6天前，或尽快）。未通知是组织者实施的犯罪行为。但未通知并不赋予警方禁止游行或自动施加条件的权力。",
+    "cite": "Revise SQE Const. & Admin. Law Ch.6; Public Order Act 1986",
+    "citeCN": "Revise SQE 宪法与行政法, 第6章; 1986年《公共秩序法》"
+  },
+  {
+    "key": "po2",
+    "chapter": "Ch 6: Public Order Law",
+    "text": "A Manchester United supporter is stopped by police from walking to the railway station after a match. There have been previous violent clashes between rival supporters at this location. The supporter refuses to take an alternative route and is arrested. What is the legal basis for the arrest?",
+    "options": [
+      "The police have no power to deprive him of liberty.",
+      "The police may arrest for breach of the peace.",
+      "The police may arrest for obstruction of the highway.",
+      "The police may arrest for unauthorised public procession.",
+      "The police may arrest for unauthorised public assembly."
+    ],
+    "best": 1,
+    "principle": "The common law power of arrest for breach of the peace applies where the police reasonably believe that violence might occur. Previous violent clashes between rival supporters make it reasonable to believe that violence might recur. The key elements are: (1) a sufficiently real and present threat of violence, and (2) the police action is reasonably necessary to prevent it.",
+    "principleCN": "普通法中的扰乱治安逮捕权适用于警方有合理理由相信可能发生暴力的情况。之前对手球迷之间的暴力冲突使警方有理由相信暴力可能再次发生。",
+    "cite": "Revise SQE Const. & Admin. Law Ch.6; common law breach of the peace",
+    "citeCN": "Revise SQE 宪法与行政法, 第6章; 普通法扰乱治安"
+  },
+  {
+    "key": "po3",
+    "chapter": "Ch 6: Public Order Law",
+    "text": "Two drunk men start fighting outside a pub. A barmaid sees them through the window, is frightened by the violence, and calls the police. What offence have the two men committed?",
+    "options": [
+      "Riot.",
+      "Violent disorder.",
+      "Affray.",
+      "Fear or provocation of violence.",
+      "Harassment, alarm or distress."
+    ],
+    "best": 2,
+    "principle": "Under the Public Order Act 1986, the key distinctions between riot, violent disorder, and affray are based on the number of persons involved: Riot (s.1) requires 12+ persons; Violent disorder (s.2) requires 3+ persons; Affray (s.3) requires 2 or more persons (or a single person). Two persons fighting could constitute affray. The barmaid is a person of reasonable firmness who might fear for her safety — this is a required element.",
+    "principleCN": "根据1986年《公共秩序法》，暴乱、暴力骚乱和斗殴的关键区别在于参与人数：暴乱（s.1）需12人以上；暴力骚乱（s.2）需3人以上；斗殴（s.3）需2人或以上。两人打架可构成斗殴罪。",
+    "cite": "Revise SQE Const. & Admin. Law Ch.6; Public Order Act 1986 ss.1-3",
+    "citeCN": "Revise SQE 宪法与行政法, 第6章; 1986年《公共秩序法》第1-3条"
+  },
+  {
+    "key": "po4",
+    "chapter": "Ch 6: Public Order Law",
+    "text": "A man hosts a multi-day party at his house, playing loud music throughout the night. The neighbours are unable to sleep and are distressed by the continuous noise. They ask the chief officer of police to intervene. What is the most applicable offence?",
+    "options": [
+      "Breach of the peace.",
+      "Trespassory assembly.",
+      "Rave.",
+      "Harassment, alarm or distress.",
+      "Unauthorised public assembly."
+    ],
+    "best": 3,
+    "principle": "Breach of the peace requires violence, not merely noise. The party is at the man's own house, so it is not trespassory. Public assemblies do not need authorisation, and this is not an assembly. The most applicable offence is s.5 Public Order Act 1986: harassment, alarm or distress, which covers using threatening, abusive, or insulting words or behaviour, or disorderly behaviour, within the hearing or sight of a person likely to be caused harassment, alarm, or distress.",
+    "principleCN": "扰乱治安需要暴力，不仅仅是噪音。派对在当事人自己家中，不构成侵入。公共集会不需要授权，这也不是集会。最适用的罪名是1986年《公共秩序法》第5条：骚扰、惊恐或困扰。",
+    "cite": "Revise SQE Const. & Admin. Law Ch.6; s.5 Public Order Act 1986",
+    "citeCN": "Revise SQE 宪法与行政法, 第6章; 1986年《公共秩序法》第5条"
+  },
+  {
+    "key": "po5",
+    "chapter": "Ch 6: Public Order Law",
+    "text": "A large crowd of animal rights protesters gather on the pavement outside a shop, displaying signs and shouting slogans. There is no violence. However, the street is completely blocked and no one can pass. The police ask the protesters to disperse; they refuse and are arrested. What offence have they committed?",
+    "options": [
+      "Obstruction of the highway.",
+      "Breach of the peace.",
+      "Unauthorised public assembly.",
+      "Affray.",
+      "Harassment, alarm or distress."
+    ],
+    "best": 0,
+    "principle": "The protesters are blocking the highway, which constitutes the offence of obstruction of the highway. The highway is a public thoroughfare, and while people have a right to use it for passage (including for lawful protest), they do not have the right to obstruct it completely. When the police asked the protesters to disperse and they refused, their continued obstruction became unlawful.",
+    "principleCN": "抗议者阻塞了公路，构成阻碍公路罪。公路是公共通道，虽然人们有权使用它通行（包括合法抗议），但无权完全阻塞它。",
+    "cite": "Revise SQE Const. & Admin. Law Ch.6; obstruction of highway",
+    "citeCN": "Revise SQE 宪法与行政法, 第6章; 阻碍公路"
+  },
+  {
+    "key": "po6",
+    "chapter": "Ch 6: Public Order Law",
+    "text": "A group of organisers plan to hold a public procession through a town centre to protest against a new government policy. They are unsure about their legal obligations regarding notifying the authorities. To whom must notice be given?",
+    "options": [
+      "Notice must be given to the local council at least 7 days in advance.",
+      "Notice is only required if the procession is expected to attract more than 100 people.",
+      "No notice is required for protest processions.",
+      "Notice must be given in advance of any procession to the police.",
+      "Notice must be given to the home secretary at least 14 days in advance."
+    ],
+    "best": 3,
+    "principle": "Under the Public Order Act 1986, advance notice must be given to the police for any public procession. Typically, notice must be given at least 6 days before the procession (or as soon as reasonably practicable if 6 days is not possible). The notice is given to the police, not the local council or home secretary. There is no minimum number of participants.",
+    "principleCN": "根据1986年《公共秩序法》，任何公共游行都必须提前通知警方。通常至少在游行前6天通知（或尽快通知）。通知对象是警方，不是地方议会或内政大臣。",
+    "cite": "FLK1 Practice 180 Q (Session 1, Q75); Public Order Act 1986",
+    "citeCN": "FLK1 练习题（第1场, Q75）; 1986年《公共秩序法》"
+  },
+  {
+    "key": "po7",
+    "chapter": "Ch 6: Public Order Law",
+    "text": "A group of protesters is planning to hold a static protest (public assembly) in a city centre. The police are concerned that the protest may cause serious disruption to the life of the community and may lead to disorder. What power do the police have?",
+    "options": [
+      "The police have the power to impose conditions on the protesters.",
+      "The police must ban the protest entirely.",
+      "The police have no power to intervene unless violence occurs.",
+      "The police must seek the home secretary's permission before imposing any conditions.",
+      "The police can only impose conditions if the protesters agree."
+    ],
+    "best": 0,
+    "principle": "Under the Public Order Act 1986, the police have the power to impose conditions on protesters — both on public assemblies and public processions. A senior officer may impose conditions on the place, duration, and number of participants if they reasonably believe that the protest may result in serious public disorder, serious damage to property, serious disruption to the life of the community, or intimidation.",
+    "principleCN": "根据1986年《公共秩序法》，警方有权对抗议者施加条件——包括公共集会和公共游行。高级警官认为可能导致严重公共秩序混乱时，可对地点、持续时间和参与人数施加条件。",
+    "cite": "FLK1 Practice 180 Q (Session 2, Q84); Public Order Act 1986",
+    "citeCN": "FLK1 练习题（第2场, Q84）; 1986年《公共秩序法》"
+  },
+  {
+    "key": "po8",
+    "chapter": "Ch 6: Public Order Law",
+    "text": "A group of 15 people are shouting threats and throwing bottles at a rival group across a street. Several bystanders are terrified. Under the Public Order Act 1986, what is the most serious public order offence committed?",
+    "options": [
+      "Affray, because violence is being used by persons against each other.",
+      "Riot, because 12 or more persons are threatening violence together.",
+      "Violent disorder, because 3 or more persons are threatening violence.",
+      "Harassment, alarm or distress, because bystanders are terrified.",
+      "Breach of the peace, because the violence is occurring in public."
+    ],
+    "best": 1,
+    "principle": "Riot (s.1 POA 1986) requires 12 or more persons who are present together and use or threaten unlawful violence for a common purpose. With 15 people acting together, the threshold for riot is met. Violent disorder (s.2) requires 3+ persons, and affray (s.3) requires 2+ persons, but riot is the most serious offence when 12+ persons are involved.",
+    "principleCN": "暴乱（1986年《公共秩序法》第1条）要求12人以上共同在场并使用或威胁非法暴力。15人一起行动，达到暴乱门槛。暴乱是最严重的公共秩序犯罪。",
+    "cite": "Public Order Act 1986 s.1; Revise SQE Const. & Admin. Law Ch.6",
+    "citeCN": "1986年《公共秩序法》第1条; Revise SQE 宪法与行政法, 第6章"
+  },
+  {
+    "key": "po9",
+    "chapter": "Ch 6: Public Order Law",
+    "text": "A man is drunk in a town centre and is swearing loudly at passers-by. A police officer witnesses this behaviour. Under which provision can the man be charged?",
+    "options": [
+      "Affray under s.3 Public Order Act 1986.",
+      "Riot under s.1 Public Order Act 1986.",
+      "Harassment, alarm or distress under s.5 Public Order Act 1986.",
+      "Breach of the peace at common law.",
+      "Violent disorder under s.2 Public Order Act 1986."
+    ],
+    "best": 2,
+    "principle": "Section 5 Public Order Act 1986 covers harassment, alarm or distress. It applies where a person uses threatening or abusive words or behaviour, or disorderly behaviour, within the hearing or sight of a person likely to be caused harassment, alarm or distress. Swearing loudly at passers-by is disorderly behaviour under s.5. There is no violence (so no affray or violent disorder) and not enough people (for riot).",
+    "principleCN": "1986年《公共秩序法》第5条涵盖骚扰、惊恐或困扰。适用于在可能受到骚扰、惊恐或困扰的人的听觉或视觉范围内使用威胁性或辱骂性言语或行为，或扰乱秩序的行为。大声对路人说脏话属于第5条下的扰乱秩序行为。",
+    "cite": "s.5 Public Order Act 1986; Revise SQE Const. & Admin. Law Ch.6",
+    "citeCN": "1986年《公共秩序法》第5条; Revise SQE 宪法与行政法, 第6章"
+  },
+  {
+    "key": "po10",
+    "chapter": "Ch 6: Public Order Law",
+    "text": "Police want to ban a public procession entirely due to fears of serious disorder. What legal requirement must be met?",
+    "options": [
+      "The police chief may ban the procession on their own authority.",
+      "The police may ban the procession with the consent of the local council only.",
+      "The police may ban the procession with the consent of the local council and the home secretary.",
+      "The police cannot ban a procession under any circumstances.",
+      "The home secretary alone may ban the procession without police input."
+    ],
+    "best": 2,
+    "principle": "Under the Public Order Act 1986, the police cannot ban a public procession on their own. Banning a procession requires the consent of both the local council and the home secretary. The police can impose conditions on their own authority, but an outright ban requires this higher level of approval.",
+    "principleCN": "根据1986年《公共秩序法》，警方不能自行禁止公共游行。禁止游行需要地方议会和内政大臣双方的同意。警方可以自行施加条件，但完全禁止需要更高级别的批准。",
+    "cite": "Public Order Act 1986; Revise SQE Const. & Admin. Law Ch.6",
+    "citeCN": "1986年《公共秩序法》; Revise SQE 宪法与行政法, 第6章"
+  },
+  {
+    "key": "po11",
+    "chapter": "Ch 6: Public Order Law",
+    "text": "Three individuals are standing in a group on a street corner, shouting abuse at shoppers and threatening to punch anyone who comes near. Several shoppers are frightened. What offence under the Public Order Act 1986 is most likely committed?",
+    "options": [
+      "Riot under s.1, because multiple persons are threatening violence.",
+      "Violent disorder under s.2, because three persons are threatening violence.",
+      "Affray under s.3, because violence is threatened.",
+      "Harassment, alarm or distress under s.5.",
+      "No offence is committed unless actual violence occurs."
+    ],
+    "best": 1,
+    "principle": "Violent disorder (s.2 POA 1986) requires 3 or more persons who are present together and use or threaten unlawful violence. With exactly three individuals threatening violence together, the threshold for violent disorder is met. Riot requires 12+ persons, and affray (s.3) applies to fewer than 3 persons or a single person.",
+    "principleCN": "暴力骚乱（1986年《公共秩序法》第2条）要求3人以上共同在场并使用或威胁非法暴力。三人一起威胁暴力，达到暴力骚乱门槛。暴乱需12人以上。",
+    "cite": "Public Order Act 1986 s.2; Revise SQE Const. & Admin. Law Ch.6",
+    "citeCN": "1986年《公共秩序法》第2条; Revise SQE 宪法与行政法, 第6章"
+  },
+  {
+    "key": "po12",
+    "chapter": "Ch 6: Public Order Law",
+    "text": "A woman is arrested at a football match for breach of the peace. She is held in custody for 4 hours and then released without charge. She wants to sue for false imprisonment. What is the likely outcome?",
+    "options": [
+      "She will succeed because no charge was brought.",
+      "She will fail because breach of the peace is a common law power and the arrest was preventative.",
+      "She will succeed because she was held for an unreasonable length of time.",
+      "She will fail because police immunity applies to all public order arrests.",
+      "She will succeed because breach of the peace is not a recognised offence."
+    ],
+    "best": 1,
+    "principle": "Breach of the peace is a common law power that allows police to arrest to prevent imminent violence. The arrest is preventative, not punitive — no charge needs to be brought. The police may detain the person for as long as is reasonably necessary to prevent the breach. 4 hours may be reasonable if the situation needed to calm down.",
+    "principleCN": "扰乱治安是普通法权力，允许警方逮捕以防止即将发生的暴力。逮捕是预防性的，不需要提出指控。警方可拘留当事人直到暴力威胁消除。",
+    "cite": "Common law; Revise SQE Const. & Admin. Law Ch.6",
+    "citeCN": "普通法; Revise SQE 宪法与行政法, 第6章"
+  },
+  {
+    "key": "po13",
+    "chapter": "Ch 6: Public Order Law",
+    "text": "A group of protesters stage a sit-down protest on a major road, completely blocking all traffic. The police ask them to move; they refuse. The protest is peaceful and non-violent. What is the most appropriate charge?",
+    "options": [
+      "Affray, because their actions could cause fear.",
+      "Riot, because there are more than 12 people.",
+      "Obstruction of the highway, because they are blocking the road unlawfully.",
+      "Harassment, alarm or distress, because drivers are alarmed.",
+      "No offence is committed because the protest is peaceful."
+    ],
+    "best": 2,
+    "principle": "Even peaceful and non-violent protests can constitute the offence of obstruction of the highway if they completely block a public thoroughfare. The right to protest does not include the right to obstruct the highway. When the protesters refuse to move after being asked by police, the obstruction becomes unlawful.",
+    "principleCN": "即使是和平非暴力的抗议，如果完全阻塞了公共通道，也可构成阻碍公路罪。抗议权不包括阻碍公路的权利。当抗议者在警方要求后拒绝移动时，阻拦变得非法。",
+    "cite": "Highway Act 1980 s.137; Revise SQE Const. & Admin. Law Ch.6",
+    "citeCN": "1980年《公路法》第137条; Revise SQE 宪法与行政法, 第6章"
+  },
+  {
+    "key": "po14",
+    "chapter": "Ch 6: Public Order Law",
+    "text": "A man uses threatening, abusive or insulting words or behaviour towards his neighbour over the garden fence, in a manner likely to cause harassment, alarm or distress. Which offence under the Public Order Act 1986 has he committed?",
+    "options": [
+      "Affray under s.3.",
+      "Violent disorder under s.2.",
+      "Harassment, alarm or distress under s.5.",
+      "Fear or provocation of violence under s.4.",
+      "No offence under the POA because it occurred on private property."
+    ],
+    "best": 2,
+    "principle": "Section 5 POA 1986 covers using threatening, abusive or insulting words or behaviour, or disorderly behaviour, within the hearing or sight of a person likely to be caused harassment, alarm or distress. The offence can be committed even on private property if the words or behaviour are within the hearing or sight of another person.",
+    "principleCN": "1986年《公共秩序法》第5条涵盖在可能受到骚扰、惊恐或困扰的人的听觉或视觉范围内使用威胁性、辱骂性或侮辱性言语或行为。即使在私人财产上，如果在他人听觉或视觉范围内，也可构成此罪。",
+    "cite": "s.5 Public Order Act 1986; Revise SQE Const. & Admin. Law Ch.6",
+    "citeCN": "1986年《公共秩序法》第5条; Revise SQE 宪法与行政法, 第6章"
+  },
+  {
+    "key": "po15",
+    "chapter": "Ch 6: Public Order Law",
+    "text": "Under the Public Order Act 1986, what is the minimum number of persons required for the offence of riot under s.1?",
+    "options": [
+      "2 or more persons.",
+      "3 or more persons.",
+      "6 or more persons.",
+      "12 or more persons.",
+      "20 or more persons."
+    ],
+    "best": 3,
+    "principle": "Under s.1 Public Order Act 1986, riot requires 12 or more persons who are present together and use or threaten unlawful violence for a common purpose. The purpose must be common to all 12+ persons. The thresholds are: riot (12+), violent disorder (3+), affray (2 or even 1).",
+    "principleCN": "根据1986年《公共秩序法》第1条，暴乱要求12人以上共同在场并为共同目的使用或威胁非法暴力。门槛为：暴乱（12人以上）、暴力骚乱（3人以上）、斗殴（2人甚至1人）。",
+    "cite": "s.1 Public Order Act 1986; Revise SQE Const. & Admin. Law Ch.6",
+    "citeCN": "1986年《公共秩序法》第1条; Revise SQE 宪法与行政法, 第6章"
+  },
+  {
+    "key": "po16",
+    "chapter": "Ch 6: Public Order Law",
+    "text": "A single person waves a knife around in a public park, threatening passers-by. Several people are terrified. Under the Public Order Act 1986, what offence has been committed?",
+    "options": [
+      "Riot, because a weapon is involved.",
+      "Violent disorder, because the public is threatened.",
+      "Affray, because a single person can commit this offence under s.3.",
+      "Harassment, alarm or distress under s.5.",
+      "No POA offence — only common law assault."
+    ],
+    "best": 2,
+    "principle": "Affray under s.3 Public Order Act 1986 can be committed by a single person who uses or threatens unlawful violence towards another. The violence must be such as would cause a person of reasonable firmness present at the scene to fear for their personal safety. A person waving a knife in a park would meet this threshold.",
+    "principleCN": "1986年《公共秩序法》第3条下的斗殴罪可由单人实施。该人使用或威胁非法暴力，且暴力程度足以使在场理智坚定的人担心自身安全。在公园挥刀的人将达到此门槛。",
+    "cite": "s.3 Public Order Act 1986; Revise SQE Const. & Admin. Law Ch.6",
+    "citeCN": "1986年《公共秩序法》第3条; Revise SQE 宪法与行政法, 第6章"
+  },
+  {
+    "key": "po17",
+    "chapter": "Ch 6: Public Order Law",
+    "text": "A group of environmental protesters glue themselves to the road, blocking a major motorway. The police arrive and ask them to move. The protesters refuse. Which of the following is correct?",
+    "options": [
+      "The police may only charge them with breach of the peace.",
+      "The protesters can be charged with obstruction of the highway and may be forcibly removed.",
+      "The police have no power to remove them because the protest is non-violent.",
+      "The protesters can only be charged under s.5 Public Order Act 1986.",
+      "The home secretary must approve any removal."
+    ],
+    "best": 1,
+    "principle": "Obstruction of the highway is committed when a person, without lawful authority or excuse, obstructs free passage along the highway. Glueing oneself to a motorway is a clear obstruction. The police may forcibly remove the protesters and charge them. The non-violent nature of the protest does not provide a lawful excuse for blocking the highway.",
+    "principleCN": "当无合法权力或理由阻碍公路自由通行时，构成阻碍公路罪。把自己粘在高速公路上是明显的阻碍行为。警方可以强制移除抗议者并起诉。抗议的非暴力性质不构成合法理由。",
+    "cite": "Highway Act 1980 s.137; Revise SQE Const. & Admin. Law Ch.6",
+    "citeCN": "1980年《公路法》第137条; Revise SQE 宪法与行政法, 第6章"
+  },
+  {
+    "key": "po18",
+    "chapter": "Ch 6: Public Order Law",
+    "text": "Police receive notice of a planned public procession. The senior officer reasonably believes it may result in serious public disorder. What is the MOST the police can do on their own authority (without council or home secretary approval)?",
+    "options": [
+      "Ban the procession entirely.",
+      "Impose conditions on the route, duration, and number of participants.",
+      "Arrest the organisers before the procession takes place.",
+      "Require the procession to take place indoors only.",
+      "Cancel the procession and reschedule it for a different date."
+    ],
+    "best": 1,
+    "principle": "Under the Public Order Act 1986, a senior officer may impose conditions on a public procession (route, duration, maximum participants) if they reasonably believe it may result in serious disorder, damage, disruption, or intimidation. However, an outright ban requires the consent of both the local council and the home secretary. The police cannot ban a procession on their own authority.",
+    "principleCN": "根据1986年《公共秩序法》，高级警官认为可能导致严重混乱时，可对公共游行的路线、持续时间和最大参与人数施加条件。但完全禁止需要地方议会和内政大臣双方同意。警方不能自行禁止游行。",
+    "cite": "Public Order Act 1986 ss.12-13; Revise SQE Const. & Admin. Law Ch.6",
+    "citeCN": "1986年《公共秩序法》第12-13条; Revise SQE 宪法与行政法, 第6章"
+  },
+  {
+    "key": "po19",
+    "chapter": "Ch 6: Public Order Law",
+    "text": "A man intentionally pushes another man in the chest during a verbal argument in a pub garden. No one else is present. Under the Public Order Act 1986, is affray committed?",
+    "options": [
+      "Yes, because violence was used against another person.",
+      "No, because a person of reasonable firmness would not have been present to fear for their safety.",
+      "Yes, because the push was intentional and unlawful.",
+      "No, because affray requires at least 3 people to be present.",
+      "Yes, because the offence occurred in a public place."
+    ],
+    "best": 1,
+    "principle": "Affray under s.3 POA 1986 requires that the violence used or threatened would cause a person of reasonable firmness present at the scene to fear for their personal safety. However, if no such person is actually present (hypothetical), the offence cannot be committed. Since no one else was present in the pub garden, a person of reasonable firmness was not present.",
+    "principleCN": "1986年《公共秩序法》第3条下的斗殴罪要求所使用或威胁的暴力足以使在场理智坚定的人担心自身安全。但如果没有这样的人在 场，就不能构成此罪。因为酒吧花园里没有其他人，所以不构成斗殴。",
+    "cite": "s.3 Public Order Act 1986; Revise SQE Const. & Admin. Law Ch.6",
+    "citeCN": "1986年《公共秩序法》第3条; Revise SQE 宪法与行政法, 第6章"
+  },
+  {
+    "key": "po20",
+    "chapter": "Ch 6: Public Order Law",
+    "text": "Under anti-social behaviour legislation, what order can police or local authorities obtain to address ongoing anti-social behaviour by an individual?",
+    "options": [
+      "An ASBO (Anti-Social Behaviour Order) under the Crime and Disorder Act 1998.",
+      "An Injunction under the Anti-social Behaviour, Crime and Policing Act 2014.",
+      "A Restraining Order under the Protection from Harassment Act 1997.",
+      "A Dispersal Order under the Public Order Act 1986.",
+      "A Curfew Order under the Criminal Justice Act 2003."
+    ],
+    "best": 1,
+    "principle": "The Anti-social Behaviour, Crime and Policing Act 2014 replaced ASBOs with civil injunctions for anti-social behaviour. These injunctions can be sought by police or local authorities and can include positive requirements as well as prohibitions. ASBOs under the Crime and Disorder Act 1998 are no longer available for new cases.",
+    "principleCN": "2014年《反社会行为、犯罪和警务法》用民事禁令取代了ASBO。这些禁令可由警方或地方当局申请，可包括积极要求和禁止性条款。1998年《犯罪与扰乱秩序法》下的ASBO不再适用于新案件。",
+    "cite": "Anti-social Behaviour, Crime and Policing Act 2014; Revise SQE Const. & Admin. Law Ch.6",
+    "citeCN": "2014年《反社会行为、犯罪和警务法》; Revise SQE 宪法与行政法, 第6章"
+  }
+]
+;
+
+let state = JSON.parse(JSON.stringify(DEFAULT_STATE));
+
+function load() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      const saved = JSON.parse(raw);
+      state = Object.assign(JSON.parse(JSON.stringify(DEFAULT_STATE)), saved);
+    }
+  } catch(e) { console.warn('Load failed:', e); }
+}
+
+function save() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  } catch(e) { console.warn('Save failed:', e); }
+}
+
+function applyFS() {
+  document.body.classList.remove('fs-lg', 'fs-xl');
+  if (state.fsLevel === 1) document.body.classList.add('fs-lg');
+  else if (state.fsLevel === 2) document.body.classList.add('fs-xl');
+}
+
+function changeFS(dir) {
+  state.fsLevel = Math.max(0, Math.min(2, state.fsLevel + dir));
+  applyFS();
+  save();
+}
+
+function renderCoins() {
+  document.getElementById('coins').textContent = state.coins;
+}
+
+function renderStars() {
+  const count = Object.keys(state.stickers).filter(id => {
+    const s = state.stickers[id];
+    return s.side !== null && s.slot >= 0;
+  }).length;
+  const filled = Math.floor(count / 4);
+  const html = Array.from({length: 5}, (_, i) =>
+    `<span class="star ${i < filled ? 'filled' : ''}">${i < filled ? '★' : '☆'}</span>`
+  ).join('');
+  const top = document.getElementById('stars-top');
+  const quiz = document.getElementById('stars-quiz');
+  if (top) top.innerHTML = html;
+  if (quiz) quiz.innerHTML = html;
+}
+
+function getCurrentQuestions() {
+  if (state.reviewMode && state.reviewQueue.length > 0) {
+    return state.reviewQueue;
+  }
+  return QUESTIONS;
+}
+
+function renderQuestion() {
+  const qs = getCurrentQuestions();
+  const idx = state.qIndex;
+  const q = qs[idx];
+
+  document.getElementById('chapter').textContent = q.chapter;
+  document.getElementById('progress').textContent = `Question ${idx + 1} / ${qs.length}`;
+  document.getElementById('question-text').textContent = q.text;
+
+  const optsDiv = document.getElementById('options');
+  optsDiv.innerHTML = '';
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'option';
+    btn.textContent = opt;
+    const answered = state.answered.includes(q.key);
+    if (answered) {
+      if (i === q.best) btn.classList.add('correct');
+      if (state.wrong[q.key] === i) btn.classList.add('wrong');
+    }
+    btn.onclick = () => selectOption(i);
+    optsDiv.appendChild(btn);
+  });
+
+  const fb = document.getElementById('feedback');
+  const nextBtn = document.getElementById('next-btn');
+  if (state.answered.includes(q.key)) {
+    const isCorrect = state.wrong[q.key] === undefined;
+    fb.className = 'feedback show ' + (isCorrect ? 'correct' : 'wrong');
+    let html = isCorrect ? '✅ Correct!' : '❌ Not quite.';
+    html += `<div class="principle"><strong>Principle:</strong> ${q.principle}</div>`;
+    html += `<div class="principle-cn">${q.principleCN}</div>`;
+    html += `<div class="cite">📚 ${q.cite}</div>`;
+    html += `<div class="cite">${q.citeCN}</div>`;
+    fb.innerHTML = html;
+    nextBtn.classList.add('show');
+    nextBtn.textContent = idx + 1 < qs.length ? 'Next →' : 'Finish';
+  } else {
+    fb.className = 'feedback';
+    fb.innerHTML = '';
+    nextBtn.classList.remove('show');
+  }
+
+  const bmBtn = document.getElementById('bookmark-btn');
+  if (state.bookmarked.includes(q.key)) {
+    bmBtn.classList.add('active');
+    bmBtn.textContent = '★';
+  } else {
+    bmBtn.classList.remove('active');
+    bmBtn.textContent = '☆';
+  }
+
+  document.getElementById('prev-btn').disabled = idx === 0;
+  document.getElementById('next-nav-btn').disabled = idx === qs.length - 1;
+
+  renderReviewBtn();
+}
+
+function toggleBookmark() {
+  const q = getCurrentQuestions()[state.qIndex];
+  const i = state.bookmarked.indexOf(q.key);
+  if (i >= 0) state.bookmarked.splice(i, 1);
+  else state.bookmarked.push(q.key);
+  save();
+  renderQuestion();
+}
+
+function selectOption(i) {
+  const q = getCurrentQuestions()[state.qIndex];
+  const wasAnswered = state.answered.includes(q.key);
+  const wasWrong = state.wrong[q.key] !== undefined;
+
+  if (wasAnswered) {
+    if (wasWrong) {
+      delete state.wrong[q.key];
+    }
+    if (i === q.best && wasWrong) {
+      state.coins += 20;
+      renderCoins();
+    }
+  } else {
+    state.answered.push(q.key);
+    if (i === q.best) {
+      state.coins += 20;
+      renderCoins();
+    }
+  }
+
+  if (i !== q.best) {
+    state.wrong[q.key] = i;
+  }
+  save();
+  renderQuestion();
+}
+
+function nextQuestion() {
+  const qs = getCurrentQuestions();
+  if (state.qIndex < qs.length - 1) {
+    state.qIndex++;
+    save();
+    renderQuestion();
+  } else {
+    if (state.reviewMode) {
+      exitReviewMode();
+    } else {
+      state.qIndex = 0;
+      save();
+      renderQuestion();
+    }
+  }
+}
+
+function prevQuestion() {
+  if (state.qIndex > 0) {
+    state.qIndex--;
+    save();
+    renderQuestion();
+  }
+}
+
+function getReviewQuestions() {
+  return QUESTIONS.filter(q => state.wrong[q.key] !== undefined);
+}
+
+function renderReviewBtn() {
+  const reviewBtn = document.getElementById('review-btn');
+  const wrongQs = getReviewQuestions();
+  if (wrongQs.length > 0 && !state.reviewMode) {
+    reviewBtn.style.display = '';
+    reviewBtn.textContent = `Review Wrong (${wrongQs.length})`;
+  } else {
+    reviewBtn.style.display = 'none';
+  }
+}
+
+function startReview() {
+  const wrongQs = getReviewQuestions();
+  if (wrongQs.length === 0) return;
+  state.reviewMode = true;
+  state.reviewQueue = wrongQs;
+  state.qIndex = 0;
+  save();
+  renderQuestion();
+}
+
+function exitReviewMode() {
+  state.reviewMode = false;
+  state.reviewQueue = [];
+  state.qIndex = 0;
+  save();
+  renderQuestion();
+}
+
+function renderStickers() {
+  ['left', 'right'].forEach(side => {
+    const col = document.getElementById('col-' + side);
+    const label = col.querySelector('.col-label');
+    col.innerHTML = '';
+    col.appendChild(label);
+    const grid = document.createElement('div');
+    grid.style.cssText = 'display:grid; grid-template-columns: 1fr; gap: 6px;';
+    for (let i = 0; i < SLOTS_PER_COL; i++) {
+      const slot = document.createElement('div');
+      slot.className = 'sticker-slot';
+      let placedItem = null;
+      for (const [id, data] of Object.entries(state.stickers)) {
+        if (data.side === side && data.slot === i) {
+          placedItem = STICKERS.find(s => s.id === id);
+          break;
+        }
+      }
+      if (placedItem) {
+        slot.classList.add('filled');
+        slot.innerHTML = placedItem.icon;
+        const x = document.createElement('div');
+        x.className = 'remove-x';
+        x.textContent = '×';
+        x.onclick = (e) => { e.stopPropagation(); removeSticker(placedItem.id); };
+        slot.appendChild(x);
+      } else {
+        slot.innerHTML = '<span class="empty-hint">+</span>';
+      }
+      slot.onclick = () => placeSticker(side, i);
+      grid.appendChild(slot);
+    }
+    col.appendChild(grid);
+  });
+  renderStars();
+}
+
+function removeSticker(id) {
+  state.stickers[id] = { side: null, slot: -1 };
+  save();
+  renderStickers();
+}
+
+function placeSticker(side, slot) {
+  if (!state.placementItem) return;
+  for (const [id, data] of Object.entries(state.stickers)) {
+    if (data.side === side && data.slot === slot && id !== state.placementItem) {
+      state.stickers[id] = { side: null, slot: -1 };
+      break;
+    }
+  }
+  state.stickers[state.placementItem] = { side: side, slot: slot };
+  state.placementItem = null;
+  document.getElementById('placement-banner').classList.remove('show');
+  save();
+  renderStickers();
+}
+
+function cancelPlacement() {
+  state.placementItem = null;
+  document.getElementById('placement-banner').classList.remove('show');
+  save();
+}
+
+function openShop() {
+  document.getElementById('shop-coins').textContent = state.coins;
+  const grid = document.getElementById('shop-grid');
+  grid.innerHTML = '';
+  STICKERS.forEach(s => {
+    const item = document.createElement('div');
+    item.className = 'shop-item';
+    const owned = state.stickers[s.id] !== undefined;
+    const placed = owned && state.stickers[s.id].side !== null && state.stickers[s.id].slot >= 0;
+    if (owned) item.classList.add('owned');
+    item.innerHTML = `
+      <div class="icon">${s.icon}</div>
+      <div class="name">${s.name}</div>
+      <div class="price">💰 ${s.price}</div>
+    `;
+    if (!owned) {
+      const btn = document.createElement('button');
+      btn.textContent = 'Buy';
+      btn.disabled = state.coins < s.price;
+      btn.onclick = () => buySticker(s.id);
+      item.appendChild(btn);
+    } else if (!placed) {
+      const btn = document.createElement('button');
+      btn.textContent = 'Stick';
+      btn.onclick = () => startPlacement(s.id);
+      item.appendChild(btn);
+    }
+    grid.appendChild(item);
+  });
+  document.getElementById('shop-overlay').classList.add('show');
+}
+
+function closeShop() {
+  document.getElementById('shop-overlay').classList.remove('show');
+}
+
+function buySticker(id) {
+  const s = STICKERS.find(x => x.id === id);
+  if (!s) return;
+  if (state.coins < s.price) return;
+  state.coins -= s.price;
+  state.stickers[id] = { side: null, slot: -1 };
+  save();
+  renderCoins();
+  openShop();
+  startPlacement(id);
+}
+
+function startPlacement(id) {
+  state.placementItem = id;
+  document.getElementById('placement-banner').classList.add('show');
+  closeShop();
+}
+
+function init() {
+  load();
+  applyFS();
+  renderCoins();
+  renderStickers();
+  renderStars();
+  renderQuestion();
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 's' && e.shiftKey) {
+      e.preventDefault();
+      openShop();
+    }
+  });
+
+  const rightDiv = document.querySelector('.topbar .right');
+  if (rightDiv) {
+    const shopBtn = document.createElement('button');
+    shopBtn.className = 'fs-btn';
+    shopBtn.textContent = '🏷️';
+    shopBtn.style.marginRight = '4px';
+    shopBtn.onclick = openShop;
+    rightDiv.insertBefore(shopBtn, rightDiv.firstChild);
+  }
+}
+
+init();
+
+</script>
+</body>
+</html>
