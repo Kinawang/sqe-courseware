@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SQE1 Lesson 3: Crown Prerogative & Legislation — Practice Game</title>
+<style>
+:root {
+    --paper: #f4ecd8;
+    --paper-2: #e8dcb8;
+    --ink: #2a2620;
+    --ink-soft: #5a5246;
+    --seal: #8b1a1a;
+    --gold: #b8860b;
+    --gold-light: #daa520;
+    --ok: #2e6b3e;
+    --line: #8a7a5c;
+    --fs-body: 18px;
+    --fs-h1: 24px;
+    --fs-h2: 20px;
+    --fs-card: 18px;
+    --fs-small: 14px;
+}
+body.fs-lg { --fs-body: 22px; --fs-h1: 28px; --fs-h2: 24px; --fs-card: 22px; --fs-small: 17px; }
+body.fs-xl { --fs-body: 26px; --fs-h1: 32px; --fs-h2: 28px; --fs-card: 26px; --fs-small: 20px; }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: var(--fs-body);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background: var(--paper-2);
+    border-bottom: 2px solid var(--line);
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.topbar .title { font-size: var(--fs-h1); font-weight: bold; color: var(--ink); white-space: nowrap; }
+.topbar .right { display: flex; align-items: center; gap: 8px; }
+.topbar .coins { font-size: var(--fs-body); font-weight: bold; color: var(--gold); background: var(--paper); padding: 4px 12px; border-radius: 20px; border: 1px solid var(--gold-light); }
+.topbar .fs-btn { background: var(--paper); border: 1px solid var(--line); border-radius: 4px; padding: 4px 10px; cursor: pointer; font-size: var(--fs-small); color: var(--ink); font-family: Georgia, serif; }
+.topbar .fs-btn:hover { background: var(--paper-2); }
+
+.stars { display: flex; gap: 2px; align-items: center; }
+.stars .star { font-size: var(--fs-h2); color: var(--ink-soft); opacity: 0.3; }
+.stars .star.filled { color: var(--gold); opacity: 1; }
+
+.main { display: grid; grid-template-columns: 200px 1fr 200px; gap: 0; min-height: calc(100vh - 60px); }
+
+.sticker-col { width: 200px; padding: 8px 6px; background: var(--paper-2); border-right: 1px solid var(--line); border-left: 1px solid var(--line); }
+.sticker-col.col-right { border-right: none; border-left: 1px solid var(--line); }
+.sticker-col .col-label { text-align: center; font-size: var(--fs-small); color: var(--ink-soft); margin-bottom: 8px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
+.sticker-col .sticker-grid { display: grid; grid-template-columns: 1fr; gap: 6px; }
+.sticker-slot { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; font-size: 24px; background: var(--paper); border: 1px dashed var(--line); border-radius: 8px; cursor: pointer; position: relative; transition: background 0.2s; }
+.sticker-slot:hover { background: var(--paper-2); }
+.sticker-slot.filled { border-style: solid; border-color: var(--gold); background: var(--paper); }
+.sticker-slot .empty-hint { color: var(--ink-soft); opacity: 0.4; font-size: var(--fs-h2); }
+.sticker-slot .remove-x { position: absolute; top: -2px; right: 2px; color: var(--seal); font-size: 14px; font-weight: bold; cursor: pointer; line-height: 1; background: var(--paper); border-radius: 50%; width: 16px; height: 16px; display: flex; align-items: center; justify-content: center; }
+
+.quiz-area { padding: 20px 30px; max-width: 900px; margin: 0 auto; width: 100%; }
+.quiz-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; flex-wrap: wrap; gap: 8px; }
+.quiz-header .chapter { font-size: var(--fs-small); color: var(--seal); font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
+.quiz-header .progress { font-size: var(--fs-small); color: var(--ink-soft); }
+.quiz-header .nav-btns { display: flex; gap: 6px; }
+.quiz-header .nav-btns button { background: var(--paper-2); border: 1px solid var(--line); border-radius: 4px; padding: 2px 10px; cursor: pointer; font-size: var(--fs-small); font-family: Georgia, serif; color: var(--ink); }
+.quiz-header .nav-btns button:disabled { opacity: 0.4; cursor: default; }
+.quiz-header .nav-btns button:hover:not(:disabled) { background: var(--paper); }
+.bookmark-btn { background: none; border: none; cursor: pointer; font-size: var(--fs-h2); color: var(--ink-soft); opacity: 0.5; }
+.bookmark-btn.active { color: var(--gold); opacity: 1; }
+
+.question-text { font-size: var(--fs-body); margin: 16px 0; line-height: 1.7; }
+.options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+.option { padding: 12px 16px; background: var(--paper); border: 2px solid var(--line); border-radius: 8px; cursor: pointer; font-size: var(--fs-body); font-family: Georgia, serif; color: var(--ink); text-align: left; transition: all 0.2s; }
+.option:hover { border-color: var(--gold); background: var(--paper-2); }
+.option.selected { border-color: var(--gold); background: var(--paper-2); }
+.option.correct { border-color: var(--ok); background: #d4edda; }
+.option.wrong { border-color: var(--seal); background: #f8d7da; }
+.option.disabled { cursor: default; }
+
+.feedback { margin: 16px 0; padding: 14px 18px; border-radius: 8px; font-size: var(--fs-body); display: none; }
+.feedback.show { display: block; }
+.feedback.correct { background: #d4edda; border: 1px solid var(--ok); color: var(--ok); }
+.feedback.wrong { background: #f8d7da; border: 1px solid var(--seal); color: var(--seal); }
+.feedback .principle { margin-top: 8px; font-size: var(--fs-body); color: var(--ink); }
+.feedback .principle-cn { margin-top: 6px; font-size: var(--fs-small); color: var(--ink-soft); }
+.feedback .cite { margin-top: 6px; font-size: var(--fs-small); color: var(--ink-soft); font-style: italic; }
+
+.next-btn { background: var(--seal); color: var(--paper); border: none; padding: 10px 28px; border-radius: 8px; font-size: var(--fs-body); font-family: Georgia, serif; cursor: pointer; display: none; }
+.next-btn.show { display: inline-block; }
+.next-btn:hover { background: #6b1414; }
+
+.review-btn { background: var(--gold); color: var(--paper); border: none; padding: 8px 20px; border-radius: 8px; font-size: var(--fs-small); font-family: Georgia, serif; cursor: pointer; margin-left: 10px; }
+.review-btn:hover { background: var(--gold-light); }
+
+.shop-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 100; justify-content: center; align-items: center; }
+.shop-overlay.show { display: flex; }
+.shop-modal { background: var(--paper); border-radius: 12px; padding: 20px; max-width: 700px; width: 90%; max-height: 80vh; overflow-y: auto; border: 2px solid var(--gold); }
+.shop-modal h2 { font-size: var(--fs-h1); color: var(--ink); margin-bottom: 4px; text-align: center; }
+.shop-modal .shop-coins { text-align: center; font-size: var(--fs-body); color: var(--gold); font-weight: bold; margin-bottom: 16px; }
+.shop-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
+.shop-item { background: var(--paper-2); border: 1px solid var(--line); border-radius: 8px; padding: 10px; text-align: center; cursor: pointer; transition: all 0.2s; }
+.shop-item:hover { border-color: var(--gold); }
+.shop-item.owned { opacity: 0.5; cursor: default; }
+.shop-item.owned::after { content: '✓ owned'; display: block; font-size: var(--fs-small); color: var(--ok); margin-top: 4px; }
+.shop-item .icon { font-size: 36px; }
+.shop-item .name { font-size: var(--fs-small); color: var(--ink); margin-top: 4px; }
+.shop-item .price { font-size: var(--fs-small); color: var(--gold); font-weight: bold; margin-top: 4px; }
+.shop-item button { background: var(--seal); color: var(--paper); border: none; padding: 4px 12px; border-radius: 4px; cursor: pointer; font-size: var(--fs-small); font-family: Georgia, serif; margin-top: 6px; }
+.shop-item button:disabled { background: var(--ink-soft); cursor: default; }
+.shop-close { display: block; margin: 16px auto 0; background: var(--ink-soft); color: var(--paper); border: none; padding: 8px 24px; border-radius: 8px; cursor: pointer; font-size: var(--fs-body); font-family: Georgia, serif; }
+
+.placement-banner { display: none; background: var(--gold); color: var(--paper); padding: 8px 20px; text-align: center; font-size: var(--fs-body); font-weight: bold; }
+.placement-banner.show { display: block; }
+.placement-banner .cancel-btn { background: var(--paper); color: var(--gold); border: none; padding: 2px 12px; border-radius: 4px; cursor: pointer; font-size: var(--fs-small); font-family: Georgia, serif; margin-left: 12px; }
+
+@media (max-width: 768px) {
+    .main { grid-template-columns: 80px 1fr 80px; }
+    .sticker-col { width: 80px; padding: 4px 3px; }
+    .sticker-col .sticker-grid { gap: 3px; }
+    .sticker-slot { font-size: 18px; }
+    .sticker-slot .empty-hint { font-size: var(--fs-small); }
+    .quiz-area { padding: 12px 8px; }
+    .topbar { padding: 8px 10px; }
+    .topbar .title { font-size: var(--fs-h2); }
+    .shop-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="title">⚖ SQE1 · Lesson 3: Crown Prerogative & Legislation</div>
+  <div class="stars" id="stars-top"></div>
+  <div class="right">
+    <div class="coins">💰 <span class="val" id="coins">0</span></div>
+    <button class="fs-btn" onclick="changeFS(-1)">A-</button>
+    <button class="fs-btn" onclick="changeFS(1)">A+</button>
+  </div>
+</div>
+
+<div class="placement-banner" id="placement-banner">
+  Tap a slot to place your sticker!
+  <button class="cancel-btn" onclick="cancelPlacement()">Cancel</button>
+</div>
+
+<div class="main">
+  <div class="sticker-col col-left" id="col-left">
+    <div class="col-label">Left</div>
+  </div>
+  <div class="quiz-area">
+    <div class="quiz-header">
+      <div>
+        <span class="chapter" id="chapter"></span>
+        <span class="progress" id="progress" style="margin-left:12px;"></span>
+      </div>
+      <div class="nav-btns">
+        <button id="prev-btn" onclick="prevQuestion()">← Prev</button>
+        <button id="review-btn" class="review-btn" onclick="startReview()" style="display:none;">Review Wrong</button>
+        <button id="next-nav-btn" onclick="nextQuestion()">Next →</button>
+        <button class="bookmark-btn" id="bookmark-btn" onclick="toggleBookmark()">☆</button>
+      </div>
+    </div>
+    <div class="stars" id="stars-quiz" style="justify-content:center; margin: 4px 0;"></div>
+    <div class="question-text" id="question-text"></div>
+    <div class="options" id="options"></div>
+    <div class="feedback" id="feedback"></div>
+    <button class="next-btn" id="next-btn" onclick="nextQuestion()">Next →</button>
+  </div>
+  <div class="sticker-col col-right" id="col-right">
+    <div class="col-label">Right</div>
+  </div>
+</div>
+
+<div class="shop-overlay" id="shop-overlay">
+  <div class="shop-modal">
+    <h2>🏷️ Sticker Shop</h2>
+    <div class="shop-coins">💰 Coins: <span id="shop-coins">0</span></div>
+    <div class="shop-grid" id="shop-grid"></div>
+    <button class="shop-close" onclick="closeShop()">Close</button>
+  </div>
+</div>
+
+<script>
+const STORAGE_KEY = 'sqe-l3-stickers-v1';
+const SLOTS_PER_COL = 10;
+
+const DEFAULT_STATE = {
+  coins: 0, qIndex: 0, answered: [], wrong: {}, bookmarked: [], stickers: {}, placementItem: null, fsLevel: 0, reviewMode: false, reviewQueue: []
+};
+
+const STICKERS = [
+  { id: 'daisy', name: 'Daisy', icon: '🌼', price: 50 },
+  { id: 'tulip', name: 'Tulip', icon: '🌷', price: 50 },
+  { id: 'rose', name: 'Rose', icon: '🌹', price: 80 },
+  { id: 'sunflower', name: 'Sunflower', icon: '🌻', price: 80 },
+  { id: 'clover', name: 'Clover', icon: '🍀', price: 100 },
+  { id: 'cactus', name: 'Cactus', icon: '🌵', price: 120 },
+  { id: 'palm', name: 'Palm', icon: '🌴', price: 150 },
+  { id: 'fir', name: 'Fir Tree', icon: '🌲', price: 150 },
+  { id: 'book', name: 'Law Book', icon: '📕', price: 100 },
+  { id: 'scroll', name: 'Scroll', icon: '📜', price: 120 },
+  { id: 'trophy', name: 'Trophy', icon: '🏆', price: 200 },
+  { id: 'medal', name: 'Medal', icon: '🎖', price: 200 },
+  { id: 'ribbon', name: 'Ribbon', icon: '🎗', price: 150 },
+  { id: 'star', name: 'Star', icon: '⭐', price: 100 },
+  { id: 'gem', name: 'Gem', icon: '💎', price: 300 },
+  { id: 'crown', name: 'Crown', icon: '👑', price: 500 },
+  { id: 'anchor', name: 'Anchor', icon: '⚓', price: 250 },
+  { id: 'key', name: 'Key', icon: '🔑', price: 180 },
+  { id: 'balance', name: 'Scales', icon: '⚖', price: 350 },
+  { id: 'gavel', name: 'Gavel', icon: '🔨', price: 400 }
+];
+
+const QUESTIONS = [
+  { "key": "cp-1", "chapter": "Ch 4: Crown & Prerogative", "text": "A general election has resulted in no single party having an overall majority in the House of Commons. No obvious candidate for prime minister emerges. What is the correct constitutional position?", "options": [ "The monarch should ask the outgoing prime minister to continue.", "The monarch should choose the person most likely to command support.", "The monarch should call a new general election.", "The monarch should ask the House of Lords to choose.", "The monarch should not become involved; parties must negotiate." ], "best": 4, "principle": "Where no single party has an overall majority and no obvious candidate emerges, the political parties must negotiate among themselves. The monarch should not become involved in political negotiations. Once a candidate emerges who can command confidence of the Commons, the monarch appoints them PM.", "cite": "Revise SQE Const. & Admin. Law Ch.4", "principleCN": "当无单一政党获多数席位且无明确候选人时，各政党必须自行谈判。君主不应介入政治谈判。一旦出现能获得下议院信任的候选人，君主任命其为首相。", "citeCN": "Revise SQE 宪法与行政法 第4章" },
+  { "key": "cp-2", "chapter": "Ch 4: Crown & Prerogative", "text": "A member of the public wishes to understand the legal position of the royal family in relation to criminal and civil proceedings. Which statement is correct?", "options": [ "All members of the royal family have legal immunity.", "Only the monarch is above the law; the rest of the royal family have no legal immunities.", "The monarch and their spouse have legal immunity.", "No members of the royal family have legal immunity.", "The monarch has immunity from civil law but not criminal law." ], "best": 1, "principle": "Only the monarch is above the law. The rest of the royal family have no legal immunities — they can be prosecuted and sued like any other person.", "cite": "Revise SQE Const. & Admin. Law Ch.4", "principleCN": "只有君主凌驾于法律之上。王室其他成员没有法律豁免权——他们可以像任何其他人一样被起诉和控告。", "citeCN": "Revise SQE 宪法与行政法 第4章" },
+  { "key": "cp-3", "chapter": "Ch 4: Crown & Prerogative", "text": "The government needs to requisition a ship for military action. What is the legal position regarding compensation?", "options": [ "The government has no legal power to requisition a ship.", "The government has the legal power to requisition a ship.", "The government has the legal power to requisition a ship, but must pay compensation.", "The government has no legal power without the authority of an Act of Parliament.", "The government has no legal power without the permission of Parliament." ], "best": 2, "principle": "The government has a prerogative power to requisition property for military action. Case law establishes that while the government may exercise this prerogative power, it must pay compensation to the owner.", "cite": "Revise SQE Const. & Admin. Law Ch.4", "principleCN": "政府有征用财产用于军事行动的特权权力。判例法确立，虽然政府可以行使这一特权，但必须向所有者支付补偿。", "citeCN": "Revise SQE 宪法与行政法 第4章" },
+  { "key": "cp-4", "chapter": "Ch 4: Crown & Prerogative", "text": "A man has been refused a passport on the grounds that he is not a UK citizen. He believes he can prove that he is, in fact, a UK citizen. What is his legal position?", "options": [ "If he can prove citizenship, the government must give him a passport.", "He cannot challenge a decision made under the royal prerogative.", "If he can prove citizenship, the government has a discretion to give him a passport.", "If he can prove citizenship, the government must have a valid reason for refusing.", "He cannot challenge the citizenship or passport decision." ], "best": 3, "principle": "The granting of passports is a prerogative power. However, where a prerogative power affects individual rights, it may be subject to judicial review. If the man can prove he is a UK citizen, the government must have a valid reason for refusing him a passport.", "cite": "Revise SQE Const. & Admin. Law Ch.4", "principleCN": "颁发护照是特权权力。但当特权权力影响个人权利时，可受司法审查。如果该男子能证明他是英国公民，政府必须有正当理由拒绝其护照。", "citeCN": "Revise SQE 宪法与行政法 第4章" },
+  { "key": "cp-5", "chapter": "Ch 4: Crown & Prerogative", "text": "A volcanic eruption causes an emergency on a Caribbean island. The Prime Minister wants to send armed forces for humanitarian assistance. What is the legal position?", "options": [ "The PM needs the agreement of the House of Commons.", "The PM needs legislation to authorise this.", "The PM can send the armed forces, but must justify it to the House of Commons.", "The PM needs the agreement of the monarch.", "The PM has the power to do this and does not need any further authority." ], "best": 4, "principle": "The deployment of armed forces is a prerogative power of the Prime Minister. The PM has the legal power to send armed forces abroad without further legal authority. While by convention military action normally needs Commons authorisation (Benn Convention), legally the prerogative suffices.", "cite": "Revise SQE Const. & Admin. Law Ch.4", "principleCN": "部署武装部队是首相的特权权力。首相有合法权力在无需进一步法律授权的情况下向海外派遣武装部队。虽然按惯例军事行动通常需要下议院授权（本恩惯例），但在法律上特权即足够。", "citeCN": "Revise SQE 宪法与行政法 第4章" },
+  { "key": "cp-6", "chapter": "Ch 5: Legislation", "text": "A client is being tried for an offence under an Act of Parliament that was not in force on the date when the offence was allegedly committed. What should the court do?", "options": [ "Declare the Act void.", "Order Parliament to bring the Act into force or repeal it.", "Acquit the client.", "Make a declaration of incompatibility under HRA 1998.", "Convict the client." ], "best": 2, "principle": "If an Act is not in force, it is not the law. A basic principle of statutory interpretation is that an Act is not retrospective unless it explicitly says so. The court cannot try a person for an offence under an Act that was not yet in force at the time of the alleged conduct.", "cite": "Revise SQE Const. & Admin. Law Ch.5", "principleCN": "如果法案未生效，则不是法律。法定解释的基本原则是：除非明确说明，否则法案不具溯及力。法院不能根据 alleged行为发生时尚未生效的法案审判一个人。", "citeCN": "Revise SQE 宪法与行政法 第5章" },
+  { "key": "cp-7", "chapter": "Ch 5: Legislation", "text": "The largest political party in the House of Lords is opposed to a Bill that has passed all its stages in the House of Commons. What can the Lords do?", "options": [ "The Lords can vote against and prevent it becoming law.", "The Lords can only amend the Bill, not prevent it.", "The Lords may refer the Bill to a Joint Committee.", "The Lords may delay the Bill, but not prevent it becoming law.", "The Lords can vote against and then royal assent will be refused." ], "best": 3, "principle": "Under the Parliament Acts 1911 and 1949, the House of Lords cannot prevent the Commons passing an Act — it can only delay the Bill for up to one year. If the Lords rejects a Bill in two successive sessions, the Commons can send it for royal assent without Lords' agreement.", "cite": "Parliament Acts 1911/1949; Revise SQE Const. & Admin. Law Ch.5", "principleCN": "根据《1911年和1949年议会法》，上议院不能阻止下议院通过法案——只能延迟法案最多一年。如果上议院在两个连续会期中否决法案，下议院可在无上议院同意的情况下将法案呈交御准。", "citeCN": "议会法 1911/1949; Revise SQE 宪法与行政法 第5章" },
+  { "key": "cp-8", "chapter": "Ch 5: Legislation", "text": "A haulage firm objects to new regulations made by the Secretary of State for Transport. The regulations have been approved by both Houses of Parliament, but the firm can prove that the enabling Act does NOT give the Secretary of State power to make these regulations. What is the legal position?", "options": [ "The regulations are valid because both Houses approved them.", "The regulations are valid because the Secretary of State made them.", "The regulations are invalid because the firm objects.", "The regulations are invalid because there is no power under the enabling Act.", "The regulations are valid if they are reasonable." ], "best": 3, "principle": "Delegated legislation must be made under a power contained in an enabling or parent Act. If the regulations exceed the scope of the power granted by the parent Act, they are ultra vires and invalid. Parliamentary approval of delegated legislation does not cure a lack of underlying statutory power.", "cite": "Revise SQE Const. & Admin. Law Ch.5", "principleCN": "授权立法必须根据授权法或母法中的权力制定。如果规章超出了母法授予的权力范围，则属越权(ultra vires)且无效。议会批准授权立法不能弥补缺乏法定权力的缺陷。", "citeCN": "Revise SQE 宪法与行政法 第5章" },
+  { "key": "cp-9", "chapter": "Ch 5: Legislation", "text": "A court has made a declaration of incompatibility under s.4 of the Human Rights Act 1998. The government wishes to amend the Act to remove the incompatibility. What fast-track procedure is available?", "options": [ "The government must introduce a new Bill in Parliament to amend the Act, going through all parliamentary stages.", "The government must ask the court to amend the Act.", "The government must refer the matter to the ECtHR for a binding ruling.", "The government must wait for Parliament to initiate the amendment process.", "There is a 'fast-track' procedure under s.10 of the HRA 1998, where a Remedial Order may be made that can repeal or amend an Act of Parliament without going through the numerous stages required for a parliamentary Bill." ], "best": 4, "principle": "Under s.10 HRA 1998, a Remedial Order may be made as delegated legislation that can repeal or amend an Act of Parliament to remove incompatibility with Convention rights. It does not have to go through the numerous stages required for a parliamentary Bill.", "cite": "s.10 HRA 1998; Revise SQE Const. & Admin. Law Ch.5", "principleCN": "根据s.10 HRA 1998，可以作为授权立法制定补救令，修改或废除主要立法以消除与人权的不相容性。无需经历议会法案所需的多个阶段。", "citeCN": "s.10 HRA 1998; Revise SQE 宪法与行政法 第5章" },
+  { "key": "cp-10", "chapter": "Ch 4: Crown & Prerogative", "text": "The Prime Minister has been subject to scandals and is unpopular. A vote of confidence confirms that the PM still enjoys majority support in the House of Commons. The PM will not resign. Members of the public request that the King dismiss the PM. What is the correct position?", "options": [ "As Head of State, the King can dismiss the PM if he feels it appropriate.", "Under Royal Prerogative, the King appoints and may dismiss the PM.", "As Head of State, the King appoints and may dismiss the PM.", "Under Royal Prerogative, the King appoints and may dismiss the PM. However, by convention the PM remains if they maintain majority support in the Commons.", "Although the King is Head of State, because of separation of powers the King has no powers to appoint or dismiss the PM." ], "best": 3, "principle": "Under the Royal Prerogative, the King appoints and may dismiss the Prime Minister. However, this power is restricted by convention. By convention, the PM remains in office as long as they maintain majority support in the House of Commons. Since the PM has won a vote of confidence, the King cannot dismiss the PM.", "cite": "FLK1 Practice 180 Q (Session 1, Q37)", "principleCN": "根据皇家特权，国王任命并可以罢免首相。但这一权力受惯例约束。按惯例，只要首相在下议院保持多数支持就继续任职。既然首相赢得了信任投票，国王不能罢免首相。", "citeCN": "FLK1 练习题 (第1轮, Q37)" },
+  { "key": "cp-11", "chapter": "Ch 5: Legislation", "text": "The Secretary of State for Health wishes to implement new regulations to combat a contagious virus. Neither House of Parliament objects to the proposed regulations. What is the legal requirement?", "options": [ "May implement with consent of Commons and Lords.", "May implement providing they have been given the power under an enabling or parent Act.", "May implement if public health is at risk.", "Does not have the power to implement such regulations.", "May implement with consent of the PM." ], "best": 1, "principle": "Parliament may give the Secretary of State a specific power to introduce regulations through an enabling or parent Act. The Secretary of State can only make delegated legislation if they have been granted the power to do so by primary legislation. Without an enabling Act, the regulations would be ultra vires.", "cite": "FLK1 Practice 180 Q (Session 2, Q15)", "principleCN": "议会可通过授权法或母法给予国务大臣特定权力来制定法规。国务大臣只有在被主要立法授予权力时才能制定授权立法。没有授权法，法规将属越权。", "citeCN": "FLK1 练习题 (第2轮, Q15)" },
+  { "key": "cp-12", "chapter": "Ch 4: Crown & Prerogative", "text": "Which of the following is NOT a royal prerogative power?", "options": [ "The power to grant pardons.", "The power to dissolve Parliament (before the Fixed-term Parliaments Act 2011 repeal).", "The power to create new criminal offences by Order in Council.", "The power to conduct foreign relations and make treaties.", "The power to regulate commerce between UK regions." ], "best": 4, "principle": "Regulating commerce between UK regions is not a royal prerogative power — it requires statutory authority. The royal prerogative includes powers such as granting pardons, conducting foreign relations, making treaties, and (historically) dissolving Parliament. Creating criminal offences generally requires primary legislation.", "cite": "Revise SQE Const. & Admin. Law Ch.4", "principleCN": "调控英国各地区之间的商业活动不是皇家特权——需要法定授权。皇家特权包括赦免、外交关系、缔结条约和（历史上）解散议会等权力。创设刑事犯罪通常需要主要立法。", "citeCN": "Revise SQE 宪法与行政法 第4章" },
+  { "key": "cp-13", "chapter": "Ch 4: Crown & Prerogative", "text": "The government wishes to use the royal prerogative to modify domestic law rights of citizens without parliamentary approval. Can it do so?", "options": [ "Yes, the royal prerogative can modify any domestic law.", "Yes, but only if the modification is minor.", "No, the royal prerogative cannot be used to modify or dispense with domestic law rights of citizens. This was established in the Case of Proclamations (1610).", "No, but only because Parliament must always be consulted first.", "Yes, if the monarch agrees and signs an Order in Council." ], "best": 2, "principle": "The Case of Proclamations (1610) established that the monarch (and by extension the executive) cannot use the prerogative to change domestic law or create new offences without parliamentary authority. The prerogative can be used for foreign affairs and matters not governed by domestic law, but cannot override or modify existing domestic law rights.", "cite": "Case of Proclamations (1610); Revise SQE Const. & Admin. Law Ch.4", "principleCN": "《公告案》(1610)确立，君主（及行政机构）不能使用特权修改国内法或在没有议会授权的情况下创设新罪名。特权可用于外交和不属于国内法管辖的事项，但不能推翻或修改现有的国内法权利。", "citeCN": "公告案 (1610); Revise SQE 宪法与行政法 第4章" },
+  { "key": "cp-14", "chapter": "Ch 5: Legislation", "text": "A Bill has passed its third reading in the House of Commons and is sent to the House of Lords. The Lords makes amendments that the Commons does not accept. What happens next?", "options": [ "The Bill automatically becomes law without the Lords' amendments.", "The Bill fails and must be reintroduced in the next parliamentary session.", "The Bill goes to 'ping-pong' — amendments are shuttled back and forth between the two Houses until agreement is reached, or the Parliament Acts procedure may be invoked.", "The monarch decides which version of the Bill to accept.", "The Supreme Court determines whether the Bill can proceed." ], "best": 2, "principle": "When the two Houses cannot agree on amendments, the Bill enters 'ping-pong' — amendments are shuttled back and forth. If no agreement is reached, the Commons can invoke the Parliament Acts procedure to pass the Bill without the Lords' consent after a delay of one year across two sessions.", "cite": "Revise SQE Const. & Admin. Law Ch.5", "principleCN": "当两院无法就修正案达成一致时，法案进入'乒乓'阶段——修正案在两院之间来回传递。如仍无法达成协议，下议院可在两个会期延迟一年后援引议会法程序在无上议院同意的情况下通过法案。", "citeCN": "Revise SQE 宪法与行政法 第5章" },
+  { "key": "cp-15", "chapter": "Ch 5: Legislation", "text": "Which of the following is a correct statement about delegated legislation?", "options": [ "Delegated legislation can only be made by the monarch.", "Delegated legislation is made by a person or body authorised by an Act of Parliament, and is subject to parliamentary scrutiny.", "Delegated legislation has the same status as primary legislation and cannot be challenged in court.", "Delegated legislation can only be made by Parliament itself.", "Delegated legislation is not subject to any form of parliamentary scrutiny." ], "best": 1, "principle": "Delegated legislation is made by a person or body (e.g., a Minister) authorised by an enabling Act of Parliament. It is subordinate to primary legislation and can be challenged in court if it is ultra vires. It is subject to parliamentary scrutiny through procedures such as the affirmative or negative resolution procedure.", "cite": "Revise SQE Const. & Admin. Law Ch.5", "principleCN": "授权立法由经授权法授权的人或机构（如部长）制定。它从属于主要立法，如越权可在法院被挑战。它通过肯定决议或否定决议程序受议会审查。", "citeCN": "Revise SQE 宪法与行政法 第5章" },
+  { "key": "cp-16", "chapter": "Ch 5: Legislation", "text": "What is the difference between the affirmative resolution procedure and the negative resolution procedure for delegated legislation?", "options": [ "Under the affirmative procedure, Parliament must actively approve the legislation before it takes effect; under the negative procedure, the legislation takes effect unless either House resolves to annul it within a specified period.", "Under the affirmative procedure, the legislation takes effect immediately; under the negative procedure, it requires a separate vote.", "Both procedures require active parliamentary approval before the legislation takes effect.", "The affirmative procedure applies only to the House of Commons; the negative procedure applies only to the House of Lords.", "There is no practical difference between the two procedures." ], "best": 0, "principle": "Under the affirmative resolution procedure, Parliament must actively approve the delegated legislation (usually by both Houses) before it takes effect. Under the negative resolution procedure, the legislation takes effect automatically unless either House passes a resolution annulling it within a specified period (usually 40 days). The affirmative procedure provides greater scrutiny.", "cite": "Revise SQE Const. & Admin. Law Ch.5", "principleCN": "肯定决议程序要求议会在授权立法生效前主动批准（通常两院均需批准）。否定决议程序下，法规自动生效，除非任一院在规定期限内（通常40天）通过决议撤销。肯定程序提供更大的审查力度。", "citeCN": "Revise SQE 宪法与行政法 第5章" },
+  { "key": "cp-17", "chapter": "Ch 4: Crown & Prerogative", "text": "The government enters into an international treaty using the royal prerogative. The treaty requires changes to UK domestic law to be implemented. Can the treaty take effect in domestic law without parliamentary intervention?", "options": [ "Yes, because treaties are made under the royal prerogative and automatically become part of UK law.", "Yes, but only if the treaty is published in the London Gazette.", "No, because treaties made under the royal prerogative do not automatically become part of UK domestic law. Parliament must pass legislation to give effect to the treaty's provisions domestically.", "No, because all treaties require parliamentary approval before they can be ratified.", "Yes, because the government can use Orders in Council to implement any treaty." ], "best": 2, "principle": "Treaties are made under the royal prerogative, but they do not automatically become part of UK domestic law. The constitutional principle is that treaties require parliamentary legislation to take effect in domestic law (the Ponsonby Rule requires treaties to be laid before Parliament for 21 days before ratification, but this does not make them domestic law).", "cite": "Revise SQE Const. & Admin. Law Ch.4", "principleCN": "条约根据皇家特权缔结，但不会自动成为英国国内法的一部分。宪法原则是条约需要议会立法才能在国内生效（彭松比规则要求条约在批准前呈交议会21天，但这不使其成为国内法）。", "citeCN": "Revise SQE 宪法与行政法 第4章" },
+  { "key": "cp-18", "chapter": "Ch 5: Legislation", "text": "An Act of Parliament contains a commencement clause stating it will come into force 'on such day as the Secretary of State may by order appoint.' No order has been made. A citizen is charged with an offence under the Act. What is the result?", "options": [ "The citizen can be convicted because the Act received royal assent.", "The citizen must be acquitted because the Act is not in force until the Secretary of State makes a commencement order.", "The citizen can be convicted if the court deems the Act to be in force by implication.", "The citizen can be convicted because royal assent makes the Act law regardless of commencement.", "The court must order the Secretary of State to make a commencement order." ], "best": 1, "principle": "An Act that requires a commencement order does not come into force until the order is made, even after royal assent. Royal assent makes the Act law on paper, but it is not effective until commencement. A person cannot be convicted of an offence under an Act that has not been commenced.", "cite": "Revise SQE Const. & Admin. Law Ch.5", "principleCN": "需要生效令的法案在令状制定前不生效，即使已获御准。御准使法案在形式上成为法律，但在生效前不具有效力。不能根据未生效的法案定罪。", "citeCN": "Revise SQE 宪法与行政法 第5章" },
+  { "key": "cp-19", "chapter": "Ch 4: Crown & Prerogative", "text": "Which of the following correctly describes the constitutional convention known as the 'Benn Convention'?", "options": [ "The monarch must dissolve Parliament whenever the PM requests it.", "The government will, by convention, seek the approval of the House of Commons before deploying armed forces abroad in military action.", "The House of Lords must approve all delegated legislation before it takes effect.", "The PM must resign if the House of Lords votes against a government Bill.", "The monarch must give a speech to Parliament at least once a year." ], "best": 1, "principle": "The Benn Convention is the convention that the government will seek the approval of the House of Commons before deploying armed forces abroad in military action. This is a political convention, not a legal requirement — legally, the deployment of armed forces is a prerogative power of the PM. The convention was formally recognised in 2011.", "cite": "Revise SQE Const. & Admin. Law Ch.4", "principleCN": "本恩惯例是政府在国外部署武装部队进行军事行动前会寻求下议院批准的惯例。这是政治惯例，不是法律要求——在法律上，部署武装部队是首相的特权权力。该惯例于2011年被正式承认。", "citeCN": "Revise SQE 宪法与行政法 第4章" },
+  { "key": "cp-20", "chapter": "Ch 5: Legislation", "text": "A statutory instrument is challenged in court on the grounds that it is 'unreasonable' in the Wednesbury sense, even though it is within the powers granted by the enabling Act. What is the likely outcome?", "options": [ "The court will quash the instrument because Wednesbury unreasonableness is a ground for challenging delegated legislation.", "The court will uphold the instrument because reasonableness is not a ground for challenging delegated legislation that is within the powers of the enabling Act.", "The court will refer the matter to Parliament for a decision.", "The court will modify the instrument to make it reasonable.", "The court will substitute its own version of the instrument." ], "best": 1, "principle": "Delegated legislation that is within the powers of the enabling Act (intra vires) cannot be challenged on the ground of unreasonableness. The courts will not quash delegated legislation merely because it is unreasonable. The main ground for challenge is ultra vires — that the legislation exceeds the powers granted by the enabling Act. Wednesbury unreasonableness applies to administrative decisions, not to delegated legislation per se.", "cite": "Revise SQE Const. & Admin. Law Ch.5", "principleCN": "在授权法权力范围内的授权立法(intra vires)不能以不合理为由被挑战。法院不会仅因不合理而撤销授权立法。主要挑战理由是越权(ultra vires)——即立法超出了授权法授予的权力。Wednesbury不合理性适用于行政决定，不直接适用于授权立法。", "citeCN": "Revise SQE 宪法与行政法 第5章" },
+  { "key": "cp-21", "chapter": "Ch 5: Legislation", "text": "Which of the following correctly describes a Public Bill in the UK legislative process?", "options": [ "A Public Bill affects only a specific person or organisation.", "A Public Bill affects the public generally and follows the standard parliamentary process through both Houses.", "A Public Bill can only be introduced by a government minister.", "A Public Bill does not require royal assent to become law.", "A Public Bill can only be introduced in the House of Lords." ], "best": 1, "principle": "A Public Bill affects the public generally and follows the standard parliamentary process through both Houses of Parliament. It can be introduced by the government (a government Bill) or by a backbench MP or peer (a Private Member's Bill). It requires royal assent to become law. This contrasts with a Private Bill, which affects only a specific person or organisation.", "cite": "Revise SQE Const. & Admin. Law Ch.5", "principleCN": "公共法案影响一般公众，并遵循标准的两院议会程序。它可以由政府（政府法案）或后座议员/议员（私人议员法案）提出。需要御准才能成为法律。这与私人法案相对，后者只影响特定个人或组织。", "citeCN": "Revise SQE 宪法与行政法 第5章" }
+]
+;
+
+let state = JSON.parse(JSON.stringify(DEFAULT_STATE));
+
+function load() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      const saved = JSON.parse(raw);
+      state = Object.assign(JSON.parse(JSON.stringify(DEFAULT_STATE)), saved);
+    }
+  } catch(e) { console.warn('Load failed:', e); }
+}
+
+function save() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  } catch(e) { console.warn('Save failed:', e); }
+}
+
+function applyFS() {
+  document.body.classList.remove('fs-lg', 'fs-xl');
+  if (state.fsLevel === 1) document.body.classList.add('fs-lg');
+  else if (state.fsLevel === 2) document.body.classList.add('fs-xl');
+}
+
+function changeFS(dir) {
+  state.fsLevel = Math.max(0, Math.min(2, state.fsLevel + dir));
+  applyFS();
+  save();
+}
+
+function renderCoins() {
+  document.getElementById('coins').textContent = state.coins;
+}
+
+function renderStars() {
+  const count = Object.keys(state.stickers).filter(id => {
+    const s = state.stickers[id];
+    return s.side !== null && s.slot >= 0;
+  }).length;
+  const filled = Math.floor(count / 4);
+  const html = Array.from({length: 5}, (_, i) =>
+    `<span class="star ${i < filled ? 'filled' : ''}">${i < filled ? '★' : '☆'}</span>`
+  ).join('');
+  const top = document.getElementById('stars-top');
+  const quiz = document.getElementById('stars-quiz');
+  if (top) top.innerHTML = html;
+  if (quiz) quiz.innerHTML = html;
+}
+
+function getCurrentQuestions() {
+  if (state.reviewMode && state.reviewQueue.length > 0) {
+    return state.reviewQueue;
+  }
+  return QUESTIONS;
+}
+
+function renderQuestion() {
+  const qs = getCurrentQuestions();
+  const idx = state.qIndex;
+  const q = qs[idx];
+  document.getElementById('chapter').textContent = q.chapter;
+  document.getElementById('progress').textContent = `Question ${idx + 1} / ${qs.length}`;
+  document.getElementById('question-text').textContent = q.text;
+  const optsDiv = document.getElementById('options');
+  optsDiv.innerHTML = '';
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'option';
+    btn.textContent = opt;
+    const answered = state.answered.includes(q.key);
+    if (answered) {
+      if (i === q.best) btn.classList.add('correct');
+      if (state.wrong[q.key] === i) btn.classList.add('wrong');
+    }
+    btn.onclick = () => selectOption(i);
+    optsDiv.appendChild(btn);
+  });
+  const fb = document.getElementById('feedback');
+  const nextBtn = document.getElementById('next-btn');
+  if (state.answered.includes(q.key)) {
+    const isCorrect = state.wrong[q.key] === undefined;
+    fb.className = 'feedback show ' + (isCorrect ? 'correct' : 'wrong');
+    let html = isCorrect ? '✅ Correct!' : '❌ Not quite.';
+    html += `<div class="principle"><strong>Principle:</strong> ${q.principle}</div>`;
+    html += `<div class="principle-cn">${q.principleCN}</div>`;
+    html += `<div class="cite">📚 ${q.cite}</div>`;
+    html += `<div class="cite">${q.citeCN}</div>`;
+    fb.innerHTML = html;
+    nextBtn.classList.add('show');
+    nextBtn.textContent = idx + 1 < qs.length ? 'Next →' : 'Finish';
+  } else {
+    fb.className = 'feedback';
+    fb.innerHTML = '';
+    nextBtn.classList.remove('show');
+  }
+  const bmBtn = document.getElementById('bookmark-btn');
+  if (state.bookmarked.includes(q.key)) {
+    bmBtn.classList.add('active');
+    bmBtn.textContent = '★';
+  } else {
+    bmBtn.classList.remove('active');
+    bmBtn.textContent = '☆';
+  }
+  document.getElementById('prev-btn').disabled = idx === 0;
+  document.getElementById('next-nav-btn').disabled = idx === qs.length - 1;
+  renderReviewBtn();
+}
+
+function toggleBookmark() {
+  const q = getCurrentQuestions()[state.qIndex];
+  const i = state.bookmarked.indexOf(q.key);
+  if (i >= 0) state.bookmarked.splice(i, 1);
+  else state.bookmarked.push(q.key);
+  save();
+  renderQuestion();
+}
+
+function selectOption(i) {
+  const q = getCurrentQuestions()[state.qIndex];
+  const wasAnswered = state.answered.includes(q.key);
+  const wasWrong = state.wrong[q.key] !== undefined;
+  if (wasAnswered) {
+    if (wasWrong) { delete state.wrong[q.key]; }
+    if (i === q.best && wasWrong) { state.coins += 20; renderCoins(); }
+  } else {
+    state.answered.push(q.key);
+    if (i === q.best) { state.coins += 20; renderCoins(); }
+  }
+  if (i !== q.best) { state.wrong[q.key] = i; }
+  save();
+  renderQuestion();
+}
+
+function nextQuestion() {
+  const qs = getCurrentQuestions();
+  if (state.qIndex < qs.length - 1) { state.qIndex++; save(); renderQuestion(); }
+  else {
+    if (state.reviewMode) { exitReviewMode(); }
+    else { state.qIndex = 0; save(); renderQuestion(); }
+  }
+}
+
+function prevQuestion() {
+  if (state.qIndex > 0) { state.qIndex--; save(); renderQuestion(); }
+}
+
+function getReviewQuestions() {
+  return QUESTIONS.filter(q => state.wrong[q.key] !== undefined);
+}
+
+function renderReviewBtn() {
+  const reviewBtn = document.getElementById('review-btn');
+  const wrongQs = getReviewQuestions();
+  if (wrongQs.length > 0 && !state.reviewMode) {
+    reviewBtn.style.display = '';
+    reviewBtn.textContent = `Review Wrong (${wrongQs.length})`;
+  } else {
+    reviewBtn.style.display = 'none';
+  }
+}
+
+function startReview() {
+  const wrongQs = getReviewQuestions();
+  if (wrongQs.length === 0) return;
+  state.reviewMode = true;
+  state.reviewQueue = wrongQs;
+  state.qIndex = 0;
+  save();
+  renderQuestion();
+}
+
+function exitReviewMode() {
+  state.reviewMode = false;
+  state.reviewQueue = [];
+  state.qIndex = 0;
+  save();
+  renderQuestion();
+}
+
+function renderStickers() {
+  ['left', 'right'].forEach(side => {
+    const col = document.getElementById('col-' + side);
+    const label = col.querySelector('.col-label');
+    col.innerHTML = '';
+    col.appendChild(label);
+    const grid = document.createElement('div');
+    grid.style.cssText = 'display:grid; grid-template-columns: 1fr; gap: 6px;';
+    for (let i = 0; i < SLOTS_PER_COL; i++) {
+      const slot = document.createElement('div');
+      slot.className = 'sticker-slot';
+      let placedItem = null;
+      for (const [id, data] of Object.entries(state.stickers)) {
+        if (data.side === side && data.slot === i) {
+          placedItem = STICKERS.find(s => s.id === id);
+          break;
+        }
+      }
+      if (placedItem) {
+        slot.classList.add('filled');
+        slot.innerHTML = placedItem.icon;
+        const x = document.createElement('div');
+        x.className = 'remove-x';
+        x.textContent = '×';
+        x.onclick = (e) => { e.stopPropagation(); removeSticker(placedItem.id); };
+        slot.appendChild(x);
+      } else {
+        slot.innerHTML = '<span class="empty-hint">+</span>';
+      }
+      slot.onclick = () => placeSticker(side, i);
+      grid.appendChild(slot);
+    }
+    col.appendChild(grid);
+  });
+  renderStars();
+}
+
+function removeSticker(id) {
+  state.stickers[id] = { side: null, slot: -1 };
+  save();
+  renderStickers();
+}
+
+function placeSticker(side, slot) {
+  if (!state.placementItem) return;
+  for (const [id, data] of Object.entries(state.stickers)) {
+    if (data.side === side && data.slot === slot && id !== state.placementItem) {
+      state.stickers[id] = { side: null, slot: -1 };
+      break;
+    }
+  }
+  state.stickers[state.placementItem] = { side: side, slot: slot };
+  state.placementItem = null;
+  document.getElementById('placement-banner').classList.remove('show');
+  save();
+  renderStickers();
+}
+
+function cancelPlacement() {
+  state.placementItem = null;
+  document.getElementById('placement-banner').classList.remove('show');
+  save();
+}
+
+function openShop() {
+  document.getElementById('shop-coins').textContent = state.coins;
+  const grid = document.getElementById('shop-grid');
+  grid.innerHTML = '';
+  STICKERS.forEach(s => {
+    const item = document.createElement('div');
+    item.className = 'shop-item';
+    const owned = state.stickers[s.id] !== undefined;
+    const placed = owned && state.stickers[s.id].side !== null && state.stickers[s.id].slot >= 0;
+    if (owned) item.classList.add('owned');
+    item.innerHTML = `<div class="icon">${s.icon}</div><div class="name">${s.name}</div><div class="price">💰 ${s.price}</div>`;
+    if (!owned) {
+      const btn = document.createElement('button');
+      btn.textContent = 'Buy';
+      btn.disabled = state.coins < s.price;
+      btn.onclick = () => buySticker(s.id);
+      item.appendChild(btn);
+    } else if (!placed) {
+      const btn = document.createElement('button');
+      btn.textContent = 'Stick';
+      btn.onclick = () => startPlacement(s.id);
+      item.appendChild(btn);
+    }
+    grid.appendChild(item);
+  });
+  document.getElementById('shop-overlay').classList.add('show');
+}
+
+function closeShop() {
+  document.getElementById('shop-overlay').classList.remove('show');
+}
+
+function buySticker(id) {
+  const s = STICKERS.find(x => x.id === id);
+  if (!s) return;
+  if (state.coins < s.price) return;
+  state.coins -= s.price;
+  state.stickers[id] = { side: null, slot: -1 };
+  save();
+  renderCoins();
+  openShop();
+  startPlacement(id);
+}
+
+function startPlacement(id) {
+  state.placementItem = id;
+  document.getElementById('placement-banner').classList.add('show');
+  closeShop();
+}
+
+function init() {
+  load();
+  applyFS();
+  renderCoins();
+  renderStickers();
+  renderStars();
+  renderQuestion();
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 's' && e.shiftKey) { e.preventDefault(); openShop(); }
+  });
+  const rightDiv = document.querySelector('.topbar .right');
+  if (rightDiv) {
+    const shopBtn = document.createElement('button');
+    shopBtn.className = 'fs-btn';
+    shopBtn.textContent = '🏷️';
+    shopBtn.style.marginRight = '4px';
+    shopBtn.onclick = openShop;
+    rightDiv.insertBefore(shopBtn, rightDiv.firstChild);
+  }
+}
+
+init();
+</script>
+</body>
+</html>
