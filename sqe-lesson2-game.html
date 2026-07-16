@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SQE1 Lesson 2: Human Rights Act 1998 — Practice Game</title>
+<style>
+:root {
+    --paper: #f4ecd8;
+    --paper-2: #e8dcb8;
+    --ink: #2a2620;
+    --ink-soft: #5a5246;
+    --seal: #8b1a1a;
+    --gold: #b8860b;
+    --gold-light: #daa520;
+    --ok: #2e6b3e;
+    --line: #8a7a5c;
+    --fs-body: 18px;
+    --fs-h1: 24px;
+    --fs-h2: 20px;
+    --fs-card: 18px;
+    --fs-small: 14px;
+}
+body.fs-lg { --fs-body: 22px; --fs-h1: 28px; --fs-h2: 24px; --fs-card: 22px; --fs-small: 17px; }
+body.fs-xl { --fs-body: 26px; --fs-h1: 32px; --fs-h2: 28px; --fs-card: 26px; --fs-small: 20px; }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: var(--fs-body);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background: var(--paper-2);
+    border-bottom: 2px solid var(--line);
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.topbar .title {
+    font-size: var(--fs-h1);
+    font-weight: bold;
+    color: var(--ink);
+    white-space: nowrap;
+}
+.topbar .right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.topbar .coins {
+    font-size: var(--fs-body);
+    font-weight: bold;
+    color: var(--gold);
+    background: var(--paper);
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--gold-light);
+}
+.topbar .fs-btn {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 4px 10px;
+    cursor: pointer;
+    font-size: var(--fs-small);
+    color: var(--ink);
+    font-family: Georgia, serif;
+}
+.topbar .fs-btn:hover { background: var(--paper-2); }
+
+.stars {
+    display: flex;
+    gap: 2px;
+    align-items: center;
+}
+.stars .star {
+    font-size: var(--fs-h2);
+    color: var(--ink-soft);
+    opacity: 0.3;
+}
+.stars .star.filled {
+    color: var(--gold);
+    opacity: 1;
+}
+
+.main {
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+    gap: 0;
+    min-height: calc(100vh - 60px);
+}
+
+.sticker-col {
+    width: 200px;
+    padding: 8px 6px;
+    background: var(--paper-2);
+    border-right: 1px solid var(--line);
+    border-left: 1px solid var(--line);
+}
+.sticker-col.col-right {
+    border-right: none;
+    border-left: 1px solid var(--line);
+}
+.sticker-col .col-label {
+    text-align: center;
+    font-size: var(--fs-small);
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.sticker-col .sticker-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 6px;
+}
+.sticker-slot {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    background: var(--paper);
+    border: 1px dashed var(--line);
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+    transition: background 0.2s;
+}
+.sticker-slot:hover { background: var(--paper-2); }
+.sticker-slot.filled {
+    border-style: solid;
+    border-color: var(--gold);
+    background: var(--paper);
+}
+.sticker-slot .empty-hint {
+    color: var(--ink-soft);
+    opacity: 0.4;
+    font-size: var(--fs-h2);
+}
+.sticker-slot .remove-x {
+    position: absolute;
+    top: -2px;
+    right: 2px;
+    color: var(--seal);
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+    background: var(--paper);
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quiz-area {
+    padding: 20px 30px;
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+}
+.quiz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.quiz-header .chapter {
+    font-size: var(--fs-small);
+    color: var(--seal);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.quiz-header .progress {
+    font-size: var(--fs-small);
+    color: var(--ink-soft);
+}
+.quiz-header .nav-btns {
+    display: flex;
+    gap: 6px;
+}
+.quiz-header .nav-btns button {
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 2px 10px;
+    cursor: pointer;
+    font-size: var(--fs-small);
+    font-family: Georgia, serif;
+    color: var(--ink);
+}
+.quiz-header .nav-btns button:disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+.quiz-header .nav-btns button:hover:not(:disabled) {
+    background: var(--paper);
+}
+.bookmark-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: var(--fs-h2);
+    color: var(--ink-soft);
+    opacity: 0.5;
+}
+.bookmark-btn.active { color: var(--gold); opacity: 1; }
+
+.question-text {
+    font-size: var(--fs-body);
+    margin: 16px 0;
+    line-height: 1.7;
+}
+.options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+.option {
+    padding: 12px 16px;
+    background: var(--paper);
+    border: 2px solid var(--line);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: var(--fs-body);
+    font-family: Georgia, serif;
+    color: var(--ink);
+    text-align: left;
+    transition: all 0.2s;
+}
+.option:hover { border-color: var(--gold); background: var(--paper-2); }
+.option.selected {
+    border-color: var(--gold);
+    background: var(--paper-2);
+}
+.option.correct {
+    border-color: var(--ok);
+    background: #d4edda;
+}
+.option.wrong {
+    border-color: var(--seal);
+    background: #f8d7da;
+}
+.option.disabled { cursor: default; }
+
+.feedback {
+    margin: 16px 0;
+    padding: 14px 18px;
+    border-radius: 8px;
+    font-size: var(--fs-body);
+    display: none;
+}
+.feedback.show { display: block; }
+.feedback.correct {
+    background: #d4edda;
+    border: 1px solid var(--ok);
+    color: var(--ok);
+}
+.feedback.wrong {
+    background: #f8d7da;
+    border: 1px solid var(--seal);
+    color: var(--seal);
+}
+.feedback .principle {
+    margin-top: 8px;
+    font-size: var(--fs-body);
+    color: var(--ink);
+}
+.feedback .principle-cn {
+    margin-top: 6px;
+    font-size: var(--fs-small);
+    color: var(--ink-soft);
+}
+.feedback .cite {
+    margin-top: 6px;
+    font-size: var(--fs-small);
+    color: var(--ink-soft);
+    font-style: italic;
+}
+
+.next-btn {
+    background: var(--seal);
+    color: var(--paper);
+    border: none;
+    padding: 10px 28px;
+    border-radius: 8px;
+    font-size: var(--fs-body);
+    font-family: Georgia, serif;
+    cursor: pointer;
+    display: none;
+}
+.next-btn.show { display: inline-block; }
+.next-btn:hover { background: #6b1414; }
+
+.review-btn {
+    background: var(--gold);
+    color: var(--paper);
+    border: none;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: var(--fs-small);
+    font-family: Georgia, serif;
+    cursor: pointer;
+    margin-left: 10px;
+}
+.review-btn:hover { background: var(--gold-light); }
+
+.shop-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
+}
+.shop-overlay.show { display: flex; }
+.shop-modal {
+    background: var(--paper);
+    border-radius: 12px;
+    padding: 20px;
+    max-width: 700px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    border: 2px solid var(--gold);
+}
+.shop-modal h2 {
+    font-size: var(--fs-h1);
+    color: var(--ink);
+    margin-bottom: 4px;
+    text-align: center;
+}
+.shop-modal .shop-coins {
+    text-align: center;
+    font-size: var(--fs-body);
+    color: var(--gold);
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+.shop-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+}
+.shop-item {
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.shop-item:hover { border-color: var(--gold); }
+.shop-item.owned { opacity: 0.5; cursor: default; }
+.shop-item.owned::after {
+    content: '✓ owned';
+    display: block;
+    font-size: var(--fs-small);
+    color: var(--ok);
+    margin-top: 4px;
+}
+.shop-item .icon { font-size: 36px; }
+.shop-item .name { font-size: var(--fs-small); color: var(--ink); margin-top: 4px; }
+.shop-item .price { font-size: var(--fs-small); color: var(--gold); font-weight: bold; margin-top: 4px; }
+.shop-item button {
+    background: var(--seal);
+    color: var(--paper);
+    border: none;
+    padding: 4px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: var(--fs-small);
+    font-family: Georgia, serif;
+    margin-top: 6px;
+}
+.shop-item button:disabled { background: var(--ink-soft); cursor: default; }
+.shop-close {
+    display: block;
+    margin: 16px auto 0;
+    background: var(--ink-soft);
+    color: var(--paper);
+    border: none;
+    padding: 8px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: var(--fs-body);
+    font-family: Georgia, serif;
+}
+
+.placement-banner {
+    display: none;
+    background: var(--gold);
+    color: var(--paper);
+    padding: 8px 20px;
+    text-align: center;
+    font-size: var(--fs-body);
+    font-weight: bold;
+}
+.placement-banner.show { display: block; }
+.placement-banner .cancel-btn {
+    background: var(--paper);
+    color: var(--gold);
+    border: none;
+    padding: 2px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: var(--fs-small);
+    font-family: Georgia, serif;
+    margin-left: 12px;
+}
+
+@media (max-width: 768px) {
+    .main {
+        grid-template-columns: 80px 1fr 80px;
+    }
+    .sticker-col {
+        width: 80px;
+        padding: 4px 3px;
+    }
+    .sticker-col .sticker-grid {
+        gap: 3px;
+    }
+    .sticker-slot {
+        font-size: 18px;
+    }
+    .sticker-slot .empty-hint {
+        font-size: var(--fs-small);
+    }
+    .quiz-area {
+        padding: 12px 8px;
+    }
+    .topbar {
+        padding: 8px 10px;
+    }
+    .topbar .title {
+        font-size: var(--fs-h2);
+    }
+    .shop-grid {
+        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="title">⚖ SQE1 · Lesson 2: Human Rights Act 1998</div>
+  <div class="stars" id="stars-top"></div>
+  <div class="right">
+    <div class="coins">💰 <span class="val" id="coins">0</span></div>
+    <button class="fs-btn" onclick="changeFS(-1)">A-</button>
+    <button class="fs-btn" onclick="changeFS(1)">A+</button>
+  </div>
+</div>
+
+<div class="placement-banner" id="placement-banner">
+  Tap a slot to place your sticker!
+  <button class="cancel-btn" onclick="cancelPlacement()">Cancel</button>
+</div>
+
+<div class="main">
+  <div class="sticker-col col-left" id="col-left">
+    <div class="col-label">Left</div>
+  </div>
+
+  <div class="quiz-area">
+    <div class="quiz-header">
+      <div>
+        <span class="chapter" id="chapter"></span>
+        <span class="progress" id="progress" style="margin-left:12px;"></span>
+      </div>
+      <div class="nav-btns">
+        <button id="prev-btn" onclick="prevQuestion()">← Prev</button>
+        <button id="review-btn" class="review-btn" onclick="startReview()" style="display:none;">Review Wrong</button>
+        <button id="next-nav-btn" onclick="nextQuestion()">Next →</button>
+        <button class="bookmark-btn" id="bookmark-btn" onclick="toggleBookmark()">☆</button>
+      </div>
+    </div>
+    <div class="stars" id="stars-quiz" style="justify-content:center; margin: 4px 0;"></div>
+    <div class="question-text" id="question-text"></div>
+    <div class="options" id="options"></div>
+    <div class="feedback" id="feedback"></div>
+    <button class="next-btn" id="next-btn" onclick="nextQuestion()">Next →</button>
+  </div>
+
+  <div class="sticker-col col-right" id="col-right">
+    <div class="col-label">Right</div>
+  </div>
+</div>
+
+<div class="shop-overlay" id="shop-overlay">
+  <div class="shop-modal">
+    <h2>🏷️ Sticker Shop</h2>
+    <div class="shop-coins">💰 Coins: <span id="shop-coins">0</span></div>
+    <div class="shop-grid" id="shop-grid"></div>
+    <button class="shop-close" onclick="closeShop()">Close</button>
+  </div>
+</div>
+
+<script>
+const STORAGE_KEY = 'sqe-l2-stickers-v1';
+const SLOTS_PER_COL = 10;
+
+const DEFAULT_STATE = {
+  coins: 0,
+  qIndex: 0,
+  answered: [],
+  wrong: {},
+  bookmarked: [],
+  stickers: {},
+  placementItem: null,
+  fsLevel: 0,
+  reviewMode: false,
+  reviewQueue: []
+};
+
+const STICKERS = [
+  { id: 'daisy',       name: 'Daisy',           icon: '🌼', price: 50 },
+  { id: 'tulip',       name: 'Tulip',           icon: '🌷', price: 50 },
+  { id: 'rose',        name: 'Rose',            icon: '🌹', price: 80 },
+  { id: 'sunflower',   name: 'Sunflower',       icon: '🌻', price: 80 },
+  { id: 'clover',      name: 'Clover',          icon: '🍀', price: 100 },
+  { id: 'cactus',      name: 'Cactus',          icon: '🌵', price: 120 },
+  { id: 'palm',        name: 'Palm',            icon: '🌴', price: 150 },
+  { id: 'fir',         name: 'Fir Tree',        icon: '🌲', price: 150 },
+  { id: 'book',        name: 'Law Book',        icon: '📕', price: 100 },
+  { id: 'scroll',      name: 'Scroll',          icon: '📜', price: 120 },
+  { id: 'trophy',      name: 'Trophy',          icon: '🏆', price: 200 },
+  { id: 'medal',       name: 'Medal',           icon: '🎖', price: 200 },
+  { id: 'ribbon',      name: 'Ribbon',          icon: '🎗', price: 150 },
+  { id: 'star',        name: 'Star',            icon: '⭐', price: 100 },
+  { id: 'gem',         name: 'Gem',             icon: '💎', price: 300 },
+  { id: 'crown',       name: 'Crown',           icon: '👑', price: 500 },
+  { id: 'anchor',      name: 'Anchor',          icon: '⚓', price: 250 },
+  { id: 'key',         name: 'Key',             icon: '🔑', price: 180 },
+  { id: 'balance',     name: 'Scales',          icon: '⚖', price: 350 },
+  { id: 'gavel',       name: 'Gavel',           icon: '🔨', price: 400 }
+];
+
+const QUESTIONS = [
+  {
+    "key": "h2-1",
+    "chapter": "Ch 8: Human Rights Act 1998",
+    "text": "The Supreme Court has made a declaration that a section of an Act of Parliament is incompatible with human rights. What is Parliament's position regarding the offending section?",
+    "options": [
+      "Parliament is obliged to repeal the offending section.",
+      "Parliament may repeal the offending section.",
+      "Parliament may refer the matter back to the Supreme Court.",
+      "Parliament may wait for the result of any appeal to the European Court of Human Rights.",
+      "Parliament is obliged to compensate the complainant who brought the case."
+    ],
+    "best": 1,
+    "principle": "Parliament is sovereign. A declaration of incompatibility under s.4 HRA 1998 is a statement that the law is incompatible with Convention rights — it does not strike down the legislation. Parliament may choose to repeal or amend the offending section, but it is under no obligation to do so.",
+    "cite": "Revise SQE Const. & Admin. Law Ch.8; s.4 HRA 1998",
+    "principleCN": "议会主权。s.4 HRA 1998下的不相容声明只是声明法律与人权不相容——不会废除立法。议会可以选择废除或修改相关条款，但没有义务这样做。",
+    "citeCN": "Revise SQE 宪法与行政法 第8章; s.4 HRA 1998"
+  },
+  {
+    "key": "h2-2",
+    "chapter": "Ch 8: Human Rights Act 1998",
+    "text": "A client alleges that his human rights have been violated and wishes to apply to the European Court of Human Rights. What is the correct route of application?",
+    "options": [
+      "The client's case must be referred to the European Court of Human Rights by the Supreme Court.",
+      "The client's case may be referred to the European Court of Human Rights by any UK court or tribunal.",
+      "The client must appeal from the final decision of a UK court.",
+      "The client may apply to the European Court of Human Rights.",
+      "The client's case may be referred to the European Court of Human Rights by the High Court or any higher court."
+    ],
+    "best": 3,
+    "principle": "The UK is a party to the ECHR and must accept the right of victims to complain to the ECtHR directly. There is no route of appeal linking UK courts to the ECtHR. The individual applies directly to the ECtHR after exhausting domestic remedies.",
+    "cite": "Revise SQE Const. & Admin. Law Ch.8; ECtHR",
+    "principleCN": "英国是ECHR缔约国，必须接受受害者直接向ECtHR投诉的权利。英国法院与ECtHR之间没有上诉途径。个人在穷尽国内救济后可直接向ECtHR申请。",
+    "citeCN": "Revise SQE 宪法与行政法 第8章; ECtHR"
+  },
+  {
+    "key": "h2-3",
+    "chapter": "Ch 8: Human Rights Act 1998",
+    "text": "Section 2 of the Human Rights Act 1998 states that a court or tribunal determining a question under this Act must 'take into account' any judgment of the European Court of Human Rights. How have UK courts interpreted this duty?",
+    "options": [
+      "A court or tribunal must follow a judgment of the ECtHR.",
+      "A court or tribunal may choose to follow a judgment of the ECtHR.",
+      "A court or tribunal should normally follow a judgment of the ECtHR.",
+      "A court or tribunal must consider a judgment of the ECtHR.",
+      "A court or tribunal must not follow a judgment of the ECtHR."
+    ],
+    "best": 2,
+    "principle": "UK courts have interpreted s.2 HRA 1998 to mean that UK courts should normally follow decisions of the ECtHR. While the statutory wording says 'take into account,' courts clarified this means more than merely consider — there is a strong presumption that UK courts will follow ECtHR judgments, though not bound in every case.",
+    "cite": "Revise SQE Const. & Admin. Law Ch.8; s.2 HRA 1998",
+    "principleCN": "英国法院将s.2 HRA 1998解释为英国法院通常应遵循ECtHR的判决。虽然法定措辞是'考虑'，法院澄清这意味着不仅仅是考虑——有强烈的推定遵循ECtHR判决，但并非在每个案件中都受约束。",
+    "citeCN": "Revise SQE 宪法与行政法 第8章; s.2 HRA 1998"
+  },
+  {
+    "key": "h2-4",
+    "chapter": "Ch 8: Human Rights Act 1998",
+    "text": "Under the HRA 1998 it is unlawful for a public authority to act in a way that is incompatible with a Convention right. A 'victim of the unlawful act' may bring proceedings under s.7. Which of the following best describes the 'victim' test?",
+    "options": [
+      "A claimant who is aggrieved by the unlawful act.",
+      "A claimant who wishes to stop the unlawful act.",
+      "A claimant who has suffered physical harm from the unlawful act.",
+      "A claimant who has suffered financial loss from the unlawful act.",
+      "A claimant who has been personally affected by the unlawful act."
+    ],
+    "best": 4,
+    "principle": "The term 'victim' in s.7 HRA 1998 adopts the ECtHR definition. A victim is someone who has been personally affected by the unlawful act — they need not have suffered physical harm or financial loss. The test is broader than mere 'aggrievement' but narrower than a general interest in challenging the law.",
+    "cite": "Revise SQE Const. & Admin. Law Ch.8; s.7 HRA 1998",
+    "principleCN": "s.7 HRA 1998中的'受害者'采用ECtHR的定义。受害者是受到违法行为 personally影响的人——不需要遭受人身伤害或经济损失。该标准比单纯的'不满'更广，但比一般挑战法律的利益更窄。",
+    "citeCN": "Revise SQE 宪法与行政法 第8章; s.7 HRA 1998"
+  },
+  {
+    "key": "h2-5",
+    "chapter": "Ch 8: Human Rights Act 1998",
+    "text": "Under the HRA 1998 claims may be brought against a 'public authority' for acts incompatible with Convention rights. What is the statutory definition of a public authority under s.6?",
+    "options": [
+      "A person who receives public funding.",
+      "A person who performs a governmental function.",
+      "A person who has statutory powers.",
+      "A person who performs functions of a public nature.",
+      "A person who performs a public service."
+    ],
+    "best": 3,
+    "principle": "Section 6 HRA 1998 defines a public authority as a person whose functions are 'functions of a public nature.' The other options are factors a court may consider, but none alone is the definition. The definition is deliberately broad to catch hybrid bodies.",
+    "cite": "Revise SQE Const. & Admin. Law Ch.8; s.6 HRA 1998",
+    "principleCN": "s.6 HRA 1998将公共机构定义为职能属于'公共性质职能'的人。其他选项是法院可能考虑的因素，但单独都不是定义。该定义故意宽泛以涵盖混合体。",
+    "citeCN": "Revise SQE 宪法与行政法 第8章; s.6 HRA 1998"
+  },
+  {
+    "key": "h2-6",
+    "chapter": "Ch 8: Human Rights Act 1998",
+    "text": "The Supreme Court has issued a declaration of incompatibility under s.4 HRA 1998. A draft remedial order has been presented to Parliament. What is a remedial order under s.10 HRA 1998?",
+    "options": [
+      "A type of remedy available where a court has issued a declaration of incompatibility.",
+      "A type of statutory instrument that allows the Government to quickly amend Acts of Parliament to remove incompatibility with the HRA 1998.",
+      "A type of statutory instrument that allows Parliament to quickly overturn legislation deemed incompatible.",
+      "A type of bill that must pass through the usual legislative process.",
+      "A direction to Parliament to amend Acts to remove incompatibility."
+    ],
+    "best": 1,
+    "principle": "Remedial orders under s.10 HRA 1998 are a type of statutory instrument (delegated legislation) designed to allow the Government to quickly amend primary legislation to remove incompatibility with the HRA 1998, avoiding the lengthy process of passing a new Act of Parliament.",
+    "cite": "FLK1 Practice 180 Q (Session 2, Q74); s.10 HRA 1998",
+    "principleCN": "s.10 HRA 1998下的补救令是一种法定文书（授权立法），旨在允许政府快速修改主要立法以消除与HRA 1998的不相容性，避免通过新法案的漫长过程。",
+    "citeCN": "FLK1 练习题 (第2轮, Q74); s.10 HRA 1998"
+  },
+  {
+    "key": "h2-7",
+    "chapter": "Ch 8: Human Rights Act 1998",
+    "text": "A UK court is deciding whether a qualified right under the ECHR has been breached. Which of the following is NOT one of the legitimate aims that can justify interference with a qualified right?",
+    "options": [
+      "National security.",
+      "Public safety.",
+      "The economic well-being of the country.",
+      "The prevention of disorder or crime.",
+      "The personal moral views of the judge."
+    ],
+    "best": 4,
+    "principle": "Qualified rights (such as Art 8-11 ECHR) can only be interfered with for legitimate aims specified in the Convention: national security, public safety, economic well-being of the country, prevention of disorder or crime, protection of health or morals, protection of the rights and freedoms of others. A judge's personal moral views are not a legitimate aim.",
+    "cite": "ECHR Arts 8-11; Revise SQE Const. & Admin. Law Ch.8",
+    "principleCN": "有限权利（如ECHR第8-11条）只能因公约规定的合法目标受到干涉：国家安全、公共安全、国家经济福祉、防止混乱或犯罪、保护健康或道德、保护他人的权利和自由。法官的个人道德观点不是合法目标。",
+    "citeCN": "ECHR 第8-11条; Revise SQE 宪法与行政法 第8章"
+  },
+  {
+    "key": "h2-8",
+    "chapter": "Ch 8: Human Rights Act 1998",
+    "text": "A court is applying the proportionality test to determine whether an interference with a qualified Convention right is justified. Which of the following is NOT a stage of the proportionality test?",
+    "options": [
+      "The interference must pursue a legitimate aim.",
+      "The interference must be rationally connected to the aim.",
+      "The interference must be no more than is necessary to achieve the aim.",
+      "The interference must be the least restrictive option available.",
+      "The interference must be approved by Parliament within 30 days."
+    ],
+    "best": 4,
+    "principle": "The proportionality test has four stages: (1) legitimate aim, (2) rational connection, (3) no more than necessary (necessity), (4) fair balance between individual rights and community interests. Parliamentary approval within 30 days is not part of the test.",
+    "cite": "Revise SQE Const. & Admin. Law Ch.8; proportionality test",
+    "principleCN": "比例性测试有四个阶段：(1)合法目标，(2)合理关联，(3)不超过必要程度，(4)个人权利与社区利益之间的公平平衡。30天内议会批准不是测试的一部分。",
+    "citeCN": "Revise SQE 宪法与行政法 第8章; 比例性测试"
+  },
+  {
+    "key": "h2-9",
+    "chapter": "Ch 8: Human Rights Act 1998",
+    "text": "Which of the following rights under the ECHR is classified as an ABSOLUTE right that can NEVER be derogated from, even in times of war or public emergency?",
+    "options": [
+      "The right to liberty and security (Art 5).",
+      "The right to a fair trial (Art 6).",
+      "The right to freedom from torture, inhuman or degrading treatment (Art 3).",
+      "The right to respect for private and family life (Art 8).",
+      "The right to freedom of expression (Art 10)."
+    ],
+    "best": 2,
+    "principle": "Article 3 (freedom from torture, inhuman or degrading treatment) is an absolute right — it can never be derogated from, regardless of circumstances. Other absolute rights include Art 2 (right to life, except in strictly defined circumstances) and Art 4(1) (freedom from slavery). Arts 5, 6, 8, and 10 are qualified or limited rights.",
+    "cite": "ECHR Art 3; Revise SQE Const. & Admin. Law Ch.8",
+    "principleCN": "第3条（免受酷刑、不人道或有辱人格待遇的自由）是绝对权利——无论何种情况都不可减损。其他绝对权利包括第2条（生命权，严格限定情况除外）和第4(1)条（免受奴役的自由）。第5、6、8、10条是有限或合格权利。",
+    "citeCN": "ECHR 第3条; Revise SQE 宪法与行政法 第8章"
+  },
+  {
+    "key": "h2-10",
+    "chapter": "Ch 8: Human Rights Act 1998",
+    "text": "A private care home providing services under a contract with a local authority is accused of treating a resident inhumanely, potentially breaching Article 3 ECHR. Can the resident bring a claim against the care home under the HRA 1998?",
+    "options": [
+      "No, because the care home is a private body and the HRA only applies to public authorities.",
+      "Yes, because any business providing care services is automatically a public authority.",
+      "Yes, because the care home performs functions of a public nature when providing care under contract with a local authority, making it a hybrid public authority under s.6 HRA 1998.",
+      "No, because the resident's only remedy is a breach of contract claim.",
+      "Yes, because all care homes are public authorities regardless of their funding arrangements."
+    ],
+    "best": 2,
+    "principle": "Under s.6 HRA 1998, a body that performs functions of a public nature is a 'hybrid' public authority. A private care home providing care under contract with a local authority performs a public function in respect of those services, so the HRA applies to those functions. This is the hybrid body principle.",
+    "cite": "s.6 HRA 1998; Revise SQE Const. & Admin. Law Ch.8",
+    "principleCN": "根据s.6 HRA 1998，履行公共性质职能的机构是'混合'公共机构。私人护理院根据地方当局合同提供护理时，在相关服务方面履行公共职能，因此HRA适用于这些职能。",
+    "citeCN": "s.6 HRA 1998; Revise SQE 宪法与行政法 第8章"
+  },
+  {
+    "key": "h2-11",
+    "chapter": "Ch 8: Human Rights Act 1998",
+    "text": "A claimant brings a claim under s.7 HRA 1998 against a public authority. What is the time limit for bringing proceedings under the HRA 1998?",
+    "options": [
+      "Within 3 months of the alleged unlawful act, unless the court allows an extension.",
+      "Within 6 months of the alleged unlawful act.",
+      "Within 1 year of the alleged unlawful act, unless the court allows an extension using a 'just and equitable' test.",
+      "Within 3 years of the alleged unlawful act.",
+      "There is no time limit for HRA claims."
+    ],
+    "best": 2,
+    "principle": "Section 7(5) HRA 1998 provides that proceedings must be brought within one year of the date on which the act complained of took place. However, the court may allow a longer period if it considers it 'just and equitable' to do so. This mirrors the approach under the Limitation Act 1980 for personal injury claims.",
+    "cite": "s.7(5) HRA 1998; Revise SQE Const. & Admin. Law Ch.8",
+    "principleCN": "s.7(5) HRA 1998规定诉讼必须在被诉行为发生之日起一年内提起。但法院如果认为'公正和公平'，可以允许更长的期限。",
+    "citeCN": "s.7(5) HRA 1998; Revise SQE 宪法与行政法 第8章"
+  },
+  {
+    "key": "h2-12",
+    "chapter": "Ch 8: Human Rights Act 1998",
+    "text": "Which of the following best describes the difference between a declaration of incompatibility under s.4 HRA 1998 and a remedial order under s.10 HRA 1998?",
+    "options": [
+      "A declaration of incompatibility amends the legislation; a remedial order does not.",
+      "A declaration of incompatibility is made by Parliament; a remedial order is made by the courts.",
+      "A declaration of incompatibility is a court's statement that legislation is incompatible but does not change the law; a remedial order is delegated legislation that can amend or repeal the incompatible provision.",
+      "Both have the same legal effect — they strike down the incompatible legislation.",
+      "A remedial order can only be made before a declaration of incompatibility is issued."
+    ],
+    "best": 2,
+    "principle": "A declaration of incompatibility (s.4) is a judicial statement that legislation is incompatible with Convention rights — it does not change or strike down the law. A remedial order (s.10) is delegated legislation made by a Minister that can amend or repeal primary legislation to remove the incompatibility. The declaration triggers the possibility of a remedial order.",
+    "cite": "ss.4, 10 HRA 1998; Revise SQE Const. & Admin. Law Ch.8",
+    "principleCN": "不相容声明(s.4)是法院声明立法与人权不相容——不改变或废除法律。补救令(s.10)是部长制定的授权立法，可以修改或废除主要立法以消除不相容性。声明触发补救令的可能性。",
+    "citeCN": "ss.4, 10 HRA 1998; Revise SQE 宪法与行政法 第8章"
+  },
+  {
+    "key": "h2-13",
+    "chapter": "Ch 8: Human Rights Act 1998",
+    "text": "A primary school excludes a pupil without giving any reasons. The pupil's parents claim a breach of Article 6 ECHR (right to a fair trial). Is Article 6 engaged?",
+    "options": [
+      "Yes, because exclusion from school is a serious matter affecting the pupil's future.",
+      "Yes, because any decision by a public authority automatically engages Article 6.",
+      "No, because Article 6 only applies to criminal charges, not school exclusions.",
+      "No, because Article 6 only protects the right to a fair trial in civil courts, not in school disciplinary proceedings, unless the decision determines a civil right.",
+      "Yes, because the school is a public authority and all its decisions are subject to Article 6."
+    ],
+    "best": 3,
+    "principle": "Article 6 protects the right to a fair hearing in the determination of civil rights and obligations or criminal charges. School exclusion does not normally engage Article 6 unless it can be shown that the decision determines a civil right (e.g., the right to education in some contexts). Article 6 is not automatically engaged by every public authority decision.",
+    "cite": "ECHR Art 6; Revise SQE Const. & Admin. Law Ch.8",
+    "principleCN": "第6条保护在确定民事权利和义务或刑事指控时的公正审理权。学校开除通常不触发第6条，除非能证明该决定确定了民事权利。并非每个公共机构的决定都自动适用第6条。",
+    "citeCN": "ECHR 第6条; Revise SQE 宪法与行政法 第8章"
+  },
+  {
+    "key": "h2-14",
+    "chapter": "Ch 8: Human Rights Act 1998",
+    "text": "Which of the following correctly describes the relationship between UK courts and the ECtHR after the HRA 1998?",
+    "options": [
+      "UK courts are subordinate to the ECtHR and must follow all its decisions.",
+      "UK courts are equal to the ECtHR and may overrule its decisions at will.",
+      "UK courts should normally follow ECtHR jurisprudence under s.2 HRA 1998, but the ECtHR is not part of the UK judicial hierarchy and there is no appeal route to it.",
+      "The ECtHR has been abolished and replaced by UK courts under the HRA 1998.",
+      "UK courts must refer all human rights cases to the ECtHR before deciding them."
+    ],
+    "best": 2,
+    "principle": "Under s.2 HRA 1998, UK courts should normally follow ECtHR jurisprudence. However, the ECtHR is an international court, not part of the UK judicial hierarchy. There is no appeal route from UK courts to the ECtHR. Individuals can apply directly to the ECtHR after exhausting domestic remedies.",
+    "cite": "s.2 HRA 1998; Revise SQE Const. & Admin. Law Ch.8",
+    "principleCN": "根据s.2 HRA 1998，英国法院通常应遵循ECtHR的判例。但ECtHR是国际法院，不属于英国司法体系的一部分。英国法院与ECtHR之间没有上诉途径。个人在穷尽国内救济后可直接向ECtHR申请。",
+    "citeCN": "s.2 HRA 1998; Revise SQE 宪法与行政法 第8章"
+  },
+  {
+    "key": "h2-15",
+    "chapter": "Ch 8: Human Rights Act 1998",
+    "text": "The government intercepts a journalist's communications to protect national security. The journalist claims a breach of Article 8 (right to privacy). The government argues the interference is justified. Who bears the burden of justifying the interference?",
+    "options": [
+      "The journalist must prove that the interference is unjustified.",
+      "The journalist must prove that national security is not at risk.",
+      "The government must prove that the interference is justified and proportionate.",
+      "The court must investigate the matter and decide without either party bearing a burden.",
+      "The burden is shared equally between both parties."
+    ],
+    "best": 2,
+    "principle": "Where a public authority interferes with a qualified right (such as Art 8), the burden is on the state to justify the interference. The state must show that the interference pursues a legitimate aim, is prescribed by law, and is necessary and proportionate. The individual does not need to prove the interference is unjustified.",
+    "cite": "ECHR Art 8; Revise SQE Const. & Admin. Law Ch.8",
+    "principleCN": "当公共机构干涉有限权利（如第8条）时，国家承担证明干涉合理的举证责任。国家必须证明干涉追求合法目标、有法律依据、且必要和成比例。",
+    "citeCN": "ECHR 第8条; Revise SQE 宪法与行政法 第8章"
+  },
+  {
+    "key": "h2-16",
+    "chapter": "Ch 8: Human Rights Act 1998",
+    "text": "An Act of Parliament contains a provision that clearly violates Article 10 (freedom of expression). A court is asked to interpret the provision compatibly with the Convention under s.3 HRA 1998. Which of the following best describes the court's power under s.3?",
+    "options": [
+      "The court must strike down the incompatible provision.",
+      "The court can only interpret the provision using ordinary rules of statutory interpretation.",
+      "The court must read and give effect to the legislation in a way which is compatible with Convention rights, so far as it is possible to do so — even if this goes beyond the ordinary meaning of the words.",
+      "The court must refer the matter to Parliament for amendment.",
+      "The court has discretion to ignore the Convention and apply the legislation as written."
+    ],
+    "best": 2,
+    "principle": "Section 3 HRA 1998 requires courts to read and give effect to primary legislation in a way compatible with Convention rights, so far as it is possible to do so. This is a strong interpretive duty that goes beyond ordinary statutory interpretation — courts can read in words or read out words. However, it cannot be used if it would fundamentally change the legislation's effect.",
+    "cite": "s.3 HRA 1998; Revise SQE Const. & Admin. Law Ch.8",
+    "principleCN": "s.3 HRA 1998要求法院以与人权兼容的方式解读和执行主要立法，只要可能做到。这是一种强有力的解释义务，超越普通法定解释——法院可以读入或排除词语。但如果会根本改变立法的效果则不能使用。",
+    "citeCN": "s.3 HRA 1998; Revise SQE 宪法与行政法 第8章"
+  },
+  {
+    "key": "h2-17",
+    "chapter": "Ch 8: Human Rights Act 1998",
+    "text": "Which of the following is an example of a LIMITED (as opposed to qualified or absolute) right under the ECHR?",
+    "options": [
+      "The right to freedom of expression (Art 10).",
+      "The right to respect for private and family life (Art 8).",
+      "The right to liberty and security of person (Art 5).",
+      "The right to freedom from torture (Art 3).",
+      "The right to freedom of thought, conscience and religion (Art 9)."
+    ],
+    "best": 2,
+    "principle": "Article 5 (right to liberty) is a limited right — it can be restricted, but only in the specific circumstances exhaustively listed in Art 5(1)(a)-(f). Qualified rights (Arts 8-11) can be interfered with for broad legitimate aims. Absolute rights (Arts 2, 3, 4(1)) can never be restricted. The distinction is: limited rights have exhaustive grounds; qualified rights have flexible proportionality tests.",
+    "cite": "ECHR Art 5; Revise SQE Const. & Admin. Law Ch.8",
+    "principleCN": "第5条（人身自由权）是有限权利——只能在第5(1)(a)-(f)条穷尽列出的特定情况下受到限制。合格权利（第8-11条）可因广泛的合法目标受到干涉。绝对权利（第2、3、4(1)条）永远不能受限。区别是：有限权利有穷尽的理由；合格权利有灵活的比例性测试。",
+    "citeCN": "ECHR 第5条; Revise SQE 宪法与行政法 第8章"
+  },
+  {
+    "key": "h2-18",
+    "chapter": "Ch 8: Human Rights Act 1998",
+    "text": "A prisoner is denied access to a solicitor to challenge the conditions of his detention. He claims a breach of Article 6. Which statement is most accurate?",
+    "options": [
+      "Article 6 is always engaged when a prisoner's rights are affected.",
+      "Article 6 is not engaged because prisoners lose all Convention rights upon imprisonment.",
+      "Article 6 may be engaged if the prisoner's access to court to determine a civil right is hindered. The right of access to a court is an inherent part of Article 6.",
+      "Article 6 only applies to criminal trials, not prison conditions.",
+      "Article 6 is breached whenever a prisoner is denied access to a solicitor."
+    ],
+    "best": 2,
+    "principle": "Article 6 guarantees the right of access to a court for the determination of civil rights and obligations. Denying a prisoner access to a solicitor to challenge detention conditions may breach Art 6 if it effectively prevents the prisoner from accessing the court. Prisoners do not lose all Convention rights upon imprisonment — they retain rights except those necessarily restricted by imprisonment.",
+    "cite": "ECHR Art 6; Revise SQE Const. & Admin. Law Ch.8",
+    "principleCN": "第6条保障为确定民事权利和义务而诉诸法院的权利。拒绝囚犯接触律师以挑战拘留条件，如果实际上阻止了囚犯诉诸法院，可能构成违反第6条。囚犯不会因入狱而失去所有公约权利。",
+    "citeCN": "ECHR 第6条; Revise SQE 宪法与行政法 第8章"
+  },
+  {
+    "key": "h2-19",
+    "chapter": "Ch 8: Human Rights Act 1998",
+    "text": "A local council passes a byelaw prohibiting all public protests within the town centre. A group wishes to hold a peaceful protest. Which Convention right is most directly engaged, and what type of right is it?",
+    "options": [
+      "Article 10 (freedom of expression) — an absolute right that can never be restricted.",
+      "Article 11 (freedom of assembly and association) — a qualified right that can be restricted if the restriction pursues a legitimate aim and is proportionate.",
+      "Article 9 (freedom of thought and religion) — a limited right with exhaustive grounds for restriction.",
+      "Article 5 (right to liberty) — an absolute right protecting against arbitrary detention during protests.",
+      "Article 8 (right to private and family life) — a qualified right protecting public gatherings."
+    ],
+    "best": 1,
+    "principle": "Article 11 (freedom of assembly and association) is the right most directly engaged by a ban on public protests. It is a qualified right, meaning the state can restrict it if the restriction is prescribed by law, pursues a legitimate aim (e.g., prevention of disorder), and is proportionate. A blanket ban on all protests is likely to be disproportionate.",
+    "cite": "ECHR Art 11; Revise SQE Const. & Admin. Law Ch.8",
+    "principleCN": "第11条（集会和结社自由）是最直接涉及的权利。它是一项合格权利，意味着国家可以在限制有法律依据、追求合法目标（如防止混乱）且成比例的情况下加以限制。全面禁止所有抗议可能是过度的。",
+    "citeCN": "ECHR 第11条; Revise SQE 宪法与行政法 第8章"
+  },
+  {
+    "key": "h2-20",
+    "chapter": "Ch 8: Human Rights Act 1998",
+    "text": "A claimant wishes to bring a claim under the HRA 1998 against a private newspaper for publishing intrusive photographs. The newspaper is not a public authority. What is the claimant's best route to enforce their Convention rights?",
+    "options": [
+      "The claimant can sue the newspaper directly under s.6 HRA 1998 because publishing photographs is a public function.",
+      "The claimant can bring a claim under s.7 HRA 1998 against the newspaper as a hybrid public authority.",
+      "The claimant cannot use the HRA directly against the newspaper, but can rely on the HRA to develop the common law of breach of confidence or privacy, which applies between private parties. Courts must interpret and develop the common law compatibly with Convention rights.",
+      "The claimant has no remedy because the HRA only applies to public authorities.",
+      "The claimant must complain to the ECtHR directly."
+    ],
+    "best": 2,
+    "principle": "The HRA 1998 does not directly impose obligations on private parties (horizontal effect is indirect, not direct). However, under s.6 HRA 1998, courts are public authorities and must develop the common law compatibly with Convention rights. This means the common law of breach of confidence/privacy has been developed to protect privacy against private parties (e.g., Douglas v Hello! Ltd). This is known as the 'indirect horizontal effect' of the HRA.",
+    "cite": "s.6 HRA 1998; Douglas v Hello! Ltd [2001]; Revise SQE Const. & Admin. Law Ch.8",
+    "principleCN": "HRA 1998不直接对私人方施加义务（间接水平效力，非直接）。但根据s.6 HRA 1998，法院是公共机构，必须以与人权兼容的方式发展普通法。这意味着保密/隐私法已被发展以保护私人之间的隐私。这被称为HRA的'间接水平效力'。",
+    "citeCN": "s.6 HRA 1998; Douglas v Hello! Ltd [2001]; Revise SQE 宪法与行政法 第8章"
+  }
+]
+;
+
+let state = JSON.parse(JSON.stringify(DEFAULT_STATE));
+
+function load() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      const saved = JSON.parse(raw);
+      state = Object.assign(JSON.parse(JSON.stringify(DEFAULT_STATE)), saved);
+    }
+  } catch(e) { console.warn('Load failed:', e); }
+}
+
+function save() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  } catch(e) { console.warn('Save failed:', e); }
+}
+
+function applyFS() {
+  document.body.classList.remove('fs-lg', 'fs-xl');
+  if (state.fsLevel === 1) document.body.classList.add('fs-lg');
+  else if (state.fsLevel === 2) document.body.classList.add('fs-xl');
+}
+
+function changeFS(dir) {
+  state.fsLevel = Math.max(0, Math.min(2, state.fsLevel + dir));
+  applyFS();
+  save();
+}
+
+function renderCoins() {
+  document.getElementById('coins').textContent = state.coins;
+}
+
+function renderStars() {
+  const count = Object.keys(state.stickers).filter(id => {
+    const s = state.stickers[id];
+    return s.side !== null && s.slot >= 0;
+  }).length;
+  const filled = Math.floor(count / 4);
+  const html = Array.from({length: 5}, (_, i) =>
+    `<span class="star ${i < filled ? 'filled' : ''}">${i < filled ? '★' : '☆'}</span>`
+  ).join('');
+  const top = document.getElementById('stars-top');
+  const quiz = document.getElementById('stars-quiz');
+  if (top) top.innerHTML = html;
+  if (quiz) quiz.innerHTML = html;
+}
+
+function getCurrentQuestions() {
+  if (state.reviewMode && state.reviewQueue.length > 0) {
+    return state.reviewQueue;
+  }
+  return QUESTIONS;
+}
+
+function renderQuestion() {
+  const qs = getCurrentQuestions();
+  const idx = state.qIndex;
+  const q = qs[idx];
+
+  document.getElementById('chapter').textContent = q.chapter;
+  document.getElementById('progress').textContent = `Question ${idx + 1} / ${qs.length}`;
+  document.getElementById('question-text').textContent = q.text;
+
+  const optsDiv = document.getElementById('options');
+  optsDiv.innerHTML = '';
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'option';
+    btn.textContent = opt;
+    const answered = state.answered.includes(q.key);
+    if (answered) {
+      if (i === q.best) btn.classList.add('correct');
+      if (state.wrong[q.key] === i) btn.classList.add('wrong');
+    }
+    btn.onclick = () => selectOption(i);
+    optsDiv.appendChild(btn);
+  });
+
+  const fb = document.getElementById('feedback');
+  const nextBtn = document.getElementById('next-btn');
+  if (state.answered.includes(q.key)) {
+    const isCorrect = state.wrong[q.key] === undefined;
+    fb.className = 'feedback show ' + (isCorrect ? 'correct' : 'wrong');
+    let html = isCorrect ? '✅ Correct!' : '❌ Not quite.';
+    html += `<div class="principle"><strong>Principle:</strong> ${q.principle}</div>`;
+    html += `<div class="principle-cn">${q.principleCN}</div>`;
+    html += `<div class="cite">📚 ${q.cite}</div>`;
+    html += `<div class="cite">${q.citeCN}</div>`;
+    fb.innerHTML = html;
+    nextBtn.classList.add('show');
+    nextBtn.textContent = idx + 1 < qs.length ? 'Next →' : 'Finish';
+  } else {
+    fb.className = 'feedback';
+    fb.innerHTML = '';
+    nextBtn.classList.remove('show');
+  }
+
+  const bmBtn = document.getElementById('bookmark-btn');
+  if (state.bookmarked.includes(q.key)) {
+    bmBtn.classList.add('active');
+    bmBtn.textContent = '★';
+  } else {
+    bmBtn.classList.remove('active');
+    bmBtn.textContent = '☆';
+  }
+
+  document.getElementById('prev-btn').disabled = idx === 0;
+  document.getElementById('next-nav-btn').disabled = idx === qs.length - 1;
+
+  renderReviewBtn();
+}
+
+function toggleBookmark() {
+  const q = getCurrentQuestions()[state.qIndex];
+  const i = state.bookmarked.indexOf(q.key);
+  if (i >= 0) state.bookmarked.splice(i, 1);
+  else state.bookmarked.push(q.key);
+  save();
+  renderQuestion();
+}
+
+function selectOption(i) {
+  const q = getCurrentQuestions()[state.qIndex];
+  const wasAnswered = state.answered.includes(q.key);
+  const wasWrong = state.wrong[q.key] !== undefined;
+
+  if (wasAnswered) {
+    if (wasWrong) {
+      delete state.wrong[q.key];
+    }
+    if (i === q.best && wasWrong) {
+      state.coins += 20;
+      renderCoins();
+    }
+  } else {
+    state.answered.push(q.key);
+    if (i === q.best) {
+      state.coins += 20;
+      renderCoins();
+    }
+  }
+
+  if (i !== q.best) {
+    state.wrong[q.key] = i;
+  }
+  save();
+  renderQuestion();
+}
+
+function nextQuestion() {
+  const qs = getCurrentQuestions();
+  if (state.qIndex < qs.length - 1) {
+    state.qIndex++;
+    save();
+    renderQuestion();
+  } else {
+    if (state.reviewMode) {
+      exitReviewMode();
+    } else {
+      state.qIndex = 0;
+      save();
+      renderQuestion();
+    }
+  }
+}
+
+function prevQuestion() {
+  if (state.qIndex > 0) {
+    state.qIndex--;
+    save();
+    renderQuestion();
+  }
+}
+
+function getReviewQuestions() {
+  return QUESTIONS.filter(q => state.wrong[q.key] !== undefined);
+}
+
+function renderReviewBtn() {
+  const reviewBtn = document.getElementById('review-btn');
+  const wrongQs = getReviewQuestions();
+  if (wrongQs.length > 0 && !state.reviewMode) {
+    reviewBtn.style.display = '';
+    reviewBtn.textContent = `Review Wrong (${wrongQs.length})`;
+  } else {
+    reviewBtn.style.display = 'none';
+  }
+}
+
+function startReview() {
+  const wrongQs = getReviewQuestions();
+  if (wrongQs.length === 0) return;
+  state.reviewMode = true;
+  state.reviewQueue = wrongQs;
+  state.qIndex = 0;
+  save();
+  renderQuestion();
+}
+
+function exitReviewMode() {
+  state.reviewMode = false;
+  state.reviewQueue = [];
+  state.qIndex = 0;
+  save();
+  renderQuestion();
+}
+
+function renderStickers() {
+  ['left', 'right'].forEach(side => {
+    const col = document.getElementById('col-' + side);
+    const label = col.querySelector('.col-label');
+    col.innerHTML = '';
+    col.appendChild(label);
+    const grid = document.createElement('div');
+    grid.style.cssText = 'display:grid; grid-template-columns: 1fr; gap: 6px;';
+    for (let i = 0; i < SLOTS_PER_COL; i++) {
+      const slot = document.createElement('div');
+      slot.className = 'sticker-slot';
+      let placedItem = null;
+      for (const [id, data] of Object.entries(state.stickers)) {
+        if (data.side === side && data.slot === i) {
+          placedItem = STICKERS.find(s => s.id === id);
+          break;
+        }
+      }
+      if (placedItem) {
+        slot.classList.add('filled');
+        slot.innerHTML = placedItem.icon;
+        const x = document.createElement('div');
+        x.className = 'remove-x';
+        x.textContent = '×';
+        x.onclick = (e) => { e.stopPropagation(); removeSticker(placedItem.id); };
+        slot.appendChild(x);
+      } else {
+        slot.innerHTML = '<span class="empty-hint">+</span>';
+      }
+      slot.onclick = () => placeSticker(side, i);
+      grid.appendChild(slot);
+    }
+    col.appendChild(grid);
+  });
+  renderStars();
+}
+
+function removeSticker(id) {
+  state.stickers[id] = { side: null, slot: -1 };
+  save();
+  renderStickers();
+}
+
+function placeSticker(side, slot) {
+  if (!state.placementItem) return;
+  for (const [id, data] of Object.entries(state.stickers)) {
+    if (data.side === side && data.slot === slot && id !== state.placementItem) {
+      state.stickers[id] = { side: null, slot: -1 };
+      break;
+    }
+  }
+  state.stickers[state.placementItem] = { side: side, slot: slot };
+  state.placementItem = null;
+  document.getElementById('placement-banner').classList.remove('show');
+  save();
+  renderStickers();
+}
+
+function cancelPlacement() {
+  state.placementItem = null;
+  document.getElementById('placement-banner').classList.remove('show');
+  save();
+}
+
+function openShop() {
+  document.getElementById('shop-coins').textContent = state.coins;
+  const grid = document.getElementById('shop-grid');
+  grid.innerHTML = '';
+  STICKERS.forEach(s => {
+    const item = document.createElement('div');
+    item.className = 'shop-item';
+    const owned = state.stickers[s.id] !== undefined;
+    const placed = owned && state.stickers[s.id].side !== null && state.stickers[s.id].slot >= 0;
+    if (owned) item.classList.add('owned');
+    item.innerHTML = `
+      <div class="icon">${s.icon}</div>
+      <div class="name">${s.name}</div>
+      <div class="price">💰 ${s.price}</div>
+    `;
+    if (!owned) {
+      const btn = document.createElement('button');
+      btn.textContent = 'Buy';
+      btn.disabled = state.coins < s.price;
+      btn.onclick = () => buySticker(s.id);
+      item.appendChild(btn);
+    } else if (!placed) {
+      const btn = document.createElement('button');
+      btn.textContent = 'Stick';
+      btn.onclick = () => startPlacement(s.id);
+      item.appendChild(btn);
+    }
+    grid.appendChild(item);
+  });
+  document.getElementById('shop-overlay').classList.add('show');
+}
+
+function closeShop() {
+  document.getElementById('shop-overlay').classList.remove('show');
+}
+
+function buySticker(id) {
+  const s = STICKERS.find(x => x.id === id);
+  if (!s) return;
+  if (state.coins < s.price) return;
+  state.coins -= s.price;
+  state.stickers[id] = { side: null, slot: -1 };
+  save();
+  renderCoins();
+  openShop();
+  startPlacement(id);
+}
+
+function startPlacement(id) {
+  state.placementItem = id;
+  document.getElementById('placement-banner').classList.add('show');
+  closeShop();
+}
+
+function init() {
+  load();
+  applyFS();
+  renderCoins();
+  renderStickers();
+  renderStars();
+  renderQuestion();
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 's' && e.shiftKey) {
+      e.preventDefault();
+      openShop();
+    }
+  });
+
+  const rightDiv = document.querySelector('.topbar .right');
+  if (rightDiv) {
+    const shopBtn = document.createElement('button');
+    shopBtn.className = 'fs-btn';
+    shopBtn.textContent = '🏷️';
+    shopBtn.style.marginRight = '4px';
+    shopBtn.onclick = openShop;
+    rightDiv.insertBefore(shopBtn, rightDiv.firstChild);
+  }
+}
+
+init();
+</script>
+</body>
+</html>
