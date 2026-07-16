@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>SQE1 Quiz · Contract Law · Offer & Acceptance</title>
+<style>
+  :root {
+    --paper: #f4ecd8;
+    --paper-2: #e8dcb8;
+    --ink: #2a2620;
+    --ink-soft: #5a5246;
+    --seal: #8b1a1a;
+    --gold: #b8860b;
+    --gold-light: #daa520;
+    --ok: #2e6b3e;
+    --line: #8a7a5c;
+    --fs-body: 18px;
+    --fs-h1: 24px;
+    --fs-h2: 20px;
+    --fs-card: 18px;
+    --fs-small: 14px;
+  }
+  body.fs-lg { --fs-body: 22px; --fs-h1: 28px; --fs-h2: 24px; --fs-card: 22px; --fs-small: 17px; }
+  body.fs-xl { --fs-body: 26px; --fs-h1: 32px; --fs-h2: 28px; --fs-card: 26px; --fs-small: 20px; }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: #1a1812;
+    font-family: 'Georgia', 'Times New Roman', 'Songti SC', serif;
+    color: var(--ink);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  #app {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: var(--paper);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ===== TOP BAR ===== */
+  .topbar {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 10px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid var(--gold);
+    position: sticky; top: 0; z-index: 100;
+  }
+  .topbar .title { font-size: var(--fs-h2); font-weight: bold; color: var(--gold-light); letter-spacing: 1px; }
+  .topbar .right { display: flex; gap: 12px; align-items: center; }
+  .topbar .coins { font-size: var(--fs-body); }
+  .topbar .coins .val { color: var(--gold-light); font-weight: bold; }
+  .topbar .fs-btn {
+    background: transparent; color: var(--paper);
+    border: 1px solid var(--paper-2);
+    padding: 2px 10px; font-family: inherit;
+    cursor: pointer; font-size: var(--fs-small);
+  }
+  .topbar .fs-btn:hover { background: var(--paper-2); color: var(--ink); }
+
+  /* ===== MAIN LAYOUT: left stickers | center quiz | right stickers ===== */
+  .main {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 120px 1fr 120px;
+    gap: 0;
+  }
+
+  /* Sticker columns */
+  .sticker-col {
+    background: var(--paper-2);
+    border-right: 1px dashed var(--line);
+    padding: 8px 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-height: 400px;
+  }
+  .sticker-col.right { border-right: none; border-left: 1px dashed var(--line); }
+  .sticker-col .col-label {
+    font-size: 11px; color: var(--ink-soft);
+    text-align: center; letter-spacing: 1px;
+    text-transform: uppercase; margin-bottom: 4px;
+  }
+  .sticker-slot {
+    aspect-ratio: 1;
+    background: rgba(255,255,255,0.3);
+    border: 1px dashed var(--ink-soft);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; position: relative;
+    font-size: 28px;
+  }
+  .sticker-slot.filled { background: rgba(255,255,255,0.6); border-style: solid; border-color: var(--gold); }
+  .sticker-slot.filled:hover .remove-x { display: block; }
+  .sticker-slot .remove-x {
+    display: none;
+    position: absolute; top: 0; right: 2px;
+    background: var(--seal); color: white;
+    width: 16px; height: 16px;
+    font-size: 10px; line-height: 16px;
+    text-align: center; cursor: pointer;
+    border-radius: 2px;
+  }
+  .sticker-slot .empty-hint { font-size: 11px; color: var(--ink-soft); opacity: 0.5; }
+
+  /* ===== CENTER QUIZ AREA ===== */
+  .quiz {
+    padding: 20px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .quiz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: var(--fs-small);
+    color: var(--ink-soft);
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 8px;
+  }
+  .quiz-header .progress { font-weight: bold; color: var(--seal); }
+
+  .question {
+    font-size: var(--fs-body);
+    line-height: 1.7;
+    padding: 14px 16px;
+    background: rgba(255,255,255,0.5);
+    border-left: 4px solid var(--gold);
+  }
+  .question .q-label {
+    display: block;
+    font-size: var(--fs-small);
+    color: var(--seal);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 6px;
+  }
+
+  .options { display: flex; flex-direction: column; gap: 10px; }
+  .option {
+    background: white;
+    border: 2px solid var(--line);
+    padding: 14px 16px;
+    font-family: inherit;
+    font-size: var(--fs-card);
+    line-height: 1.5;
+    text-align: left;
+    color: var(--ink);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .option::before {
+    content: '○';
+    margin-right: 8px;
+    color: var(--gold);
+    font-weight: bold;
+  }
+  .option:hover { transform: translateX(3px); border-color: var(--gold); box-shadow: 2px 2px 0 var(--paper-2); }
+  .option.selected { background: rgba(184,134,11,0.12); border-color: var(--gold); }
+  .option.selected::before { content: '●'; }
+  .option.revealed { opacity: 0.5; pointer-events: none; }
+  .option.best { background: rgba(46,107,62,0.12); border-color: var(--ok); opacity: 1; }
+  .option.best::before { content: '✓'; color: var(--ok); }
+
+  .feedback {
+    background: linear-gradient(135deg, rgba(184,134,11,0.1), rgba(46,107,62,0.1));
+    border-left: 4px solid var(--ok);
+    padding: 12px 16px;
+    font-size: var(--fs-body);
+    line-height: 1.6;
+    display: none;
+  }
+  .feedback.show { display: block; animation: fadeIn 0.3s; }
+  .feedback .fb-label { font-size: var(--fs-small); color: var(--ok); font-weight: bold; letter-spacing: 1px; text-transform: uppercase; }
+  .feedback .fb-principle { margin-top: 6px; font-style: italic; }
+  .feedback .fb-principle-cn { margin-top: 4px; font-size: var(--fs-small); color: var(--ink-soft); line-height: 1.6; }
+  .feedback .fb-cite { margin-top: 4px; font-size: var(--fs-small); color: var(--ink-soft); }
+  .feedback .fb-cite-cn { margin-top: 2px; font-size: var(--fs-small); color: var(--ink-soft); }
+  .feedback .fb-reward { margin-top: 8px; color: var(--gold); font-weight: bold; }
+
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+  .quiz-actions { display: flex; gap: 10px; }
+  .btn {
+    background: var(--ink); color: var(--paper);
+    border: none; padding: 12px 20px;
+    font-family: inherit; font-size: var(--fs-body);
+    cursor: pointer; letter-spacing: 1px;
+    text-transform: uppercase; flex: 1;
+  }
+  .btn:hover { background: var(--seal); }
+  .btn.gold { background: var(--gold); color: var(--ink); }
+  .btn.gold:hover { background: var(--seal); color: var(--paper); }
+  .btn:disabled { opacity: 0.4; cursor: default; }
+
+  /* ===== SHOP MODAL ===== */
+  .shop-modal {
+    position: fixed; inset: 0;
+    background: rgba(26,24,18,0.85);
+    z-index: 200;
+    display: none;
+    align-items: center; justify-content: center;
+    padding: 16px;
+  }
+  .shop-modal.show { display: flex; }
+  .shop-content {
+    background: var(--paper);
+    border: 3px solid var(--gold);
+    padding: 20px;
+    max-width: 560px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+  .shop-content h2 { color: var(--seal); font-size: var(--fs-h1); margin-bottom: 12px; text-align: center; }
+  .shop-content .shop-coins { text-align: center; font-size: var(--fs-h2); color: var(--gold); font-weight: bold; margin-bottom: 14px; }
+  .shop-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+  }
+  .shop-item {
+    background: white;
+    border: 2px solid var(--line);
+    padding: 10px 6px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .shop-item:hover:not(.unaffordable):not(.owned) { transform: translateY(-2px); box-shadow: 0 3px 0 var(--paper-2); border-color: var(--gold); }
+  .shop-item.unaffordable { opacity: 0.4; cursor: not-allowed; }
+  .shop-item.owned { background: rgba(46,107,62,0.1); border-color: var(--ok); cursor: pointer; }
+  .shop-item .si-icon { font-size: 32px; line-height: 1; }
+  .shop-item .si-name { font-size: var(--fs-small); margin-top: 4px; }
+  .shop-item .si-price { color: var(--gold); font-weight: bold; margin-top: 4px; font-size: var(--fs-small); }
+  .shop-item.owned .si-price::after { content: ' ✓'; }
+  .shop-item.unaffordable .si-price::after { content: ' (need more)'; font-size: 0.8em; }
+  .shop-close {
+    display: block;
+    margin: 16px auto 0;
+    background: var(--ink); color: var(--paper);
+    border: none; padding: 10px 24px;
+    font-family: inherit; font-size: var(--fs-body);
+    cursor: pointer; letter-spacing: 1px;
+  }
+  .shop-close:hover { background: var(--seal); }
+
+  /* ===== PLACEMENT MODE ===== */
+  .placement-hint {
+    position: fixed; bottom: 16px; left: 50%;
+    transform: translateX(-50%);
+    background: var(--seal); color: white;
+    padding: 10px 20px; font-size: var(--fs-small);
+    z-index: 300; border-radius: 4px;
+    display: none;
+  }
+  .placement-hint.show { display: block; }
+  .sticker-col.placement-mode .sticker-slot { border-color: var(--gold); background: rgba(184,134,11,0.15); }
+  .sticker-col.placement-mode .sticker-slot:hover { background: rgba(184,134,11,0.3); }
+
+  /* ===== MOBILE ===== */
+  @media (max-width: 700px) {
+    .main { grid-template-columns: 70px 1fr 70px; }
+    .sticker-col { padding: 6px 4px; }
+    .sticker-slot { font-size: 20px; }
+    .sticker-slot .empty-hint { display: none; }
+    .quiz { padding: 14px 12px; }
+    .topbar .title { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="app">
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="title">⚖ SQE · Contract Law</div>
+    <div class="right">
+      <div class="coins">💰 <span class="val" id="coins">0</span></div>
+      <button class="fs-btn" onclick="changeFS(-1)">A-</button>
+      <button class="fs-btn" onclick="changeFS(1)">A+</button>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+    <!-- LEFT STICKER COLUMN -->
+    <div class="sticker-col left" id="col-left">
+      <div class="col-label">Left</div>
+    </div>
+
+    <!-- CENTER QUIZ -->
+    <div class="quiz" id="quiz">
+      <div class="quiz-header">
+        <span>Question <span class="progress" id="q-num">1</span> / <span id="q-total">20</span></span>
+        <span>Chapter <span id="q-chapter">—</span></span>
+        <button id="btn-bookmark" class="fs-btn" style="background:transparent; border:1px solid var(--line); color:var(--ink-soft); font-size:var(--fs-h2); padding:2px 8px; cursor:pointer;">☆</button>
+      </div>
+      <div class="question">
+        <span class="q-label">The Brief</span>
+        <span id="q-text">—</span>
+      </div>
+      <div class="options" id="options"></div>
+      <div class="feedback" id="feedback">
+        <div class="fb-label">📜 Principle</div>
+        <div class="fb-principle" id="fb-principle">—</div>
+        <div class="fb-principle-cn" id="fb-principle-cn">—</div>
+        <div class="fb-cite" id="fb-cite">—</div>
+        <div class="fb-cite-cn" id="fb-cite-cn">—</div>
+        <div class="fb-reward" id="fb-reward">—</div>
+      </div>
+      <div class="quiz-actions">
+        <button class="btn gold" id="btn-shop" onclick="openShop()">🏪 Shop</button>
+        <button class="btn" id="btn-next" onclick="nextQuestion()" disabled>Next →</button>
+      </div>
+    </div>
+
+    <!-- RIGHT STICKER COLUMN -->
+    <div class="sticker-col right" id="col-right">
+      <div class="col-label">Right</div>
+    </div>
+  </div>
+</div>
+
+<!-- SHOP MODAL -->
+<div class="shop-modal" id="shop-modal">
+  <div class="shop-content">
+    <h2>🏪 Sticker Shop</h2>
+    <div class="shop-coins">💰 You have <span id="shop-coins-val">0</span> coins</div>
+    <div class="shop-grid" id="shop-grid"></div>
+    <button class="shop-close" onclick="closeShop()">Close</button>
+  </div>
+</div>
+
+<!-- PLACEMENT HINT -->
+<div class="placement-hint" id="placement-hint">
+  Click a slot on the left or right column to place your sticker
+</div>
+
+<script>
+/* ===== STATE ===== */
+const STORAGE_KEY = 'sqe-l8-stickers-v1';
+const DEFAULT_STATE = {
+  coins: 0,
+  qIndex: 0,
+  answered: [],       // question keys answered (all)
+  wrong: {},           // { qKey: { selected: idx, best: idx } } — only wrong answers saved
+  bookmarked: [],     // question keys manually starred
+  stickers: {},       // { itemId: { side: 'left'|'right', slot: 0-9 } }
+  placementItem: null,
+  fsLevel: 0,
+  reviewMode: false,
+  reviewQueue: []
+};
+let state = JSON.parse(JSON.stringify(DEFAULT_STATE));
+
+function load() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) state = Object.assign(state, JSON.parse(raw));
+  } catch(e) {}
+  applyFS();
+}
+function save() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {}
+}
+
+/* ===== FONT SIZE ===== */
+const FS_CLASSES = ['', 'fs-lg', 'fs-xl'];
+function applyFS() { document.body.className = FS_CLASSES[state.fsLevel] || ''; }
+function changeFS(d) {
+  state.fsLevel = Math.max(0, Math.min(2, state.fsLevel + d));
+  applyFS(); save();
+}
+
+/* ===== QUESTIONS ===== */
+// Each: key, chapter, text (scenario), 4 options (all correct statements, 1 is "best fit")
+// "best" = index of the best answer. No wrong answers — just "most fitting".
+const QUESTIONS = [
+  {
+    "key": "c1",
+    "chapter": "1 · Offer vs ITT",
+    "text": "A man places an advertisement in a local newspaper: 'Digital camera. Bought for £500, but may sell for £100. Contact me at the following address if you wish to buy.' A woman sees the advertisement and posts a letter saying she will buy the camera for £100. The man replies that the camera has already been sold. The woman claims there is a binding contract. What is the correct analysis?",
+    "options": [
+      "The advertisement is an invitation to treat, not an offer — words like 'may sell' and 'contact me if you wish to buy' show no intention to be bound. The woman's letter was an offer that the man rejected.",
+      "The advertisement is a unilateral offer that the woman accepted by posting her letter.",
+      "The advertisement is a bilateral offer that the woman accepted by post under the postal rule.",
+      "The advertisement is an offer because it states a specific price (£100) for a specific item."
+    ],
+    "best": 0,
+    "principle": "Advertisements are generally invitations to treat, not offers. The wording 'may sell' and 'contact me if you wish to buy' is not conducive with contractual intent. If it were an offer, there would be a problem of multi-acceptance (only one camera but potentially unlimited acceptances).",
+    "cite": "Revise SQE Contract Law, Ch 1; FLK1 Practice 180 Q",
+    "principleCN": "广告通常是要约邀请，不是要约。'may sell'（可能卖）和 'contact me if you wish to buy'（如果想买请联系我）的措辞不表明受法律约束的意图。如果要约的话还会产生多人接受的问题（只有一台相机但可能有无限制的接受）。",
+    "citeCN": "Revise SQE 合同法, 第1章; FLK1 练习题"
+  },
+  {
+    "key": "c2",
+    "chapter": "1 · Offer vs ITT",
+    "text": "A shop displays goods on its shelves with price tags. A customer picks up an item and takes it to the till. At what point is the offer made?",
+    "options": [
+      "The display of goods is an invitation to treat; the customer makes the offer by taking the item to the till; the shop accepts by processing the sale.",
+      "The display of goods is an offer; the customer accepts by picking up the item from the shelf.",
+      "The display is neither an offer nor an invitation to treat — it is merely decorative.",
+      "The shop makes the offer when it puts the price tag on the item."
+    ],
+    "best": 0,
+    "principle": "Display of goods in a shop is an invitation to treat (Pharmaceutical Society v Boots [1953]). The customer makes the offer at the till, and the shopkeeper accepts or refuses. This protects the shopkeeper from being forced to sell to everyone.",
+    "cite": "Pharmaceutical Society of Great Britain v Boots Cash Chemists [1953] 1 QB 401",
+    "principleCN": "商店货架上的商品展示是要约邀请（Boots 案 [1953]）。顾客在收银台提出要约，店主决定接受或拒绝。这保护店主不被强制向所有人出售。",
+    "citeCN": "Pharmaceutical Society v Boots [1953] 1 QB 401"
+  },
+  {
+    "key": "c3",
+    "chapter": "1 · Offer vs ITT",
+    "text": "Which of the following is correctly classified as an OFFER (not an invitation to treat)?",
+    "options": [
+      "An auction 'without reserve' — the auctioneer makes a unilateral offer to sell to the highest bidder.",
+      "A general advertisement in a newspaper announcing a product and its price.",
+      "A request for tenders where the requester asks companies to submit quotes.",
+      "A shop display of goods on shelves with price tags."
+    ],
+    "best": 0,
+    "principle": "An auction 'without reserve' is a unilateral offer — a promise to sell to the highest bidder (Barry v Davies [2000]). This is an exception to the general rule that auction requests for bids are invitations to treat.",
+    "cite": "Barry v Davies [2000] 1 WLR 1962",
+    "principleCN": "\"无保留\"拍卖是一项单方要约——向最高出价者出售的承诺（Barry v Davies [2000]）。这是一般规则（拍卖邀请是要约邀请）的例外。",
+    "citeCN": "Barry v Davies [2000] 1 WLR 1962"
+  },
+  {
+    "key": "c4",
+    "chapter": "2 · Unilateral Offers",
+    "text": "A zookeeper offers a £100 reward in the local paper to the first person who returns a lost goat. A man finds the goat but does NOT see the advertisement. He returns the goat to the zoo. Later, a colleague tells him about the reward. Can the man claim the £100?",
+    "options": [
+      "No — the man was not aware of the offer when he performed the act, so he cannot have accepted it. Awareness of the offer is always required, even for unilateral offers.",
+      "Yes — performing the requested act is sufficient to accept a unilateral offer, regardless of awareness.",
+      "Yes — the man performed the exact act requested, so acceptance is complete.",
+      "No — the man accepted a chocolate bar from the zookeeper, which counts as alternative performance."
+    ],
+    "best": 0,
+    "principle": "It is a key requirement of acceptance that the person purporting to accept must be aware of the offer. Even for unilateral offers, performing the requested act without knowledge of the offer does not constitute acceptance.",
+    "cite": "Revise SQE Contract Law, Ch 1",
+    "principleCN": "接受要约的一个关键要求是：接受者必须知道要约的存在。即使是单方要约，在不知道要约的情况下完成了要求的行为，也不构成接受。",
+    "citeCN": "Revise SQE 合同法, 第1章"
+  },
+  {
+    "key": "c5",
+    "chapter": "2 · Unilateral Offers",
+    "text": "A company advertises: '£100 to anyone who catches flu after using our smoke ball as directed for two weeks.' Mrs Carlill buys the smoke ball, uses it as directed, and catches flu. What is the correct analysis?",
+    "options": [
+      "The advertisement is a unilateral offer accepted by Mrs Carlill's performance (buying and using the product as directed). No separate communication of acceptance is needed.",
+      "The advertisement is an invitation to treat; Mrs Carlill made the offer by buying the product.",
+      "The advertisement is a bilateral offer requiring Mrs Carlill to notify the company of her acceptance.",
+      "The advertisement is merely a promotional puff with no legal effect."
+    ],
+    "best": 0,
+    "principle": "Carlill v Carbolic Smoke Ball Co [1893]: the advertisement was a unilateral offer. The offeror makes a promise in exchange for the offeree performing an act. Acceptance is by performance — no communication of acceptance is needed. The £100 deposit in the bank showed intention to be bound.",
+    "cite": "Carlill v Carbolic Smoke Ball Co [1893] 1 QB 256 (CA)",
+    "principleCN": "Carlill v Carbolic Smoke Ball Co [1893]：广告构成单方要约。要约人以承诺交换受要约人的行为。通过履行行为即构成接受——不需要另行通知接受。银行存入£100保证金表明了受约束的意图。",
+    "citeCN": "Carlill v Carbolic Smoke Ball [1893] 1 QB 256 (CA)"
+  },
+  {
+    "key": "c6",
+    "chapter": "3 · Communication of Acceptance",
+    "text": "A supplier emails a customer offering 10 tons of apples for £2,000. The customer telephones to accept, but the line is bad and the supplier cannot hear the acceptance despite the customer repeating it twice before the call drops. Is there a binding contract?",
+    "options": [
+      "No — in a bilateral offer, the offeree must communicate acceptance effectively. It is the offeree's responsibility to ensure the offeror actually hears the acceptance. No contract was formed.",
+      "Yes — the customer tried twice to communicate acceptance, so the supplier bears the risk of the bad line.",
+      "Yes — the customer's attempt to accept by telephone is sufficient even if the supplier did not hear.",
+      "No — but the supplier must call the customer back to check what was said."
+    ],
+    "best": 0,
+    "principle": "In a bilateral offer, acceptance must be communicated to and received by the offeror. It is the offeree's responsibility to ensure acceptance is actually received. If the offeror does not hear the acceptance (e.g., bad phone line), no contract is formed. The offeror has no duty to chase the acceptance.",
+    "cite": "Revise SQE Contract Law, Ch 1",
+    "principleCN": "在双边要约中，接受必须有效传达给要约人。受要约人有责任确保要约人确实收到接受。如果要约人没有听到接受（如电话线路不好），合同不成立。要约人没有义务去追查接受。",
+    "citeCN": "Revise SQE 合同法, 第1章"
+  },
+  {
+    "key": "c7",
+    "chapter": "3 · Postal Rule",
+    "text": "A man writes to a woman offering to sell his gold watch for £5,000, promising to keep the offer open for five days. The woman receives the letter two days later and immediately posts her acceptance by Royal Mail. The letter is delayed and arrives seven days after the offer was sent. Meanwhile, on day six, the man sells the watch to a third party. Has the man breached a contract with the woman?",
+    "options": [
+      "Yes — the postal rule makes acceptance effective when posted (day 2), before the man sold the watch (day 6). The promise to keep the offer open for five days was not binding (no consideration), but the acceptance was still effective within that period.",
+      "No — the woman's acceptance arrived after the five-day period, so the offer had lapsed.",
+      "No — the man's promise to keep the offer open was not supported by consideration, so he was free to sell to anyone.",
+      "No — the postal rule does not apply when the offer specifies a time limit."
+    ],
+    "best": 0,
+    "principle": "The postal rule: acceptance by post is effective when posted, not when received. The woman's acceptance was effective on day 2 (when posted), before the man sold the watch on day 6. The promise to keep the offer open for 5 days was not binding (no consideration), but the acceptance was effective within that period anyway.",
+    "cite": "Revise SQE Contract Law, Ch 1; FLK1 Practice 180 Q",
+    "principleCN": "邮政规则：通过邮寄接受的，在投寄时生效，而非收到时。女方的接受在第2天（投寄时）生效，早于男方在第6天出售手表。承诺保持要约开放5天没有约束力（没有对价），但接受在此期间内生效。",
+    "citeCN": "Revise SQE 合同法, 第1章; FLK1 练习题"
+  },
+  {
+    "key": "c8",
+    "chapter": "3 · Postal Rule",
+    "text": "Which of the following is a correct statement about when the postal rule does NOT apply?",
+    "options": [
+      "The postal rule does not apply to revocations of offer — revocation must be received by the offeree to be effective.",
+      "The postal rule does not apply to acceptances sent by Royal Mail — only by courier.",
+      "The postal rule does not apply when the offer is made by telephone.",
+      "The postal rule applies to all communications including counter-offers and revocations."
+    ],
+    "best": 0,
+    "principle": "The postal rule is an exception to the general receipt rule and applies ONLY to acceptances. It does NOT apply to revocations (which must be received), counter-offers (which are new offers), or offers themselves. The rule applies when the post is a reasonable method of acceptance.",
+    "cite": "Revise SQE Contract Law, Ch 1",
+    "principleCN": "邮政规则是一般收到规则的例外，只适用于接受。不适用于撤销要约（必须被收到才有效）、反要约（本身就是新要约）或要约本身。当邮寄是合理的接受方式时适用此规则。",
+    "citeCN": "Revise SQE 合同法, 第1章"
+  },
+  {
+    "key": "c9",
+    "chapter": "4 · Counter-Offer",
+    "text": "A man offers to sell his bicycle to a colleague for £500, requiring a response within two days. The colleague replies by post: 'I will buy it for £400.' The man ignores the letter. The colleague then tries to accept the original £500 offer. Is there a contract at £500?",
+    "options": [
+      "No — the colleague's response (£400) is a counter-offer that destroys the original offer. The original offer can no longer be accepted. Authority: Hyde v Wrench.",
+      "Yes — the colleague's letter was merely a request for information about price flexibility, so the original offer remains open.",
+      "Yes — the postal rule means the colleague's counter-offer was effective when posted, but the original offer can still be accepted.",
+      "No — but only because the two-day time limit has expired."
+    ],
+    "best": 0,
+    "principle": "A counter-offer destroys the original offer so it can no longer be accepted (Hyde v Wrench [1840]). The mirror-image rule requires exact acceptance — any change to terms (price, quantity, etc.) is a counter-offer, not an acceptance. A request for information (e.g., 'can I pay in instalments?') would NOT destroy the offer.",
+    "cite": "Hyde v Wrench (1840) 3 Beav 334",
+    "principleCN": "反要约会摧毁原要约，使其不能再被接受（Hyde v Wrench [1840]）。镜像原则要求完全一致的接受——对条款（价格、数量等）的任何修改都是反要约，而非接受。但如果只是询问信息（如'可以分期付款吗？'）则不会摧毁要约。",
+    "citeCN": "Hyde v Wrench (1840) 3 Beav 334"
+  },
+  {
+    "key": "c10",
+    "chapter": "4 · Counter-Offer",
+    "text": "A supplier offers goods at £1,000. The buyer replies: 'Can you do £900?' The supplier says no. The buyer then says: 'I accept your original offer at £1,000.' Is there a binding contract?",
+    "options": [
+      "No — asking 'can you do £900?' is likely a counter-offer that destroyed the original offer. The buyer cannot then revive it by purporting to accept.",
+      "Yes — 'can you do £900?' is merely a request for information, not a counter-offer, so the original offer survives.",
+      "Yes — the buyer can accept the original offer at any time before the supplier revokes it.",
+      "No — the supplier's refusal of £900 means there is no offer on the table at all."
+    ],
+    "best": 0,
+    "principle": "Whether a response is a counter-offer or a request for information depends on the wording. 'Will you accept £900?' is likely a counter-offer (destroying the original offer). 'Could I pay in instalments?' would be a request for information (not destroying the offer). Once a counter-offer is made, the original offer is dead and cannot be revived.",
+    "cite": "Hyde v Wrench (1840); distinction from Stevenson v Jacques (1869)",
+    "principleCN": "回复是反要约还是信息询问取决于措辞。'你能不能接受£900？'很可能是反要约（摧毁原要约）。'我可以分期付款吗？'则是信息询问（不摧毁要约）。一旦提出反要约，原要约就失效了，不能复活。",
+    "citeCN": "Hyde v Wrench (1840); 区分 Stevenson v Jacques (1869)"
+  },
+  {
+    "key": "c11",
+    "chapter": "5 · Revocation",
+    "text": "A shopkeeper, in a panic, posts a letter to an insurance company offering to pay 45% more rent per year. After checking her finances, she realises she cannot afford this. She urgently needs to revoke the offer. What is the BEST method?",
+    "options": [
+      "Telephone the insurance company immediately — revocation must be communicated to the offeree before acceptance. A third party (e.g., the shopkeeper's lawyer) can communicate the revocation. Speed is essential to prevent acceptance.",
+      "Send a revocation letter by Royal Mail — the postal rule means the revocation is effective when posted.",
+      "Do nothing — the offer is not binding because it was made in panic.",
+      "Wait for the insurance company to accept, then refuse to pay."
+    ],
+    "best": 0,
+    "principle": "An offer can be revoked before acceptance. Revocation must be communicated to the offeree (received, not posted — the postal rule does NOT apply to revocations). A third party may communicate revocation on behalf of the offeror. The fastest method (telephone) is best to prevent the offeree from accepting first.",
+    "cite": "Revise SQE Contract Law, Ch 1; Dickinson v Dodds (1876)",
+    "principleCN": "要约可以在接受前撤销。撤销必须传达给受要约人（需收到，不适用邮政规则）。第三方可以代表要约人传达撤销。最快的方式（电话）最好，以防止受要约人先接受。",
+    "citeCN": "Revise SQE 合同法, 第1章; Dickinson v Dodds (1876)"
+  },
+  {
+    "key": "c12",
+    "chapter": "5 · Revocation",
+    "text": "A man advertises in a trade magazine: 'LENOVO laptop for £200. I will sell to the first person who brings £200 to my office at 1 Oxford Street by 1 PM Friday.' On Tuesday he changes his mind and places a revocation notice in a national newspaper published Wednesday. On Friday, a woman brings £200 to his office at 11 AM, having seen the original ad on Monday. Must he sell to her?",
+    "options": [
+      "Yes — the revocation was ineffective because it was not given the same notoriety as the original offer. The original was in a trade magazine; the revocation was in a national newspaper — different readership.",
+      "No — the revocation in a national newspaper is effective because it reaches a wider audience than the trade magazine.",
+      "No — the man can revoke any offer at any time before acceptance, regardless of method.",
+      "Yes — because the woman performed the requested act before 1 PM Friday."
+    ],
+    "best": 0,
+    "principle": "Revocation of a unilateral offer must be communicated using the same method or notoriety as the original offer (Shuey v US [1875]). The original was in a trade magazine; the revocation in a national newspaper has different readership, so the revocation is ineffective. The woman, having seen the original ad and performed the act, validly accepted.",
+    "cite": "Shuey v United States (1875); Revise SQE Contract Law, Ch 1",
+    "principleCN": "撤销单方要约必须使用与原要约相同的方式或知名度（Shuey v US [1875]）。原要约在行业杂志上；撤销在全国性报纸上——读者群不同，所以撤销无效。女方看到了原广告并完成了要求的行为，有效接受了要约。",
+    "citeCN": "Shuey v US (1875); Revise SQE 合同法, 第1章"
+  },
+  {
+    "key": "c13",
+    "chapter": "5 · Battle of the Forms",
+    "text": "Buyer sends a purchase order with terms A. Seller replies with an invoice containing terms B. Buyer pays the invoice without objecting. Goods are delivered. Which terms govern the contract?",
+    "options": [
+      "Terms B (seller's invoice terms) — the last party to send terms without objection from the other party wins. The buyer's payment without objection constitutes acceptance of the seller's terms (the 'last shot' rule).",
+      "Terms A (buyer's original terms) — the buyer made the offer and the seller's invoice was a counter-offer that the buyer rejected.",
+      "Neither — the court will impose standard industry terms.",
+      "Both A and B apply equally — the court will merge the two sets of terms."
+    ],
+    "best": 0,
+    "principle": "Battle of the forms: where parties exchange conflicting standard terms, the 'last shot' prevails — the last set of terms sent before performance without objection governs. The buyer's payment without objecting to the seller's terms constitutes acceptance of those terms.",
+    "cite": "Butler Machine Tool Co v Ex-Cell-O Corp [1979] 1 WLR 401",
+    "principleCN": "格式之战：当双方交换冲突的标准条款时，'最后一枪'规则适用——在履行前最后发出的、对方未异议的条款管辖合同。买方付款时未异议即构成对卖方条款的接受。",
+    "citeCN": "Butler Machine Tool v Ex-Cell-O [1979] 1 WLR 401"
+  },
+  {
+    "key": "c14",
+    "chapter": "6 · Termination",
+    "text": "Which of the following does NOT terminate an offer?",
+    "options": [
+      "A request for further information about the goods (e.g., 'is delivery included?') — this does not destroy the offer; it is merely an enquiry.",
+      "A counter-offer by the offeree — this destroys the original offer.",
+      "Revocation communicated to the offeree before acceptance.",
+      "Lapse of the specified time period (or a reasonable time if none specified)."
+    ],
+    "best": 0,
+    "principle": "An offer is terminated by: (1) revocation (communicated before acceptance), (2) counter-offer (destroys original offer), (3) lapse of time, (4) rejection. A request for information or enquiry (e.g., 'is delivery included?') does NOT terminate the offer — it leaves the original offer open for acceptance.",
+    "cite": "Revise SQE Contract Law, Ch 1; Stevenson v Jacques (1869)",
+    "principleCN": "要约因以下原因终止：(1) 撤销（在接受前传达），(2) 反要约（摧毁原要约），(3) 期限届满，(4) 拒绝。询问信息（如'包含运费吗？'）不会终止要约——原要约仍然可以被接受。",
+    "citeCN": "Revise SQE 合同法, 第1章; Stevenson v Jacques (1869)"
+  },
+  {
+    "key": "c15",
+    "chapter": "6 · Termination",
+    "text": "An offer is made 'open for 10 days.' The offeree does nothing for 9 days. On day 10, the offeree posts an acceptance. It arrives on day 12. Is there a contract?",
+    "options": [
+      "Yes — if the postal rule applies, acceptance was effective when posted (day 10), within the offer period. The late arrival does not matter.",
+      "No — the acceptance arrived after the 10-day period, so the offer had lapsed.",
+      "No — 10 days is not a reasonable time for acceptance.",
+      "Yes — but only if the offeror expressly agrees to the late acceptance."
+    ],
+    "best": 0,
+    "principle": "If the postal rule applies, acceptance is effective when posted. If posted within the offer period (day 10), the contract is formed even if the letter arrives late. The offeror may argue the postal rule should not apply (e.g., if instantaneous communication was contemplated), but the general rule favours the offeree.",
+    "cite": "Revise SQE Contract Law, Ch 1; Henthorn v Fraser [1892]",
+    "principleCN": "如果邮政规则适用，接受在投寄时生效。如果在要约期内（第10天）投寄，即使信件晚到，合同也成立。要约人可以争辩邮政规则不应适用（如双方考虑的是即时通信），但一般规则偏向受要约人。",
+    "citeCN": "Revise SQE 合同法, 第1章; Henthorn v Fraser [1892]"
+  },
+  {
+    "key": "c16",
+    "chapter": "7 · Consideration Basics",
+    "text": "A man's will allows his wife to live in the matrimonial home for life. The executors agree she can stay if she pays £1 per year rent. The family challenges this, saying £1 is insufficient. Can the woman enforce the agreement?",
+    "options": [
+      "Yes — £1 per year is sufficient consideration. The courts are not concerned with the adequacy of consideration, only that it has some economic value, however small.",
+      "No — £1 per year is not adequate consideration because it does not reflect market rent.",
+      "No — £1 per year has minimal economic value and cannot support a contract.",
+      "Yes — but only because the woman relied on the executors' promise."
+    ],
+    "best": 0,
+    "principle": "Consideration need only be sufficient (have some economic value), not adequate (match market value). £1 per year is sufficient consideration. The courts will not assess the fairness of the bargain — a peppercorn can be good consideration. The consideration is not past because it is given in exchange for the executors' promise.",
+    "cite": "Revise SQE Contract Law, Ch 2; FLK1 Practice 180 Q",
+    "principleCN": "对价只需充分（有某种经济价值），不需要等价（匹配市场价值）。每年£1是充分的对价。法院不评估交易是否公平——一粒胡椒也可以是有效对价。该对价不是过去的对价，因为它是为执行人的承诺而给出的。",
+    "citeCN": "Revise SQE 合同法, 第2章; FLK1 练习题"
+  },
+  {
+    "key": "c17",
+    "chapter": "7 · Consideration Basics",
+    "text": "Which of the following is NOT good consideration?",
+    "options": [
+      "Past consideration — something done before the promise was made cannot be consideration for that promise.",
+      "A promise to pay £10 in exchange for goods worth £10.",
+      "Forbearance to sue (agreeing not to sue even if you might lose).",
+      "A peppercorn (a nominal sum) given in exchange for a promise."
+    ],
+    "best": 0,
+    "principle": "Past consideration is not good consideration — the act must be given in exchange for the promise, not before it. The other options are all valid: nominal sums (peppercorns), forbearance to sue, and equivalent value exchange are all sufficient consideration.",
+    "cite": "Re McArdle [1951] Ch 669; Revise SQE Contract Law, Ch 2",
+    "principleCN": "过去的对价不是有效对价——行为必须是为承诺而做出的，而不是在承诺之前。其他选项都有效：名义金额（胡椒）、不起诉的承诺、等价交换都是充分的对价。",
+    "citeCN": "Re McArdle [1951] Ch 669; Revise SQE 合同法, 第2章"
+  },
+  {
+    "key": "c18",
+    "chapter": "8 · Part-Payment of Debt",
+    "text": "A lender is owed £120,000 in 12 instalments of £10,000. The business pays 11 instalments. Before the final instalment, the lender promises to accept £5,000 instead. In exchange, the business provides free staff training to the lender's employees. The business pays £5,000 and provides the training. Later, the lender demands the remaining £5,000. Must the business pay?",
+    "options": [
+      "No — the provision of staff training is a separate service that goes beyond existing obligations. This is an exception to the rule that part-payment of a debt is not good consideration.",
+      "No — part-payment of a debt is always sufficient consideration.",
+      "Yes — part-payment of a debt is never good consideration, regardless of any additional service.",
+      "Yes — the staff training was free and had no economic value."
+    ],
+    "best": 0,
+    "principle": "The general rule is that part-payment of a debt is not good consideration (Foakes v Beer [1884]). However, providing a separate service (staff training) that goes beyond existing obligations IS good consideration. The Williams v Roffey practical benefit principle does NOT apply to part-payment of debt, but a separate service can. Promissory estoppel is unnecessary when consideration exists at common law.",
+    "cite": "Foakes v Beer (1884); FLK1 Practice 180 Q",
+    "principleCN": "一般规则是部分还款不是有效对价（Foakes v Beer [1884]）。但是，提供超出现有义务的单独服务（员工培训）是有效对价。Williams v Roffey 的实际利益原则不适用于部分还款，但单独服务可以。当普通法上存在对价时，不需要援引禁止反言。",
+    "citeCN": "Foakes v Beer (1884); FLK1 练习题"
+  },
+  {
+    "key": "c19",
+    "chapter": "8 · Part-Payment of Debt",
+    "text": "A creditor is owed £10,000. The debtor pays £8,000 and the creditor accepts it as full settlement, without any additional consideration. Later, the creditor claims the remaining £2,000. Can the creditor recover it?",
+    "options": [
+      "Yes — part-payment of a debt without additional consideration is not good consideration for the creditor's promise to accept less. The creditor can recover the balance (Foakes v Beer).",
+      "No — the creditor accepted £8,000 as full settlement, so the debt is discharged.",
+      "No — the creditor's promise to accept less is binding under promissory estoppel.",
+      "Yes — but only if the creditor sues within 6 years of the part-payment."
+    ],
+    "best": 0,
+    "principle": "Foakes v Beer (1884): part-payment of a debt is not good consideration for a promise to accept less. The creditor can recover the balance. Exceptions: (1) composition agreement (all creditors agree), (2) payment before due date, (3) payment of a different thing, (4) providing a separate service. Promissory estoppel may prevent the creditor from going back on the promise, but only as a shield, not a sword.",
+    "cite": "Foakes v Beer (1884) 9 App Cas 605",
+    "principleCN": "Foakes v Beer (1884)：部分还款不是债权人接受较少金额承诺的有效对价。债权人可以追回余额。例外：(1) 债务重组协议（所有债权人同意），(2) 到期前付款，(3) 给付不同的东西，(4) 提供单独服务。禁止反言可能阻止债权人反悔，但只能作盾牌不能作剑。",
+    "citeCN": "Foakes v Beer (1884) 9 App Cas 605"
+  },
+  {
+    "key": "c20",
+    "chapter": "9 · Objective Test",
+    "text": "A man offers to sell his car for 'about £5,000.' A colleague says 'I accept.' The man says he meant £5,500. The colleague insists £5,000 is the price. What is the likely outcome?",
+    "options": [
+      "No contract — the word 'about' makes the offer too uncertain/vague to be accepted. An offer must be precise enough that the offeree can simply say 'yes' to form a binding contract.",
+      "A contract exists at £5,000 — the colleague accepted the offer as stated.",
+      "A contract exists at £5,500 — the man's subjective intention was to sell at that price.",
+      "A contract exists — the court will set a fair price for the car."
+    ],
+    "best": 0,
+    "principle": "For an offer to be valid, it must be sufficiently precise — the offeree must be able to say 'yes' without further negotiation. The word 'about' introduces vagueness, making the communication an invitation to treat rather than a firm offer. The objective test looks at how a reasonable person would interpret the words, but imprecise terms prevent contract formation.",
+    "cite": "Revise SQE Contract Law, Ch 1; Storer v Manchester CC [1974]",
+    "principleCN": "要约有效必须足够精确——受要约人必须能直接说'是'来成立合同，不需要进一步协商。'大约'一词引入了模糊性，使该沟通成为要约邀请而非确定要约。客观标准看理性人如何理解措辞，但不精确的条款阻止合同成立。",
+    "citeCN": "Revise SQE 合同法, 第1章; Storer v Manchester CC [1974]"
+  }
+];
+
+/* ===== STICKERS ===== */
+const STICKERS = [
+  { id: 'daisy',       name: 'Daisy',           icon: '🌼', price: 50 },
+  { id: 'tulip',       name: 'Tulip',           icon: '🌷', price: 50 },
+  { id: 'rose',        name: 'Rose',            icon: '🌹', price: 80 },
+  { id: 'sunflower',   name: 'Sunflower',       icon: '🌻', price: 80 },
+  { id: 'clover',      name: 'Clover',          icon: '🍀', price: 100 },
+  { id: 'cactus',      name: 'Cactus',          icon: '🌵', price: 120 },
+  { id: 'palm',        name: 'Palm',            icon: '🌴', price: 150 },
+  { id: 'fir',         name: 'Fir Tree',        icon: '🌲', price: 150 },
+  { id: 'book',        name: 'Law Book',        icon: '📕', price: 100 },
+  { id: 'scroll',      name: 'Scroll',          icon: '📜', price: 120 },
+  { id: 'trophy',      name: 'Trophy',          icon: '🏆', price: 200 },
+  { id: 'medal',       name: 'Medal',           icon: '🎖', price: 200 },
+  { id: 'ribbon',      name: 'Ribbon',          icon: '🎗', price: 150 },
+  { id: 'star',        name: 'Star',            icon: '⭐', price: 100 },
+  { id: 'gem',         name: 'Gem',             icon: '💎', price: 300 },
+  { id: 'crown',       name: 'Crown',           icon: '👑', price: 500 }
+];
+
+/* ===== SLOTS per column ===== */
+const SLOTS_PER_COL = 8;
+
+/* ===== RENDER ===== */
+function renderCoins() {
+  document.getElementById('coins').textContent = state.coins;
+}
+
+function renderQuestion() {
+  const q = QUESTIONS[state.qIndex];
+  const total = state.reviewMode ? state.reviewQueue.length : QUESTIONS.length;
+  const num = state.reviewMode ? (state.reviewQueue.indexOf(state.qIndex) + 1) : (state.qIndex + 1);
+
+  const qNumEl = document.getElementById('q-num');
+  const qTotalEl = document.getElementById('q-total');
+  const qChEl = document.getElementById('q-chapter');
+  if (qNumEl) qNumEl.textContent = num;
+  if (qTotalEl) qTotalEl.textContent = total;
+  if (qChEl) qChEl.textContent = q.chapter;
+  document.getElementById('q-text').textContent = q.text;
+
+  // Bookmark button
+  const bmBtn = document.getElementById('btn-bookmark');
+  if (bmBtn) {
+    const isMarked = state.bookmarked.includes(q.key);
+    bmBtn.textContent = isMarked ? '★' : '☆';
+    bmBtn.style.color = isMarked ? 'var(--gold)' : 'var(--ink-soft)';
+    bmBtn.onclick = () => toggleBookmark(q.key);
+  }
+
+  // Shuffle options each time — don't let player memorise position
+  const indices = q.options.map((_, i) => i);
+  for (let i = indices.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [indices[i], indices[j]] = [indices[j], indices[i]];
+  }
+  q._displayOrder = indices; // displayOrder[displayIdx] = originalIdx
+  q._bestDisplay = indices.indexOf(q.best);
+
+  const optsEl = document.getElementById('options');
+  optsEl.innerHTML = '';
+
+  indices.forEach((origIdx, displayIdx) => {
+    const btn = document.createElement('button');
+    btn.className = 'option';
+    btn.textContent = q.options[origIdx];
+    btn.onclick = () => selectOption(displayIdx);
+    optsEl.appendChild(btn);
+  });
+
+  document.getElementById('feedback').classList.remove('show');
+  document.getElementById('btn-next').disabled = true;
+
+  renderReviewBtn();
+}
+
+function toggleBookmark(key) {
+  const idx = state.bookmarked.indexOf(key);
+  if (idx >= 0) {
+    state.bookmarked.splice(idx, 1);
+  } else {
+    state.bookmarked.push(key);
+  }
+  save();
+  renderQuestion();
+}
+
+function selectOption(displayIdx) {
+  const q = QUESTIONS[state.qIndex];
+  const opts = document.querySelectorAll('.option');
+  opts.forEach((el, idx) => {
+    el.classList.add('revealed');
+    if (idx === q._bestDisplay) el.classList.add('best');
+    if (idx === displayIdx) el.classList.add('selected');
+  });
+
+  const isBest = (displayIdx === q._bestDisplay);
+  if (!state.answered.includes(q.key)) state.answered.push(q.key);
+
+  if (isBest) {
+    // Correct — remove from wrong if it was there
+    delete state.wrong[q.key];
+  } else {
+    // Wrong — save it (store original option index, not display position)
+    state.wrong[q.key] = { selectedOrig: q._displayOrder[displayIdx], best: q.best };
+  }
+
+  const reward = isBest ? 30 : 0;
+  if (isBest) state.coins += reward;
+  save();
+  renderCoins();
+
+  const fbLabel = isBest ? '✓ Best answer · +' + reward + ' 💰' : '⚠ No coins — added to review';
+  document.getElementById('fb-principle').textContent = q.principle;
+  document.getElementById('fb-principle-cn').textContent = q.principleCN || '';
+  document.getElementById('fb-cite').textContent = '📜 ' + q.cite;
+  document.getElementById('fb-cite-cn').textContent = q.citeCN || '';
+  document.getElementById('fb-reward').innerHTML = '<span style="color:' + (isBest ? 'var(--gold)' : 'var(--seal)') + ';">' + fbLabel + '</span>';
+  document.getElementById('feedback').classList.add('show');
+  document.getElementById('btn-next').disabled = false;
+  renderReviewBtn();
+}
+
+function nextQuestion() {
+  if (state.reviewMode) {
+    // In review mode, go to next in reviewQueue
+    const curPos = state.reviewQueue.indexOf(state.qIndex);
+    if (curPos + 1 < state.reviewQueue.length) {
+      state.qIndex = state.reviewQueue[curPos + 1];
+    } else {
+      // Review done
+      exitReviewMode();
+      return;
+    }
+    save();
+    renderQuestion();
+    return;
+  }
+
+  if (state.qIndex + 1 < QUESTIONS.length) {
+    state.qIndex++;
+  } else {
+    state.qIndex = 0; // loop back to start
+  }
+  save();
+  renderQuestion();
+}
+
+/* ===== REVIEW MODE ===== */
+function getReviewQuestions() {
+  // Wrong answers + bookmarked questions, deduplicated, sorted by index
+  const set = new Set();
+  // Wrong answers
+  QUESTIONS.forEach((q, i) => {
+    if (state.wrong[q.key]) set.add(i);
+  });
+  // Bookmarked
+  QUESTIONS.forEach((q, i) => {
+    if (state.bookmarked.includes(q.key)) set.add(i);
+  });
+  return [...set].sort((a, b) => a - b);
+}
+
+function renderReviewBtn() {
+  const reviewList = getReviewQuestions();
+  let btn = document.getElementById('btn-review');
+  if (!btn) {
+    btn = document.createElement('button');
+    btn.id = 'btn-review';
+    btn.className = 'btn';
+    btn.style.cssText = 'background: var(--seal); flex: 1; display: none;';
+    document.querySelector('.quiz-actions').insertBefore(btn, document.getElementById('btn-shop'));
+  }
+  if (reviewList.length > 0) {
+    const wrongCount = Object.keys(state.wrong).length;
+    const bmCount = state.bookmarked.length;
+    btn.style.display = 'block';
+    btn.textContent = '📋 Review (' + reviewList.length + ')';
+    btn.onclick = () => startReview();
+  } else {
+    btn.style.display = 'none';
+  }
+}
+
+function startReview() {
+  state.reviewMode = true;
+  state.reviewQueue = getReviewQuestions();
+  if (state.reviewQueue.length === 0) return;
+  state.qIndex = state.reviewQueue[0];
+  save();
+  document.getElementById('btn-review').style.display = 'none';
+  // Show exit button
+  let exitBtn = document.getElementById('btn-exit-review');
+  if (!exitBtn) {
+    exitBtn = document.createElement('button');
+    exitBtn.id = 'btn-exit-review';
+    exitBtn.className = 'btn';
+    exitBtn.style.cssText = 'background: var(--ink-soft); flex: 1;';
+    exitBtn.textContent = '✕ Exit Review';
+    exitBtn.onclick = () => exitReviewMode();
+    document.querySelector('.quiz-actions').appendChild(exitBtn);
+  }
+  exitBtn.style.display = 'block';
+  renderQuestion();
+}
+
+function exitReviewMode() {
+  state.reviewMode = false;
+  state.reviewQueue = [];
+  save();
+  const exitBtn = document.getElementById('btn-exit-review');
+  if (exitBtn) exitBtn.style.display = 'none';
+  // Go to first unanswered or back to start
+  const firstUnanswered = QUESTIONS.findIndex(q => !state.answered.includes(q.key));
+  state.qIndex = firstUnanswered >= 0 ? firstUnanswered : 0;
+  save();
+  renderQuestion();
+  renderReviewBtn();
+}
+
+/* ===== STICKER COLUMNS ===== */
+function renderStickers() {
+  ['left', 'right'].forEach(side => {
+    const col = document.getElementById('col-' + side);
+    // Clear except label
+    const label = col.querySelector('.col-label');
+    col.innerHTML = '';
+    col.appendChild(label);
+
+    for (let i = 0; i < SLOTS_PER_COL; i++) {
+      const slot = document.createElement('div');
+      slot.className = 'sticker-slot';
+
+      // Find if any sticker is placed here
+      let placedItem = null;
+      for (const [id, data] of Object.entries(state.stickers)) {
+        if (data.side === side && data.slot === i) {
+          placedItem = STICKERS.find(s => s.id === id);
+          break;
+        }
+      }
+
+      if (placedItem) {
+        slot.classList.add('filled');
+        slot.innerHTML = placedItem.icon;
+        const x = document.createElement('div');
+        x.className = 'remove-x';
+        x.textContent = '×';
+        x.onclick = (e) => { e.stopPropagation(); removeSticker(placedItem.id); };
+        slot.appendChild(x);
+      } else {
+        slot.innerHTML = '<span class="empty-hint">+</span>';
+      }
+
+      slot.onclick = () => placeSticker(side, i);
+      col.appendChild(slot);
+    }
+  });
+}
+
+function removeSticker(itemId) {
+  delete state.stickers[itemId];
+  save();
+  renderStickers();
+}
+
+function placeSticker(side, slotIdx) {
+  if (!state.placementItem) return;
+
+  // Remove from current position if any
+  if (state.stickers[state.placementItem]) {
+    delete state.stickers[state.placementItem];
+  }
+
+  // Check if target slot is occupied
+  for (const [id, data] of Object.entries(state.stickers)) {
+    if (data.side === side && data.slot === slotIdx) {
+      delete state.stickers[id]; // remove occupant
+    }
+  }
+
+  state.stickers[state.placementItem] = { side, slot: slotIdx };
+  state.placementItem = null;
+  document.getElementById('placement-hint').classList.remove('show');
+  document.querySelectorAll('.sticker-col').forEach(c => c.classList.remove('placement-mode'));
+  save();
+  renderStickers();
+}
+
+/* ===== SHOP ===== */
+function openShop() {
+  document.getElementById('shop-coins-val').textContent = state.coins;
+  const grid = document.getElementById('shop-grid');
+  grid.innerHTML = '';
+  STICKERS.forEach(s => {
+    const owned = state.stickers[s.id] !== undefined || state.placementItem === s.id;
+    const canAfford = state.coins >= s.price;
+    const div = document.createElement('div');
+    div.className = 'shop-item';
+    if (owned) div.classList.add('owned');
+    else if (!canAfford) div.classList.add('unaffordable');
+    div.innerHTML = `
+      <div class="si-icon">${s.icon}</div>
+      <div class="si-name">${s.name}</div>
+      <div class="si-price">${s.price} 💰</div>
+    `;
+    if (!owned && canAfford) {
+      div.onclick = () => buySticker(s.id);
+    } else if (owned) {
+      div.onclick = () => startPlacement(s.id);
+    }
+    grid.appendChild(div);
+  });
+  document.getElementById('shop-modal').classList.add('show');
+}
+
+function closeShop() {
+  document.getElementById('shop-modal').classList.remove('show');
+}
+
+function buySticker(id) {
+  const s = STICKERS.find(ss => ss.id === id);
+  if (state.coins < s.price) return;
+  state.coins -= s.price;
+  // Store as owned but unplaced
+  state.stickers[id] = { side: null, slot: -1 };
+  save();
+  renderCoins();
+  openShop(); // refresh
+  // Immediately start placement
+  startPlacement(id);
+}
+
+function startPlacement(id) {
+  state.placementItem = id;
+  closeShop();
+  document.getElementById('placement-hint').classList.add('show');
+  document.querySelectorAll('.sticker-col').forEach(c => c.classList.add('placement-mode'));
+}
+
+/* ===== INIT ===== */
+function init() {
+  load();
+  // Resume from first unanswered question
+  const firstUnanswered = QUESTIONS.findIndex(q => !state.answered.includes(q.key));
+  if (firstUnanswered >= 0 && firstUnanswered !== state.qIndex) {
+    state.qIndex = firstUnanswered;
+  }
+  renderCoins();
+  renderQuestion();
+  renderStickers();
+}
+init();
+</script>
+</body>
+</html>
