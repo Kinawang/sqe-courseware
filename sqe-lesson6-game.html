@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SQE1 Lesson 6: Judicial Review — Practice Game</title>
+<style>
+:root {
+    --paper: #f4ecd8;
+    --paper-2: #e8dcb8;
+    --ink: #2a2620;
+    --ink-soft: #5a5246;
+    --seal: #8b1a1a;
+    --gold: #b8860b;
+    --gold-light: #daa520;
+    --ok: #2e6b3e;
+    --line: #8a7a5c;
+    --fs-body: 18px;
+    --fs-h1: 24px;
+    --fs-h2: 20px;
+    --fs-card: 18px;
+    --fs-small: 14px;
+}
+body.fs-lg { --fs-body: 22px; --fs-h1: 28px; --fs-h2: 24px; --fs-card: 22px; --fs-small: 17px; }
+body.fs-xl { --fs-body: 26px; --fs-h1: 32px; --fs-h2: 28px; --fs-card: 26px; --fs-small: 20px; }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: var(--fs-body);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background: var(--paper-2);
+    border-bottom: 2px solid var(--line);
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.topbar .title {
+    font-size: var(--fs-h1);
+    font-weight: bold;
+    color: var(--ink);
+    white-space: nowrap;
+}
+.topbar .right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.topbar .coins {
+    font-size: var(--fs-body);
+    font-weight: bold;
+    color: var(--gold);
+    background: var(--paper);
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--gold-light);
+}
+.topbar .fs-btn {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 4px 10px;
+    cursor: pointer;
+    font-size: var(--fs-small);
+    color: var(--ink);
+    font-family: Georgia, serif;
+}
+.topbar .fs-btn:hover { background: var(--paper-2); }
+
+.stars {
+    display: flex;
+    gap: 2px;
+    align-items: center;
+}
+.stars .star {
+    font-size: var(--fs-h2);
+    color: var(--ink-soft);
+    opacity: 0.3;
+}
+.stars .star.filled {
+    color: var(--gold);
+    opacity: 1;
+}
+
+.main {
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+    gap: 0;
+    min-height: calc(100vh - 60px);
+}
+
+.sticker-col {
+    width: 200px;
+    padding: 8px 6px;
+    background: var(--paper-2);
+    border-right: 1px solid var(--line);
+    border-left: 1px solid var(--line);
+}
+.sticker-col.col-right {
+    border-right: none;
+    border-left: 1px solid var(--line);
+}
+.sticker-col .col-label {
+    text-align: center;
+    font-size: var(--fs-small);
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.sticker-col .sticker-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 6px;
+}
+.sticker-slot {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    background: var(--paper);
+    border: 1px dashed var(--line);
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+    transition: background 0.2s;
+}
+.sticker-slot:hover { background: var(--paper-2); }
+.sticker-slot.filled {
+    border-style: solid;
+    border-color: var(--gold);
+    background: var(--paper);
+}
+.sticker-slot .empty-hint {
+    color: var(--ink-soft);
+    opacity: 0.4;
+    font-size: var(--fs-h2);
+}
+.sticker-slot .remove-x {
+    position: absolute;
+    top: -2px;
+    right: 2px;
+    color: var(--seal);
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+    background: var(--paper);
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quiz-area {
+    padding: 20px 30px;
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+}
+.quiz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.quiz-header .chapter {
+    font-size: var(--fs-small);
+    color: var(--seal);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.quiz-header .progress {
+    font-size: var(--fs-small);
+    color: var(--ink-soft);
+}
+.quiz-header .nav-btns {
+    display: flex;
+    gap: 6px;
+}
+.quiz-header .nav-btns button {
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 2px 10px;
+    cursor: pointer;
+    font-size: var(--fs-small);
+    font-family: Georgia, serif;
+    color: var(--ink);
+}
+.quiz-header .nav-btns button:disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+.quiz-header .nav-btns button:hover:not(:disabled) {
+    background: var(--paper);
+}
+.bookmark-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: var(--fs-h2);
+    color: var(--ink-soft);
+    opacity: 0.5;
+}
+.bookmark-btn.active { color: var(--gold); opacity: 1; }
+
+.question-text {
+    font-size: var(--fs-body);
+    margin: 16px 0;
+    line-height: 1.7;
+}
+.options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+.option {
+    padding: 12px 16px;
+    background: var(--paper);
+    border: 2px solid var(--line);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: var(--fs-body);
+    font-family: Georgia, serif;
+    color: var(--ink);
+    text-align: left;
+    transition: all 0.2s;
+}
+.option:hover { border-color: var(--gold); background: var(--paper-2); }
+.option.selected {
+    border-color: var(--gold);
+    background: var(--paper-2);
+}
+.option.correct {
+    border-color: var(--ok);
+    background: #d4edda;
+}
+.option.wrong {
+    border-color: var(--seal);
+    background: #f8d7da;
+}
+.option.disabled { cursor: default; }
+
+.feedback {
+    margin: 16px 0;
+    padding: 14px 18px;
+    border-radius: 8px;
+    font-size: var(--fs-body);
+    display: none;
+}
+.feedback.show { display: block; }
+.feedback.correct {
+    background: #d4edda;
+    border: 1px solid var(--ok);
+    color: var(--ok);
+}
+.feedback.wrong {
+    background: #f8d7da;
+    border: 1px solid var(--seal);
+    color: var(--seal);
+}
+.feedback .principle {
+    margin-top: 8px;
+    font-size: var(--fs-body);
+    color: var(--ink);
+}
+.feedback .principle-cn {
+    margin-top: 6px;
+    font-size: var(--fs-small);
+    color: var(--ink-soft);
+}
+.feedback .cite {
+    margin-top: 6px;
+    font-size: var(--fs-small);
+    color: var(--ink-soft);
+    font-style: italic;
+}
+
+.next-btn {
+    background: var(--seal);
+    color: var(--paper);
+    border: none;
+    padding: 10px 28px;
+    border-radius: 8px;
+    font-size: var(--fs-body);
+    font-family: Georgia, serif;
+    cursor: pointer;
+    display: none;
+}
+.next-btn.show { display: inline-block; }
+.next-btn:hover { background: #6b1414; }
+
+.review-btn {
+    background: var(--gold);
+    color: var(--paper);
+    border: none;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: var(--fs-small);
+    font-family: Georgia, serif;
+    cursor: pointer;
+    margin-left: 10px;
+}
+.review-btn:hover { background: var(--gold-light); }
+
+.shop-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
+}
+.shop-overlay.show { display: flex; }
+.shop-modal {
+    background: var(--paper);
+    border-radius: 12px;
+    padding: 20px;
+    max-width: 700px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    border: 2px solid var(--gold);
+}
+.shop-modal h2 {
+    font-size: var(--fs-h1);
+    color: var(--ink);
+    margin-bottom: 4px;
+    text-align: center;
+}
+.shop-modal .shop-coins {
+    text-align: center;
+    font-size: var(--fs-body);
+    color: var(--gold);
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+.shop-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+}
+.shop-item {
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.shop-item:hover { border-color: var(--gold); }
+.shop-item.owned { opacity: 0.5; cursor: default; }
+.shop-item.owned::after {
+    content: '✓ owned';
+    display: block;
+    font-size: var(--fs-small);
+    color: var(--ok);
+    margin-top: 4px;
+}
+.shop-item .icon { font-size: 36px; }
+.shop-item .name { font-size: var(--fs-small); color: var(--ink); margin-top: 4px; }
+.shop-item .price { font-size: var(--fs-small); color: var(--gold); font-weight: bold; margin-top: 4px; }
+.shop-item button {
+    background: var(--seal);
+    color: var(--paper);
+    border: none;
+    padding: 4px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: var(--fs-small);
+    font-family: Georgia, serif;
+    margin-top: 6px;
+}
+.shop-item button:disabled { background: var(--ink-soft); cursor: default; }
+.shop-close {
+    display: block;
+    margin: 16px auto 0;
+    background: var(--ink-soft);
+    color: var(--paper);
+    border: none;
+    padding: 8px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: var(--fs-body);
+    font-family: Georgia, serif;
+}
+
+.placement-banner {
+    display: none;
+    background: var(--gold);
+    color: var(--paper);
+    padding: 8px 20px;
+    text-align: center;
+    font-size: var(--fs-body);
+    font-weight: bold;
+}
+.placement-banner.show { display: block; }
+.placement-banner .cancel-btn {
+    background: var(--paper);
+    color: var(--gold);
+    border: none;
+    padding: 2px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: var(--fs-small);
+    font-family: Georgia, serif;
+    margin-left: 12px;
+}
+
+@media (max-width: 768px) {
+    .main {
+        grid-template-columns: 80px 1fr 80px;
+    }
+    .sticker-col {
+        width: 80px;
+        padding: 4px 3px;
+    }
+    .sticker-col .sticker-grid {
+        gap: 3px;
+    }
+    .sticker-slot {
+        font-size: 18px;
+    }
+    .sticker-slot .empty-hint {
+        font-size: var(--fs-small);
+    }
+    .quiz-area {
+        padding: 12px 8px;
+    }
+    .topbar {
+        padding: 8px 10px;
+    }
+    .topbar .title {
+        font-size: var(--fs-h2);
+    }
+    .shop-grid {
+        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="title">⚖ SQE · Judicial Review</div>
+  <div class="stars" id="stars-top"></div>
+  <div class="right">
+    <div class="coins">💰 <span class="val" id="coins">0</span></div>
+    <button class="fs-btn" onclick="changeFS(-1)">A-</button>
+    <button class="fs-btn" onclick="changeFS(1)">A+</button>
+  </div>
+</div>
+
+<div class="placement-banner" id="placement-banner">
+  Tap a slot to place your sticker!
+  <button class="cancel-btn" onclick="cancelPlacement()">Cancel</button>
+</div>
+
+<div class="main">
+  <div class="sticker-col col-left" id="col-left">
+    <div class="col-label">Left</div>
+  </div>
+
+  <div class="quiz-area">
+    <div class="quiz-header">
+      <div>
+        <span class="chapter" id="chapter"></span>
+        <span class="progress" id="progress" style="margin-left:12px;"></span>
+      </div>
+      <div class="nav-btns">
+        <button id="prev-btn" onclick="prevQuestion()">← Prev</button>
+        <button id="review-btn" class="review-btn" onclick="startReview()" style="display:none;">Review Wrong</button>
+        <button id="next-nav-btn" onclick="nextQuestion()">Next →</button>
+        <button class="bookmark-btn" id="bookmark-btn" onclick="toggleBookmark()">☆</button>
+      </div>
+    </div>
+    <div class="stars" id="stars-quiz" style="justify-content:center; margin: 4px 0;"></div>
+    <div class="question-text" id="question-text"></div>
+    <div class="options" id="options"></div>
+    <div class="feedback" id="feedback"></div>
+    <button class="next-btn" id="next-btn" onclick="nextQuestion()">Next →</button>
+  </div>
+
+  <div class="sticker-col col-right" id="col-right">
+    <div class="col-label">Right</div>
+  </div>
+</div>
+
+<div class="shop-overlay" id="shop-overlay">
+  <div class="shop-modal">
+    <h2>🏷️ Sticker Shop</h2>
+    <div class="shop-coins">💰 Coins: <span id="shop-coins">0</span></div>
+    <div class="shop-grid" id="shop-grid"></div>
+    <button class="shop-close" onclick="closeShop()">Close</button>
+  </div>
+</div>
+
+<script>
+const STORAGE_KEY = 'sqe-l6-stickers-v1';
+const SLOTS_PER_COL = 10;
+
+const DEFAULT_STATE = {
+  coins: 0,
+  qIndex: 0,
+  answered: [],
+  wrong: {},
+  bookmarked: [],
+  stickers: {},
+  placementItem: null,
+  fsLevel: 0,
+  reviewMode: false,
+  reviewQueue: []
+};
+
+const STICKERS = [
+  { id: 'daisy',       name: 'Daisy',           icon: '🌼', price: 50 },
+  { id: 'tulip',       name: 'Tulip',           icon: '🌷', price: 50 },
+  { id: 'rose',        name: 'Rose',            icon: '🌹', price: 80 },
+  { id: 'sunflower',   name: 'Sunflower',       icon: '🌻', price: 80 },
+  { id: 'clover',      name: 'Clover',          icon: '🍀', price: 100 },
+  { id: 'cactus',      name: 'Cactus',          icon: '🌵', price: 120 },
+  { id: 'palm',        name: 'Palm',            icon: '🌴', price: 150 },
+  { id: 'fir',         name: 'Fir Tree',        icon: '🌲', price: 150 },
+  { id: 'book',        name: 'Law Book',        icon: '📕', price: 100 },
+  { id: 'scroll',      name: 'Scroll',          icon: '📜', price: 120 },
+  { id: 'trophy',      name: 'Trophy',          icon: '🏆', price: 200 },
+  { id: 'medal',       name: 'Medal',           icon: '🎖', price: 200 },
+  { id: 'ribbon',      name: 'Ribbon',          icon: '🎗', price: 150 },
+  { id: 'star',        name: 'Star',            icon: '⭐', price: 100 },
+  { id: 'gem',         name: 'Gem',             icon: '💎', price: 300 },
+  { id: 'crown',       name: 'Crown',           icon: '👑', price: 500 },
+  { id: 'anchor',      name: 'Anchor',          icon: '⚓', price: 250 },
+  { id: 'key',         name: 'Key',             icon: '🔑', price: 180 },
+  { id: 'balance',     name: 'Scales',          icon: '⚖', price: 350 },
+  { id: 'gavel',       name: 'Gavel',           icon: '🔨', price: 400 }
+];
+
+const QUESTIONS = [
+  {
+    "key": "jr1",
+    "chapter": "Ch 7: Judicial Review",
+    "text": "A local council refuses planning permission to a firm for a development project. The firm appeals, but the planning inspector upholds the council's refusal. The firm then discovers that the planning inspector is the brother of the chair of the council's planning committee. The firm seeks judicial review. What is the ground?",
+    "options": [
+      "The refusal is irrational.",
+      "The refusal is illegal.",
+      "The refusal is a breach of legitimate expectation.",
+      "The refusal is a fettering of discretion.",
+      "The refusal is a breach of natural justice."
+    ],
+    "best": 4,
+    "principle": "The planning inspector's relationship to the chair of the council's planning committee creates an appearance of bias. Under the principles of natural justice, there is no need to prove actual bias — only a real possibility of bias (Porter v Magill test). This falls under procedural impropriety as a ground for judicial review.",
+    "principleCN": "规划督察与市议会规划委员会主席的亲属关系造成了偏见的表象。根据自然公正原则，无需证明实际偏见——只需证明存在真正可能的偏见（Porter v Magill 测试）。这属于程序不当。",
+    "cite": "Revise SQE Const. & Admin. Law Ch.7; Porter v Magill [2001] UKHL 67",
+    "citeCN": "Revise SQE 宪法与行政法, 第7章; Porter v Magill [2001] UKHL 67"
+  },
+  {
+    "key": "jr2",
+    "chapter": "Ch 7: Judicial Review",
+    "text": "The Secretary of State has power under the [fictitious] Carbon Act 2021 to make regulations on fuel used by airliners. The Act requires the Secretary of State to consult with 'substantial employers in aircraft manufacturing' before making regulations. The Secretary of State makes regulations without consulting the largest aircraft manufacturer in the UK. What is the correct analysis?",
+    "options": [
+      "The Secretary of State can make any regulations he wants.",
+      "The Secretary of State has absolute discretion on whom he consults.",
+      "The Secretary of State has a duty to consult the company.",
+      "The Secretary of State may make any regulations if not illegal or irrational.",
+      "The Secretary of State may not make regulations without the company's agreement."
+    ],
+    "best": 2,
+    "principle": "Although the Secretary of State has discretion on whom to consult, he must exercise that discretion reasonably. The Act requires consultation with 'substantial employers in aircraft manufacturing.' The largest aircraft manufacturer in the UK is clearly a substantial employer, and the Secretary of State cannot ignore such a body. The duty to consult does not mean the company must agree, but the Secretary of State must at least seek their views.",
+    "principleCN": "虽然内政大臣在咨询谁的问题上有自由裁量权，但必须合理行使。法案要求咨询'航空制造业的大雇主'。英国最大的飞机制造商显然是大雇主，内政大臣不能忽视这样的机构。咨询义务不意味着公司必须同意，但内政大臣至少要征求他们的意见。",
+    "cite": "Revise SQE Const. & Admin. Law Ch.7; duty to consult",
+    "citeCN": "Revise SQE 宪法与行政法, 第7章; 咨询义务"
+  },
+  {
+    "key": "jr3",
+    "chapter": "Ch 7: Judicial Review",
+    "text": "A local council decides that all children in its schools should receive free school meals regardless of family income, and raises council tax to pay for this policy. A local resident who pays council tax objects and wishes to apply for judicial review. Who has standing to bring the claim?",
+    "options": [
+      "Any legal person.",
+      "Any incorporated or statutory body.",
+      "The secretary of state for education.",
+      "Local council taxpayers.",
+      "The prime minister."
+    ],
+    "best": 3,
+    "principle": "To apply for judicial review, a claimant must have sufficient interest in the matter (s.31 Senior Courts Act 1981). Local council taxpayers are directly affected because they must pay more council tax as a result of the policy. This direct financial impact gives them sufficient interest.",
+    "principleCN": "申请司法审查，申请人必须在事项中有足够利益（1981年《高级法院法》第31条）。地方议会纳税人因政策直接受影响，因为他们必须缴纳更多的市政税。这种直接的经济影响赋予他们足够利益。",
+    "cite": "Revise SQE Const. & Admin. Law Ch.7; s.31 Senior Courts Act 1981",
+    "citeCN": "Revise SQE 宪法与行政法, 第7章; 1981年《高级法院法》第31条"
+  },
+  {
+    "key": "jr4",
+    "chapter": "Ch 7: Judicial Review",
+    "text": "Local councils have the power to grant taxi licences. A woman applies for a taxi licence but is told by the council that it is 'not their policy to grant any more licences' and her application will not be considered on its merits. What should the woman do?",
+    "options": [
+      "Apply for judicial review.",
+      "Sue for breach of contract.",
+      "Apply to the ECtHR.",
+      "Be advised the council has power to refuse.",
+      "Sue for negligent performance of duties."
+    ],
+    "best": 0,
+    "principle": "The council's refusal to grant any more licences is a fettering of discretion — the council has a statutory power to grant licences and must consider each application on its merits. By adopting a blanket policy of refusal, the council is refusing to exercise its discretion, making the decision illegal. Judicial review is the correct procedure.",
+    "principleCN": "市议会拒绝再发放任何许可证的做法是裁量权的僵化行使——市议会有发放许可证的法定权力，必须逐案考虑。采取一刀切的拒绝政策等于拒绝行使裁量权，是非法的。司法审查是正确的程序。",
+    "cite": "Revise SQE Const. & Admin. Law Ch.7; fettering of discretion",
+    "citeCN": "Revise SQE 宪法与行政法, 第7章; 裁量权僵化"
+  },
+  {
+    "key": "jr5",
+    "chapter": "Ch 7: Judicial Review",
+    "text": "The NHS provides a care home for seven severely ill patients and assures them that the home will be available for the rest of their lives. Due to a change in policy, the NHS later decides to close the home and transfer the patients to local council care. The patients object and apply for judicial review. What is the correct analysis?",
+    "options": [
+      "The patients do not have sufficient interest.",
+      "The NHS may move patients if it acts in the public interest, but must consider the legitimate expectation of the patients before doing so.",
+      "The NHS has no obligation to consult patients.",
+      "The NHS has no legal power to make this decision.",
+      "The NHS is not a public body."
+    ],
+    "best": 1,
+    "principle": "The patients had a legitimate expectation based on the NHS's express assurance that the home would be available for life. While the NHS may change its policy in the public interest, it cannot simply ignore the promise it made. The NHS must act proportionately — it should consult the patients, consider their expectations, and weigh the public interest against the impact on them.",
+    "principleCN": "患者基于NHS明确保证'终生可使用护理之家'产生了合法预期。虽然NHS可以基于公共利益改变政策，但不能简单忽视其承诺。NHS必须相称行事——应咨询患者、考虑他们的预期、并权衡公共利益与对他们的影响。",
+    "cite": "Revise SQE Const. & Admin. Law Ch.7; legitimate expectation",
+    "citeCN": "Revise SQE 宪法与行政法, 第7章; 合法预期"
+  },
+  {
+    "key": "jr6",
+    "chapter": "Ch 7: Judicial Review",
+    "text": "A claimant wishes to bring a judicial review claim against a local authority's decision to refuse a planning application. The claimant's solicitor is preparing the claim form. To which court must the application be submitted?",
+    "options": [
+      "Applications for judicial review must be submitted to the Administrative Court.",
+      "Applications for judicial review must be submitted to the County Court.",
+      "Applications for judicial review must be submitted to the Magistrates' Court.",
+      "Applications for judicial review must be submitted to the Crown Court.",
+      "Applications for judicial review must be submitted to the Supreme Court."
+    ],
+    "best": 0,
+    "principle": "Applications for judicial review must be submitted to the Administrative Court, which is a division of the High Court. The Administrative Court has exclusive jurisdiction over judicial review claims under CPR Part 54. The Supreme Court hears appeals from judicial review decisions, not initial claims.",
+    "principleCN": "司法审查申请必须提交给行政法庭，它是高等法院的一个分院。行政法庭根据《民事诉讼规则》第54部分对司法审查申请有专属管辖权。最高法院审理司法审查决定的上诉，而非初始申请。",
+    "cite": "FLK1 Practice 180 Q (Session 2, Q24); CPR Part 54",
+    "citeCN": "FLK1 练习题（第2场, Q24）; 《民事诉讼规则》第54部分"
+  },
+  {
+    "key": "jr7",
+    "chapter": "Ch 7: Judicial Review",
+    "text": "A man lives next to a site where the local council has granted planning permission for a noisy industrial development. He is concerned about the impact on his property and his health. He wishes to challenge the planning decision by judicial review. Does he have standing?",
+    "options": [
+      "The man does not have sufficient interest because he is not a property developer.",
+      "The man does not have sufficient interest because planning decisions are public matters.",
+      "The man does not have sufficient interest unless he can show financial loss.",
+      "The man is likely to be deemed to have sufficient interest in the claim.",
+      "The man does not have sufficient interest unless he represents a residents' association."
+    ],
+    "best": 3,
+    "principle": "The man is likely to be deemed to have sufficient interest. He lives next to the development site and is directly affected by the potential noise, health impacts, and property devaluation. The test for sufficient interest is flexible and fact-specific. A resident living adjacent to a development site is a classic example of a person with sufficient interest.",
+    "principleCN": "该男子很可能被认定为有足够利益。他住在开发场地旁边，直接受到潜在噪音、健康影响和房产贬值的影响。足够利益的测试是灵活的、基于具体事实的。住在开发场地旁边的居民是有足够利益的典型案例。",
+    "cite": "FLK1 Practice 180 Q (Session 2, Q43); s.31 Senior Courts Act 1981",
+    "citeCN": "FLK1 练习题（第2场, Q43）; 1981年《高级法院法》第31条"
+  },
+  {
+    "key": "jr8",
+    "chapter": "Ch 7: Judicial Review",
+    "text": "A public body has made a decision that is challenged by judicial review. The court finds that the decision was unlawful because the public body failed to properly consider relevant factors. The claimant's solicitor advises on the available remedies. What does a quashing order do?",
+    "options": [
+      "A quashing order quashes the original decision and requires the public body to retake the decision.",
+      "A quashing order quashes the original decision and substitutes the court's own decision.",
+      "A quashing order quashes the original decision and prevents the public body from making any further decision.",
+      "A quashing order compels the public body to perform a specific duty.",
+      "A quashing order declares the rights of the parties without quashing the decision."
+    ],
+    "best": 0,
+    "principle": "A quashing order (formerly certiorari) quashes (sets aside) the original decision and requires the public body to retake the decision lawfully. The court does not substitute its own decision — it sends the matter back to the decision-maker to reconsider, this time acting lawfully. The public body may reach the same conclusion if it does so on a lawful basis.",
+    "principleCN": "撤销令（原称certiorari）撤销原决定，要求公共机构重新合法地做出决定。法院不会替代自己的决定——将事项发回决策者重新考虑，这次必须合法行事。如果公共机构基于合法理由，可能达到相同结论。",
+    "cite": "FLK1 Practice 180 Q (Session 2, Q47); CPR Part 54",
+    "citeCN": "FLK1 练习题（第2场, Q47）; 《民事诉讼规则》第54部分"
+  },
+  {
+    "key": "jr9",
+    "chapter": "Ch 7: Judicial Review",
+    "text": "A minister makes a decision that is so unreasonable that no reasonable authority could ever have come to it. Which ground of judicial review does this fall under?",
+    "options": [
+      "Illegality.",
+      "Irrationality (Wednesbury unreasonableness).",
+      "Procedural impropriety.",
+      "Breach of legitimate expectation.",
+      "Proportionality."
+    ],
+    "best": 1,
+    "principle": "Wednesbury unreasonableness (Associated Provincial Picture Houses v Wednesbury Corp [1948]) is a ground of judicial review under irrationality. It applies where a decision is so unreasonable that no reasonable authority could have come to it. This is a high threshold — mere unreasonableness is not enough; the decision must be outrageously defying logic or accepted moral standards.",
+    "principleCN": "Wednesbury 不合理（Associated Provincial Picture Houses v Wednesbury Corp [1948]）是不合理性下的司法审查理由。适用于决定如此不合理以至于没有任何合理机构会做出该决定的情况。门槛很高——仅仅不合理不够；决定必须公然违背逻辑或公认的道德标准。",
+    "cite": "Associated Provincial Picture Houses v Wednesbury Corp [1948] 1 KB 223",
+    "citeCN": "Associated Provincial Picture Houses v Wednesbury Corp [1948] 1 KB 223"
+  },
+  {
+    "key": "jr10",
+    "chapter": "Ch 7: Judicial Review",
+    "text": "A public body decides to revoke a licence that a business has held for 10 years, without giving the business any opportunity to make representations before the decision was made. What ground of judicial review is most likely engaged?",
+    "options": [
+      "Illegality.",
+      "Irrationality.",
+      "Procedural impropriety — breach of natural justice (right to be heard).",
+      "Breach of proportionality.",
+      "Error of law in the narrow sense."
+    ],
+    "best": 2,
+    "principle": "Procedural impropriety includes breach of natural justice, which encompasses the right to be heard (audi alteram partem). A public body that revokes a licence without giving the affected party an opportunity to make representations breaches this principle. The right to be heard requires that a person be given notice of the case against them and an opportunity to respond before a decision is made.",
+    "principleCN": "程序不当包括违反自然公正，后者包括被听取的权利（audi alteram partem）。公共机构在未给予受影响方陈述机会的情况下撤销许可证，违反了这一原则。被听取的权利要求在做出决定前，给予当事人关于对其不利情况的通知和回应机会。",
+    "cite": "Revise SQE Const. & Admin. Law Ch.7; natural justice",
+    "citeCN": "Revise SQE 宪法与行政法, 第7章; 自然公正"
+  },
+  {
+    "key": "jr11",
+    "chapter": "Ch 7: Judicial Review",
+    "text": "A claimant challenges a decision on the basis that the decision-maker took into account an irrelevant consideration. Under which ground of judicial review does this fall?",
+    "options": [
+      "Irrationality.",
+      "Illegality.",
+      "Procedural impropriety.",
+      "Proportionality.",
+      "Breach of legitimate expectation."
+    ],
+    "best": 1,
+    "principle": "Taking into account an irrelevant consideration (or failing to take into account a relevant consideration) falls under illegality. The decision-maker must exercise their discretion within the bounds of the statutory framework. Considering irrelevant factors means the decision was not made 'in accordance with law.'",
+    "principleCN": "考虑了不相关因素（或未能考虑相关因素）属于违法性。决策者必须在法定框架内行使裁量权。考虑不相关因素意味着决定不是'依据法律'做出的。",
+    "cite": "Revise SQE Const. & Admin. Law Ch.7; illegality",
+    "citeCN": "Revise SQE 宪法与行政法, 第7章; 违法性"
+  },
+  {
+    "key": "jr12",
+    "chapter": "Ch 7: Judicial Review",
+    "text": "A court is asked to issue a mandatory order in a judicial review claim. What is the effect of a mandatory order?",
+    "options": [
+      "It quashes the original decision.",
+      "It compels a public body to perform a specific statutory duty.",
+      "It prevents a public body from doing something unlawful.",
+      "It declares the legal rights of the parties without ordering any specific action.",
+      "It awards damages to the claimant."
+    ],
+    "best": 1,
+    "principle": "A mandatory order (formerly mandamus) compels a public body to perform a specific statutory duty that it has failed to perform. It is discretionary — the court will consider whether it would be practical and whether there has been undue delay. It is used when a public body has a duty to act but has refused or failed to do so.",
+    "principleCN": "强制令（原称mandamus）强制公共机构履行其未履行的特定法定义务。它是自由裁量的——法院会考虑是否可行以及是否存在不当延迟。当公共机构有义务行动但拒绝或未能行动时使用。",
+    "cite": "Revise SQE Const. & Admin. Law Ch.7; remedies in JR",
+    "citeCN": "Revise SQE 宪法与行政法, 第7章; 司法审查救济"
+  },
+  {
+    "key": "jr13",
+    "chapter": "Ch 7: Judicial Review",
+    "text": "A court is asked to issue a prohibiting order in a judicial review claim. What is the effect of a prohibiting order?",
+    "options": [
+      "It quashes a decision that has already been made.",
+      "It compels a public body to perform a duty.",
+      "It prevents a public body from making an unlawful decision in the future.",
+      "It declares the legal position without ordering action.",
+      "It stays proceedings in the lower court."
+    ],
+    "best": 2,
+    "principle": "A prohibiting order (formerly prohibition) prevents a public body from making an unlawful decision. Unlike a quashing order (which deals with decisions already made), a prohibiting order is prospective — it stops the decision-maker from proceeding with an unlawful decision before it is finalised.",
+    "principleCN": "禁止令（原称prohibition）阻止公共机构做出非法决定。与撤销令（处理已做出的决定）不同，禁止令是前瞻性的——它阻止决策者在非法决定最终确定前继续进行。",
+    "cite": "Revise SQE Const. & Admin. Law Ch.7; remedies in JR",
+    "citeCN": "Revise SQE 宪法与行政法, 第7章; 司法审查救济"
+  },
+  {
+    "key": "jr14",
+    "chapter": "Ch 7: Judicial Review",
+    "text": "What is the time limit for bringing a judicial review claim under CPR Part 54?",
+    "options": [
+      "Within 14 days of the decision being challenged.",
+      "Within 1 month of the decision being challenged.",
+      "Within 3 months of the decision being challenged.",
+      "Within 6 months of the decision being challenged.",
+      "Within 12 months of the decision being challenged."
+    ],
+    "best": 2,
+    "principle": "Under CPR Part 54, a judicial review claim must be filed 'promptly' and in any event not later than 3 months after the grounds to make the claim first arose. The court has discretion to extend this period, but it will rarely do so. The 'promptly' requirement means that even within the 3-month period, a claimant may be barred if they delayed unreasonably.",
+    "principleCN": "根据《民事诉讼规则》第54部分，司法审查申请必须'及时'提出，且在任何情况下不得迟于申请理由首次产生后3个月。法院有自由裁量权延长此期限，但很少这样做。'及时'要求意味着即使在3个月期限内，如果申请人不合理延迟，也可能被禁止。",
+    "cite": "CPR Part 54.5; Revise SQE Const. & Admin. Law Ch.7",
+    "citeCN": "《民事诉讼规则》第54.5条; Revise SQE 宪法与行政法, 第7章"
+  },
+  {
+    "key": "jr15",
+    "chapter": "Ch 7: Judicial Review",
+    "text": "A public body promises a company that it will not change a certain policy for 5 years. The company relies on this promise to its detriment. The public body then changes the policy after 2 years. What is the company's best argument in judicial review?",
+    "options": [
+      "The decision is irrational.",
+      "The decision is illegal because the public body had no power to make the promise.",
+      "The company has a legitimate expectation that the policy would not change for 5 years, and the public body must act proportionately before overriding it.",
+      "The public body has fettered its discretion.",
+      "The decision breaches the right to property under the ECHR."
+    ],
+    "best": 2,
+    "principle": "The company has a legitimate expectation based on the public body's express promise. While the public body can change its policy, it must do so proportionately: it should consult those affected, consider their expectations, and weigh the public interest. The legitimate expectation does not give an absolute right but requires a fair process before the expectation is overridden.",
+    "principleCN": "公司基于公共机构的明确承诺产生了合法预期。虽然公共机构可以改变政策，但必须相称行事：应咨询受影响者、考虑他们的预期、并权衡公共利益。合法预期不赋予绝对权利，但要求在推翻预期前遵循公平程序。",
+    "cite": "Revise SQE Const. & Admin. Law Ch.7; legitimate expectation",
+    "citeCN": "Revise SQE 宪法与行政法, 第7章; 合法预期"
+  },
+  {
+    "key": "jr16",
+    "chapter": "Ch 7: Judicial Review",
+    "text": "A decision-maker has a policy that guides how they exercise their discretion. A claimant argues that by following the policy, the decision-maker has fettered their discretion. When is it permissible for a decision-maker to adopt a policy?",
+    "options": [
+      "Never — adopting a policy always amounts to fettering of discretion.",
+      "Always — decision-makers are free to adopt any policy they choose.",
+      "A decision-maker may adopt a policy provided they are willing to listen to any applicant who asks them to depart from it in their individual case.",
+      "A decision-maker may adopt a policy only with the approval of the Secretary of State.",
+      "A decision-maker may adopt a policy only if it is published in advance."
+    ],
+    "best": 2,
+    "principle": "A decision-maker may adopt a policy to ensure consistency and efficiency, provided they do not apply it rigidly. The key requirement is that the decision-maker must be willing to consider representations from any applicant asking them to depart from the policy in their individual case. If the decision-maker refuses to listen to any such representations, they have fettered their discretion.",
+    "principleCN": "决策者可以采用政策以确保一致性和效率，前提是他们不能僵化地适用。关键要求是决策者必须愿意考虑任何要求在其个案中偏离政策的申请人的陈述。如果决策者拒绝听取此类陈述，就构成了裁量权僵化。",
+    "cite": "Revise SQE Const. & Admin. Law Ch.7; fettering of discretion",
+    "citeCN": "Revise SQE 宪法与行政法, 第7章; 裁量权僵化"
+  },
+  {
+    "key": "jr17",
+    "chapter": "Ch 7: Judicial Review",
+    "text": "Which of the following is NOT one of the three traditional grounds of judicial review as identified by Lord Diplock in Council of Civil Service Unions v Minister for the Civil Service (GCHQ case)?",
+    "options": [
+      "Illegality.",
+      "Irrationality.",
+      "Procedural impropriety.",
+      "Proportionality.",
+      "All of the above are traditional grounds."
+    ],
+    "best": 3,
+    "principle": "Lord Diplock identified three traditional grounds of judicial review in the GCHQ case (1985): illegality, irrationality, and procedural impropriety. Proportionality is a separate ground that has been increasingly recognised, particularly in cases involving human rights and EU law, but it was not one of the original three traditional grounds.",
+    "principleCN": "Diplock 勋爵在GCHQ案（1985）中确定了三个传统司法审查理由：违法性、不合理性和程序不当。相称性是一个独立的理由，在涉及人权和欧盟法的案件中越来越多地被认可，但它不是最初三个传统理由之一。",
+    "cite": "Council of Civil Service Unions v Minister for the Civil Service [1985] AC 374",
+    "citeCN": "Council of Civil Service Unions v Minister for the Civil Service [1985] AC 374"
+  },
+  {
+    "key": "jr18",
+    "chapter": "Ch 7: Judicial Review",
+    "text": "A claimant seeks a declaration from the court in a judicial review claim. What is the nature of a declaration?",
+    "options": [
+      "It compels a public body to perform a specific duty.",
+      "It prevents a public body from making an unlawful decision.",
+      "It sets aside an unlawful decision.",
+      "It states the legal position or rights of the parties without ordering any specific action.",
+      "It awards compensation to the claimant."
+    ],
+    "best": 3,
+    "principle": "A declaration (formerly declaratory judgment) states the legal position or rights of the parties without ordering any specific action. It is a flexible remedy — the court can declare what the law is or what the rights of the parties are, leaving the public body to act accordingly. It does not directly compel or prevent any action.",
+    "principleCN": "宣告令（原称declaratory judgment）说明法律地位或当事人的权利，不命令任何具体行动。它是一种灵活的救济——法院可以宣告法律是什么或当事人的权利是什么，由公共机构据此行动。它不直接强制或阻止任何行动。",
+    "cite": "Revise SQE Const. & Admin. Law Ch.7; remedies in JR",
+    "citeCN": "Revise SQE 宪法与行政法, 第7章; 司法审查救济"
+  },
+  {
+    "key": "jr19",
+    "chapter": "Ch 7: Judicial Review",
+    "text": "An applicant for judicial review seeks an injunction as a remedy. What is the effect of an injunction in the context of judicial review?",
+    "options": [
+      "It quashes the original decision.",
+      "It requires a public body to do or refrain from doing a specific act.",
+      "It declares the rights of the parties.",
+      "It prevents the public body from making any future decisions on the matter.",
+      "It awards damages to the claimant."
+    ],
+    "best": 1,
+    "principle": "An injunction in judicial review requires a public body either to do or to refrain from doing a specific act. It can be mandatory (requiring action) or prohibitory (preventing action). Injunctions are discretionary remedies and are granted where other remedies would not be adequate.",
+    "principleCN": "司法审查中的禁令要求公共机构做或不得做特定的行为。它可以是强制性的（要求行动）或禁止性的（阻止行动）。禁令是自由裁量的救济，在其他救济不充分时授予。",
+    "cite": "Revise SQE Const. & Admin. Law Ch.7; remedies in JR",
+    "citeCN": "Revise SQE 宪法与行政法, 第7章; 司法审查救济"
+  },
+  {
+    "key": "jr20",
+    "chapter": "Ch 7: Judicial Review",
+    "text": "A pressure group wishes to challenge a government decision on environmental policy. The group's members are not personally affected by the decision any more than the general public. Does the pressure group have standing to bring a judicial review claim?",
+    "options": [
+      "Yes — pressure groups always have standing to challenge government decisions.",
+      "No — only individuals directly affected by a decision have standing.",
+      "Yes — provided the group can show that the issue is within its area of expertise or concern and that there is no other suitable claimant, the court may grant standing.",
+      "No — pressure groups can never bring judicial review claims.",
+      "Yes — but only if the group has more than 500 members."
+    ],
+    "best": 2,
+    "principle": "Pressure groups may have standing to bring judicial review if the issue is within their area of expertise or concern, and there is no other suitable claimant who could bring the claim. The court applies a flexible test for sufficient interest — the nature of the issue, the group's expertise, and whether there is an alternative claimant are all relevant factors.",
+    "principleCN": "如果争议在压力集团的专业或关注范围内，且没有其他合适的申请人可以提出申请，压力集团可能有资格提起司法审查。法院对足够利益适用灵活的测试——争议的性质、集团的专业知识以及是否有替代申请人都是相关因素。",
+    "cite": "Revise SQE Const. & Admin. Law Ch.7; standing; R v Secretary of State ex p Greenpeace [1994]",
+    "citeCN": "Revise SQE 宪法与行政法, 第7章; 诉讼资格; R v Secretary of State ex p Greenpeace [1994]"
+  }
+]
+;
+
+let state = JSON.parse(JSON.stringify(DEFAULT_STATE));
+
+function load() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      const saved = JSON.parse(raw);
+      state = Object.assign(JSON.parse(JSON.stringify(DEFAULT_STATE)), saved);
+    }
+  } catch(e) { console.warn('Load failed:', e); }
+}
+
+function save() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  } catch(e) { console.warn('Save failed:', e); }
+}
+
+function applyFS() {
+  document.body.classList.remove('fs-lg', 'fs-xl');
+  if (state.fsLevel === 1) document.body.classList.add('fs-lg');
+  else if (state.fsLevel === 2) document.body.classList.add('fs-xl');
+}
+
+function changeFS(dir) {
+  state.fsLevel = Math.max(0, Math.min(2, state.fsLevel + dir));
+  applyFS();
+  save();
+}
+
+function renderCoins() {
+  document.getElementById('coins').textContent = state.coins;
+}
+
+function renderStars() {
+  const count = Object.keys(state.stickers).filter(id => {
+    const s = state.stickers[id];
+    return s.side !== null && s.slot >= 0;
+  }).length;
+  const filled = Math.floor(count / 4);
+  const html = Array.from({length: 5}, (_, i) =>
+    `<span class="star ${i < filled ? 'filled' : ''}">${i < filled ? '★' : '☆'}</span>`
+  ).join('');
+  const top = document.getElementById('stars-top');
+  const quiz = document.getElementById('stars-quiz');
+  if (top) top.innerHTML = html;
+  if (quiz) quiz.innerHTML = html;
+}
+
+function getCurrentQuestions() {
+  if (state.reviewMode && state.reviewQueue.length > 0) {
+    return state.reviewQueue;
+  }
+  return QUESTIONS;
+}
+
+function renderQuestion() {
+  const qs = getCurrentQuestions();
+  const idx = state.qIndex;
+  const q = qs[idx];
+
+  document.getElementById('chapter').textContent = q.chapter;
+  document.getElementById('progress').textContent = `Question ${idx + 1} / ${qs.length}`;
+  document.getElementById('question-text').textContent = q.text;
+
+  const optsDiv = document.getElementById('options');
+  optsDiv.innerHTML = '';
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'option';
+    btn.textContent = opt;
+    const answered = state.answered.includes(q.key);
+    if (answered) {
+      if (i === q.best) btn.classList.add('correct');
+      if (state.wrong[q.key] === i) btn.classList.add('wrong');
+    }
+    btn.onclick = () => selectOption(i);
+    optsDiv.appendChild(btn);
+  });
+
+  const fb = document.getElementById('feedback');
+  const nextBtn = document.getElementById('next-btn');
+  if (state.answered.includes(q.key)) {
+    const isCorrect = state.wrong[q.key] === undefined;
+    fb.className = 'feedback show ' + (isCorrect ? 'correct' : 'wrong');
+    let html = isCorrect ? '✅ Correct!' : '❌ Not quite.';
+    html += `<div class="principle"><strong>Principle:</strong> ${q.principle}</div>`;
+    html += `<div class="principle-cn">${q.principleCN}</div>`;
+    html += `<div class="cite">📚 ${q.cite}</div>`;
+    html += `<div class="cite">${q.citeCN}</div>`;
+    fb.innerHTML = html;
+    nextBtn.classList.add('show');
+    nextBtn.textContent = idx + 1 < qs.length ? 'Next →' : 'Finish';
+  } else {
+    fb.className = 'feedback';
+    fb.innerHTML = '';
+    nextBtn.classList.remove('show');
+  }
+
+  const bmBtn = document.getElementById('bookmark-btn');
+  if (state.bookmarked.includes(q.key)) {
+    bmBtn.classList.add('active');
+    bmBtn.textContent = '★';
+  } else {
+    bmBtn.classList.remove('active');
+    bmBtn.textContent = '☆';
+  }
+
+  document.getElementById('prev-btn').disabled = idx === 0;
+  document.getElementById('next-nav-btn').disabled = idx === qs.length - 1;
+
+  renderReviewBtn();
+}
+
+function toggleBookmark() {
+  const q = getCurrentQuestions()[state.qIndex];
+  const i = state.bookmarked.indexOf(q.key);
+  if (i >= 0) state.bookmarked.splice(i, 1);
+  else state.bookmarked.push(q.key);
+  save();
+  renderQuestion();
+}
+
+function selectOption(i) {
+  const q = getCurrentQuestions()[state.qIndex];
+  const wasAnswered = state.answered.includes(q.key);
+  const wasWrong = state.wrong[q.key] !== undefined;
+
+  if (wasAnswered) {
+    if (wasWrong) {
+      delete state.wrong[q.key];
+    }
+    if (i === q.best && wasWrong) {
+      state.coins += 20;
+      renderCoins();
+    }
+  } else {
+    state.answered.push(q.key);
+    if (i === q.best) {
+      state.coins += 20;
+      renderCoins();
+    }
+  }
+
+  if (i !== q.best) {
+    state.wrong[q.key] = i;
+  }
+  save();
+  renderQuestion();
+}
+
+function nextQuestion() {
+  const qs = getCurrentQuestions();
+  if (state.qIndex < qs.length - 1) {
+    state.qIndex++;
+    save();
+    renderQuestion();
+  } else {
+    if (state.reviewMode) {
+      exitReviewMode();
+    } else {
+      state.qIndex = 0;
+      save();
+      renderQuestion();
+    }
+  }
+}
+
+function prevQuestion() {
+  if (state.qIndex > 0) {
+    state.qIndex--;
+    save();
+    renderQuestion();
+  }
+}
+
+function getReviewQuestions() {
+  return QUESTIONS.filter(q => state.wrong[q.key] !== undefined);
+}
+
+function renderReviewBtn() {
+  const reviewBtn = document.getElementById('review-btn');
+  const wrongQs = getReviewQuestions();
+  if (wrongQs.length > 0 && !state.reviewMode) {
+    reviewBtn.style.display = '';
+    reviewBtn.textContent = `Review Wrong (${wrongQs.length})`;
+  } else {
+    reviewBtn.style.display = 'none';
+  }
+}
+
+function startReview() {
+  const wrongQs = getReviewQuestions();
+  if (wrongQs.length === 0) return;
+  state.reviewMode = true;
+  state.reviewQueue = wrongQs;
+  state.qIndex = 0;
+  save();
+  renderQuestion();
+}
+
+function exitReviewMode() {
+  state.reviewMode = false;
+  state.reviewQueue = [];
+  state.qIndex = 0;
+  save();
+  renderQuestion();
+}
+
+function renderStickers() {
+  ['left', 'right'].forEach(side => {
+    const col = document.getElementById('col-' + side);
+    const label = col.querySelector('.col-label');
+    col.innerHTML = '';
+    col.appendChild(label);
+    const grid = document.createElement('div');
+    grid.style.cssText = 'display:grid; grid-template-columns: 1fr; gap: 6px;';
+    for (let i = 0; i < SLOTS_PER_COL; i++) {
+      const slot = document.createElement('div');
+      slot.className = 'sticker-slot';
+      let placedItem = null;
+      for (const [id, data] of Object.entries(state.stickers)) {
+        if (data.side === side && data.slot === i) {
+          placedItem = STICKERS.find(s => s.id === id);
+          break;
+        }
+      }
+      if (placedItem) {
+        slot.classList.add('filled');
+        slot.innerHTML = placedItem.icon;
+        const x = document.createElement('div');
+        x.className = 'remove-x';
+        x.textContent = '×';
+        x.onclick = (e) => { e.stopPropagation(); removeSticker(placedItem.id); };
+        slot.appendChild(x);
+      } else {
+        slot.innerHTML = '<span class="empty-hint">+</span>';
+      }
+      slot.onclick = () => placeSticker(side, i);
+      grid.appendChild(slot);
+    }
+    col.appendChild(grid);
+  });
+  renderStars();
+}
+
+function removeSticker(id) {
+  state.stickers[id] = { side: null, slot: -1 };
+  save();
+  renderStickers();
+}
+
+function placeSticker(side, slot) {
+  if (!state.placementItem) return;
+  for (const [id, data] of Object.entries(state.stickers)) {
+    if (data.side === side && data.slot === slot && id !== state.placementItem) {
+      state.stickers[id] = { side: null, slot: -1 };
+      break;
+    }
+  }
+  state.stickers[state.placementItem] = { side: side, slot: slot };
+  state.placementItem = null;
+  document.getElementById('placement-banner').classList.remove('show');
+  save();
+  renderStickers();
+}
+
+function cancelPlacement() {
+  state.placementItem = null;
+  document.getElementById('placement-banner').classList.remove('show');
+  save();
+}
+
+function openShop() {
+  document.getElementById('shop-coins').textContent = state.coins;
+  const grid = document.getElementById('shop-grid');
+  grid.innerHTML = '';
+  STICKERS.forEach(s => {
+    const item = document.createElement('div');
+    item.className = 'shop-item';
+    const owned = state.stickers[s.id] !== undefined;
+    const placed = owned && state.stickers[s.id].side !== null && state.stickers[s.id].slot >= 0;
+    if (owned) item.classList.add('owned');
+    item.innerHTML = `
+      <div class="icon">${s.icon}</div>
+      <div class="name">${s.name}</div>
+      <div class="price">💰 ${s.price}</div>
+    `;
+    if (!owned) {
+      const btn = document.createElement('button');
+      btn.textContent = 'Buy';
+      btn.disabled = state.coins < s.price;
+      btn.onclick = () => buySticker(s.id);
+      item.appendChild(btn);
+    } else if (!placed) {
+      const btn = document.createElement('button');
+      btn.textContent = 'Stick';
+      btn.onclick = () => startPlacement(s.id);
+      item.appendChild(btn);
+    }
+    grid.appendChild(item);
+  });
+  document.getElementById('shop-overlay').classList.add('show');
+}
+
+function closeShop() {
+  document.getElementById('shop-overlay').classList.remove('show');
+}
+
+function buySticker(id) {
+  const s = STICKERS.find(x => x.id === id);
+  if (!s) return;
+  if (state.coins < s.price) return;
+  state.coins -= s.price;
+  state.stickers[id] = { side: null, slot: -1 };
+  save();
+  renderCoins();
+  openShop();
+  startPlacement(id);
+}
+
+function startPlacement(id) {
+  state.placementItem = id;
+  document.getElementById('placement-banner').classList.add('show');
+  closeShop();
+}
+
+function init() {
+  load();
+  applyFS();
+  renderCoins();
+  renderStickers();
+  renderStars();
+  renderQuestion();
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 's' && e.shiftKey) {
+      e.preventDefault();
+      openShop();
+    }
+  });
+
+  const rightDiv = document.querySelector('.topbar .right');
+  if (rightDiv) {
+    const shopBtn = document.createElement('button');
+    shopBtn.className = 'fs-btn';
+    shopBtn.textContent = '🏷️';
+    shopBtn.style.marginRight = '4px';
+    shopBtn.onclick = openShop;
+    rightDiv.insertBefore(shopBtn, rightDiv.firstChild);
+  }
+}
+
+init();
+
+</script>
+</body>
+</html>
