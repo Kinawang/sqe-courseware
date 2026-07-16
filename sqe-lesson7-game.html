@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SQE1 Lesson 7: EU Law & Retained EU Law — Practice Game</title>
+<style>
+:root {
+    --paper: #f4ecd8;
+    --paper-2: #e8dcb8;
+    --ink: #2a2620;
+    --ink-soft: #5a5246;
+    --seal: #8b1a1a;
+    --gold: #b8860b;
+    --gold-light: #daa520;
+    --ok: #2e6b3e;
+    --line: #8a7a5c;
+    --fs-body: 18px;
+    --fs-h1: 24px;
+    --fs-h2: 20px;
+    --fs-card: 18px;
+    --fs-small: 14px;
+}
+body.fs-lg { --fs-body: 22px; --fs-h1: 28px; --fs-h2: 24px; --fs-card: 22px; --fs-small: 17px; }
+body.fs-xl { --fs-body: 26px; --fs-h1: 32px; --fs-h2: 28px; --fs-card: 26px; --fs-small: 20px; }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: var(--fs-body);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background: var(--paper-2);
+    border-bottom: 2px solid var(--line);
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.topbar .title {
+    font-size: var(--fs-h1);
+    font-weight: bold;
+    color: var(--ink);
+    white-space: nowrap;
+}
+.topbar .right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.topbar .coins {
+    font-size: var(--fs-body);
+    font-weight: bold;
+    color: var(--gold);
+    background: var(--paper);
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--gold-light);
+}
+.topbar .fs-btn {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 4px 10px;
+    cursor: pointer;
+    font-size: var(--fs-small);
+    color: var(--ink);
+    font-family: Georgia, serif;
+}
+.topbar .fs-btn:hover { background: var(--paper-2); }
+
+.stars {
+    display: flex;
+    gap: 2px;
+    align-items: center;
+}
+.stars .star {
+    font-size: var(--fs-h2);
+    color: var(--ink-soft);
+    opacity: 0.3;
+}
+.stars .star.filled {
+    color: var(--gold);
+    opacity: 1;
+}
+
+.main {
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+    gap: 0;
+    min-height: calc(100vh - 60px);
+}
+
+.sticker-col {
+    width: 200px;
+    padding: 8px 6px;
+    background: var(--paper-2);
+    border-right: 1px solid var(--line);
+    border-left: 1px solid var(--line);
+}
+.sticker-col.col-right {
+    border-right: none;
+    border-left: 1px solid var(--line);
+}
+.sticker-col .col-label {
+    text-align: center;
+    font-size: var(--fs-small);
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.sticker-col .sticker-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 6px;
+}
+.sticker-slot {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    background: var(--paper);
+    border: 1px dashed var(--line);
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+    transition: background 0.2s;
+}
+.sticker-slot:hover { background: var(--paper-2); }
+.sticker-slot.filled {
+    border-style: solid;
+    border-color: var(--gold);
+    background: var(--paper);
+}
+.sticker-slot .empty-hint {
+    color: var(--ink-soft);
+    opacity: 0.4;
+    font-size: var(--fs-h2);
+}
+.sticker-slot .remove-x {
+    position: absolute;
+    top: -2px;
+    right: 2px;
+    color: var(--seal);
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+    background: var(--paper);
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quiz-area {
+    padding: 20px 30px;
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+}
+.quiz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.quiz-header .chapter {
+    font-size: var(--fs-small);
+    color: var(--seal);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.quiz-header .progress {
+    font-size: var(--fs-small);
+    color: var(--ink-soft);
+}
+.quiz-header .nav-btns {
+    display: flex;
+    gap: 6px;
+}
+.quiz-header .nav-btns button {
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 2px 10px;
+    cursor: pointer;
+    font-size: var(--fs-small);
+    font-family: Georgia, serif;
+    color: var(--ink);
+}
+.quiz-header .nav-btns button:disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+.quiz-header .nav-btns button:hover:not(:disabled) {
+    background: var(--paper);
+}
+.bookmark-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: var(--fs-h2);
+    color: var(--ink-soft);
+    opacity: 0.5;
+}
+.bookmark-btn.active { color: var(--gold); opacity: 1; }
+
+.question-text {
+    font-size: var(--fs-body);
+    margin: 16px 0;
+    line-height: 1.7;
+}
+.options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+.option {
+    padding: 12px 16px;
+    background: var(--paper);
+    border: 2px solid var(--line);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: var(--fs-body);
+    font-family: Georgia, serif;
+    color: var(--ink);
+    text-align: left;
+    transition: all 0.2s;
+}
+.option:hover { border-color: var(--gold); background: var(--paper-2); }
+.option.selected {
+    border-color: var(--gold);
+    background: var(--paper-2);
+}
+.option.correct {
+    border-color: var(--ok);
+    background: #d4edda;
+}
+.option.wrong {
+    border-color: var(--seal);
+    background: #f8d7da;
+}
+.option.disabled { cursor: default; }
+
+.feedback {
+    margin: 16px 0;
+    padding: 14px 18px;
+    border-radius: 8px;
+    font-size: var(--fs-body);
+    display: none;
+}
+.feedback.show { display: block; }
+.feedback.correct {
+    background: #d4edda;
+    border: 1px solid var(--ok);
+    color: var(--ok);
+}
+.feedback.wrong {
+    background: #f8d7da;
+    border: 1px solid var(--seal);
+    color: var(--seal);
+}
+.feedback .principle {
+    margin-top: 8px;
+    font-size: var(--fs-body);
+    color: var(--ink);
+}
+.feedback .principle-cn {
+    margin-top: 6px;
+    font-size: var(--fs-small);
+    color: var(--ink-soft);
+}
+.feedback .cite {
+    margin-top: 6px;
+    font-size: var(--fs-small);
+    color: var(--ink-soft);
+    font-style: italic;
+}
+
+.next-btn {
+    background: var(--seal);
+    color: var(--paper);
+    border: none;
+    padding: 10px 28px;
+    border-radius: 8px;
+    font-size: var(--fs-body);
+    font-family: Georgia, serif;
+    cursor: pointer;
+    display: none;
+}
+.next-btn.show { display: inline-block; }
+.next-btn:hover { background: #6b1414; }
+
+.review-btn {
+    background: var(--gold);
+    color: var(--paper);
+    border: none;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: var(--fs-small);
+    font-family: Georgia, serif;
+    cursor: pointer;
+    margin-left: 10px;
+}
+.review-btn:hover { background: var(--gold-light); }
+
+.shop-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
+}
+.shop-overlay.show { display: flex; }
+.shop-modal {
+    background: var(--paper);
+    border-radius: 12px;
+    padding: 20px;
+    max-width: 700px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    border: 2px solid var(--gold);
+}
+.shop-modal h2 {
+    font-size: var(--fs-h1);
+    color: var(--ink);
+    margin-bottom: 4px;
+    text-align: center;
+}
+.shop-modal .shop-coins {
+    text-align: center;
+    font-size: var(--fs-body);
+    color: var(--gold);
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+.shop-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+}
+.shop-item {
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.shop-item:hover { border-color: var(--gold); }
+.shop-item.owned { opacity: 0.5; cursor: default; }
+.shop-item.owned::after {
+    content: '✓ owned';
+    display: block;
+    font-size: var(--fs-small);
+    color: var(--ok);
+    margin-top: 4px;
+}
+.shop-item .icon { font-size: 36px; }
+.shop-item .name { font-size: var(--fs-small); color: var(--ink); margin-top: 4px; }
+.shop-item .price { font-size: var(--fs-small); color: var(--gold); font-weight: bold; margin-top: 4px; }
+.shop-item button {
+    background: var(--seal);
+    color: var(--paper);
+    border: none;
+    padding: 4px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: var(--fs-small);
+    font-family: Georgia, serif;
+    margin-top: 6px;
+}
+.shop-item button:disabled { background: var(--ink-soft); cursor: default; }
+.shop-close {
+    display: block;
+    margin: 16px auto 0;
+    background: var(--ink-soft);
+    color: var(--paper);
+    border: none;
+    padding: 8px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: var(--fs-body);
+    font-family: Georgia, serif;
+}
+
+.placement-banner {
+    display: none;
+    background: var(--gold);
+    color: var(--paper);
+    padding: 8px 20px;
+    text-align: center;
+    font-size: var(--fs-body);
+    font-weight: bold;
+}
+.placement-banner.show { display: block; }
+.placement-banner .cancel-btn {
+    background: var(--paper);
+    color: var(--gold);
+    border: none;
+    padding: 2px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: var(--fs-small);
+    font-family: Georgia, serif;
+    margin-left: 12px;
+}
+
+@media (max-width: 768px) {
+    .main {
+        grid-template-columns: 80px 1fr 80px;
+    }
+    .sticker-col {
+        width: 80px;
+        padding: 4px 3px;
+    }
+    .sticker-col .sticker-grid {
+        gap: 3px;
+    }
+    .sticker-slot {
+        font-size: 18px;
+    }
+    .sticker-slot .empty-hint {
+        font-size: var(--fs-small);
+    }
+    .quiz-area {
+        padding: 12px 8px;
+    }
+    .topbar {
+        padding: 8px 10px;
+    }
+    .topbar .title {
+        font-size: var(--fs-h2);
+    }
+    .shop-grid {
+        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="title">⚖ SQE · EU & Retained EU Law</div>
+  <div class="stars" id="stars-top"></div>
+  <div class="right">
+    <div class="coins">💰 <span class="val" id="coins">0</span></div>
+    <button class="fs-btn" onclick="changeFS(-1)">A-</button>
+    <button class="fs-btn" onclick="changeFS(1)">A+</button>
+  </div>
+</div>
+
+<div class="placement-banner" id="placement-banner">
+  Tap a slot to place your sticker!
+  <button class="cancel-btn" onclick="cancelPlacement()">Cancel</button>
+</div>
+
+<div class="main">
+  <div class="sticker-col col-left" id="col-left">
+    <div class="col-label">Left</div>
+  </div>
+
+  <div class="quiz-area">
+    <div class="quiz-header">
+      <div>
+        <span class="chapter" id="chapter"></span>
+        <span class="progress" id="progress" style="margin-left:12px;"></span>
+      </div>
+      <div class="nav-btns">
+        <button id="prev-btn" onclick="prevQuestion()">← Prev</button>
+        <button id="review-btn" class="review-btn" onclick="startReview()" style="display:none;">Review Wrong</button>
+        <button id="next-nav-btn" onclick="nextQuestion()">Next →</button>
+        <button class="bookmark-btn" id="bookmark-btn" onclick="toggleBookmark()">☆</button>
+      </div>
+    </div>
+    <div class="stars" id="stars-quiz" style="justify-content:center; margin: 4px 0;"></div>
+    <div class="question-text" id="question-text"></div>
+    <div class="options" id="options"></div>
+    <div class="feedback" id="feedback"></div>
+    <button class="next-btn" id="next-btn" onclick="nextQuestion()">Next →</button>
+  </div>
+
+  <div class="sticker-col col-right" id="col-right">
+    <div class="col-label">Right</div>
+  </div>
+</div>
+
+<div class="shop-overlay" id="shop-overlay">
+  <div class="shop-modal">
+    <h2>🏷️ Sticker Shop</h2>
+    <div class="shop-coins">💰 Coins: <span id="shop-coins">0</span></div>
+    <div class="shop-grid" id="shop-grid"></div>
+    <button class="shop-close" onclick="closeShop()">Close</button>
+  </div>
+</div>
+
+<script>
+const STORAGE_KEY = 'sqe-l7-stickers-v1';
+const SLOTS_PER_COL = 10;
+
+const DEFAULT_STATE = {
+  coins: 0,
+  qIndex: 0,
+  answered: [],
+  wrong: {},
+  bookmarked: [],
+  stickers: {},
+  placementItem: null,
+  fsLevel: 0,
+  reviewMode: false,
+  reviewQueue: []
+};
+
+const STICKERS = [
+  { id: 'daisy',       name: 'Daisy',           icon: '🌼', price: 50 },
+  { id: 'tulip',       name: 'Tulip',           icon: '🌷', price: 50 },
+  { id: 'rose',        name: 'Rose',            icon: '🌹', price: 80 },
+  { id: 'sunflower',   name: 'Sunflower',       icon: '🌻', price: 80 },
+  { id: 'clover',      name: 'Clover',          icon: '🍀', price: 100 },
+  { id: 'cactus',      name: 'Cactus',          icon: '🌵', price: 120 },
+  { id: 'palm',        name: 'Palm',            icon: '🌴', price: 150 },
+  { id: 'fir',         name: 'Fir Tree',        icon: '🌲', price: 150 },
+  { id: 'book',        name: 'Law Book',        icon: '📕', price: 100 },
+  { id: 'scroll',      name: 'Scroll',          icon: '📜', price: 120 },
+  { id: 'trophy',      name: 'Trophy',          icon: '🏆', price: 200 },
+  { id: 'medal',       name: 'Medal',           icon: '🎖', price: 200 },
+  { id: 'ribbon',      name: 'Ribbon',          icon: '🎗', price: 150 },
+  { id: 'star',        name: 'Star',            icon: '⭐', price: 100 },
+  { id: 'gem',         name: 'Gem',             icon: '💎', price: 300 },
+  { id: 'crown',       name: 'Crown',           icon: '👑', price: 500 },
+  { id: 'anchor',      name: 'Anchor',          icon: '⚓', price: 250 },
+  { id: 'key',         name: 'Key',             icon: '🔑', price: 180 },
+  { id: 'balance',     name: 'Scales',          icon: '⚖', price: 350 },
+  { id: 'gavel',       name: 'Gavel',           icon: '🔨', price: 400 }
+];
+
+const QUESTIONS = [
+  {
+    "key": "eu1",
+    "chapter": "Ch 9: EU Law & Retained EU Law",
+    "text": "A client wishes to know whether an article of the Trade and Cooperation Agreement (TCA) between the UK and EU can be enforced in a national court. What is the correct position on direct effect of TCA articles?",
+    "options": [
+      "Depending on the wording, the article may be directly applicable.",
+      "Depending on the wording, the article has direct effect.",
+      "Depending on the wording, the article has horizontal direct effect.",
+      "Depending on the wording, the article has vertical direct effect.",
+      "Depending on the wording, the article has vertical and horizontal direct effect."
+    ],
+    "best": 4,
+    "principle": "The UK agreed in the TCA that TCA articles can have direct effect — both vertical (against the state) and horizontal (between private parties). Whether a specific article has direct effect depends on its wording: the provision must be clear, precise, unconditional, and not subject to further implementation. This mirrors the test for direct effect of EU law under CJEU jurisprudence.",
+    "principleCN": "英国在TCA中同意TCA条款可以具有直接效力——包括纵向（对国家）和横向（私人之间）。具体条款是否具有直接效力取决于其措辞：必须清晰、精确、无条件且不需要进一步实施。",
+    "cite": "Revise SQE Const. & Admin. Law Ch.9; Trade and Cooperation Agreement",
+    "citeCN": "Revise SQE 宪法与行政法, 第9章; 贸易与合作协议"
+  },
+  {
+    "key": "eu2",
+    "chapter": "Ch 9: EU Law & Retained EU Law",
+    "text": "A man was unaware that EU law still had any effect in the UK after Brexit. He asks his solicitor to explain the concept of 'retained EU law.' What is retained EU law?",
+    "options": [
+      "EU law that applied when the UK joined the EU.",
+      "EU law implemented by delegated legislation.",
+      "EU law that applied before leaving the EU.",
+      "EU law passed by the European Parliament.",
+      "EU law made applicable by the Withdrawal Agreement."
+    ],
+    "best": 2,
+    "principle": "Retained EU law is the EU law that applied in the UK before leaving the EU — specifically, on exit day, 31 January 2020. The European Union (Withdrawal) Act 2018 (EUWA) 'snapshot' or 'froze' EU law as it stood on exit day, converting it into domestic law so that it continued to have effect after Brexit. This includes EU regulations, directly effective EU treaty articles, and EU case law decided before exit day.",
+    "principleCN": "保留欧盟法是英国脱欧前在适用的欧盟法律——具体来说，在退出日2020年1月31日。2018年《欧盟（退出）法》将退出日的欧盟法律'快照'或'冻结'，转化为国内法使其在脱欧后继续有效。",
+    "cite": "Revise SQE Const. & Admin. Law Ch.9; EU(Withdrawal) Act 2018",
+    "citeCN": "Revise SQE 宪法与行政法, 第9章; 2018年《欧盟（退出）法》"
+  },
+  {
+    "key": "eu3",
+    "chapter": "Ch 9: EU Law & Retained EU Law",
+    "text": "Leaving the EU changed the relationship between the Court of Justice of the European Union (CJEU) and UK courts. What is the current position of UK courts regarding CJEU decisions after Brexit?",
+    "options": [
+      "A UK court may refer questions of EU law to the CJEU.",
+      "A UK court must refer questions of EU law to the CJEU.",
+      "A UK court is bound to follow CJEU decisions on EU law.",
+      "A UK court may have regard to CJEU decisions on EU law.",
+      "A UK court must only consider retained EU case law decided by the CJEU."
+    ],
+    "best": 3,
+    "principle": "After Brexit, UK courts may no longer refer questions to the CJEU (the preliminary reference procedure under Art 267 TFEU no longer applies). UK courts are no longer bound by EU law. However, UK courts may have regard to CJEU decisions on EU law — including new CJEU decisions made after Brexit — as persuasive authority. UK courts are not bound by post-Brexit CJEU decisions but may find them helpful.",
+    "principleCN": "脱欧后，英国法院不能再向CJEU提交问题（TFEU第267条初步裁定程序不再适用）。英国法院不再受欧盟法约束。但是，英国法院可以参考CJEU关于欧盟法的决定——包括脱欧后CJEU做出的新决定——作为有说服力的权威。",
+    "cite": "Revise SQE Const. & Admin. Law Ch.9; EU(Withdrawal) Act 2018",
+    "citeCN": "Revise SQE 宪法与行政法, 第9章; 2018年《欧盟（退出）法》"
+  },
+  {
+    "key": "eu4",
+    "chapter": "Ch 9: EU Law & Retained EU Law",
+    "text": "A conflict arises between a piece of retained EU law and a UK statute. The UK statute was enacted before the UK exited the EU. The court must determine which source of law prevails. Which prevails?",
+    "options": [
+      "UK law has supremacy over retained EU law.",
+      "Retained EU law has supremacy over UK law.",
+      "Retained EU law has supremacy over UK law enacted before exit day.",
+      "Retained EU law has supremacy over UK law enacted before IP completion day.",
+      "Retained EU law has supremacy over UK case law but not UK statute law."
+    ],
+    "best": 2,
+    "principle": "The supremacy of EU law has ended after Brexit — retained EU law no longer has general supremacy over all UK law. However, supremacy is preserved for law that existed before the UK exited the EU (exit day = 31 January 2020). Retained EU law has supremacy over UK law enacted before exit day. UK law enacted after exit day takes precedence over retained EU law.",
+    "principleCN": "欧盟法的最高效力在脱欧后已终结——保留欧盟法不再普遍高于所有英国法律。但是，对于英国退出欧盟之前（退出日=2020年1月31日）制定的法律，最高效力得到保留。保留欧盟法优先于退出日前制定的英国法律。退出日后制定的英国法律优先于保留欧盟法。",
+    "cite": "Revise SQE Const. & Admin. Law Ch.9; EU(Withdrawal) Act 2018",
+    "citeCN": "Revise SQE 宪法与行政法, 第9章; 2018年《欧盟（退出）法》"
+  },
+  {
+    "key": "eu5",
+    "chapter": "Ch 9: EU Law & Retained EU Law",
+    "text": "The UK completed its Withdrawal Agreement (WA) with the EU in 2020. The UK accepted that the WA could be enforced in UK courts. A claimant wishes to know what rights they can enforce in a UK court under the WA. What can the claimant enforce?",
+    "options": [
+      "Enforce rights created under the Withdrawal Agreement.",
+      "Enforce EU regulations created under the WA.",
+      "Enforce EU directives created under the WA.",
+      "Enforce decisions made by the CJEU.",
+      "Enforce EU decisions created under the WA."
+    ],
+    "best": 0,
+    "principle": "The UK agreed in the Withdrawal Agreement to allow provisions that meet the conditions for direct effect under Union law to be enforced in UK courts. Claimants can enforce rights created under the WA directly in domestic courts. The key test is whether the WA provision is clear, precise, unconditional, and not subject to further implementation. The WA does not create new EU regulations, directives, or CJEU decisions.",
+    "principleCN": "英国在《退出协议》中同意允许符合联盟法直接效力条件的条款在英国法院执行。原告可以直接在国内法院执行根据WA产生的权利。关键测试是WA条款是否清晰、精确、无条件且不需要进一步实施。WA不创建新的欧盟法规、指令或CJEU决定。",
+    "cite": "Revise SQE Const. & Admin. Law Ch.9; Withdrawal Agreement",
+    "citeCN": "Revise SQE 宪法与行政法, 第9章; 《退出协议》"
+  },
+  {
+    "key": "eu6",
+    "chapter": "Ch 9: EU Law & Retained EU Law",
+    "text": "The EU has passed a new law concerning healthcare rights in February 2022. The UK exited the EU on 31 January 2020. A UK resident wishes to rely on this new EU law in a UK court. What is the position?",
+    "options": [
+      "The EU law has no effect in the UK.",
+      "The EU law has vertical effect in the UK.",
+      "The EU law has direct effect in the UK.",
+      "The EU law has both vertical and direct effect in the UK.",
+      "The EU law is classified as retained EU law and has effect in the UK."
+    ],
+    "best": 0,
+    "principle": "The UK is no longer an EU member state, so any EU law made after exit day (31 January 2020) has no effect in UK law. Retained EU law only captures EU law that applied in the UK on or before exit day. New EU legislation passed by the EU after Brexit does not form part of UK law and cannot be relied upon in UK courts.",
+    "principleCN": "英国不再是欧盟成员国，因此在退出日（2020年1月31日）之后制定的任何欧盟法律在英国法律中没有效力。保留欧盟法只涵盖在退出日或之前在英国适用的欧盟法律。脱欧后欧盟通过的新立法不构成英国法律的一部分。",
+    "cite": "FLK1 Practice 180 Q (Session 2, Q23); EU(Withdrawal) Act 2018",
+    "citeCN": "FLK1 练习题（第2场, Q23）; 2018年《欧盟（退出）法》"
+  },
+  {
+    "key": "eu7",
+    "chapter": "Ch 9: EU Law & Retained EU Law",
+    "text": "A UK court is interpreting a piece of retained EU law. The parties to the dispute have found a recent CJEU decision (decided after Brexit) that interprets the same EU law provision. What weight should the UK court give to this post-Brexit CJEU decision?",
+    "options": [
+      "Decisions of the CJEU have persuasive authority and UK courts may have regard to them.",
+      "Decisions of the CJEU are binding on UK courts.",
+      "Decisions of the CJEU must be ignored by UK courts.",
+      "Decisions of the CJEU can only be considered if referred by the UK court.",
+      "Decisions of the CJEU have the same status as UK Supreme Court decisions."
+    ],
+    "best": 0,
+    "principle": "Decisions of the CJEU have persuasive authority in UK courts after Brexit. UK courts may have regard to CJEU decisions — including those made after Brexit — when interpreting retained EU law. They are not binding. UK courts are free to depart from CJEU decisions where appropriate, but may find the CJEU's reasoning helpful when construing retained EU law.",
+    "principleCN": "脱欧后CJEU的决定在英国法院具有说服力权威。英国法院在解释保留欧盟法时可以参考CJEU的决定——包括脱欧后的决定。这些决定不具有约束力。英国法院可以在适当时偏离CJEU决定，但可能发现CJEU的推理在解释保留欧盟法时很有帮助。",
+    "cite": "FLK1 Practice 180 Q (Session 2, Q59); EU(Withdrawal) Act 2018",
+    "citeCN": "FLK1 练习题（第2场, Q59）; 2018年《欧盟（退出）法》"
+  },
+  {
+    "key": "eu8",
+    "chapter": "Ch 9: EU Law & Retained EU Law",
+    "text": "What was the legal mechanism by which the UK formally left the European Union?",
+    "options": [
+      "The UK repealed the European Communities Act 1972 directly.",
+      "The UK invoked Article 50 of the Treaty on European Union (TEU).",
+      "The UK signed the Treaty of Lisbon.",
+      "The UK passed the Great Repeal Bill.",
+      "The UK invoked Article 7 of the TEU."
+    ],
+    "best": 1,
+    "principle": "Article 50 of the Treaty on European Union (TEU) provides the formal mechanism for a member state to leave the EU. The UK triggered Article 50 in March 2017, which set a two-year negotiation period. The UK formally left the EU on 31 January 2020 (exit day). The European Communities Act 1972 was then repealed by the EU(Withdrawal) Act 2018.",
+    "principleCN": "《欧洲联盟条约》第50条提供了成员国正式退出欧盟的机制。英国于2017年3月触发第50条，开启了两年谈判期。英国于2020年1月31日（退出日）正式退出欧盟。1972年《欧共体法》随后被2018年《欧盟（退出）法》废除。",
+    "cite": "Article 50 TEU; Revise SQE Const. & Admin. Law Ch.9",
+    "citeCN": "《欧洲联盟条约》第50条; Revise SQE 宪法与行政法, 第9章"
+  },
+  {
+    "key": "eu9",
+    "chapter": "Ch 9: EU Law & Retained EU Law",
+    "text": "What was the primary purpose of the European Communities Act 1972 (ECA 1972)?",
+    "options": [
+      "To establish the European Parliament.",
+      "To create the Court of Justice of the European Union.",
+      "To give effect to EU law in UK domestic law, making EU law a source of UK law.",
+      "To negotiate the UK's entry into the European Economic Area.",
+      "To implement the Treaty of Lisbon into UK law."
+    ],
+    "best": 2,
+    "principle": "The European Communities Act 1972 (ECA 1972) was the statute that gave effect to EU law in UK domestic law. It made EU law (regulations, directives, and treaty provisions) a source of UK law, and established the principle of the supremacy of EU law over UK law. The ECA 1972 was repealed by the EU(Withdrawal) Act 2018 on exit day.",
+    "principleCN": "1972年《欧共体法》是使欧盟法在英国国内法中生效的法规。它使欧盟法（法规、指令和条约条款）成为英国法的渊源，并确立了欧盟法优先于英国法的原则。该法于退出日被2018年《欧盟（退出）法》废除。",
+    "cite": "European Communities Act 1972; Revise SQE Const. & Admin. Law Ch.9",
+    "citeCN": "1972年《欧共体法》; Revise SQE 宪法与行政法, 第9章"
+  },
+  {
+    "key": "eu10",
+    "chapter": "Ch 9: EU Law & Retained EU Law",
+    "text": "Under EU law, what is the difference between vertical direct effect and horizontal direct effect?",
+    "options": [
+      "Vertical direct effect applies to regulations; horizontal direct effect applies to directives.",
+      "Vertical direct effect allows individuals to enforce EU law against the state; horizontal direct effect allows individuals to enforce EU law against other private parties.",
+      "Vertical direct effect applies to treaty articles; horizontal direct effect applies to regulations only.",
+      "Vertical direct effect is stronger than horizontal direct effect in all cases.",
+      "There is no difference — the terms are interchangeable."
+    ],
+    "best": 1,
+    "principle": "Vertical direct effect allows individuals to enforce EU law against the state (or an emanation of the state). Horizontal direct effect allows individuals to enforce EU law against other private parties. Treaty articles can have both vertical and horizontal direct effect. Regulations can have both. Directives can have vertical direct effect but generally NOT horizontal direct effect (Marshall v Southampton AHA).",
+    "principleCN": "纵向直接效力允许个人对国家（或国家衍生物）执行欧盟法。横向直接效力允许个人对其他私人方执行欧盟法。条约条款可以具有纵向和横向直接效力。法规可以两者兼具。指令可以具有纵向直接效力，但通常不具有横向直接效力（Marshall v Southampton AHA）。",
+    "cite": "Revise SQE Const. & Admin. Law Ch.9; Marshall v Southampton AHA [1986]",
+    "citeCN": "Revise SQE 宪法与行政法, 第9章; Marshall v Southampton AHA [1986]"
+  },
+  {
+    "key": "eu11",
+    "chapter": "Ch 9: EU Law & Retained EU Law",
+    "text": "Under EU law, can an EU directive have horizontal direct effect (i.e., be enforced by an individual against another private party)?",
+    "options": [
+      "Yes — directives can always have horizontal direct effect.",
+      "Yes — but only if the directive is clear and precise.",
+      "No — directives can have vertical direct effect but generally cannot have horizontal direct effect.",
+      "No — directives can never have any form of direct effect.",
+      "Yes — directives have the same direct effect as regulations."
+    ],
+    "best": 2,
+    "principle": "Under EU law, directives generally cannot have horizontal direct effect (Marshall v Southampton AHA [1986]). A directive can have vertical direct effect (an individual against the state), but not horizontal direct effect (an individual against another private party). However, the CJEU developed the principle of indirect effect (von Colson) and state liability (Francovich) to mitigate the injustice caused by this limitation.",
+    "principleCN": "根据欧盟法，指令通常不能具有横向直接效力（Marshall v Southampton AHA [1986]）。指令可以具有纵向直接效力（个人对国家），但不能具有横向直接效力（个人对另一私人方）。不过，CJEU发展了间接效力原则（von Colson）和国家责任原则（Francovich）来减轻这一限制造成的不公。",
+    "cite": "Marshall v Southampton AHA [1986] ECR 723; Revise SQE Const. & Admin. Law Ch.9",
+    "citeCN": "Marshall v Southampton AHA [1986] ECR 723; Revise SQE 宪法与行政法, 第9章"
+  },
+  {
+    "key": "eu12",
+    "chapter": "Ch 9: EU Law & Retained EU Law",
+    "text": "What is the 'snapshot' or 'freezing' effect of the EU(Withdrawal) Act 2018 (EUWA)?",
+    "options": [
+      "It froze the UK's membership of the EU on 31 January 2020.",
+      "It converted EU law as it stood on exit day into domestic UK law, so it continued to apply after Brexit.",
+      "It prevented the UK from making any new laws after exit day.",
+      "It froze all CJEU decisions so they could never be changed.",
+      "It prevented the UK from leaving the EU after the referendum."
+    ],
+    "best": 1,
+    "principle": "The EU(Withdrawal) Act 2018 'snapshot' or 'froze' EU law as it stood on exit day (31 January 2020), converting it into domestic law (retained EU law) so that it continued to apply after Brexit. This included EU regulations, directly effective treaty articles, and EU case law decided before exit day. Without this mechanism, all EU law would have ceased to apply on exit day, creating a massive legal vacuum.",
+    "principleCN": "2018年《欧盟（退出）法》将退出日（2020年1月31日）时的欧盟法律'快照'或'冻结'，转化为国内法（保留欧盟法），使其在脱欧后继续适用。这包括欧盟法规、具有直接效力的条约条款和退出日前决定的欧盟案例法。如果没有这一机制，所有欧盟法将在退出日停止适用，造成巨大的法律真空。",
+    "cite": "EU(Withdrawal) Act 2018; Revise SQE Const. & Admin. Law Ch.9",
+    "citeCN": "2018年《欧盟（退出）法》; Revise SQE 宪法与行政法, 第9章"
+  },
+  {
+    "key": "eu13",
+    "chapter": "Ch 9: EU Law & Retained EU Law",
+    "text": "After Brexit, can UK courts still make references to the CJEU under Article 267 TFEU?",
+    "options": [
+      "Yes — UK courts can still refer questions to the CJEU at any time.",
+      "Yes — but only the Supreme Court can make references.",
+      "No — the preliminary reference procedure under Article 267 TFEU no longer applies to UK courts after Brexit.",
+      "No — but UK courts can still seek advisory opinions from the CJEU.",
+      "Yes — but only for cases that began before exit day."
+    ],
+    "best": 2,
+    "principle": "After Brexit, the preliminary reference procedure under Article 267 TFEU no longer applies to UK courts. UK courts cannot refer questions of EU law to the CJEU. This is because the UK is no longer an EU member state. However, UK courts may still have regard to existing CJEU jurisprudence as persuasive authority when interpreting retained EU law.",
+    "principleCN": "脱欧后，TFEU第267条下的初步裁定程序不再适用于英国法院。英国法院不能向CJEU提交欧盟法问题。这是因为英国不再是欧盟成员国。但是，英国法院在解释保留欧盟法时仍可参考现有CJEU判例作为有说服力的权威。",
+    "cite": "Article 267 TFEU; EU(Withdrawal) Act 2018; Revise SQE Const. & Admin. Law Ch.9",
+    "citeCN": "TFEU第267条; 2018年《欧盟（退出）法》; Revise SQE 宪法与行政法, 第9章"
+  },
+  {
+    "key": "eu14",
+    "chapter": "Ch 9: EU Law & Retained EU Law",
+    "text": "What is the Francovich principle in EU law?",
+    "options": [
+      "It establishes the supremacy of EU law over national law.",
+      "It allows individuals to claim compensation from the state for loss caused by the state's failure to implement an EU directive.",
+      "It provides for horizontal direct effect of directives.",
+      "It establishes the principle of direct effect for treaty articles.",
+      "It allows UK courts to depart from CJEU decisions."
+    ],
+    "best": 1,
+    "principle": "The Francovich principle (Francovich v Italy [1991]) establishes state liability: a member state is liable to compensate individuals for loss caused by the state's failure to implement an EU directive (or other breach of EU law). The conditions are: (1) the rule of law was intended to confer rights on individuals, (2) the breach was sufficiently serious, and (3) there was a direct causal link between the breach and the loss.",
+    "principleCN": "Francovich原则（Francovich v Italy [1991]）确立了国家责任：成员国未实施欧盟指令（或其他违反欧盟法的行为）给个人造成损失时，国家有责任赔偿。条件是：(1)法律规定旨在赋予个人权利，(2)违约足够严重，(3)违约与损失之间有直接因果关系。",
+    "cite": "Francovich v Italy [1991] ECR I-5357; Revise SQE Const. & Admin. Law Ch.9",
+    "citeCN": "Francovich v Italy [1991] ECR I-5357; Revise SQE 宪法与行政法, 第9章"
+  },
+  {
+    "key": "eu15",
+    "chapter": "Ch 9: EU Law & Retained EU Law",
+    "text": "Which of the following correctly describes the test for whether a provision of EU law (or retained EU law) has direct effect?",
+    "options": [
+      "The provision must be clear, precise, unconditional, and not subject to further implementation.",
+      "The provision must be published in the Official Journal of the EU.",
+      "The provision must have been approved by the UK Parliament.",
+      "The provision must relate to the rights of individuals, not businesses.",
+      "The provision must be included in a regulation, not a directive."
+    ],
+    "best": 0,
+    "principle": "The test for direct effect (established by the CJEU in Van Gend en Loos [1963]) requires that the provision be clear, precise, unconditional, and not subject to further implementation. If these conditions are met, the provision can be relied upon by individuals in national courts. This test applies to treaty articles, regulations, and (for vertical direct effect) directives.",
+    "principleCN": "直接效力的测试（CJEU在Van Gend en Loos [1963]中确立）要求条款清晰、精确、无条件且不需要进一步实施。如果满足这些条件，个人可以在国内法院依赖该条款。此测试适用于条约条款、法规和（纵向直接效力）指令。",
+    "cite": "Van Gend en Loos [1963] ECR 1; Revise SQE Const. & Admin. Law Ch.9",
+    "citeCN": "Van Gend en Loos [1963] ECR 1; Revise SQE 宪法与行政法, 第9章"
+  },
+  {
+    "key": "eu16",
+    "chapter": "Ch 9: EU Law & Retained EU Law",
+    "text": "A UK statute enacted in 2023 conflicts with a piece of retained EU law. Which law prevails?",
+    "options": [
+      "Retained EU law prevails because EU law always has supremacy.",
+      "The UK statute prevails because it was enacted after exit day.",
+      "Both laws apply simultaneously and the court must reconcile them.",
+      "Retained EU law prevails unless the UK statute expressly disapplies it.",
+      "The matter must be referred to the CJEU for determination."
+    ],
+    "best": 1,
+    "principle": "UK law enacted after exit day (31 January 2020) takes precedence over retained EU law. The supremacy of EU law is only preserved for the pre-exit day period. After exit day, the UK Parliament is sovereign and new UK legislation overrides retained EU law. This reflects the restoration of parliamentary sovereignty after Brexit.",
+    "principleCN": "退出日（2020年1月31日）后制定的英国法律优先于保留欧盟法。欧盟法的最高效力仅为退出日之前的时期保留。退出日后，英国议会拥有主权，新立法凌驾于保留欧盟法之上。这反映了脱欧后议会主权的恢复。",
+    "cite": "EU(Withdrawal) Act 2018; Revise SQE Const. & Admin. Law Ch.9",
+    "citeCN": "2018年《欧盟（退出）法》; Revise SQE 宪法与行政法, 第9章"
+  },
+  {
+    "key": "eu17",
+    "chapter": "Ch 9: EU Law & Retained EU Law",
+    "text": "What is the 'indirect effect' principle developed by the CJEU (von Colson principle)?",
+    "options": [
+      "It allows EU law to affect UK law indirectly through international treaties.",
+      "It requires national courts to interpret national law, as far as possible, in light of the wording and purpose of an EU directive, even if the directive cannot be enforced directly.",
+      "It allows the CJEU to make decisions that indirectly affect UK domestic law.",
+      "It means that EU regulations have indirect effect through member state implementation.",
+      "It establishes that all national laws must be compatible with EU law."
+    ],
+    "best": 1,
+    "principle": "The principle of indirect effect (von Colson v Land Nordrhein-Westfalen [1984]) requires national courts to interpret their national law, as far as possible, in light of the wording and purpose of an EU directive — even if the directive cannot be enforced directly (e.g., in horizontal disputes). This mitigates the inability of directives to have horizontal direct effect.",
+    "principleCN": "间接效力原则（von Colson v Land Nordrhein-Westfalen [1984]）要求国内法院尽可能根据欧盟指令的措辞和目的来解释国内法——即使该指令不能直接执行（如在横向争议中）。这缓解了指令不能具有横向直接效力的问题。",
+    "cite": "Von Colson [1984] ECR 1891; Revise SQE Const. & Admin. Law Ch.9",
+    "citeCN": "Von Colson [1984] ECR 1891; Revise SQE 宪法与行政法, 第9章"
+  },
+  {
+    "key": "eu18",
+    "chapter": "Ch 9: EU Law & Retained EU Law",
+    "text": "What was the European Union (Withdrawal Agreement) Act 2020?",
+    "options": [
+      "It repealed the European Communities Act 1972.",
+      "It implemented the Withdrawal Agreement into UK domestic law and set the transition period end date.",
+      "It established the Trade and Cooperation Agreement.",
+      "It created the concept of retained EU law.",
+      "It allowed the UK to rejoin the EU."
+    ],
+    "best": 1,
+    "principle": "The European Union (Withdrawal Agreement) Act 2020 implemented the Withdrawal Agreement into UK domestic law. It also set the end date of the transition/implementation period (31 December 2020). This Act amended the EU(Withdrawal) Act 2018 to reflect the terms of the Withdrawal Agreement. The ECA 1972 was repealed at the end of the transition period.",
+    "principleCN": "2020年《欧盟（退出协议）法》将《退出协议》纳入英国国内法。它还设定了过渡/实施期的结束日期（2020年12月31日）。该法修订了2018年《欧盟（退出）法》以反映《退出协议》的条款。1972年《欧共体法》在过渡期结束时被废除。",
+    "cite": "European Union (Withdrawal Agreement) Act 2020; Revise SQE Const. & Admin. Law Ch.9",
+    "citeCN": "2020年《欧盟（退出协议）法》; Revise SQE 宪法与行政法, 第9章"
+  },
+  {
+    "key": "eu19",
+    "chapter": "Ch 9: EU Law & Retained EU Law",
+    "text": "Which of the following types of EU law were converted into retained EU law by the EU(Withdrawal) Act 2018?",
+    "options": [
+      "Only EU regulations.",
+      "Only EU directives.",
+      "EU regulations, directly effective EU treaty articles, and EU case law decided before exit day.",
+      "Only CJEU decisions.",
+      "All EU law including new EU law made after exit day."
+    ],
+    "best": 2,
+    "principle": "The EU(Withdrawal) Act 2018 converted EU regulations, directly effective EU treaty articles, and EU case law decided before exit day into retained EU law. This ensured legal continuity after Brexit. EU directives that had been implemented by UK secondary legislation were already part of UK law and did not need separate conversion. New EU law made after exit day is not retained.",
+    "principleCN": "2018年《欧盟（退出）法》将欧盟法规、具有直接效力的欧盟条约条款和退出日前决定的欧盟案例法转化为保留欧盟法。这确保了脱欧后的法律连续性。已由英国二级立法实施的欧盟指令已经是英国法律的一部分，不需要单独转化。退出日后制定的新欧盟法不属于保留范围。",
+    "cite": "EU(Withdrawal) Act 2018; Revise SQE Const. & Admin. Law Ch.9",
+    "citeCN": "2018年《欧盟（退出）法》; Revise SQE 宪法与行政法, 第9章"
+  },
+  {
+    "key": "eu20",
+    "chapter": "Ch 9: EU Law & Retained EU Law",
+    "text": "Can the UK Supreme Court depart from retained EU case law (CJEU decisions made before exit day)?",
+    "options": [
+      "No — UK courts are permanently bound by all pre-exit CJEU decisions.",
+      "Yes — but only with the permission of the CJEU.",
+      "Yes — the UK Supreme Court can depart from retained EU case law, but only where it considers it right to do so, applying principles similar to its own precedent departure test.",
+      "No — retained EU case law has the same status as UK constitutional statutes.",
+      "Yes — the UK Supreme Court can freely depart from all retained EU case law without any test."
+    ],
+    "best": 2,
+    "principle": "Under the EU(Withdrawal) Act 2018, the UK Supreme Court (and the High Court of Justiciary in Scotland) can depart from retained EU case law where it considers it right to do so. The test is similar to the test for departing from its own precedents. Lower courts must follow retained EU case law unless the Supreme Court has departed from it. This balances legal certainty with the UK's regained judicial sovereignty.",
+    "principleCN": "根据2018年《欧盟（退出）法》，英国最高法院（和苏格兰高等法院）可以在认为适当时偏离保留的欧盟案例法。测试类似于偏离自身先例的测试。下级法院必须遵循保留的欧盟案例法，除非最高法院已偏离。这在法律确定性和英国重新获得的司法主权之间取得平衡。",
+    "cite": "EU(Withdrawal) Act 2018; Revise SQE Const. & Admin. Law Ch.9",
+    "citeCN": "2018年《欧盟（退出）法》; Revise SQE 宪法与行政法, 第9章"
+  }
+]
+;
+
+let state = JSON.parse(JSON.stringify(DEFAULT_STATE));
+
+function load() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      const saved = JSON.parse(raw);
+      state = Object.assign(JSON.parse(JSON.stringify(DEFAULT_STATE)), saved);
+    }
+  } catch(e) { console.warn('Load failed:', e); }
+}
+
+function save() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  } catch(e) { console.warn('Save failed:', e); }
+}
+
+function applyFS() {
+  document.body.classList.remove('fs-lg', 'fs-xl');
+  if (state.fsLevel === 1) document.body.classList.add('fs-lg');
+  else if (state.fsLevel === 2) document.body.classList.add('fs-xl');
+}
+
+function changeFS(dir) {
+  state.fsLevel = Math.max(0, Math.min(2, state.fsLevel + dir));
+  applyFS();
+  save();
+}
+
+function renderCoins() {
+  document.getElementById('coins').textContent = state.coins;
+}
+
+function renderStars() {
+  const count = Object.keys(state.stickers).filter(id => {
+    const s = state.stickers[id];
+    return s.side !== null && s.slot >= 0;
+  }).length;
+  const filled = Math.floor(count / 4);
+  const html = Array.from({length: 5}, (_, i) =>
+    `<span class="star ${i < filled ? 'filled' : ''}">${i < filled ? '★' : '☆'}</span>`
+  ).join('');
+  const top = document.getElementById('stars-top');
+  const quiz = document.getElementById('stars-quiz');
+  if (top) top.innerHTML = html;
+  if (quiz) quiz.innerHTML = html;
+}
+
+function getCurrentQuestions() {
+  if (state.reviewMode && state.reviewQueue.length > 0) {
+    return state.reviewQueue;
+  }
+  return QUESTIONS;
+}
+
+function renderQuestion() {
+  const qs = getCurrentQuestions();
+  const idx = state.qIndex;
+  const q = qs[idx];
+
+  document.getElementById('chapter').textContent = q.chapter;
+  document.getElementById('progress').textContent = `Question ${idx + 1} / ${qs.length}`;
+  document.getElementById('question-text').textContent = q.text;
+
+  const optsDiv = document.getElementById('options');
+  optsDiv.innerHTML = '';
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'option';
+    btn.textContent = opt;
+    const answered = state.answered.includes(q.key);
+    if (answered) {
+      if (i === q.best) btn.classList.add('correct');
+      if (state.wrong[q.key] === i) btn.classList.add('wrong');
+    }
+    btn.onclick = () => selectOption(i);
+    optsDiv.appendChild(btn);
+  });
+
+  const fb = document.getElementById('feedback');
+  const nextBtn = document.getElementById('next-btn');
+  if (state.answered.includes(q.key)) {
+    const isCorrect = state.wrong[q.key] === undefined;
+    fb.className = 'feedback show ' + (isCorrect ? 'correct' : 'wrong');
+    let html = isCorrect ? '✅ Correct!' : '❌ Not quite.';
+    html += `<div class="principle"><strong>Principle:</strong> ${q.principle}</div>`;
+    html += `<div class="principle-cn">${q.principleCN}</div>`;
+    html += `<div class="cite">📚 ${q.cite}</div>`;
+    html += `<div class="cite">${q.citeCN}</div>`;
+    fb.innerHTML = html;
+    nextBtn.classList.add('show');
+    nextBtn.textContent = idx + 1 < qs.length ? 'Next →' : 'Finish';
+  } else {
+    fb.className = 'feedback';
+    fb.innerHTML = '';
+    nextBtn.classList.remove('show');
+  }
+
+  const bmBtn = document.getElementById('bookmark-btn');
+  if (state.bookmarked.includes(q.key)) {
+    bmBtn.classList.add('active');
+    bmBtn.textContent = '★';
+  } else {
+    bmBtn.classList.remove('active');
+    bmBtn.textContent = '☆';
+  }
+
+  document.getElementById('prev-btn').disabled = idx === 0;
+  document.getElementById('next-nav-btn').disabled = idx === qs.length - 1;
+
+  renderReviewBtn();
+}
+
+function toggleBookmark() {
+  const q = getCurrentQuestions()[state.qIndex];
+  const i = state.bookmarked.indexOf(q.key);
+  if (i >= 0) state.bookmarked.splice(i, 1);
+  else state.bookmarked.push(q.key);
+  save();
+  renderQuestion();
+}
+
+function selectOption(i) {
+  const q = getCurrentQuestions()[state.qIndex];
+  const wasAnswered = state.answered.includes(q.key);
+  const wasWrong = state.wrong[q.key] !== undefined;
+
+  if (wasAnswered) {
+    if (wasWrong) {
+      delete state.wrong[q.key];
+    }
+    if (i === q.best && wasWrong) {
+      state.coins += 20;
+      renderCoins();
+    }
+  } else {
+    state.answered.push(q.key);
+    if (i === q.best) {
+      state.coins += 20;
+      renderCoins();
+    }
+  }
+
+  if (i !== q.best) {
+    state.wrong[q.key] = i;
+  }
+  save();
+  renderQuestion();
+}
+
+function nextQuestion() {
+  const qs = getCurrentQuestions();
+  if (state.qIndex < qs.length - 1) {
+    state.qIndex++;
+    save();
+    renderQuestion();
+  } else {
+    if (state.reviewMode) {
+      exitReviewMode();
+    } else {
+      state.qIndex = 0;
+      save();
+      renderQuestion();
+    }
+  }
+}
+
+function prevQuestion() {
+  if (state.qIndex > 0) {
+    state.qIndex--;
+    save();
+    renderQuestion();
+  }
+}
+
+function getReviewQuestions() {
+  return QUESTIONS.filter(q => state.wrong[q.key] !== undefined);
+}
+
+function renderReviewBtn() {
+  const reviewBtn = document.getElementById('review-btn');
+  const wrongQs = getReviewQuestions();
+  if (wrongQs.length > 0 && !state.reviewMode) {
+    reviewBtn.style.display = '';
+    reviewBtn.textContent = `Review Wrong (${wrongQs.length})`;
+  } else {
+    reviewBtn.style.display = 'none';
+  }
+}
+
+function startReview() {
+  const wrongQs = getReviewQuestions();
+  if (wrongQs.length === 0) return;
+  state.reviewMode = true;
+  state.reviewQueue = wrongQs;
+  state.qIndex = 0;
+  save();
+  renderQuestion();
+}
+
+function exitReviewMode() {
+  state.reviewMode = false;
+  state.reviewQueue = [];
+  state.qIndex = 0;
+  save();
+  renderQuestion();
+}
+
+function renderStickers() {
+  ['left', 'right'].forEach(side => {
+    const col = document.getElementById('col-' + side);
+    const label = col.querySelector('.col-label');
+    col.innerHTML = '';
+    col.appendChild(label);
+    const grid = document.createElement('div');
+    grid.style.cssText = 'display:grid; grid-template-columns: 1fr; gap: 6px;';
+    for (let i = 0; i < SLOTS_PER_COL; i++) {
+      const slot = document.createElement('div');
+      slot.className = 'sticker-slot';
+      let placedItem = null;
+      for (const [id, data] of Object.entries(state.stickers)) {
+        if (data.side === side && data.slot === i) {
+          placedItem = STICKERS.find(s => s.id === id);
+          break;
+        }
+      }
+      if (placedItem) {
+        slot.classList.add('filled');
+        slot.innerHTML = placedItem.icon;
+        const x = document.createElement('div');
+        x.className = 'remove-x';
+        x.textContent = '×';
+        x.onclick = (e) => { e.stopPropagation(); removeSticker(placedItem.id); };
+        slot.appendChild(x);
+      } else {
+        slot.innerHTML = '<span class="empty-hint">+</span>';
+      }
+      slot.onclick = () => placeSticker(side, i);
+      grid.appendChild(slot);
+    }
+    col.appendChild(grid);
+  });
+  renderStars();
+}
+
+function removeSticker(id) {
+  state.stickers[id] = { side: null, slot: -1 };
+  save();
+  renderStickers();
+}
+
+function placeSticker(side, slot) {
+  if (!state.placementItem) return;
+  for (const [id, data] of Object.entries(state.stickers)) {
+    if (data.side === side && data.slot === slot && id !== state.placementItem) {
+      state.stickers[id] = { side: null, slot: -1 };
+      break;
+    }
+  }
+  state.stickers[state.placementItem] = { side: side, slot: slot };
+  state.placementItem = null;
+  document.getElementById('placement-banner').classList.remove('show');
+  save();
+  renderStickers();
+}
+
+function cancelPlacement() {
+  state.placementItem = null;
+  document.getElementById('placement-banner').classList.remove('show');
+  save();
+}
+
+function openShop() {
+  document.getElementById('shop-coins').textContent = state.coins;
+  const grid = document.getElementById('shop-grid');
+  grid.innerHTML = '';
+  STICKERS.forEach(s => {
+    const item = document.createElement('div');
+    item.className = 'shop-item';
+    const owned = state.stickers[s.id] !== undefined;
+    const placed = owned && state.stickers[s.id].side !== null && state.stickers[s.id].slot >= 0;
+    if (owned) item.classList.add('owned');
+    item.innerHTML = `
+      <div class="icon">${s.icon}</div>
+      <div class="name">${s.name}</div>
+      <div class="price">💰 ${s.price}</div>
+    `;
+    if (!owned) {
+      const btn = document.createElement('button');
+      btn.textContent = 'Buy';
+      btn.disabled = state.coins < s.price;
+      btn.onclick = () => buySticker(s.id);
+      item.appendChild(btn);
+    } else if (!placed) {
+      const btn = document.createElement('button');
+      btn.textContent = 'Stick';
+      btn.onclick = () => startPlacement(s.id);
+      item.appendChild(btn);
+    }
+    grid.appendChild(item);
+  });
+  document.getElementById('shop-overlay').classList.add('show');
+}
+
+function closeShop() {
+  document.getElementById('shop-overlay').classList.remove('show');
+}
+
+function buySticker(id) {
+  const s = STICKERS.find(x => x.id === id);
+  if (!s) return;
+  if (state.coins < s.price) return;
+  state.coins -= s.price;
+  state.stickers[id] = { side: null, slot: -1 };
+  save();
+  renderCoins();
+  openShop();
+  startPlacement(id);
+}
+
+function startPlacement(id) {
+  state.placementItem = id;
+  document.getElementById('placement-banner').classList.add('show');
+  closeShop();
+}
+
+function init() {
+  load();
+  applyFS();
+  renderCoins();
+  renderStickers();
+  renderStars();
+  renderQuestion();
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 's' && e.shiftKey) {
+      e.preventDefault();
+      openShop();
+    }
+  });
+
+  const rightDiv = document.querySelector('.topbar .right');
+  if (rightDiv) {
+    const shopBtn = document.createElement('button');
+    shopBtn.className = 'fs-btn';
+    shopBtn.textContent = '🏷️';
+    shopBtn.style.marginRight = '4px';
+    shopBtn.onclick = openShop;
+    rightDiv.insertBefore(shopBtn, rightDiv.firstChild);
+  }
+}
+
+init();
+
+</script>
+</body>
+</html>
