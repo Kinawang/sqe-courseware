@@ -195,7 +195,7 @@ const STORAGE_KEY = 'sqe-l3-stickers-v1';
 const SLOTS_PER_COL = 10;
 
 const DEFAULT_STATE = {
-  coins: 0, qIndex: 0, answered: [], wrong: {}, bookmarked: [], stickers: {}, placementItem: null, fsLevel: 0, reviewMode: false, reviewQueue: []
+  coins: 0, qIndex: 0, answered: [], wrong: {}, bookmarked: [], stickers: {}, placementItem: null, fsLevel: 0, reviewMode: false, reviewQueue: [], lastAnsweredKey: null, lastAnsweredCorrect: null
 };
 
 const STICKERS = [
@@ -311,24 +311,33 @@ function renderQuestion() {
   document.getElementById('question-text').textContent = q.text;
   const optsDiv = document.getElementById('options');
   optsDiv.innerHTML = '';
+  const answered = state.answered.includes(q.key);
+  const isCorrectSoFar = answered && state.wrong[q.key] === undefined;
+  if (answered) {
+    const status = document.createElement('div');
+    status.className = 'answer-status ' + (isCorrectSoFar ? 'good' : 'bad');
+    status.textContent = isCorrectSoFar
+      ? '✓ Last answer: Correct. You can re-answer below to confirm or change your mind.'
+      : '✗ Currently in your review list. Re-answer to remove it from review or change your choice.';
+    optsDiv.appendChild(status);
+  }
   q.options.forEach((opt, i) => {
     const btn = document.createElement('button');
     btn.className = 'option';
     btn.textContent = opt;
-    const answered = state.answered.includes(q.key);
-    if (answered) {
-      if (i === q.best) btn.classList.add('correct');
-      if (state.wrong[q.key] === i) btn.classList.add('wrong');
+    if (answered && state.wrong[q.key] === i) {
+      btn.classList.add('previous-wrong');
     }
     btn.onclick = () => selectOption(i);
     optsDiv.appendChild(btn);
   });
   const fb = document.getElementById('feedback');
   const nextBtn = document.getElementById('next-btn');
-  if (state.answered.includes(q.key)) {
-    const isCorrect = state.wrong[q.key] === undefined;
-    fb.className = 'feedback show ' + (isCorrect ? 'correct' : 'wrong');
-    let html = isCorrect ? '✅ Correct!' : '❌ Not quite.';
+  const justAnswered = state.lastAnsweredKey === q.key;
+  if (justAnswered) {
+    const correct = state.lastAnsweredCorrect;
+    fb.className = 'feedback show ' + (correct ? 'correct' : 'wrong');
+    let html = correct ? '✅ Correct!' : '❌ Not quite.';
     html += `<div class="principle"><strong>Principle:</strong> ${q.principle}</div>`;
     html += `<div class="principle-cn">${q.principleCN}</div>`;
     html += `<div class="cite">📚 ${q.cite}</div>`;
@@ -336,6 +345,10 @@ function renderQuestion() {
     fb.innerHTML = html;
     nextBtn.classList.add('show');
     nextBtn.textContent = idx + 1 < qs.length ? 'Next →' : 'Finish';
+  } else if (answered) {
+    fb.className = 'feedback show hint';
+    fb.innerHTML = '<em>Pick an option above to re-answer. The correct answer and principle will be shown after you click.</em>';
+    nextBtn.classList.remove('show');
   } else {
     fb.className = 'feedback';
     fb.innerHTML = '';
@@ -367,24 +380,29 @@ function selectOption(i) {
   const q = getCurrentQuestions()[state.qIndex];
   const wasAnswered = state.answered.includes(q.key);
   const wasWrong = state.wrong[q.key] !== undefined;
-  if (wasAnswered) {
+  const isCorrect = i === q.best;if (wasAnswered) {
     if (wasWrong) { delete state.wrong[q.key]; }
-    if (i === q.best && wasWrong) { state.coins += 20; renderCoins(); }
+    if (isCorrect && wasWrong) { state.coins += 20; renderCoins(); }
   } else {
     state.answered.push(q.key);
-    if (i === q.best) { state.coins += 20; renderCoins(); }
+    if (isCorrect) { state.coins += 20; renderCoins(); }
   }
-  if (i !== q.best) { state.wrong[q.key] = i; }
+  
+  if (!isCorrect) {
+    state.wrong[q.key] = i;
+  }
+  state.lastAnsweredKey = q.key;
+  state.lastAnsweredCorrect = isCorrect;
   save();
   renderQuestion();
 }
 
 function nextQuestion() {
   const qs = getCurrentQuestions();
-  if (state.qIndex < qs.length - 1) { state.qIndex++; save(); renderQuestion(); }
+  if (state.qIndex < qs.length - 1) { state.qIndex++; state.lastAnsweredKey=null; state.lastAnsweredCorrect=null; save(); renderQuestion(); }
   else {
     if (state.reviewMode) { exitReviewMode(); }
-    else { state.qIndex = 0; save(); renderQuestion(); }
+    else { state.qIndex = 0; state.lastAnsweredKey=null; state.lastAnsweredCorrect=null; save(); renderQuestion(); }
   }
 }
 
