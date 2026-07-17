@@ -258,6 +258,35 @@ body {
     border-color: var(--seal);
     background: #f8d7da;
 }
+.option.previous-wrong {
+    border-color: #d0a8a8;
+    background: #fbeeee;
+    color: #8a5555;
+}
+
+.answer-status {
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: var(--fs-small);
+    margin-bottom: 12px;
+    border: 1px solid;
+}
+.answer-status.good {
+    background: #e8f5e9;
+    border-color: var(--ok);
+    color: #2e6b32;
+}
+.answer-status.bad {
+    background: #fdf2f2;
+    border-color: var(--seal);
+    color: #8a2828;
+}
+.feedback.hint {
+    background: var(--paper-2);
+    border: 1px dashed var(--ink-soft);
+    color: var(--ink-soft);
+    display: block;
+}
 .option.disabled { cursor: default; }
 
 .feedback {
@@ -534,7 +563,9 @@ const DEFAULT_STATE = {
   placementItem: null,
   fsLevel: 0,
   reviewMode: false,
-  reviewQueue: []
+  reviewQueue: [],
+  lastAnsweredKey: null,
+  lastAnsweredCorrect: null
 };
 
 const STICKERS = [
@@ -1315,14 +1346,22 @@ function renderQuestion() {
 
   const optsDiv = document.getElementById('options');
   optsDiv.innerHTML = '';
+  const answered = state.answered.includes(q.key);
+  const isCorrectSoFar = answered && state.wrong[q.key] === undefined;
+  if (answered) {
+    const status = document.createElement('div');
+    status.className = 'answer-status ' + (isCorrectSoFar ? 'good' : 'bad');
+    status.textContent = isCorrectSoFar
+      ? '✓ Last answer: Correct. You can re-answer below to confirm or change your mind.'
+      : '✗ Currently in your review list. Re-answer to remove it from review or change your choice.';
+    optsDiv.appendChild(status);
+  }
   q.options.forEach((opt, i) => {
     const btn = document.createElement('button');
     btn.className = 'option';
     btn.textContent = opt;
-    const answered = state.answered.includes(q.key);
-    if (answered) {
-      if (i === q.best) btn.classList.add('correct');
-      if (state.wrong[q.key] === i) btn.classList.add('wrong');
+    if (answered && state.wrong[q.key] === i) {
+      btn.classList.add('previous-wrong');
     }
     btn.onclick = () => selectOption(i);
     optsDiv.appendChild(btn);
@@ -1330,10 +1369,11 @@ function renderQuestion() {
 
   const fb = document.getElementById('feedback');
   const nextBtn = document.getElementById('next-btn');
-  if (state.answered.includes(q.key)) {
-    const isCorrect = state.wrong[q.key] === undefined;
-    fb.className = 'feedback show ' + (isCorrect ? 'correct' : 'wrong');
-    let html = isCorrect ? '✅ Correct!' : '❌ Not quite.';
+  const justAnswered = state.lastAnsweredKey === q.key;
+  if (justAnswered) {
+    const correct = state.lastAnsweredCorrect;
+    fb.className = 'feedback show ' + (correct ? 'correct' : 'wrong');
+    let html = correct ? '✅ Correct!' : '❌ Not quite.';
     html += `<div class="principle"><strong>Principle:</strong> ${q.principle}</div>`;
     html += `<div class="principle-cn">${q.principleCN}</div>`;
     html += `<div class="cite">📚 ${q.cite}</div>`;
@@ -1341,6 +1381,10 @@ function renderQuestion() {
     fb.innerHTML = html;
     nextBtn.classList.add('show');
     nextBtn.textContent = idx + 1 < qs.length ? 'Next →' : 'Finish';
+  } else if (answered) {
+    fb.className = 'feedback show hint';
+    fb.innerHTML = '<em>Pick an option above to re-answer. The correct answer and principle will be shown after you click.</em>';
+    nextBtn.classList.remove('show');
   } else {
     fb.className = 'feedback';
     fb.innerHTML = '';
@@ -1377,14 +1421,13 @@ function selectOption(i) {
   const q = getCurrentQuestions()[state.qIndex];
   const wasAnswered = state.answered.includes(q.key);
   const wasWrong = state.wrong[q.key] !== undefined;
-
-  if (wasAnswered) {
+  const isCorrect = i === q.best;if (wasAnswered) {
     // Re-answering: remove old record
     if (wasWrong) {
       delete state.wrong[q.key];
     }
     // If they got it wrong before and right now, give coins
-    if (i === q.best && wasWrong) {
+    if (isCorrect && wasWrong) {
       state.coins += 20;
       renderCoins();
     }
@@ -1392,15 +1435,18 @@ function selectOption(i) {
   } else {
     // First time answering
     state.answered.push(q.key);
-    if (i === q.best) {
+    if (isCorrect) {
       state.coins += 20;
       renderCoins();
     }
   }
 
-  if (i !== q.best) {
+  
+  if (!isCorrect) {
     state.wrong[q.key] = i;
   }
+  state.lastAnsweredKey = q.key;
+  state.lastAnsweredCorrect = isCorrect;
   save();
   renderQuestion();
 }
@@ -1409,6 +1455,8 @@ function nextQuestion() {
   const qs = getCurrentQuestions();
   if (state.qIndex < qs.length - 1) {
     state.qIndex++;
+    state.lastAnsweredKey = null;
+    state.lastAnsweredCorrect = null;
     save();
     renderQuestion();
   } else {
@@ -1416,6 +1464,8 @@ function nextQuestion() {
       exitReviewMode();
     } else {
       state.qIndex = 0;
+      state.lastAnsweredKey = null;
+      state.lastAnsweredCorrect = null;
       save();
       renderQuestion();
     }
@@ -1425,6 +1475,8 @@ function nextQuestion() {
 function prevQuestion() {
   if (state.qIndex > 0) {
     state.qIndex--;
+    state.lastAnsweredKey = null;
+    state.lastAnsweredCorrect = null;
     save();
     renderQuestion();
   }
