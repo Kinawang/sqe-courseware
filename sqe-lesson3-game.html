@@ -580,5 +580,90 @@ function init() {
 
 init();
 </script>
+
+<!-- ===== SQE Star Sync to Feishu ===== -->
+<script>
+(function() {
+  const LESSON_NUM = 3;
+  const SYNC_URL = "http://localhost:9876/sync";
+  const STORAGE_KEY = "sqe-l3-stickers-v1";
+  
+  let lastStars = -1;
+  let syncedStars = -1;
+
+  function getStars() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return 0;
+      const state = JSON.parse(raw);
+      const count = Object.keys(state.stickers || {}).filter(id => {
+        const s = state.stickers[id];
+        return s && s.side !== null && s.slot >= 0;
+      }).length;
+      return Math.floor(count / 4); // same logic as renderStars
+    } catch (e) { return 0; }
+  }
+
+  function showToast(message, ok) {
+    const toast = document.createElement('div');
+    toast.style.cssText = `
+      position: fixed; bottom: 20px; right: 20px; z-index: 99999;
+      padding: 12px 20px; border-radius: 8px; font-size: 14px;
+      color: white; font-family: -apple-system, sans-serif;
+      background: ${ok ? '#4CAF50' : '#f44336'};
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: opacity 0.3s; opacity: 1;
+    `;
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    setTimeout(() => { toast.style.opacity = '0'; }, 3000);
+    setTimeout(() => { toast.remove(); }, 3500);
+  }
+
+  function syncToFeishu(stars) {
+    if (stars === syncedStars) return; // already synced
+    fetch(SYNC_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ lesson: LESSON_NUM, stars: stars })
+    })
+    .then(r => r.json())
+    .then(data => {
+      if (data.ok) {
+        syncedStars = stars;
+        const label = data.label || '';
+        showToast('✅ 飞书表格已更新: ' + label, true);
+      } else {
+        showToast('❌ 同步失败: ' + (data.error || '未知错误'), false);
+      }
+    })
+    .catch(e => {
+      // Server not running — silent fail, will retry next time
+      console.log('[Star Sync] Server not available:', e.message);
+    });
+  }
+
+  function checkStars() {
+    const stars = getStars();
+    if (stars !== lastStars) {
+      lastStars = stars;
+      if (stars > 0) {
+        syncToFeishu(stars);
+      }
+    }
+  }
+
+  // Check every 2 seconds for star changes
+  setInterval(checkStars, 2000);
+  
+  // Also check on page unload
+  window.addEventListener('beforeunload', checkStars);
+  
+  // Initial check after 1 second
+  setTimeout(checkStars, 1000);
+})();
+</script>
+<!-- ===== End Star Sync ===== -->
+
 </body>
 </html>
