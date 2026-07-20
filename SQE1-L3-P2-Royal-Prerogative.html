@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SQE1 Week 1 Day 4 — Constitutional & Administrative Law</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    background: #ffffff;
+    color: #1a1a1a;
+    line-height: 1.7;
+    padding: 0;
+  }
+
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, #0d1b3e 0%, #1b3a6b 100%);
+    color: white;
+    padding: 40px 50px 30px;
+  }
+  .header .top-meta {
+    font-size: 13px;
+    opacity: 0.7;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .header h2 {
+    font-size: 18px;
+    font-weight: 400;
+    opacity: 0.85;
+  }
+  .header .chapters {
+    display: flex;
+    gap: 12px;
+    margin-top: 18px;
+  }
+  .header .chapters .tag {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+  }
+
+  /* Main content */
+  .content {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 40px 50px;
+  }
+
+  /* Part headers */
+  .part-header {
+    border-left: 5px solid #1b3a6b;
+    padding: 12px 20px;
+    margin: 50px 0 25px;
+    background: #f0f4fa;
+    border-radius: 0 8px 8px 0;
+  }
+  .part-header:first-of-type { margin-top: 0; }
+  .part-header h2 {
+    font-size: 22px;
+    color: #1b3a6b;
+  }
+  .part-header .subtitle {
+    font-size: 14px;
+    color: #5a6f94;
+    margin-top: 2px;
+  }
+
+  /* Section headers */
+  h3 {
+    font-size: 17px;
+    color: #1b3a6b;
+    margin: 30px 0 12px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #e0e6f0;
+  }
+  h4 {
+    font-size: 15px;
+    color: #2c4a7c;
+    margin: 20px 0 8px;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0 25px;
+    font-size: 14px;
+  }
+  table th {
+    background: #1b3a6b;
+    color: white;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 13px;
+  }
+  table td {
+    padding: 9px 14px;
+    border-bottom: 1px solid #e0e6f0;
+    vertical-align: top;
+  }
+  table tr:nth-child(even) td {
+    background: #f7f9fc;
+  }
+  table tr:hover td {
+    background: #edf1f8;
+  }
+
+  /* Key terms / definitions */
+  .keyterm {
+    background: #fffde7;
+    border-left: 4px solid #f9a825;
+    padding: 12px 16px;
+    margin: 15px 0;
+    border-radius: 0 6px 6px 0;
+    font-size: 14px;
+  }
+  .keyterm strong {
+    color: #e65100;
+  }
+
+  /* Exam warnings */
+  .exam-warning {
+    background: #fff3e0;
+    border-left: 4px solid #e65100;
+    padding: 12px 16px;
+    margin: 15px 0;
+    border-radius: 0 6px 6px 0;
+    font-size: 14px;
+  }
+  .exam-warning::before {
+    content: "⚠️ Exam Warning: ";
+    font-weight: 700;
+    color: #e65100;
+  }
+
+  /* Case boxes */
+  .case-box {
+    background: #f3f0ff;
+    border-left: 4px solid #5c35c9;
+    padding: 12px 16px;
+    margin: 15px 0;
+    border-radius: 0 6px 6px 0;
+    font-size: 14px;
+  }
+  .case-box .case-name {
+    font-weight: 700;
+    color: #5c35c9;
+  }
+
+  /* Practice examples */
+  .practice {
+    background: #e8f5e9;
+    border-left: 4px solid #2e7d32;
+    padding: 12px 16px;
+    margin: 15px 0;
+    border-radius: 0 6px 6px 0;
+    font-size: 14px;
+  }
+  .practice::before {
+    content: "📝 Practice Example: ";
+    font-weight: 700;
+    color: #2e7d32;
+  }
+
+  /* Principle boxes */
+  .principle {
+    background: #e3f2fd;
+    border: 1px solid #90caf9;
+    padding: 12px 16px;
+    margin: 15px 0;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+  .principle strong { color: #1565c0; }
+
+  /* Bullet lists */
+  ul, ol {
+    margin: 10px 0 15px 20px;
+    font-size: 14px;
+  }
+  li { margin-bottom: 5px; }
+
+  /* Flow chart */
+  .flow {
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+    padding: 16px 20px;
+    margin: 15px 0;
+    border-radius: 8px;
+    font-family: "SF Mono", Menlo, monospace;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  /* Summary box */
+  .summary-box {
+    background: #e8eaf6;
+    border: 2px solid #5c35c9;
+    padding: 16px 20px;
+    margin: 25px 0;
+    border-radius: 10px;
+  }
+  .summary-box h4 {
+    color: #5c35c9;
+    margin: 0 0 10px;
+    font-size: 16px;
+    border: none;
+    padding: 0;
+  }
+
+  /* Numbered principles */
+  .principles-list {
+    counter-reset: pnum;
+    list-style: none;
+    margin-left: 0;
+  }
+  .principles-list li {
+    counter-increment: pnum;
+    padding: 10px 14px 10px 44px;
+    position: relative;
+    margin-bottom: 8px;
+    background: #f5f7ff;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+  .principles-list li::before {
+    content: counter(pnum);
+    position: absolute;
+    left: 12px;
+    top: 10px;
+    background: #1b3a6b;
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 24px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  /* Knowledge Tree */
+  .knowledge-tree { background: #f5f0ff; border: 2px solid #6f42c1; border-radius: 10px; padding: 18px 22px; margin: 20px 0; }
+  .knowledge-tree h3 { color: #6f42c1; margin-bottom: 12px; font-size: 18px; border: none; padding: 0; }
+  .kt-node { display: inline-block; background: #e8daff; border-radius: 6px; padding: 4px 10px; margin: 3px; font-size: 0.9em; color: #4a2d8e; }
+  .kt-arrow { color: #6f42c1; font-weight: bold; margin: 0 4px; }
+  .kt-section { margin: 8px 0; line-height: 2; }
+
+  /* Print */
+  @media print {
+    body { padding: 0; }
+    .header { padding: 20px 30px; }
+    .content { padding: 20px 30px; }
+    .part-header { break-after: avoid; }
+    table { break-inside: avoid; }
+  }
+</style>
+
+<style>
+.part-nav { text-align: center; margin: 16px 0; padding: 8px; background: #f0e6ff; border-radius: 8px; }
+.nav-link { color: #6b46c1; text-decoration: none; margin: 0 4px; }
+.nav-link:hover { text-decoration: underline; }
+.nav-current { color: #4a2c8a; font-weight: bold; margin: 0 4px; }
+.back-link { margin: 8px 0; font-size: 0.9em; }
+.back-link a { color: #6b46c1; text-decoration: none; }
+.back-link a:hover { text-decoration: underline; }
+.part-title { color: #4a2c8a; font-size: 1.4em; text-align: center; margin: 12px 0; }
+</style>
+
+</head>
+<body>
+<div class="back-link"><a href="SQE1-Lesson3-Crown-Prerogative-Legislation.html">← Back to Full Lesson 3</a></div>
+<h1 class="part-title">SQE1 Lesson 3 · Part 2: Royal Prerogative</h1>
+<div class="part-nav"><a href="SQE1-L3-P1-Crown-Royal-Prerogative.html" class="nav-link">Part 1: The Crown & Royal Prerogative</a> · <span class="nav-current">Part 2: Royal Prerogative</span> · <a href="SQE1-L3-P3-Primary-Legislation.html" class="nav-link">Part 3: Primary Legislation</a> · <a href="SQE1-L3-P4-Delegated-Legislation.html" class="nav-link">Part 4: Delegated Legislation</a></div>
+
+<!-- Knowledge Tree -->
+<div class="knowledge-tree">
+<h3>🌳 Knowledge Tree</h3>
+
+<div class="kt-section">
+<strong>Branch 1: The Crown & Royal Prerogative (Ch 4)</strong><br>
+<span data-anchor="section-1-crown-royal-prerogative" onclick="document.getElementById('section-1-crown-royal-prerogative').scrollIntoView({behavior:'smooth',block:'start'})" style="cursor:pointer;text-decoration:underline dotted" class="kt-node">The Crown (法定元首)</span>
+<span class="kt-arrow">→</span>
+<span data-anchor="section-1-crown-royal-prerogative" onclick="document.getElementById('section-1-crown-royal-prerogative').scrollIntoView({behavior:'smooth',block:'start'})" style="cursor:pointer" class="kt-node">Personal Immunity (不可被诉)</span>
+<span class="kt-arrow">→</span>
+<span data-anchor="section-1-crown-royal-prerogative" onclick="document.getElementById('section-1-crown-royal-prerogative').scrollIntoView({behavior:'smooth',block:'start'})" style="cursor:pointer;text-decoration:underline dotted" class="kt-node">Crown Proceedings Act 1947 (政府可被诉)</span>
+</div>
+
+<div class="kt-section">
+<strong>Branch 2: Royal Prerogative</strong><br>
+<span data-anchor="section-1-crown-royal-prerogative" onclick="document.getElementById('section-1-crown-royal-prerogative').scrollIntoView({behavior:'smooth',block:'start'})" style="cursor:pointer;text-decoration:underline dotted" class="kt-node">Prerogative Definition (行政权，不需议会许可)</span>
+<span class="kt-arrow">→</span>
+<span data-anchor="section-1-crown-royal-prerogative" onclick="document.getElementById('section-1-crown-royal-prerogative').scrollIntoView({behavior:'smooth',block:'start'})" style="cursor:pointer" class="kt-node">Five Categories (政府/司法/安全/外交/国防)</span>
+<span class="kt-arrow">→</span>
+<span data-anchor="section-1-crown-royal-prerogative" onclick="document.getElementById('section-1-crown-royal-prerogative').scrollIntoView({behavior:'smooth',block:'start'})" style="cursor:pointer;text-decoration:underline dotted" class="kt-node">Prerogative vs Statute ⭐ (制定法优先, De Keyser)</span>
+<span class="kt-arrow">→</span>
+<span data-anchor="section-1-crown-royal-prerogative" onclick="document.getElementById('section-1-crown-royal-prerogative').scrollIntoView({behavior:'smooth',block:'start'})" style="cursor:pointer" class="kt-node">Judicial Review ⭐ (GCHQ三分法)</span>
+<span class="kt-arrow">→</span>
+<span data-anchor="section-1-crown-royal-prerogative" onclick="document.getElementById('section-1-crown-royal-prerogative').scrollIntoView({behavior:'smooth',block:'start'})" style="cursor:pointer" class="kt-node">Parliamentary Accountability</span>
+</div>
+
+<div class="kt-section">
+<strong>Branch 3: Primary Legislation (Ch 5)</strong><br>
+<span data-anchor="section-3-primary-legislation" onclick="document.getElementById('section-3-primary-legislation').scrollIntoView({behavior:'smooth',block:'start'})" style="cursor:pointer" class="kt-node">Bill Types (5 types)</span>
+<span class="kt-arrow">→</span>
+<span data-anchor="section-3-primary-legislation" onclick="document.getElementById('section-3-primary-legislation').scrollIntoView({behavior:'smooth',block:'start'})" style="cursor:pointer" class="kt-node">Legislative Process (Pre-scrutiny → 3 Readings)</span>
+<span class="kt-arrow">→</span>
+<span data-anchor="section-3-primary-legislation" onclick="document.getElementById('section-3-primary-legislation').scrollIntoView({behavior:'smooth',block:'start'})" style="cursor:pointer" class="kt-node">Parliament Acts (上院最多延迟1年)</span>
+<span class="kt-arrow">→</span>
+<span data-anchor="section-1-crown-royal-prerogative" onclick="document.getElementById('section-1-crown-royal-prerogative').scrollIntoView({behavior:'smooth',block:'start'})" style="cursor:pointer;text-decoration:underline dotted" class="kt-node">Royal Assent (形式性)</span>
+<span class="kt-arrow">→</span>
+<span data-anchor="section-3-primary-legislation" onclick="document.getElementById('section-3-primary-legislation').scrollIntoView({behavior:'smooth',block:'start'})" style="cursor:pointer" class="kt-node">Into Force (大臣指定日期)</span>
+</div>
+
+<div class="kt-section">
+<strong>Branch 4: Delegated Legislation ⭐</strong><br>
+<span data-anchor="section-4-delegated-legislation" onclick="document.getElementById('section-4-delegated-legislation').scrollIntoView({behavior:'smooth',block:'start'})" style="cursor:pointer" class="kt-node">Parent Act Authorization</span>
+<span class="kt-arrow">→</span>
+<span data-anchor="section-4-delegated-legislation" onclick="document.getElementById('section-4-delegated-legislation').scrollIntoView({behavior:'smooth',block:'start'})" style="cursor:pointer" class="kt-node">Types: SI / Orders in Council / Bye-laws</span>
+<span class="kt-arrow">→</span>
+<span data-anchor="section-4-delegated-legislation" onclick="document.getElementById('section-4-delegated-legislation').scrollIntoView({behavior:'smooth',block:'start'})" style="cursor:pointer" class="kt-node">Scrutiny: Negative (40d) / Affirmative / Super-affirmative (60d)</span>
+<span class="kt-arrow">→</span>
+<span data-anchor="section-4-delegated-legislation" onclick="document.getElementById('section-4-delegated-legislation').scrollIntoView({behavior:'smooth',block:'start'})" style="cursor:pointer" class="kt-node">Henry VIII Clause (大臣可修改议会法案)</span>
+<span class="kt-arrow">→</span>
+<span data-anchor="section-4-delegated-legislation" onclick="document.getElementById('section-4-delegated-legislation').scrollIntoView({behavior:'smooth',block:'start'})" style="cursor:pointer" class="kt-node">Judicial Review (ultra vires)</span>
+</div>
+
+<div class="kt-section">
+<strong>🔗 Links to Previous Lessons</strong><br>
+Lesson 1 Ch1 宪法概述 → Lesson 2 Ch2 议会主权 → Lesson 3 Ch8 HRA 1998 → Lesson 4 Ch4+Ch5<br>
+Lesson 3 HRA s.10 Remedial Order (super-affirmative) → Lesson 4 Ch5 Henry VIII Clause<br>
+Lesson 3 HRA Art 6 (hearing) → Lesson 4 Ahmed 案 (冻结资产前须听证)<br>
+Lesson 4 Prerogative → Lesson 5 Home Secretary 权力 → Lesson 6 警方禁令权力
+</div>
+</div>
+
+<!-- Part Content -->
+<h2 id="section-2-royal-prerogative">Part 2: The Royal Prerogative（王室特权）</h2>
+  <div class="subtitle">Definition, remaining powers, and judicial identification</div>
+</div>
+
+<div class="keyterm">
+  <strong>Royal Prerogative（王室特权）:</strong> The remaining legal powers of the King, exercised by the government in his name. 属于 <em>executive powers</em>（行政权）— 法律上政府不需议会许可即可使用。甚至可不经议会同意制定 Orders in Council（枢密院令）。
+</div>
+
+<h3>2.1 仍然存在的特权权力</h3>
+<table>
+  <tr><th style="width:25%">Category</th><th>Examples</th></tr>
+  <tr><td>Government & Civil Service</td><td>控制文官系统，设立新机构（BBC由royal charter设立）</td></tr>
+  <tr><td>Justice System</td><td>维持王国治安，任命 King's Counsel</td></tr>
+  <tr><td>National Security</td><td>情报与安全服务</td></tr>
+  <tr><td>Foreign Affairs</td><td>与他国关系，签署和批准国际条约</td></tr>
+  <tr><td>Defence of the Realm</td><td>控制武装部队，部署军队</td></tr>
+</table>
+
+<h3>2.2 法院如何判断哪些特权仍然存在？</h3>
+<p>政府承认<strong>无法编制确定性的特权清单</strong>，争议由法院裁决。</p>
+
+<div class="case-box">
+  <span class="case-name">BBC v Johns [1965]</span> — BBC声称作为Crown的一部分可免税 → 法院：无历史先例 → 不存在此特权<br><br>
+  <span class="case-name">De Keyser's Royal Hotel [1920]</span> — 政府战时征用财产的特权存在，但须支付补偿<br><br>
+  <span class="case-name">ex parte Northumbria Police [1987]</span> — 法院确认政府始终有维持王国治安的特权
+</div>
+
+<h3>2.3 特权权力的范围</h3>
+
+<div class="case-box">
+  <span class="case-name">R (Miller) v The Prime Minister [2019] UKSC 41</span>（脱欧prorogation案）<br><br>
+  首相Johnson决定中止议会34天。最高法院裁定：不存在合法的中止议会如此长时间的特权权力。<br>
+  <strong>议会拥有主权，必须被允许立法和追究政府责任。行政机关不能阻止议会。</strong>
+</div>
+
+<div class="exam-warning">
+  通常能判断是否涉及特权 — 如果问题涉及 King 或 PM 的行为，很可能就是特权权力。
+</div>
+
+<h3>2.4 Summary: Royal Prerogative</h3>
+<div class="summary-box">
+  <h4>Key Facts</h4>
+  <ul>
+    <li><strong>What is it?</strong> The remaining legal powers of the King</li>
+    <li><strong>Who decides which remain?</strong> The courts</li>
+    <li><strong>Who uses it?</strong> The government acting in the King's name</li>
+  </ul>
+</div>
+
+<!-- ============================================================ -->
+<!-- PART 3: PREROGATIVE AND STATUTES -->
+<!-- ============================================================ -->
+
+<div class="part-header">
+  
+
+<!-- Key Terms (shared) -->
+<h2>🔑 Key Terms — Bilingual Glossary（核心词汇中英文对照）</h2>
+</div>
+
+<table>
+  <tr><th style="width:28%">English Term</th><th>中文</th><th>Exam Focus</th></tr>
+  <tr><td>Royal Prerogative</td><td>王室特权</td><td>政府以国王名义行使的行政权</td></tr>
+  <tr><td>Crown Proceedings Act 1947</td><td>王室诉讼法</td><td>限制政府豁免（可被诉合同/侵权，但无禁制令）</td></tr>
+  <tr><td>Orders in Council</td><td>枢密院令</td><td>特权立法或委代立法的重要形式</td></tr>
+  <tr><td>Delegated Legislation</td><td>委代立法</td><td>母法授权制定的次要法律，可被司法审查</td></tr>
+  <tr><td>Statutory Instruments (SI)</td><td>法定文书</td><td>引用格式 SI 年份/编号</td></tr>
+  <tr><td>Negative/Affirmative Resolution</td><td>消极/积极决议</td><td>议会审批委代立法的两种程序</td></tr>
+  <tr><td>Henry VIII Clause</td><td>亨利八世条款</td><td>允许大臣修改议会法案，极具争议</td></tr>
+  <tr><td>Ultra Vires</td><td>越权</td><td>委代立法超出母法授权范围</td></tr>
+  <tr><td>Fast-track Procedure</td><td>快速通道</td><td>紧急法案一日通过所有阶段</td></tr>
+  <tr><td>Royal Assent</td><td>御准</td><td>形式性，国王从不拒绝</td></tr>
+  <tr><td>Non-justiciable</td><td>不可司法审查</td><td>涉及高政策（国防/外交）的特权</td></tr>
+  <tr><td>Into Force</td><td>生效</td><td>法案通过≠法律，须被生效才能适用</td></tr>
+  <tr><td>Laid</td><td>呈递</td><td>委代立法必须呈递至议会的程序要求</td></tr>
+  <tr><td>Super-Affirmative</td><td>超级积极决议</td><td>60天审议期（如HRA Remedial Orders）</td></tr>
+  <tr><td>Prerogative Power</td><td>特权权力</td><td>国王在宪法上可行使但由大臣实际行使的权力</td></tr>
+  <tr><td>Constitutional Convention</td><td>宪法惯例</td><td>非法律强制但有约束力的政治规则（如国王不拒御准）</td></tr>
+  <tr><td>Justiciable</td><td>可司法审查</td><td>法院可审查的权力行使（GCHQ三分法）</td></tr>
+  <tr><td>Prerogative Statutory Override</td><td>制定法优于特权</td><td>制定法可明示或默示废除特权；冲突时制定法优先</td></tr>
+  <tr><td>Green Paper</td><td>绿皮书</td><td>政府咨询文件，征询公众意见</td></tr>
+  <tr><td>White Paper</td><td>白皮书</td><td>政府政策建议，通常为法案基础</td></tr>
+  <tr><td>Parliamentary Counsel</td><td>议会法律顾问</td><td>起草法案的政府律师</td></tr>
+  <tr><td>Bye-laws</td><td>地方法规</td><td>地方当局或公共机构制定的附属立法</td></tr>
+</table>
+
+<!-- ==================== Q&A ==================== -->
+
+
+<!-- Practice Questions (shared) -->
+<h2>📝 Practice Questions</h2>
+
+<div class="qa-box">
+<div class="question">Q1: Can the King be sued in court?</div>
+<div class="answer">The King personally cannot be sued or compelled to give evidence. However, under the Crown Proceedings Act 1947, civil proceedings may be brought against the Crown (i.e. the government) in contract and tort. Crucially, <strong>no injunction can be granted against the Crown</strong> — only a declaration of illegality.</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q2: What is the relationship between prerogative powers and statutory powers?</div>
+<div class="answer">Statute <strong>prevails over prerogative</strong>. Where Parliament has legislated on a matter, the prerogative cannot be used to override or circumvent the statute. Statute may expressly or impliedly abrogate the prerogative. However, prerogative and statutory powers can coexist where they cover different ground (Attorney General v De Keyser's Royal Hotel [1920]).</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q3: In the GCHQ case (Council of Civil Service Unions v Minister for the Civil Service [1985]), what three categories did Lord Roskill identify for judicial review of prerogative powers?</div>
+<div class="answer">1. <strong>Justiciable</strong> — powers subject to judicial review (e.g. prerogative relating to persons, property, appointments).<br>2. <strong>Non-justiciable</strong> — powers not subject to judicial review (e.g. defence of the realm, foreign policy, treaties, prerogative of mercy, dissolution of Parliament).<br>3. <strong>Formerly non-justiciable but now justiciable</strong> — areas where the courts have expanded review (e.g. national security was reviewed in the GCHQ case itself).</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q4: A minister uses the royal prerogative to ban all trade union membership in the civil service without consultation. Is this lawful?</div>
+<div class="answer">The use of the prerogative power itself is <strong>justiciable</strong> (per GCHQ). However, the minister failed to consult, and the courts may find the failure to consult <strong>procedurally unfair</strong>. In the actual GCHQ case, the House of Lords held the failure to consult was unlawful, but the order was upheld on national security grounds — showing that even justiciable prerogative powers can be upheld on exceptional grounds.</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q5: How is the exercise of prerogative powers held accountable by Parliament?</div>
+<div class="answer">Three main mechanisms: (1) <strong>Parliamentary questions</strong> — MPs may question ministers about prerogative use; (2) <strong>Select committees</strong> — they scrutinise and report on government departments; (3) <strong>Ministerial responsibility</strong> — ministers must account to Parliament for their exercise of prerogative powers.</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q6: What is the difference between a Green Paper and a White Paper?</div>
+<div class="answer">A <strong>Green Paper</strong> is a government consultation document setting out proposals for discussion and inviting public comment. A <strong>White Paper</strong> is a government policy statement, usually setting out firm legislative proposals and forming the basis for a Bill. Green Paper comes first (consultation), White Paper follows (policy commitment).</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q7: Outline the legislative process for a Public Bill to become an Act of Parliament.</div>
+<div class="answer">1. Pre-legislative scrutiny (Green Paper → White Paper → draft Bill).<br>2. <strong>First Reading</strong> — formal introduction, no debate.<br>3. <strong>Second Reading</strong> — debate on the Bill's principle.<br>4. <strong>Committee Stage</strong> — detailed line-by-line examination.<br>5. <strong>Report Stage</strong> — further amendments considered by the whole House.<br>6. <strong>Third Reading</strong> — final debate on the Bill as amended.<br>7. The Bill passes through the other House (same stages).<br>8. <strong>Royal Assent</strong> — the King never refuses by convention.<br>9. The Act comes <strong>into force</strong> (either immediately or by commencement order).</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q8: What are the three main types of delegated legislation?</div>
+<div class="answer">1. <strong>Statutory Instruments (SIs)</strong> — made by ministers under powers conferred by the parent Act; the most common form (≈3,000 per year).<br>2. <strong>Orders in Council</strong> — made by the Privy Council; can be prerogative or statutory; used for matters requiring special formality.<br>3. <strong>Bye-laws</strong> — made by local authorities or public bodies; only apply within the area of the making authority.</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q9: Explain the difference between the negative resolution procedure and the affirmative resolution procedure for SIs.</div>
+<div class="answer"><strong>Negative resolution:</strong> the SI becomes law automatically unless either House passes a resolution to annul it within 40 sitting days. This is the default for most SIs.<br><strong>Affirmative resolution:</strong> the SI cannot become law unless both Houses pass a resolution approving it. Used for more significant SIs where the parent Act requires it.<br>Key difference: negative = law unless rejected; affirmative = not law unless approved.</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q10: On what grounds can delegated legislation be challenged by judicial review?</div>
+<div class="answer">Delegated legislation can be challenged on the ground of <strong>ultra vires</strong> (beyond the powers conferred by the parent Act):<br>1. <strong>Substantive ultra vires</strong> — the content of the legislation exceeds the scope of the enabling Act.<br>2. <strong>Procedural ultra vires</strong> — the required procedure (e.g. consultation, laying before Parliament) was not followed.<br>3. <strong>Unreasonableness</strong> — Wednesbury unreasonable (no reasonable authority could have made such a decision).<br>4. <strong>Human rights incompatibility</strong> — under HRA 1998 s 3, courts must read legislation compatibly with Convention rights if possible.</div>
+</div>
+
+<div class="qa-box">
+<div class="question">Q11: What is a Henry VIII clause and why is it controversial?</div>
+<div class="answer">A Henry VIII clause is a provision in an Act of Parliament that allows a minister to <strong>amend or repeal the Act itself</strong> by secondary legislation, without going through the full legislative process. It is controversial because it undermines parliamentary sovereignty — the executive is effectively modifying primary law without the full scrutiny of Parliament. The courts may strike down SIs made under such clauses if they exceed the scope of the power conferred.</div>
+</div>
+
+</div><!-- /content -->
+
+
+
+<div class="part-nav"><a href="SQE1-L3-P1-Crown-Royal-Prerogative.html" class="nav-link">Part 1: The Crown & Royal Prerogative</a> · <span class="nav-current">Part 2: Royal Prerogative</span> · <a href="SQE1-L3-P3-Primary-Legislation.html" class="nav-link">Part 3: Primary Legislation</a> · <a href="SQE1-L3-P4-Delegated-Legislation.html" class="nav-link">Part 4: Delegated Legislation</a></div>
+<div class="back-link"><a href="SQE1-Lesson3-Crown-Prerogative-Legislation.html">← Back to Full Lesson 3</a></div>
+</body>
+</html>
