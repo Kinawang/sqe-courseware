@@ -24,6 +24,13 @@ h2 { font-size: 1.3em; color: #16213e; margin: 25px 0 12px; }
 .lesson-card.game .desc { color: #8a7a3a; }
 .lesson-empty { background: #fafafa; border: 1px dashed #ccc; border-radius: 10px; padding: 16px 20px; height: 100%; display: flex; align-items: center; justify-content: center; color: #bbb; font-size: 0.9em; font-style: italic; }
 
+.parts { margin-top: 10px; padding-top: 10px; border-top: 1px dashed #ddd; }
+.parts-title { font-size: 0.85em; color: #555; font-weight: bold; margin-bottom: 4px; }
+.parts ul { list-style: none; margin: 0; padding-left: 0; }
+.parts li { margin: 2px 0; }
+.parts a { font-weight: normal; font-size: 0.88em; color: #4a6fa5; text-decoration: none; }
+.parts a:hover { text-decoration: underline; }
+
 /* Stars and review count */
 .game-meta { margin-top: 8px; display: flex; align-items: center; gap: 12px; }
 .stars { display: flex; gap: 2px; }
@@ -35,6 +42,7 @@ h2 { font-size: 1.3em; color: #16213e; margin: 25px 0 12px; }
 
 @media (max-width: 600px) {
   .lesson-row { flex-direction: column; }
+  .parts ul { columns: 1; }
 }
 </style>
 </head>
@@ -56,6 +64,15 @@ h2 { font-size: 1.3em; color: #16213e; margin: 25px 0 12px; }
       <a href="SQE1-Lesson1-Constitutional-Law-Parliamentary-Sovereignty.html">📘 Lesson 1: Constitutional Law & Parliamentary Sovereignty</a>
       <div class="desc">UK Constitution characteristics, Parliamentary Sovereignty, Rule of Law, Separation of Powers</div>
       <div class="chapters">Chapters 1–2</div>
+      <div class="parts">
+        <div class="parts-title">Sub-topics:</div>
+        <ul>
+          <li><a href="SQE1-L1-P1-UK-Constitution.html">Part 1: UK Constitution</a></li>
+          <li><a href="SQE1-L1-P2-Parliamentary-Sovereignty.html">Part 2: Parliamentary Sovereignty</a></li>
+          <li><a href="SQE1-L1-P3-Rule-of-Law.html">Part 3: Rule of Law</a></li>
+          <li><a href="SQE1-L1-P4-Separation-of-Powers.html">Part 4: Separation of Powers</a></li>
+        </ul>
+      </div>
     </div>
   </div>
   <div class="lesson-col">
@@ -76,6 +93,15 @@ h2 { font-size: 1.3em; color: #16213e; margin: 25px 0 12px; }
       <a href="SQE1-Lesson2-HRA-1998.html">📘 Lesson 2: Human Rights Act 1998</a>
       <div class="desc">HRA mechanisms (s2–s8), Proportionality Test, ECHR Absolute & Qualified Rights (Art 2–9)</div>
       <div class="chapters">Chapter 8</div>
+      <div class="parts">
+        <div class="parts-title">Sub-topics:</div>
+        <ul>
+          <li><a href="SQE1-L2-P1-HRA-1998-Mechanisms.html">Part 1: HRA 1998 Mechanisms</a></li>
+          <li><a href="SQE1-L2-P2-Proportionality-Test.html">Part 2: Proportionality Test</a></li>
+          <li><a href="SQE1-L2-P3-Absolute-Rights.html">Part 3: Absolute Rights</a></li>
+          <li><a href="SQE1-L2-P4-Qualified-Limited-Rights.html">Part 4: Qualified/Limited Rights</a></li>
+        </ul>
+      </div>
     </div>
   </div>
   <div class="lesson-col">
@@ -96,6 +122,15 @@ h2 { font-size: 1.3em; color: #16213e; margin: 25px 0 12px; }
       <a href="SQE1-Lesson3-Crown-Prerogative-Legislation.html">📘 Lesson 3: Crown Prerogative & Legislation</a>
       <div class="desc">Royal Prerogative, Legislative Process, Parliamentary Scrutiny</div>
       <div class="chapters">Chapters 4–5</div>
+      <div class="parts">
+        <div class="parts-title">Sub-topics:</div>
+        <ul>
+          <li><a href="SQE1-L3-P1-Crown-Royal-Prerogative.html">Part 1: The Crown & Royal Prerogative</a></li>
+          <li><a href="SQE1-L3-P2-Royal-Prerogative.html">Part 2: Royal Prerogative Powers & JR</a></li>
+          <li><a href="SQE1-L3-P3-Primary-Legislation.html">Part 3: Primary Legislation</a></li>
+          <li><a href="SQE1-L3-P4-Delegated-Legislation.html">Part 4: Delegated Legislation</a></li>
+        </ul>
+      </div>
     </div>
   </div>
   <div class="lesson-col">
@@ -116,6 +151,13 @@ h2 { font-size: 1.3em; color: #16213e; margin: 25px 0 12px; }
       <a href="SQE1-Lesson4-Central-Government-Devolution.html">📘 Lesson 4: Central Government & Devolution</a>
       <div class="desc">Prime Minister, Cabinet, Civil Service, Devolution (Scotland, Wales, NI)</div>
       <div class="chapters">Chapter 3</div>
+      <div class="parts">
+        <div class="parts-title">Sub-topics:</div>
+        <ul>
+          <li><a href="SQE1-L4-P1-Central-Government.html">Part 1: Central Government & Accountability</a></li>
+          <li><a href="SQE1-L4-P2-Devolved-Institutions.html">Part 2: Devolved Institutions</a></li>
+        </ul>
+      </div>
     </div>
   </div>
   <div class="lesson-col">
@@ -134,8 +176,16 @@ h2 { font-size: 1.3em; color: #16213e; margin: 25px 0 12px; }
   <div class="lesson-col">
     <div class="lesson-card">
       <a href="SQE1-Lesson5-Public-Order-Law.html">📘 Lesson 5: Public Order Law</a>
-      <div class="desc">Public Processions, Assemblies, Breach of the Peace, Terrorism & Anti-Social Behaviour</div>
+      <div class="desc">Public Processions, Assemblies, Breach of the Peace, Public Order Offences</div>
       <div class="chapters">Chapter 6</div>
+      <div class="parts">
+        <div class="parts-title">Sub-topics:</div>
+        <ul>
+          <li><a href="SQE1-L5-P1-Processions-Assemblies.html">Part 1: Processions & Assemblies</a></li>
+          <li><a href="SQE1-L5-P2-Breach-of-the-Peace.html">Part 2: Breach of the Peace</a></li>
+          <li><a href="SQE1-L5-P3-Public-Order-Offences.html">Part 3: Public Order Offences</a></li>
+        </ul>
+      </div>
     </div>
   </div>
   <div class="lesson-col">
@@ -156,6 +206,15 @@ h2 { font-size: 1.3em; color: #16213e; margin: 25px 0 12px; }
       <a href="SQE1-Lesson6-Judicial-Review.html">📘 Lesson 6: Judicial Review</a>
       <div class="desc">Application for JR, Grounds, Natural Justice, Legitimate Expectation, Remedies</div>
       <div class="chapters">Chapter 7</div>
+      <div class="parts">
+        <div class="parts-title">Sub-topics:</div>
+        <ul>
+          <li><a href="SQE1-L6-P1-Application-for-JR.html">Part 1: Application for Judicial Review</a></li>
+          <li><a href="SQE1-L6-P2-Grounds-of-JR.html">Part 2: Grounds of JR — Diplock Framework</a></li>
+          <li><a href="SQE1-L6-P3-Illegality.html">Part 3: Illegality Sub-categories</a></li>
+          <li><a href="SQE1-L6-P4-Procedural-Impropriety.html">Part 4: Procedural Impropriety</a></li>
+        </ul>
+      </div>
     </div>
   </div>
   <div class="lesson-col">
@@ -174,11 +233,18 @@ h2 { font-size: 1.3em; color: #16213e; margin: 25px 0 12px; }
   <div class="lesson-col">
     <div class="lesson-card">
       <a href="SQE1-Lesson7-EU-Law.html">📘 Lesson 7: EU Law & Retained EU Law</a>
-    <li><a href="SQE1-Lesson8-Consideration-Intention-Privity.html">Lesson 8: Consideration, Intention and Privity (Ch2)</a>
-    <li><a href="SQE1-Lesson9-Intention-Certainty-Capacity.html">Lesson 9: Intention, Certainty and Capacity (Ch3)</a>
-    <li><a href="SQE1-Lesson10-Privity-Third-Parties.html">Lesson 10: Privity of Contract and Rights of Third Parties (Ch4)</a> — Contract Law</li> — Contract Law</li> — Contract Law</li>
       <div class="desc">Direct Effect, Supremacy, ECA 1972, Withdrawal (Art 50), EU(Withdrawal) Act 2018, Retained EU Law, TCA</div>
       <div class="chapters">Chapter 9</div>
+      <div class="parts">
+        <div class="parts-title">Sub-topics:</div>
+        <ul>
+          <li><a href="SQE1-L7-P1-EU-Law-Before-Brexit.html">Part 1: EU Law Before Brexit</a></li>
+          <li><a href="SQE1-L7-P2-EU-Law-in-UK.html">Part 2: EU Law in the UK</a></li>
+          <li><a href="SQE1-L7-P3-Withdrawal-from-EU.html">Part 3: Withdrawal from the EU</a></li>
+          <li><a href="SQE1-L7-P4-Retained-EU-Law.html">Part 4: Retained EU Law</a></li>
+          <li><a href="SQE1-L7-P5-Withdrawal-Agreement-TCA.html">Part 5: The Withdrawal Agreement & TCA</a></li>
+        </ul>
+      </div>
     </div>
   </div>
   <div class="lesson-col">
@@ -201,6 +267,16 @@ h2 { font-size: 1.3em; color: #16213e; margin: 25px 0 12px; }
       <a href="SQE1-Lesson8-Offer-and-Acceptance.html">📘 Lesson 8: Offer and Acceptance</a>
       <div class="desc">Offer vs Invitation to Treat, Bilateral vs Unilateral Offers, Mirror-Image Rule, Postal Acceptance Rule, Counter-Offers, Termination of Offers</div>
       <div class="chapters">Chapter 1</div>
+      <div class="parts">
+        <div class="parts-title">Sub-topics:</div>
+        <ul>
+          <li><a href="SQE1-L8-P1-Introduction-to-Consideration.html">Part 1: Introduction to Consideration</a></li>
+          <li><a href="SQE1-L8-P2-Sufficiency-vs-Adequacy.html">Part 2: Sufficiency vs Adequacy</a></li>
+          <li><a href="SQE1-L8-P3-Past-Consideration.html">Part 3: Past Consideration</a></li>
+          <li><a href="SQE1-L8-P4-Existing-Duties.html">Part 4: Existing Duties</a></li>
+          <li><a href="SQE1-L8-P5-Promissory-Estoppel.html">Part 5: Promissory Estoppel</a></li>
+        </ul>
+      </div>
     </div>
   </div>
   <div class="lesson-col">
@@ -214,84 +290,106 @@ h2 { font-size: 1.3em; color: #16213e; margin: 25px 0 12px; }
   </div>
 </div>
 
+<!-- Lesson 9 -->
+<div class="lesson-row">
+  <div class="lesson-col">
+    <div class="lesson-card">
+      <a href="SQE1-Lesson9-Intention-Certainty-Capacity.html">📘 Lesson 9: Intention, Certainty & Capacity</a>
+      <div class="desc">Intention to Create Legal Relations, Comfort Letters, Certainty, Minors, Mental Capacity, Company Capacity</div>
+      <div class="chapters">Chapter 3</div>
+      <div class="parts">
+        <div class="parts-title">Sub-topics:</div>
+        <ul>
+          <li><a href="SQE1-L9-P1-Intention-to-Create-Legal-Relations.html">Part 1: Intention to Create Legal Relations</a></li>
+          <li><a href="SQE1-L9-P2-Comfort-Letters-and-Advertisements.html">Part 2: Comfort Letters and Advertisements</a></li>
+          <li><a href="SQE1-L9-P3-Certainty.html">Part 3: Certainty</a></li>
+          <li><a href="SQE1-L9-P4-Capacity.html">Part 4: Capacity</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="lesson-col">
+    <div class="lesson-card game">
+      <a href="sqe-lesson9-game.html">🎮 Lesson 9 Game: Intention, Certainty & Capacity Quiz</a>
+      <div class="game-meta">
+        <div class="stars" id="stars-l9"></div>
+        <span class="review-count zero" id="review-l9">Review: 0</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Lesson 10 -->
+<div class="lesson-row">
+  <div class="lesson-col">
+    <div class="lesson-card">
+      <a href="SQE1-Lesson10-Privity-Third-Parties.html">📘 Lesson 10: Privity of Contract & Rights of Third Parties</a>
+      <div class="desc">Doctrine of Privity, CRTPA 1999, Common Law Exceptions, Remedies via Promisee</div>
+      <div class="chapters">Chapter 4</div>
+      <div class="parts">
+        <div class="parts-title">Sub-topics:</div>
+        <ul>
+          <li><a href="SQE1-L10-P1-Doctrine-of-Privity.html">Part 1: Doctrine of Privity</a></li>
+          <li><a href="SQE1-L10-P2-CRTPA-1999.html">Part 2: CRTPA 1999</a></li>
+          <li><a href="SQE1-L10-P3-Common-Law-Exceptions.html">Part 3: Common Law Exceptions</a></li>
+          <li><a href="SQE1-L10-P4-Remedies-via-Promisee.html">Part 4: Remedies via Promisee</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="lesson-col">
+    <div class="lesson-card game">
+      <a href="sqe-lesson10-game.html">🎮 Lesson 10 Game: Privity of Contract Quiz</a>
+      <div class="game-meta">
+        <div class="stars" id="stars-l10"></div>
+        <span class="review-count zero" id="review-l10">Review: 0</span>
+      </div>
+    </div>
+  </div>
+</div>
+
 <p style="text-align:center; color:#999; margin-top:30px;">Based on <em>Revise SQE</em> series (2nd edn, Fink Publishing)</p>
 
 <script>
-// Storage keys for each lesson's game data
-const LESSON_KEYS = {
-  1: 'sqe-l1-stickers-v7',
-  2: 'sqe-l2-stickers-v1',
-  3: 'sqe-l3-stickers-v1',
-  4: 'sqe-l4-stickers-v1',
-  5: 'sqe-l5-stickers-v1',
-  6: 'sqe-l6-stickers-v1',
-  7: 'sqe-l7-stickers-v1',
-  8: 'sqe-l8-stickers-v2'
-};
+// Display star progress from localStorage
+document.addEventListener('DOMContentLoaded', () => {
+  const keyMap = {
+    1: 'sqe-l1-stickers-v2',
+    2: 'sqe-l2-stickers-v2',
+    3: 'sqe-l3-stickers-v2',
+    4: 'sqe-l4-stickers-v2',
+    5: 'sqe-l5-stickers-v2',
+    6: 'sqe-l6-stickers-v2',
+    7: 'sqe-l7-stickers-v2',
+    8: 'sqe-l8-stickers-v2',
+    9: 'sqe-l9-stickers-v2',
+    10: 'sqe-l10-stickers-v2'
+  };
 
-function getStickerCount(key) {
-  try {
-    const raw = localStorage.getItem(key);
-    if (!raw) return 0;
-    const data = JSON.parse(raw);
-    if (!data.stickers) return 0;
-    // Count stickers that are placed (side !== null && slot >= 0)
-    let count = 0;
-    for (const id in data.stickers) {
-      if (data.stickers[id] && data.stickers[id].side !== null && data.stickers[id].slot >= 0) {
-        count++;
-      }
+  function getStars(key) {
+    try {
+      const raw = localStorage.getItem(key);
+      if (!raw) return 0;
+      const state = JSON.parse(raw);
+      const count = Object.keys(state.stickers || {}).filter(id => {
+        const s = state.stickers[id];
+        return s && s.side !== null && s.slot >= 0;
+      }).length;
+      return Math.floor(count / 4);
+    } catch (e) { return 0; }
+  }
+
+  for (const [num, key] of Object.entries(keyMap)) {
+    const stars = getStars(key);
+    const starsEl = document.getElementById('stars-l' + num);
+    if (starsEl) {
+      starsEl.innerHTML = Array.from({length: 5}, (_, i) =>
+        `<span class="star ${i < stars ? 'on' : 'off'}">${i < stars ? '★' : '☆'}</span>`
+      ).join('');
     }
-    return count;
-  } catch (e) {
-    return 0;
+    // Review count would require access to wrong answers; leave as placeholder
   }
-}
-
-function getReviewCount(key) {
-  try {
-    const raw = localStorage.getItem(key);
-    if (!raw) return 0;
-    const data = JSON.parse(raw);
-    if (!data.wrong) return 0;
-    return Object.keys(data.wrong).length;
-  } catch (e) {
-    return 0;
-  }
-}
-
-function renderStars(containerId, stickerCount) {
-  const container = document.getElementById(containerId);
-  if (!container) return;
-  container.innerHTML = '';
-  const filled = Math.floor(stickerCount / 4);
-  const lit = Math.min(filled, 5);
-  for (let i = 0; i < 5; i++) {
-    const star = document.createElement('span');
-    star.className = 'star ' + (i < lit ? 'on' : 'off');
-    star.textContent = '★';
-    container.appendChild(star);
-  }
-}
-
-function renderReview(reviewId, count) {
-  const el = document.getElementById(reviewId);
-  if (!el) return;
-  el.textContent = 'Review: ' + count;
-  if (count > 0) {
-    el.classList.remove('zero');
-  } else {
-    el.classList.add('zero');
-  }
-}
-
-// Render all lessons
-for (const [lesson, key] of Object.entries(LESSON_KEYS)) {
-  const stickerCount = getStickerCount(key);
-  const reviewCount = getReviewCount(key);
-  renderStars('stars-l' + lesson, stickerCount);
-  renderReview('review-l' + lesson, reviewCount);
-}
+});
 </script>
 
 </body>
