@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comfort Letters and Advertisements — Lesson 9 | SQE1 Contract Law</title>
+    <style>
+        :root {
+            --primary: #4a2c8a;
+            --primary-light: #7c5cc4;
+            --accent: #ff6b6b;
+            --bg: #fafafa;
+            --card-bg: #ffffff;
+            --text: #2d2d2d;
+            --text-light: #666;
+            --border: #e8e8e8;
+            --success: #4caf50;
+            --tree-bg: linear-gradient(135deg, #f5f0ff 0%, #e8e0f5 100%);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg); color: var(--text); line-height: 1.7; font-size: 16px;
+        }
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+        .lesson-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white; padding: 40px 30px; border-radius: 16px; margin-bottom: 30px; text-align: center;
+        }
+        .lesson-header h1 { font-size: 2em; margin-bottom: 10px; font-weight: 700; }
+        .lesson-header .subtitle { font-size: 1.1em; opacity: 0.9; }
+        .lesson-header .meta { margin-top: 15px; font-size: 0.9em; opacity: 0.8; }
+        .knowledge-tree {
+            background: var(--tree-bg); border-radius: 16px; padding: 30px; margin-bottom: 30px; border: 2px solid #d4c5e8;
+        }
+        .knowledge-tree h2 { color: var(--primary); font-size: 1.5em; margin-bottom: 20px; text-align: center; }
+        .kt-container { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+        .kt-node {
+            background: white; border: 2px solid var(--primary-light); border-radius: 25px;
+            padding: 12px 24px; font-weight: 600; color: var(--primary); text-align: center;
+            max-width: 80%; box-shadow: 0 2px 8px rgba(74,44,138,0.1); cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .kt-node:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(74,44,138,0.2); }
+        .kt-arrow { font-size: 1.5em; color: var(--primary-light); }
+        .kt-root { background: var(--primary); color: white; border-color: var(--primary); font-size: 1.1em; }
+        .kt-branch-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; width: 100%; }
+        .kt-branch { background: #f0e6ff; border: 2px solid var(--primary-light); }
+        .section {
+            background: var(--card-bg); border-radius: 12px; padding: 30px; margin-bottom: 25px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+        .section h2 { color: var(--primary); font-size: 1.4em; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid var(--border); }
+        .section h3 { color: var(--primary-light); font-size: 1.15em; margin: 20px 0 12px; }
+        .section p { margin-bottom: 12px; }
+        .key-term { background: #f5f0ff; border-left: 4px solid var(--primary); padding: 12px 16px; margin: 12px 0; border-radius: 0 8px 8px 0; }
+        .key-term strong { color: var(--primary); }
+        .exam-warning { background: #fff3e0; border-left: 4px solid #ff9800; padding: 12px 16px; margin: 12px 0; border-radius: 0 8px 8px 0; }
+        .exam-warning strong { color: #e65100; }
+        .practice-example { background: #e3f2fd; border-radius: 12px; padding: 20px; margin: 15px 0; }
+        .practice-example h4 { color: #1565c0; margin-bottom: 10px; }
+        .answer-box { background: #c8e6c9; border-radius: 8px; padding: 15px; margin-top: 12px; }
+        .answer-box strong { color: #2e7d32; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.95em; }
+        th { background: var(--primary); color: white; padding: 12px; text-align: left; font-weight: 600; }
+        td { padding: 10px 12px; border-bottom: 1px solid var(--border); }
+        tr:nth-child(even) { background: #f8f6fc; }
+        .key-terms { background: linear-gradient(135deg, #f5f0ff 0%, #ede7f6 100%); border-radius: 16px; padding: 30px; margin-bottom: 25px; }
+        .key-terms h2 { color: var(--primary); text-align: center; margin-bottom: 20px; }
+        .kt-table { width: 100%; border-collapse: collapse; }
+        .kt-table th { background: var(--primary); color: white; padding: 14px; text-align: left; }
+        .kt-table td { padding: 12px 14px; border-bottom: 1px solid #d4c5e8; background: white; }
+        .kt-table tr:nth-child(even) td { background: #f8f6fc; }
+        .qa-section { background: var(--card-bg); border-radius: 16px; padding: 30px; margin-bottom: 25px; }
+        .qa-section h2 { color: var(--primary); text-align: center; margin-bottom: 25px; }
+        .qa-box { background: #f8f6fc; border-radius: 12px; padding: 20px; margin-bottom: 15px; border: 1px solid #e8e0f5; }
+        .qa-box .question { font-weight: 600; color: var(--primary); margin-bottom: 10px; }
+        .qa-box .answer { color: var(--text-light); padding-top: 10px; border-top: 1px dashed #d4c5e8; }
+        .qa-box .answer strong { color: var(--success); }
+        @media (max-width: 600px) {
+            .container { padding: 12px; }
+            .lesson-header { padding: 25px 15px; }
+            .lesson-header h1 { font-size: 1.5em; }
+            .section { padding: 20px; }
+            .kt-branch-container { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="lesson-header">
+            <h1>Lesson 9: Intention, Certainty and Capacity</h1>
+            <div class="subtitle">SQE1 Contract Law — Chapter 3</div>
+            <div class="meta">Contract Law 2nd Edition | Pages 104–133 | Formation of Contract</div>
+        </div>
+        <div class="knowledge-tree">
+            <h2>🌳 Knowledge Tree</h2>
+            <div class="kt-container">
+                <div class="kt-node kt-root">Intention, Certainty & Capacity (缔约意图、确定性与能力)</div>
+                <div class="kt-arrow">↓</div>
+                <div class="kt-branch-container">
+                    <div class="kt-node kt-branch">1. Intention to Create<br>Legal Relations<br><small>Social/Domestic vs Commercial</small></div>
+                    <div class="kt-node kt-branch">2. Comfort Letters &<br>Advertisements<br><small>Name ≠ Legal Effect</small></div>
+                    <div class="kt-node kt-branch">3. Certainty<br><small>Vague / Incomplete / Agreement to Agree</small></div>
+                    <div class="kt-node kt-branch">4. Capacity<br><small>Mental / Intoxication / Minors / Corporate</small></div>
+                </div>
+            </div>
+        <div style="background: #f0e6ff; border-radius: 12px; padding: 15px; margin-bottom: 20px; text-align: center;">
+            <strong>Navigation:</strong> <a href="SQE1-L9-P1-Intention-to-Create-Legal-Relations.html">Part 1: Intention to Create Legal Relations</a> | <span style="color: #4a2c8a; font-weight: bold;">Part 2: Comfort Letters and Advertisements</span> | <a href="SQE1-L9-P3-Certainty.html">Part 3: Certainty</a> | <a href="SQE1-L9-P4-Capacity.html">Part 4: Capacity</a>
+        </div>
+        <div class="section" id="section-2-comfort-letters">
+            <h2>📖 Part 2: Comfort Letters and Advertisements</h2>
+            <p>In the commercial context, the <strong>name</strong> of a document does not conclusively determine whether it has legal effect. You must look beyond the name to analyse the specific wording.</p>
+
+            <h3>Comfort Letters (安慰函)</h3>
+            <p>A comfort letter may or may not be legally binding, depending on its content:</p>
+            <ul>
+                <li><strong>Not binding:</strong> A letter that merely describes a party's <em>current policy</em> (not a promise as to future conduct)</li>
+                <li><strong>Binding:</strong> A letter that confirms facts (e.g., an accountancy firm confirming figures in an annual report are accurate)</li>
+            </ul>
+
+            <div class="practice-example">
+                <h4>Practice Example 3.1 (Kleinwort Benson v Malaysia Mining Corp [1989])</h4>
+                <p>Mamaco (parent company) refuses to guarantee Babyco's loan from Nicebank, but writes a comfort letter stating its policy is that Babyco is always in a position to meet its liabilities. Babyco collapses.</p>
+                <div class="answer-box">
+                    <strong>Answer:</strong> Nicebank cannot claim against Mamaco. The statement was merely a description of current policy at the time of signing — not a promise as to future conduct. The court also noted that Mamaco had <em>refused</em> to provide a guarantee.
+                </div>
+            </div>
+        <div class="key-terms">
+            <h2>🔑 Key Terms — Bilingual Glossary</h2>
+            <table class="kt-table">
+                <tr><th>English Term</th><th>中文</th><th>Exam Focus</th></tr>
+                <tr><td>intention to create legal relations</td><td>缔约意图</td><td>4th element of contract; determined objectively via presumptions</td></tr>
+                <tr><td>rebuttable presumption</td><td>可反驳推定</td><td>Default position; can be overturned by clear evidence</td></tr>
+                <tr><td>social and domestic context</td><td>社交与家庭语境</td><td>Presumption: NO intention; rebut by certainty, seriousness, detriment</td></tr>
+                <tr><td>commercial context</td><td>商业语境</td><td>Presumption: intention; rebut by clear words or uncertainty</td></tr>
+                <tr><td>comfort letter</td><td>安慰函</td><td>Name not conclusive; policy statement ≠ binding; confirmation = binding</td></tr>
+                <tr><td>void</td><td>无效</td><td>No legal effect; uncertainty makes agreement void</td></tr>
+                <tr><td>voidable</td><td>可撤销</td><td>Valid but can be set aside; applies to incapacity and minors</td></tr>
+                <tr><td>capacity</td><td>缔约能力</td><td>Ability to be legally bound; lack of capacity = voidable</td></tr>
+                <tr><td>minor</td><td>未成年人</td><td>Under 18; voidable; necessaries payable; employment binding</td></tr>
+                <tr><td>necessaries</td><td>必需品</td><td>More than bare necessities; must be required at the time</td></tr>
+                <tr><td>mental incapacity</td><td>精神能力欠缺</td><td>MCA 2005; two-test; voidable; necessaries payable</td></tr>
+                <tr><td>certainty</td><td>确定性</td><td>Too vague/incomplete = void; partial performance can rescue</td></tr>
+                <tr><td>agreement to agree</td><td>达成协议的协议</td><td>Missing essential terms; generally void</td></tr>
+            </table>
+        </div>
+
+        <!-- Practice Questions -->
+        <div class="qa-section">
+            <h2>📝 Practice Questions</h2>
+
+            <div class="qa-box">
+                <div class="question">Q1. A wealthy woman and her fiancé sign a prenuptial agreement providing that her assets remain hers after marriage. They later divorce. Can the man claim the woman's assets?</div>
+                <div class="answer">
+                    <strong>Answer: No</strong> — Prenuptial agreements are enforceable despite being in the social and domestic context. The <strong>seriousness</strong> of the subject matter (wealthy parties, substantial assets) rebuts the presumption of no intention to create legal relations. The man cannot claim the woman's assets covered by the agreement.
+                </div>
+            </div>
+        <div class="qa-section">
+            <h2>📝 Practice Questions</h2>
+
+            <div class="qa-box">
+                <div class="question">Q1. A wealthy woman and her fiancé sign a prenuptial agreement providing that her assets remain hers after marriage. They later divorce. Can the man claim the woman's assets?</div>
+                <div class="answer">
+                    <strong>Answer: No</strong> — Prenuptial agreements are enforceable despite being in the social and domestic context. The <strong>seriousness</strong> of the subject matter (wealthy parties, substantial assets) rebuts the presumption of no intention to create legal relations. The man cannot claim the woman's assets covered by the agreement.
+                </div>
+            </div>
+
+            <div class="qa-box">
+                <div class="question">Q2. A mother promises her daughter that if she gives up her job in New York and studies law in London, the mother will pay fees, provide an allowance, and provide a house. The daughter relies on this and moves to London. After five years, the mother seeks to reclaim the house. Is the mother bound?</div>
+                <div class="answer">
+                    <strong>Answer: No</strong> — Although detrimental reliance and seriousness are rebutting factors, the <strong>lack of certainty</strong> as to how long the arrangement should last undermines these factors. The mother and daughter were on friendly terms, and the presumption of no intention is not rebutted. The mother is not bound.
+                </div>
+            </div>
+
+            <div class="qa-box">
+                <div class="question">Q3. An insurance company advertises holiday insurance for anyone booking through a network of holiday companies. A man books a holiday and his holiday is cancelled due to a pandemic. Can he claim against the insurance company?</div>
+                <div class="answer">
+                    <strong>Answer: Yes</strong> — The advertisement is not a gimmick but a binding offer to provide protection to anyone who books a holiday with a member of the network. The man accepted the offer by booking. The commercial presumption of intention applies and is not rebutted.
+                </div>
+            </div>
+
+            <div class="qa-box">
+                <div class="question">Q4. A businesswoman sells her zoo to a businessman. They sign a separate document allowing her to visit the animals "at times and subject to conditions to be agreed." What rights does she acquire?</div>
+                <div class="answer">
+                    <strong>Answer: None</strong> — The separate document is an <strong>agreement to agree</strong>. It contains no essential terms (times and conditions are left for future agreement). Agreements to agree are not enforceable. The businesswoman acquires no rights under the separate document.
+                </div>
+            </div>
+
+            <div class="qa-box">
+                <div class="question">Q5. A 16-year-old schoolgirl buys a diamond tiara and a pearl necklace but fails to pay. What recourse does the shop owner have?</div>
+                <div class="answer">
+                    <strong>Answer: Court order for return</strong> — The tiara and necklace are not <strong>necessaries</strong> for a 16-year-old schoolgirl. The contract is <strong>voidable</strong> (not void — that would be if contracts with minors were void, but they are voidable). The shop owner can petition the court to order the schoolgirl to return the goods if it is <strong>just and equitable</strong> to do so.
+                </div>
+            </div>
+
+            <div class="qa-box">
+                <div class="question">Q6. Two friends agree to meet at a restaurant for dinner. One fails to show up, causing the other to wait for an hour. Can the waiting friend sue for breach of contract?</div>
+                <div class="answer">
+                    <strong>Answer: No</strong> — This is in the <strong>social and domestic context</strong>. The presumption is no intention to create legal relations. There is no evidence to rebut the presumption (the agreement is not serious in a legal sense, the terms are not certain, and there is no detrimental reliance).
+                </div>
+            </div>
+
+            <div class="qa-box">
+                <div class="question">Q7. A commercial contract contains the clause "Binding in honour only." Is the agreement legally binding?</div>
+                <div class="answer">
+                    <strong>Answer: No</strong> — Despite being in the commercial context (where the presumption is intention to create legal relations), the <strong>clear words</strong> "Binding in honour only" rebut the presumption. The parties have expressly stated they do not intend the agreement to have legal effect.
+                </div>
+            </div>
+
+            <div class="qa-box">
+                <div class="question">Q8. A parent company writes a comfort letter to a bank stating its policy is that its subsidiary will always be in a position to meet its liabilities. The subsidiary collapses. Can the bank claim against the parent?</div>
+                <div class="answer">
+                    <strong>Answer: No</strong> — Following <em>Kleinwort Benson v Malaysia Mining Corp</em>, the statement is merely a description of <strong>current policy</strong> at the time of signing, not a promise as to future conduct. The comfort letter does not create legal relations. The fact the parent refused to provide a guarantee supports this interpretation.
+                </div>
+            </div>
+
+            <div class="qa-box">
+                <div class="question">Q9. An agreement to sell goods states the price will be "determined by a mutually agreed valuer." Is this agreement void for uncertainty?</div>
+                <div class="answer">
+                    <strong>Answer: No</strong> — Although the price is not specified, the agreement provides a <strong>mechanism</strong> for determining the missing term (appointment of a valuer). Agreements that provide for third-party determination of key terms are not void for lack of certainty.
+                </div>
+            </div>
+
+            <div class="qa-box">
+                <div class="question">Q10. A person suffering from schizophrenia enters into a contract to buy a car. The seller is unaware of the buyer's condition. Can the buyer set aside the contract?</div>
+                <div class="answer">
+                    <strong>Answer: No</strong> — Although the buyer may lack mental capacity (test 1), the <strong>second test</strong> is not satisfied: the seller did not know and should not have known of the buyer's incapacity. Both tests must be satisfied for the contract to be voidable.
+                </div>
+            </div>
+
+            <div class="qa-box">
+                <div class="question">Q11. A 17-year-old enters into an employment contract as an apprentice. The terms are favourable overall but he loses on one particular clause. Can he avoid the contract?</div>
+                <div class="answer">
+                    <strong>Answer: No</strong> — Minors ARE bound by contracts of <strong>employment, education and training</strong>, unless they lose more than they gain <strong>overall</strong>. The fact that one clause is unfavourable does not make the contract voidable if the minor gains more than they lose overall.
+                </div>
+            </div>
+
+            <div class="qa-box">
+                <div class="question">Q12. True or false? A company's constitutional documents restrict it from entering into property transactions. The company nevertheless signs a lease with a landlord acting in good faith. Is the lease binding?</div>
+                <div class="answer">
+                    <strong>Answer: True — the lease is binding.</strong> A party entering into an agreement with a company <strong>in good faith</strong> will be bound, regardless of any restriction in the company's constitutional documents. The company cannot use its internal restrictions to escape contractual obligations.
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center; padding: 30px; color: #666; font-size: 0.9em;">
+            <p>Lesson 9: Intention, Certainty and Capacity | SQE1 Contract Law</p>
+            <p>Part 2: Comfort Letters and Advertisements</p>
+        </div>
+    </div>
+</body>
+</html>
