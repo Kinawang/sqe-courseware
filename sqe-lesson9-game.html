@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SQE · Intention, Certainty & Capacity — Quiz & Sticker Collection</title>
+<style>
+:root {
+    --paper: #f4ecd8;
+    --paper-2: #e8dcb8;
+    --ink: #2a2620;
+    --ink-soft: #5a5246;
+    --seal: #8b1a1a;
+    --gold: #b8860b;
+    --gold-light: #daa520;
+    --ok: #2e6b3e;
+    --line: #8a7a5c;
+    --fs-body: 18px;
+    --fs-h1: 24px;
+    --fs-h2: 20px;
+    --fs-card: 18px;
+    --fs-small: 14px;
+}
+body.fs-lg { --fs-body: 22px; --fs-h1: 28px; --fs-h2: 24px; --fs-card: 22px; --fs-small: 17px; }
+body.fs-xl { --fs-body: 26px; --fs-h1: 32px; --fs-h2: 28px; --fs-card: 26px; --fs-small: 20px; }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: var(--fs-body);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* Topbar */
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background: var(--paper-2);
+    border-bottom: 2px solid var(--line);
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.topbar .title {
+    font-size: var(--fs-h1);
+    font-weight: bold;
+    color: var(--ink);
+    white-space: nowrap;
+}
+.topbar .right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.topbar .coins {
+    font-size: var(--fs-body);
+    font-weight: bold;
+    color: var(--gold);
+    background: var(--paper);
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--gold-light);
+}
+.topbar .fs-btn {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 4px 10px;
+    cursor: pointer;
+    font-size: var(--fs-small);
+    color: var(--ink);
+    font-family: Georgia, serif;
+}
+.topbar .fs-btn:hover { background: var(--paper-2); }
+
+/* Stars */
+.stars {
+    display: flex;
+    gap: 2px;
+    align-items: center;
+}
+.stars .star {
+    font-size: var(--fs-h2);
+    color: var(--ink-soft);
+    opacity: 0.3;
+}
+.stars .star.filled {
+    color: var(--gold);
+    opacity: 1;
+}
+
+/* Main layout */
+.main {
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+    gap: 0;
+    min-height: calc(100vh - 60px);
+}
+
+/* Sticker columns */
+.sticker-col {
+    width: 200px;
+    padding: 8px 6px;
+    background: var(--paper-2);
+    border-right: 1px solid var(--line);
+    border-left: 1px solid var(--line);
+}
+.sticker-col.col-right {
+    border-right: none;
+    border-left: 1px solid var(--line);
+}
+.sticker-col .col-label {
+    text-align: center;
+    font-size: var(--fs-small);
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.sticker-col .sticker-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 6px;
+}
+.sticker-slot {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    background: var(--paper);
+    border: 1px dashed var(--line);
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+    transition: background 0.2s;
+}
+.sticker-slot:hover { background: var(--paper-2); }
+.sticker-slot.filled {
+    border-style: solid;
+    border-color: var(--gold);
+    background: var(--paper);
+}
+.sticker-slot .empty-hint {
+    color: var(--ink-soft);
+    opacity: 0.4;
+    font-size: var(--fs-h2);
+}
+.sticker-slot .remove-x {
+    position: absolute;
+    top: -2px;
+    right: 2px;
+    color: var(--seal);
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+    background: var(--paper);
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Quiz area */
+.quiz-area {
+    padding: 20px 30px;
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+}
+.quiz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.quiz-header .chapter {
+    font-size: var(--fs-small);
+    color: var(--seal);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.quiz-header .progress {
+    font-size: var(--fs-small);
+    color: var(--ink-soft);
+}
+.quiz-header .nav-btns {
+    display: flex;
+    gap: 6px;
+}
+.quiz-header .nav-btns button {
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 2px 10px;
+    cursor: pointer;
+    font-size: var(--fs-small);
+    font-family: Georgia, serif;
+    color: var(--ink);
+}
+.quiz-header .nav-btns button:disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+.quiz-header .nav-btns button:hover:not(:disabled) {
+    background: var(--paper);
+}
+.bookmark-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: var(--fs-h2);
+    color: var(--ink-soft);
+    opacity: 0.5;
+}
+.bookmark-btn.active { color: var(--gold); opacity: 1; }
+
+.question-text {
+    font-size: var(--fs-body);
+    margin: 16px 0;
+    line-height: 1.7;
+}
+.options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+.option {
+    padding: 12px 16px;
+    background: var(--paper);
+    border: 2px solid var(--line);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: var(--fs-body);
+    font-family: Georgia, serif;
+    color: var(--ink);
+    text-align: left;
+    transition: all 0.2s;
+}
+.option:hover { border-color: var(--gold); background: var(--paper-2); }
+.option.selected {
+    border-color: var(--gold);
+    background: var(--paper-2);
+}
+.option.correct {
+    border-color: var(--ok);
+    background: #d4edda;
+}
+.option.wrong {
+    border-color: var(--seal);
+    background: #f8d7da;
+}
+.option.previous-wrong {
+    border-color: #d0a8a8;
+    background: #fbeeee;
+    color: #8a5555;
+}
+.option.disabled { cursor: default; }
+
+.answer-status {
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: var(--fs-small);
+    margin-bottom: 12px;
+    border: 1px solid;
+}
+.answer-status.good {
+    background: #e8f5e9;
+    border-color: var(--ok);
+    color: #2e6b32;
+}
+.answer-status.bad {
+    background: #fdf2f2;
+    border-color: var(--seal);
+    color: #8a2828;
+}
+.feedback.hint {
+    background: var(--paper-2);
+    border: 1px dashed var(--ink-soft);
+    color: var(--ink-soft);
+    display: block;
+}
+
+.feedback {
+    margin: 16px 0;
+    padding: 14px 18px;
+    border-radius: 8px;
+    font-size: var(--fs-body);
+    display: none;
+}
+.feedback.show { display: block; }
+.feedback.correct {
+    background: #d4edda;
+    border: 1px solid var(--ok);
+    color: var(--ok);
+}
+.feedback.wrong {
+    background: #f8d7da;
+    border: 1px solid var(--seal);
+    color: var(--seal);
+}
+.feedback .principle {
+    margin-top: 8px;
+    font-size: var(--fs-body);
+    color: var(--ink);
+}
+.feedback .principle-cn {
+    margin-top: 6px;
+    font-size: var(--fs-small);
+    color: var(--ink-soft);
+}
+.feedback .cite {
+    margin-top: 6px;
+    font-size: var(--fs-small);
+    color: var(--ink-soft);
+    font-style: italic;
+}
+
+.next-btn {
+    background: var(--seal);
+    color: var(--paper);
+    border: none;
+    padding: 10px 28px;
+    border-radius: 8px;
+    font-size: var(--fs-body);
+    font-family: Georgia, serif;
+    cursor: pointer;
+    display: none;
+}
+.next-btn.show { display: inline-block; }
+.next-btn:hover { background: #6b1414; }
+
+.review-btn {
+    background: var(--gold);
+    color: var(--paper);
+    border: none;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: var(--fs-small);
+    font-family: Georgia, serif;
+    cursor: pointer;
+    margin-left: 10px;
+}
+.review-btn:hover { background: var(--gold-light); }
+
+/* Shop modal */
+.shop-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
+}
+.shop-overlay.show { display: flex; }
+.shop-modal {
+    background: var(--paper);
+    border-radius: 12px;
+    padding: 20px;
+    max-width: 700px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    border: 2px solid var(--gold);
+}
+.shop-modal h2 {
+    font-size: var(--fs-h1);
+    color: var(--ink);
+    margin-bottom: 4px;
+    text-align: center;
+}
+.shop-modal .shop-coins {
+    text-align: center;
+    font-size: var(--fs-body);
+    color: var(--gold);
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+.shop-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+}
+.shop-item {
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.shop-item:hover { border-color: var(--gold); }
+.shop-item.owned { opacity: 0.5; cursor: default; }
+.shop-item.owned::after {
+    content: '✓ Owned';
+    display: block;
+    font-size: var(--fs-small);
+    color: var(--ok);
+    margin-top: 4px;
+}
+.shop-item .icon { font-size: 36px; }
+.shop-item .name { font-size: var(--fs-small); color: var(--ink); margin-top: 4px; }
+.shop-item .price { font-size: var(--fs-small); color: var(--gold); font-weight: bold; margin-top: 4px; }
+.shop-item button {
+    background: var(--seal);
+    color: var(--paper);
+    border: none;
+    padding: 4px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: var(--fs-small);
+    font-family: Georgia, serif;
+    margin-top: 6px;
+}
+.shop-item button:disabled { background: var(--ink-soft); cursor: default; }
+.shop-close {
+    display: block;
+    margin: 16px auto 0;
+    background: var(--ink-soft);
+    color: var(--paper);
+    border: none;
+    padding: 8px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: var(--fs-body);
+    font-family: Georgia, serif;
+}
+
+/* Placement mode */
+.placement-banner {
+    display: none;
+    background: var(--gold);
+    color: var(--paper);
+    padding: 8px 20px;
+    text-align: center;
+    font-size: var(--fs-body);
+    font-weight: bold;
+}
+.placement-banner.show { display: block; }
+.placement-banner .cancel-btn {
+    background: var(--paper);
+    color: var(--gold);
+    border: none;
+    padding: 2px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: var(--fs-small);
+    font-family: Georgia, serif;
+    margin-left: 12px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .main {
+        grid-template-columns: 80px 1fr 80px;
+    }
+    .sticker-col {
+        width: 80px;
+        padding: 4px 3px;
+    }
+    .sticker-col .sticker-grid {
+        gap: 3px;
+    }
+    .sticker-slot {
+        font-size: 18px;
+    }
+    .sticker-slot .empty-hint {
+        font-size: var(--fs-small);
+    }
+    .quiz-area {
+        padding: 12px 8px;
+    }
+    .topbar {
+        padding: 8px 10px;
+    }
+    .topbar .title {
+        font-size: var(--fs-h2);
+    }
+    .shop-grid {
+        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="title">⚖ SQE · Intention, Certainty & Capacity</div>
+  <div class="stars" id="stars-top"></div>
+  <div class="right">
+    <div class="coins">💰 <span class="val" id="coins">0</span></div>
+    <button class="fs-btn" onclick="changeFS(-1)">A-</button>
+    <button class="fs-btn" onclick="changeFS(1)">A+</button>
+  </div>
+</div>
+
+<div class="placement-banner" id="placement-banner">
+  Tap a slot to place your sticker!
+  <button class="cancel-btn" onclick="cancelPlacement()">Cancel</button>
+</div>
+
+<div class="main">
+  <div class="sticker-col col-left" id="col-left">
+    <div class="col-label">Left</div>
+  </div>
+
+  <div class="quiz-area">
+    <div class="quiz-header">
+      <div>
+        <span class="chapter" id="chapter"></span>
+        <span class="progress" id="progress" style="margin-left:12px;"></span>
+      </div>
+      <div class="nav-btns">
+        <button id="prev-btn" onclick="prevQuestion()">← Prev</button>
+        <button id="review-btn" class="review-btn" onclick="startReview()" style="display:none;">Review Wrong</button>
+        <button id="next-nav-btn" onclick="nextQuestion()">Next →</button>
+        <button class="bookmark-btn" id="bookmark-btn" onclick="toggleBookmark()">☆</button>
+      </div>
+    </div>
+    <div class="stars" id="stars-quiz" style="justify-content:center; margin: 4px 0;"></div>
+    <div class="question-text" id="question-text"></div>
+    <div class="options" id="options"></div>
+    <div class="feedback" id="feedback"></div>
+    <button class="next-btn" id="next-btn" onclick="nextQuestion()">Next →</button>
+  </div>
+
+  <div class="sticker-col col-right" id="col-right">
+    <div class="col-label">Right</div>
+  </div>
+</div>
+
+<!-- Shop -->
+<div class="shop-overlay" id="shop-overlay">
+  <div class="shop-modal">
+    <h2>🏷️ Sticker Shop</h2>
+    <div class="shop-coins">💰 Coins: <span id="shop-coins">0</span></div>
+    <div class="shop-grid" id="shop-grid"></div>
+    <button class="shop-close" onclick="closeShop()">Close</button>
+  </div>
+</div>
+
+<script>
+const STORAGE_KEY = 'sqe-l9-stickers-v2';
+const SLOTS_PER_COL = 10;
+
+const DEFAULT_STATE = {
+  coins: 0,
+  qIndex: 0,
+  answered: [],
+  wrong: {},
+  bookmarked: [],
+  stickers: {},
+  placementItem: null,
+  fsLevel: 0,
+  reviewMode: false,
+  reviewQueue: [],
+  lastAnsweredKey: null,
+  lastAnsweredCorrect: null
+};
+
+const STICKERS = [
+  { id: 'daisy',       name: 'Daisy',           icon: '🌼', price: 50 },
+  { id: 'tulip',       name: 'Tulip',           icon: '🌷', price: 50 },
+  { id: 'rose',        name: 'Rose',            icon: '🌹', price: 80 },
+  { id: 'sunflower',   name: 'Sunflower',       icon: '🌻', price: 80 },
+  { id: 'clover',      name: 'Clover',          icon: '🍀', price: 100 },
+  { id: 'cactus',      name: 'Cactus',          icon: '🌵', price: 120 },
+  { id: 'palm',        name: 'Palm',            icon: '🌴', price: 150 },
+  { id: 'fir',         name: 'Fir Tree',        icon: '🌲', price: 150 },
+  { id: 'book',        name: 'Law Book',        icon: '📕', price: 100 },
+  { id: 'scroll',      name: 'Scroll',          icon: '📜', price: 120 },
+  { id: 'trophy',      name: 'Trophy',          icon: '🏆', price: 200 },
+  { id: 'medal',       name: 'Medal',           icon: '🎖', price: 200 },
+  { id: 'ribbon',      name: 'Ribbon',          icon: '🎗', price: 150 },
+  { id: 'star',        name: 'Star',            icon: '⭐', price: 100 },
+  { id: 'gem',         name: 'Gem',             icon: '💎', price: 300 },
+  { id: 'crown',       name: 'Crown',           icon: '👑', price: 500 },
+  { id: 'anchor',      name: 'Anchor',          icon: '⚓', price: 250 },
+  { id: 'key',         name: 'Key',             icon: '🔑', price: 180 },
+  { id: 'balance',     name: 'Scales',          icon: '⚖', price: 350 },
+  { id: 'gavel',       name: 'Gavel',           icon: '🔨', price: 400 }
+];
+
+const QUESTIONS = [
+  {
+    "key": "c1",
+    "chapter": "1 · Intention to Create Legal Relations",
+    "text": "A wealthy woman and her fiancé sign a prenuptial agreement providing that her assets remain hers after marriage. They later divorce. Can the man claim the woman's assets?",
+    "options": [
+      "Yes — prenuptial agreements are always binding regardless of context.",
+      "No — prenuptial agreements are in the social and domestic context, but the seriousness of the subject matter (wealthy parties, substantial assets) rebuts the presumption of no intention. The man cannot claim the woman's assets covered by the agreement.",
+      "No — all agreements in the social and domestic context are unenforceable regardless of seriousness.",
+      "Yes — the commercial presumption of intention applies to prenuptial agreements."
+    ],
+    "best": 1,
+    "principle": "Prenuptial agreements are in the social and domestic context where the presumption is no intention to create legal relations. However, the presumption can be rebutted by factors such as the seriousness of the subject matter. Where wealthy parties with substantial assets sign a prenuptial agreement, the seriousness rebuts the presumption and the agreement is enforceable.",
+    "cite": "Revise SQE Contract Law, Ch 3",
+    "principleCN": "婚前协议属于社交/家庭语境，推定为无意建立法律关系。但可通过严肃性因素反驳——富裕当事人签订的涉及重大资产的婚前协议，其严肃性反驳了推定，协议可执行。",
+    "citeCN": "Revise SQE 合同法, 第3章"
+  },
+  {
+    "key": "c2",
+    "chapter": "1 · Intention to Create Legal Relations",
+    "text": "A mother promises her daughter that if she gives up her job in New York and studies law in London, the mother will pay fees, provide an allowance, and provide a house. The daughter relies on this and moves to London. After five years, the mother seeks to reclaim the house. Is the mother bound?",
+    "options": [
+      "Yes — the daughter's detrimental reliance (giving up her job and moving) rebuts the presumption of no intention.",
+      "Yes — the seriousness of the subject matter (house, fees, allowance) rebuts the presumption.",
+      "No — although detrimental reliance and seriousness are rebutting factors, the lack of certainty as to how long the arrangement should last undermines these factors. The presumption of no intention is not rebutted.",
+      "No — promises between family members are never legally binding."
+    ],
+    "best": 2,
+    "principle": "In social and domestic agreements, the presumption of no intention can be rebutted by seriousness, detrimental reliance, and certainty. However, all factors must be present. Here, although there is detrimental reliance and seriousness, the lack of certainty as to duration undermines the rebuttal. The mother and daughter were on friendly terms, and the presumption is not rebutted.",
+    "cite": "Revise SQE Contract Law, Ch 3; Balfour v Balfour [1919]",
+    "principleCN": "在社交/家庭协议中，无意图推定可通过严肃性、不利信赖和确定性反驳。但所有因素必须同时存在。虽然有不利信赖和严肃性，但缺乏持续时间的确定性削弱了反驳。母女关系友好，推定未被反驳。",
+    "citeCN": "Revise SQE 合同法, 第3章; Balfour v Balfour [1919]"
+  },
+  {
+    "key": "c3",
+    "chapter": "1 · Commercial Presumption",
+    "text": "An insurance company advertises holiday insurance for anyone booking through a network of holiday companies. A man books a holiday and his holiday is cancelled due to a pandemic. Can he claim against the insurance company?",
+    "options": [
+      "No — advertisements are always invitations to treat, not offers.",
+      "Yes — the advertisement is a binding offer to provide protection to anyone who books a holiday with a member of the network. The man accepted by booking. The commercial presumption of intention applies and is not rebutted.",
+      "Yes — but only if the man can prove he read the advertisement before booking.",
+      "No — the insurance company did not directly contact the man, so there is no contract."
+    ],
+    "best": 1,
+    "principle": "In commercial contexts, the presumption is that the parties intend to create legal relations. The advertisement is not a gimmick but a binding offer to provide protection. The man accepted the offer by booking through the network. The commercial presumption applies and is not rebutted.",
+    "cite": "Revise SQE Contract Law, Ch 3",
+    "principleCN": "在商业语境中，推定为有意建立法律关系。广告不是噱头而是有约束力的要约——向通过网络成员预订假期的任何人提供保护。男子通过预订接受了要约。商业推定适用且未被反驳。",
+    "citeCN": "Revise SQE 合同法, 第3章"
+  },
+  {
+    "key": "c4",
+    "chapter": "2 · Certainty",
+    "text": "A businesswoman sells her zoo to a businessman. They sign a separate document allowing her to visit the animals 'at times and subject to conditions to be agreed.' What rights does she acquire?",
+    "options": [
+      "She acquires the right to visit the animals at reasonable times.",
+      "She acquires the right to visit the animals whenever she wishes.",
+      "None — the separate document is an agreement to agree. It contains no essential terms (times and conditions are left for future agreement). Agreements to agree are not enforceable.",
+      "None — contracts involving zoos are void as against public policy."
+    ],
+    "best": 2,
+    "principle": "An agreement to agree is not enforceable because it lacks certainty. The essential terms (times and conditions) are left for future agreement between the parties. Without these essential terms, the agreement is too uncertain to be enforced by the court.",
+    "cite": "Revise SQE Contract Law, Ch 3",
+    "principleCN": "协议达成协议不可执行，因为缺乏确定性。关键条款（时间和条件）留给当事人未来协商。没有这些关键条款，协议过于不确定，法院无法执行。",
+    "citeCN": "Revise SQE 合同法, 第3章"
+  },
+  {
+    "key": "c5",
+    "chapter": "3 · Capacity — Minors",
+    "text": "A 16-year-old schoolgirl buys a diamond tiara and a pearl necklace but fails to pay. What recourse does the shop owner have?",
+    "options": [
+      "The shop owner can sue for the price — contracts with minors are always binding.",
+      "The shop owner has no recourse — contracts with minors are void.",
+      "The shop owner can petition the court to order the schoolgirl to return the goods if just and equitable. The tiara and necklace are not necessaries for a 16-year-old. The contract is voidable (not void).",
+      "The shop owner can sue the parents for the price as guarantors."
+    ],
+    "best": 2,
+    "principle": "Contracts with minors are voidable (not void). The tiara and necklace are not necessaries for a 16-year-old schoolgirl. The shop owner can petition the court to order the return of the goods if it is just and equitable to do so. The court will consider whether the minor has the goods or has sold them.",
+    "cite": "Revise SQE Contract Law, Ch 3; Nash v Inman [1908]",
+    "principleCN": "与未成年人签订的合同是可撤销的（不是无效的）。皇冠和珍珠项链对16岁女学生而言不是必需品。店主可以向法院申请命令归还原物（如果公正合理）。法院会考虑未成年人是否仍持有货物或已出售。",
+    "citeCN": "Revise SQE 合同法, 第3章; Nash v Inman [1908]"
+  },
+  {
+    "key": "c6",
+    "chapter": "1 · Social and Domestic Context",
+    "text": "Two friends agree to meet at a restaurant for dinner. One fails to show up, causing the other to wait for an hour. Can the waiting friend sue for breach of contract?",
+    "options": [
+      "Yes — the agreement is certain (time, place, purpose) and the waiting friend suffered loss.",
+      "No — this is in the social and domestic context. The presumption is no intention to create legal relations. There is no evidence to rebut the presumption (not serious in a legal sense, terms not certain, no detrimental reliance).",
+      "Yes — but only if the friends agreed in writing.",
+      "No — but the waiting friend can claim under the tort of negligence."
+    ],
+    "best": 1,
+    "principle": "Agreements between friends in a social context fall within the social and domestic context. The presumption is no intention to create legal relations. To rebut the presumption, there must be evidence of seriousness, certainty, and/or detrimental reliance. A dinner arrangement between friends lacks these factors.",
+    "cite": "Revise SQE Contract Law, Ch 3; Balfour v Balfour [1919]",
+    "principleCN": "朋友之间的社交协议属于社交/家庭语境。推定为无意建立法律关系。反驳推定需要有严肃性、确定性和/或不利信赖的证据。朋友之间的晚餐安排缺乏这些因素。",
+    "citeCN": "Revise SQE 合同法, 第3章; Balfour v Balfour [1919]"
+  },
+  {
+    "key": "c7",
+    "chapter": "1 · Commercial Presumption",
+    "text": "A commercial contract contains the clause 'Binding in honour only.' Is the agreement legally binding?",
+    "options": [
+      "Yes — the commercial presumption of intention applies and cannot be rebutted by words alone.",
+      "No — despite being in the commercial context (where the presumption is intention), the clear words 'Binding in honour only' rebut the presumption. The parties have expressly stated they do not intend the agreement to have legal effect.",
+      "Yes — 'Binding in honour only' is merely a statement of intent and does not affect legal relations.",
+      "No — all commercial contracts with an 'honour' clause are void."
+    ],
+    "best": 1,
+    "principle": "In commercial contexts, the presumption is intention to create legal relations. However, this presumption can be rebutted by clear words. The clause 'Binding in honour only' is a clear statement that the parties do not intend the agreement to have legal effect. The presumption is rebutted.",
+    "cite": "Revise SQE Contract Law, Ch 3; Rose & Frank Co v Crompton Bros [1925]",
+    "principleCN": "在商业语境中，推定为有意建立法律关系。但该推定可通过明确措辞反驳。'Binding in honour only'条款明确表示当事人不打算使协议产生法律效力。推定被反驳。",
+    "citeCN": "Revise SQE 合同法, 第3章; Rose & Frank v Crompton Bros [1925]"
+  },
+  {
+    "key": "c8",
+    "chapter": "2 · Comfort Letters",
+    "text": "A parent company writes a comfort letter to a bank stating its policy is that its subsidiary will always be in a position to meet its liabilities. The subsidiary collapses. Can the bank claim against the parent?",
+    "options": [
+      "Yes — the comfort letter is a promise to ensure the subsidiary meets its liabilities.",
+      "Yes — the commercial presumption of intention applies to comfort letters.",
+      "No — following Kleinwort Benson v Malaysia Mining Corp, the statement is merely a description of current policy at the time of signing, not a promise as to future conduct. The comfort letter does not create legal relations.",
+      "No — comfort letters are always unenforceable regardless of their content."
+    ],
+    "best": 2,
+    "principle": "In Kleinwort Benson v Malaysia Mining Corp [1989], the court held that the comfort letter was merely a description of current policy at the time of signing, not a promise as to future conduct. The fact the parent refused to provide a guarantee supports this interpretation. The comfort letter does not create legal relations.",
+    "cite": "Kleinwort Benson v Malaysia Mining Corp [1989] 1 WLR 1142",
+    "principleCN": "在 Kleinwort Benson v Malaysia Mining Corp [1989] 中，法院认为安慰函仅是签署时当前政策的描述，不是对未来行为的承诺。母公司拒绝提供担保的事实支持了这一解释。安慰函不产生法律关系。",
+    "citeCN": "Kleinwort Benson v Malaysia Mining Corp [1989] 1 WLR 1142"
+  },
+  {
+    "key": "c9",
+    "chapter": "2 · Certainty",
+    "text": "An agreement to sell goods states the price will be 'determined by a mutually agreed valuer.' Is this agreement void for uncertainty?",
+    "options": [
+      "Yes — the price is an essential term and must be specified at the time of agreement.",
+      "Yes — if the parties cannot agree on a valuer, the agreement is void.",
+      "No — although the price is not specified, the agreement provides a mechanism for determining the missing term (appointment of a valuer). Agreements that provide for third-party determination of key terms are not void for lack of certainty.",
+      "No — the court will simply set a fair price for the goods."
+    ],
+    "best": 2,
+    "principle": "An agreement is not void for uncertainty if it provides a mechanism for determining missing essential terms. The appointment of a mutually agreed valuer is such a mechanism. The court can oversee the process if the parties cannot agree on a valuer. This distinguishes the agreement from an 'agreement to agree' where no mechanism is provided.",
+    "cite": "Revise SQE Contract Law, Ch 3",
+    "principleCN": "如果协议提供了确定缺失关键条款的机制，则不因不确定性而无效。指定共同同意的估价师就是这样的机制。这区别于没有提供机制的'协议达成协议'。",
+    "citeCN": "Revise SQE 合同法, 第3章"
+  },
+  {
+    "key": "c10",
+    "chapter": "3 · Capacity — Mental Incapacity",
+    "text": "A person suffering from schizophrenia enters into a contract to buy a car. The seller is unaware of the buyer's condition. Can the buyer set aside the contract?",
+    "options": [
+      "Yes — mental incapacity automatically makes contracts voidable.",
+      "Yes — the buyer's schizophrenia means he lacks capacity to contract.",
+      "No — although the buyer may lack mental capacity (test 1), the second test is not satisfied: the seller did not know and should not have known of the buyer's incapacity. Both tests must be satisfied for the contract to be voidable.",
+      "No — schizophrenia does not affect contractual capacity."
+    ],
+    "best": 2,
+    "principle": "For a contract to be voidable on the ground of mental incapacity, TWO tests must be satisfied: (1) the person lacked capacity at the time of contracting (they were incapable of understanding the nature of the transaction), AND (2) the other party knew or should have known of the incapacity. Both tests must be satisfied — if only one is met, the contract is binding.",
+    "cite": "Revise SQE Contract Law, Ch 3; Mental Capacity Act 2005",
+    "principleCN": "因精神能力缺乏使合同可撤销，必须满足两个测试：(1) 订约时缺乏能力（无法理解交易性质），(2) 对方知道或应当知道其缺乏能力。两个测试必须同时满足——只满足一个，合同仍有约束力。",
+    "citeCN": "Revise SQE 合同法, 第3章; Mental Capacity Act 2005"
+  },
+  {
+    "key": "c11",
+    "chapter": "3 · Capacity — Minors",
+    "text": "A 17-year-old enters into an employment contract as an apprentice. The terms are favourable overall but he loses on one particular clause. Can he avoid the contract?",
+    "options": [
+      "Yes — minors can avoid any contract that is unfavourable to them in any clause.",
+      "Yes — but only if the unfavourable clause relates to wages.",
+      "No — minors ARE bound by contracts of employment, education and training, unless they lose more than they gain overall. The fact that one clause is unfavourable does not make the contract voidable if the minor gains more than they lose overall.",
+      "No — all employment contracts with minors are binding regardless of terms."
+    ],
+    "best": 2,
+    "principle": "Minors are bound by contracts of employment, education and training (also called 'beneficial contracts'). The test is whether the contract is, on balance, beneficial to the minor. If the minor loses more than they gain overall, the contract is voidable. The fact that one particular clause is unfavourable does not make the contract voidable if the overall balance is beneficial.",
+    "cite": "Revise SQE Contract Law, Ch 3; De Francesc v Barnum [1890]",
+    "principleCN": "未成年人受雇佣、教育和培训合同约束（又称'有益合同'）。测试标准是合同整体上是否对未成年人有利。如果未成年人整体上损失大于收益，合同可撤销。某一条款不利不等于整体不利。",
+    "citeCN": "Revise SQE 合同法, 第3章; De Francesc v Barnum [1890]"
+  },
+  {
+    "key": "c12",
+    "chapter": "3 · Capacity — Companies",
+    "text": "A company's constitutional documents restrict it from entering into property transactions. The company nevertheless signs a lease with a landlord acting in good faith. Is the lease binding?",
+    "options": [
+      "No — the company's constitutional documents restrict property transactions, so the lease is void.",
+      "Yes — a party entering into an agreement with a company in good faith will be bound, regardless of any restriction in the company's constitutional documents. The company cannot use its internal restrictions to escape contractual obligations.",
+      "Yes — but only if the landlord obtained a copy of the company's constitution before signing.",
+      "No — the company's directors are personally liable for breach of the constitution."
+    ],
+    "best": 1,
+    "principle": "Under the Companies Act 2006, a party entering into a transaction with a company in good faith is bound by the transaction regardless of any restriction in the company's constitutional documents. The company cannot use its internal restrictions to escape contractual obligations. This protects third parties who deal with companies in good faith.",
+    "cite": "Revise SQE Contract Law, Ch 3; Companies Act 2006, s 40",
+    "principleCN": "根据《2006年公司法》，与公司善意交易的第三方受交易约束，不受公司章程文件中任何限制的影响。公司不能利用内部限制逃避合同义务。这保护了与公司善意交易的第三方。",
+    "citeCN": "Revise SQE 合同法, 第3章; Companies Act 2006, s 40"
+  }
+];
+
+let state = JSON.parse(JSON.stringify(DEFAULT_STATE));
+
+function load() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      const saved = JSON.parse(raw);
+      state = Object.assign(JSON.parse(JSON.stringify(DEFAULT_STATE)), saved);
+    }
+  } catch(e) { console.warn('Load failed:', e); }
+}
+
+function save() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  } catch(e) { console.warn('Save failed:', e); }
+}
+
+function applyFS() {
+  document.body.classList.remove('fs-lg', 'fs-xl');
+  if (state.fsLevel === 1) document.body.classList.add('fs-lg');
+  else if (state.fsLevel === 2) document.body.classList.add('fs-xl');
+}
+
+function changeFS(dir) {
+  state.fsLevel = Math.max(0, Math.min(2, state.fsLevel + dir));
+  applyFS();
+  save();
+}
+
+function renderCoins() {
+  document.getElementById('coins').textContent = state.coins;
+}
+
+function renderStars() {
+  const count = Object.keys(state.stickers).filter(id => {
+    const s = state.stickers[id];
+    return s.side !== null && s.slot >= 0;
+  }).length;
+  const filled = Math.floor(count / 4);
+  const html = Array.from({length: 5}, (_, i) =>
+    `<span class="star ${i < filled ? 'filled' : ''}">${i < filled ? '★' : '☆'}</span>`
+  ).join('');
+  const top = document.getElementById('stars-top');
+  const quiz = document.getElementById('stars-quiz');
+  if (top) top.innerHTML = html;
+  if (quiz) quiz.innerHTML = html;
+}
+
+function getCurrentQuestions() {
+  if (state.reviewMode && state.reviewQueue.length > 0) {
+    return state.reviewQueue;
+  }
+  return QUESTIONS;
+}
+
+function renderQuestion() {
+  const qs = getCurrentQuestions();
+  const idx = state.qIndex;
+  const q = qs[idx];
+
+  document.getElementById('chapter').textContent = q.chapter;
+  document.getElementById('progress').textContent = `Question ${idx + 1} / ${qs.length}`;
+  document.getElementById('question-text').textContent = q.text;
+
+  const optsDiv = document.getElementById('options');
+  optsDiv.innerHTML = '';
+  const answered = state.answered.includes(q.key);
+  const isCorrectSoFar = answered && state.wrong[q.key] === undefined;
+  if (answered) {
+    const status = document.createElement('div');
+    status.className = 'answer-status ' + (isCorrectSoFar ? 'good' : 'bad');
+    status.textContent = isCorrectSoFar
+      ? '✓ Last answer: Correct. You can re-answer below to confirm or change your mind.'
+      : '✗ Currently in your review list. Re-answer to remove it from review or change your choice.';
+    optsDiv.appendChild(status);
+  }
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'option';
+    btn.textContent = opt;
+    if (answered && state.wrong[q.key] === i) {
+      btn.classList.add('previous-wrong');
+    }
+    btn.onclick = () => selectOption(i);
+    optsDiv.appendChild(btn);
+  });
+
+  const fb = document.getElementById('feedback');
+  const nextBtn = document.getElementById('next-btn');
+  const justAnswered = state.lastAnsweredKey === q.key;
+  if (justAnswered) {
+    const correct = state.lastAnsweredCorrect;
+    fb.className = 'feedback show ' + (correct ? 'correct' : 'wrong');
+    let html = correct ? '✅ Correct!' : '❌ Not quite.';
+    html += `<div class="principle"><strong>Principle:</strong> ${q.principle}</div>`;
+    html += `<div class="principle-cn">${q.principleCN}</div>`;
+    html += `<div class="cite">📚 ${q.cite}</div>`;
+    html += `<div class="cite">${q.citeCN}</div>`;
+    fb.innerHTML = html;
+    nextBtn.classList.add('show');
+    nextBtn.textContent = idx + 1 < qs.length ? 'Next →' : 'Finish';
+  } else if (answered) {
+    fb.className = 'feedback show hint';
+    fb.innerHTML = '<em>Pick an option above to re-answer. The correct answer and principle will be shown after you click.</em>';
+    nextBtn.classList.remove('show');
+  } else {
+    fb.className = 'feedback';
+    fb.innerHTML = '';
+    nextBtn.classList.remove('show');
+  }
+
+  // Bookmark
+  const bmBtn = document.getElementById('bookmark-btn');
+  if (state.bookmarked.includes(q.key)) {
+    bmBtn.classList.add('active');
+    bmBtn.textContent = '★';
+  } else {
+    bmBtn.classList.remove('active');
+    bmBtn.textContent = '☆';
+  }
+
+  // Nav buttons
+  document.getElementById('prev-btn').disabled = idx === 0;
+  document.getElementById('next-nav-btn').disabled = idx === qs.length - 1;
+
+  renderReviewBtn();
+}
+
+function toggleBookmark() {
+  const q = getCurrentQuestions()[state.qIndex];
+  const i = state.bookmarked.indexOf(q.key);
+  if (i >= 0) state.bookmarked.splice(i, 1);
+  else state.bookmarked.push(q.key);
+  save();
+  renderQuestion();
+}
+
+function selectOption(i) {
+  const q = getCurrentQuestions()[state.qIndex];
+  const wasAnswered = state.answered.includes(q.key);
+  const wasWrong = state.wrong[q.key] !== undefined;
+  const isCorrect = i === q.best;
+
+  if (wasAnswered) {
+    if (wasWrong) {
+      delete state.wrong[q.key];
+    }
+    if (isCorrect && wasWrong) {
+      state.coins += 20;
+      renderCoins();
+    }
+  } else {
+    state.answered.push(q.key);
+    if (isCorrect) {
+      state.coins += 20;
+      renderCoins();
+    }
+  }
+
+  if (!isCorrect) {
+    state.wrong[q.key] = i;
+  }
+  state.lastAnsweredKey = q.key;
+  state.lastAnsweredCorrect = isCorrect;
+  save();
+  renderQuestion();
+}
+
+function nextQuestion() {
+  const qs = getCurrentQuestions();
+  if (state.qIndex < qs.length - 1) {
+    state.qIndex++;
+    state.lastAnsweredKey = null;
+    state.lastAnsweredCorrect = null;
+    save();
+    renderQuestion();
+  } else {
+    if (state.reviewMode) {
+      exitReviewMode();
+    } else {
+      state.qIndex = 0;
+      state.lastAnsweredKey = null;
+      state.lastAnsweredCorrect = null;
+      save();
+      renderQuestion();
+    }
+  }
+}
+
+function prevQuestion() {
+  if (state.qIndex > 0) {
+    state.qIndex--;
+    state.lastAnsweredKey = null;
+    state.lastAnsweredCorrect = null;
+    save();
+    renderQuestion();
+  }
+}
+
+function getReviewQuestions() {
+  return QUESTIONS.filter(q => state.wrong[q.key] !== undefined);
+}
+
+function renderReviewBtn() {
+  const reviewBtn = document.getElementById('review-btn');
+  const wrongQs = getReviewQuestions();
+  if (wrongQs.length > 0 && !state.reviewMode) {
+    reviewBtn.style.display = '';
+    reviewBtn.textContent = `Review Wrong (${wrongQs.length})`;
+  } else {
+    reviewBtn.style.display = 'none';
+  }
+}
+
+function startReview() {
+  const wrongQs = getReviewQuestions();
+  if (wrongQs.length === 0) return;
+  state.reviewMode = true;
+  state.reviewQueue = wrongQs;
+  state.qIndex = 0;
+  save();
+  renderQuestion();
+}
+
+function exitReviewMode() {
+  state.reviewMode = false;
+  state.reviewQueue = [];
+  state.qIndex = 0;
+  save();
+  renderQuestion();
+}
+
+function renderStickers() {
+  ['left', 'right'].forEach(side => {
+    const col = document.getElementById('col-' + side);
+    const label = col.querySelector('.col-label');
+    col.innerHTML = '';
+    col.appendChild(label);
+    const grid = document.createElement('div');
+    grid.style.cssText = 'display:grid; grid-template-columns: 1fr; gap: 6px;';
+    for (let i = 0; i < SLOTS_PER_COL; i++) {
+      const slot = document.createElement('div');
+      slot.className = 'sticker-slot';
+      let placedItem = null;
+      for (const [id, data] of Object.entries(state.stickers)) {
+        if (data.side === side && data.slot === i) {
+          placedItem = STICKERS.find(s => s.id === id);
+          break;
+        }
+      }
+      if (placedItem) {
+        slot.classList.add('filled');
+        slot.innerHTML = placedItem.icon;
+        const x = document.createElement('div');
+        x.className = 'remove-x';
+        x.textContent = '×';
+        x.onclick = (e) => { e.stopPropagation(); removeSticker(placedItem.id); };
+        slot.appendChild(x);
+      } else {
+        slot.innerHTML = '<span class="empty-hint">+</span>';
+      }
+      slot.onclick = () => placeSticker(side, i);
+      grid.appendChild(slot);
+    }
+    col.appendChild(grid);
+  });
+  renderStars();
+}
+
+function removeSticker(id) {
+  state.stickers[id] = { side: null, slot: -1 };
+  save();
+  renderStickers();
+}
+
+function placeSticker(side, slot) {
+  if (!state.placementItem) return;
+  // If target slot has a sticker, kick it back to stash
+  for (const [id, data] of Object.entries(state.stickers)) {
+    if (data.side === side && data.slot === slot && id !== state.placementItem) {
+      state.stickers[id] = { side: null, slot: -1 };
+      break;
+    }
+  }
+  // Place the new sticker
+  state.stickers[state.placementItem] = { side: side, slot: slot };
+  state.placementItem = null;
+  document.getElementById('placement-banner').classList.remove('show');
+  save();
+  renderStickers();
+}
+
+function cancelPlacement() {
+  state.placementItem = null;
+  document.getElementById('placement-banner').classList.remove('show');
+  save();
+}
+
+function openShop() {
+  document.getElementById('shop-coins').textContent = state.coins;
+  const grid = document.getElementById('shop-grid');
+  grid.innerHTML = '';
+  STICKERS.forEach(s => {
+    const item = document.createElement('div');
+    item.className = 'shop-item';
+    const owned = state.stickers[s.id] !== undefined;
+    const placed = owned && state.stickers[s.id].side !== null && state.stickers[s.id].slot >= 0;
+    if (owned) item.classList.add('owned');
+    item.innerHTML = `
+      <div class="icon">${s.icon}</div>
+      <div class="name">${s.name}</div>
+      <div class="price">💰 ${s.price}</div>
+    `;
+    if (!owned) {
+      const btn = document.createElement('button');
+      btn.textContent = 'Buy';
+      btn.disabled = state.coins < s.price;
+      btn.onclick = () => buySticker(s.id);
+      item.appendChild(btn);
+    } else if (!placed) {
+      const btn = document.createElement('button');
+      btn.textContent = 'Stick';
+      btn.onclick = () => startPlacement(s.id);
+      item.appendChild(btn);
+    } // placed items show no button
+  });
+  document.getElementById('shop-overlay').classList.add('show');
+}
+
+function closeShop() {
+  document.getElementById('shop-overlay').classList.remove('show');
+}
+
+function buySticker(id) {
+  const s = STICKERS.find(x => x.id === id);
+  if (!s) return;
+  if (state.coins < s.price) return;
+  state.coins -= s.price;
+  state.stickers[id] = { side: null, slot: -1 };
+  save();
+  renderCoins();
+  openShop(); // refresh shop
+  startPlacement(id);
+}
+
+function startPlacement(id) {
+  state.placementItem = id;
+  document.getElementById('placement-banner').classList.add('show');
+  closeShop();
+}
+
+function init() {
+  load();
+  applyFS();
+  renderCoins();
+  renderStickers();
+  renderStars();
+  renderQuestion();
+
+  // Add shop access via keyboard shortcut or double-click on sticker area
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 's' && e.shiftKey) {
+      e.preventDefault();
+      openShop();
+    }
+  });
+
+  // Add a shop button to the topbar area — append to right section
+  const rightDiv = document.querySelector('.topbar .right');
+  if (rightDiv) {
+    const shopBtn = document.createElement('button');
+    shopBtn.className = 'fs-btn';
+    shopBtn.textContent = '🏷️';
+    shopBtn.style.marginRight = '4px';
+    shopBtn.onclick = openShop;
+    rightDiv.insertBefore(shopBtn, rightDiv.firstChild);
+  }
+}
+
+init();
+</script>
+
+<!-- ===== SQE Star Sync to Feishu ===== -->
+<script>
+(function() {
+  const LESSON_NUM = 9;
+  const SYNC_URL = "http://localhost:9876/sync";
+  const STORAGE_KEY = "sqe-l8-stickers-v2";
+  
+  let lastStars = -1;
+  let syncedStars = -1;
+
+  function getStars() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return 0;
+      const state = JSON.parse(raw);
+      const count = Object.keys(state.stickers || {}).filter(id => {
+        const s = state.stickers[id];
+        return s && s.side !== null && s.slot >= 0;
+      }).length;
+      return Math.floor(count / 4); // same logic as renderStars
+    } catch (e) { return 0; }
+  }
+
+  function showToast(message, ok) {
+    const toast = document.createElement('div');
+    toast.style.cssText = `
+      position: fixed; bottom: 20px; right: 20px; z-index: 99999;
+      padding: 12px 20px; border-radius: 8px; font-size: 14px;
+      color: white; font-family: -apple-system, sans-serif;
+      background: ${ok ? '#4CAF50' : '#f44336'};
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: opacity 0.3s; opacity: 1;
+    `;
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    setTimeout(() => { toast.style.opacity = '0'; }, 3000);
+    setTimeout(() => { toast.remove(); }, 3500);
+  }
+
+  function syncToFeishu(stars) {
+    if (stars === syncedStars) return; // already synced
+    fetch(SYNC_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ lesson: LESSON_NUM, stars: stars })
+    })
+    .then(r => r.json())
+    .then(data => {
+      if (data.ok) {
+        syncedStars = stars;
+        const label = data.label || '';
+        showToast('✅ 飞书表格已更新: ' + label, true);
+      } else {
+        showToast('❌ 同步失败: ' + (data.error || '未知错误'), false);
+      }
+    })
+    .catch(e => {
+      // Server not running — silent fail, will retry next time
+      console.log('[Star Sync] Server not available:', e.message);
+    });
+  }
+
+  function checkStars() {
+    const stars = getStars();
+    if (stars !== lastStars) {
+      lastStars = stars;
+      if (stars > 0) {
+        syncToFeishu(stars);
+      }
+    }
+  }
+
+  // Check every 2 seconds for star changes
+  setInterval(checkStars, 2000);
+  
+  // Also check on page unload
+  window.addEventListener('beforeunload', checkStars);
+  
+  // Initial check after 1 second
+  setTimeout(checkStars, 1000);
+})();
+</script>
+<!-- ===== End Star Sync ===== -->
+
+</body>
+</html>
