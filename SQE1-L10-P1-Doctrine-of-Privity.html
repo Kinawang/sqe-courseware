@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctrine of Privity — Lesson 10 | SQE1 Contract Law</title>
+    <style>
+        :root { --primary: #4a2c8a; --primary-light: #7c5cc4; --accent: #ff6b6b; --bg: #fafafa; --card-bg: #ffffff; --text: #2d2d2d; --text-light: #666; --border: #e8e8e8; --success: #4caf50; --tree-bg: linear-gradient(135deg, #f5f0ff 0%, #e8e0f5 100%); }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; font-size: 16px; }
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+        .lesson-header { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); color: white; padding: 40px 30px; border-radius: 16px; margin-bottom: 30px; text-align: center; }
+        .lesson-header h1 { font-size: 2em; margin-bottom: 10px; font-weight: 700; }
+        .lesson-header .subtitle { font-size: 1.1em; opacity: 0.9; }
+        .lesson-header .meta { margin-top: 15px; font-size: 0.9em; opacity: 0.8; }
+        .knowledge-tree { background: var(--tree-bg); border-radius: 16px; padding: 30px; margin-bottom: 30px; border: 2px solid #d4c5e8; }
+        .knowledge-tree h2 { color: var(--primary); font-size: 1.5em; margin-bottom: 20px; text-align: center; }
+        .kt-container { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+        .kt-node { background: white; border: 2px solid var(--primary-light); border-radius: 25px; padding: 12px 24px; font-weight: 600; color: var(--primary); text-align: center; max-width: 80%; box-shadow: 0 2px 8px rgba(74,44,138,0.1); cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
+        .kt-node:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(74,44,138,0.2); }
+        .kt-arrow { font-size: 1.5em; color: var(--primary-light); }
+        .kt-root { background: var(--primary); color: white; border-color: var(--primary); font-size: 1.1em; }
+        .kt-branch-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; width: 100%; }
+        .kt-branch { background: #f0e6ff; border: 2px solid var(--primary-light); }
+        .section { background: var(--card-bg); border-radius: 12px; padding: 30px; margin-bottom: 25px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+        .section h2 { color: var(--primary); font-size: 1.4em; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid var(--border); }
+        .section h3 { color: var(--primary-light); font-size: 1.15em; margin: 20px 0 12px; }
+        .section p { margin-bottom: 12px; }
+        .key-term { background: #f5f0ff; border-left: 4px solid var(--primary); padding: 12px 16px; margin: 12px 0; border-radius: 0 8px 8px 0; }
+        .key-term strong { color: var(--primary); }
+        .exam-warning { background: #fff3e0; border-left: 4px solid #ff9800; padding: 12px 16px; margin: 12px 0; border-radius: 0 8px 8px 0; }
+        .exam-warning strong { color: #e65100; }
+        .practice-example { background: #e3f2fd; border-radius: 12px; padding: 20px; margin: 15px 0; }
+        .practice-example h4 { color: #1565c0; margin-bottom: 10px; }
+        .answer-box { background: #c8e6c9; border-radius: 8px; padding: 15px; margin-top: 12px; }
+        .answer-box strong { color: #2e7d32; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.95em; }
+        th { background: var(--primary); color: white; padding: 12px; text-align: left; font-weight: 600; }
+        td { padding: 10px 12px; border-bottom: 1px solid var(--border); }
+        tr:nth-child(even) { background: #f8f6fc; }
+        .key-terms { background: linear-gradient(135deg, #f5f0ff 0%, #ede7f6 100%); border-radius: 16px; padding: 30px; margin-bottom: 25px; }
+        .key-terms h2 { color: var(--primary); text-align: center; margin-bottom: 20px; }
+        .kt-table { width: 100%; border-collapse: collapse; }
+        .kt-table th { background: var(--primary); color: white; padding: 14px; text-align: left; }
+        .kt-table td { padding: 12px 14px; border-bottom: 1px solid #d4c5e8; background: white; }
+        .kt-table tr:nth-child(even) td { background: #f8f6fc; }
+        .qa-section { background: var(--card-bg); border-radius: 16px; padding: 30px; margin-bottom: 25px; }
+        .qa-section h2 { color: var(--primary); text-align: center; margin-bottom: 25px; }
+        .qa-box { background: #f8f6fc; border-radius: 12px; padding: 20px; margin-bottom: 15px; border: 1px solid #e8e0f5; }
+        .qa-box .question { font-weight: 600; color: var(--primary); margin-bottom: 10px; }
+        .qa-box .answer { color: var(--text-light); padding-top: 10px; border-top: 1px dashed #d4c5e8; }
+        .qa-box .answer strong { color: var(--success); }
+        @media (max-width: 600px) { .container { padding: 12px; } .lesson-header { padding: 25px 15px; } .lesson-header h1 { font-size: 1.5em; } .section { padding: 20px; } .kt-branch-container { flex-direction: column; align-items: center; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="lesson-header">
+            <h1>Lesson 10: Privity of Contract and Rights of Third Parties</h1>
+            <div class="subtitle">SQE1 Contract Law — Chapter 4</div>
+            <div class="meta">Contract Law 2nd Edition | Pages 134–163 | Privity & Third Party Rights</div>
+        </div>
+        <div class="knowledge-tree">
+            <h2>🌳 Knowledge Tree</h2>
+            <div class="kt-container">
+                <div class="kt-node kt-root">Privity of Contract & Third Party Rights (合同相对性与第三方权利)</div>
+                <div class="kt-arrow">↓</div>
+                <div class="kt-branch-container">
+                    <div class="kt-node kt-branch">1. Doctrine of Privity<br><small>Third party cannot enforce</small></div>
+                    <div class="kt-node kt-branch">2. CRTPA 1999<br><small>Statutory exception</small></div>
+                    <div class="kt-node kt-branch">3. Common Law Exceptions<br><small>Assignment / Agency / Collateral / Trust</small></div>
+                    <div class="kt-node kt-branch">4. Remedies via Promisee<br><small>Damages / SP / Injunction</small></div>
+                </div>
+            </div>
+        <div style="background: #f0e6ff; border-radius: 12px; padding: 15px; margin-bottom: 20px; text-align: center;">
+            <strong>Navigation:</strong> <span style="color: #4a2c8a; font-weight: bold;">Part 1: Doctrine of Privity</span> | <a href="SQE1-L10-P2-CRTPA-1999.html">Part 2: CRTPA 1999</a> | <a href="SQE1-L10-P3-Common-Law-Exceptions.html">Part 3: Common Law Exceptions</a> | <a href="SQE1-L10-P4-Remedies-via-Promisee.html">Part 4: Remedies via Promisee</a>
+        </div>
+        <div class="section" id="section-1-privity">
+            <h2>📖 Part 1: Doctrine of Privity of Contract</h2>
+            <p>Privity of contract (合同相对性) is an English law doctrine establishing the general rule that a person who is not a party to a contract (a <strong>third party</strong>) cannot acquire any rights under that contract or be subject to its burdens.</p>
+
+            <div class="key-term">
+                <strong>Key term: privity of contract (合同相对性)</strong><br>
+                The English law doctrine that a third party cannot acquire rights under a contract or be subject to its burdens.
+            </div>
+
+            <div class="key-term">
+                <strong>Key term: third party (第三方)</strong><br>
+                In relation to a contract, a third party is a person who is not a party to the contract.
+            </div>
+
+            <div class="practice-example">
+                <h4>Practice Example 4.1 (Dunlop v Selfridge [1915])</h4>
+                <p>Dennis sells tyres to David with a condition that David must not sell below a fixed price, and must require any subsequent buyer to agree the same. David sells to Selina, who agrees not to sell below the fixed price. Selina sells below the fixed price.</p>
+                <div class="answer-box">
+                    <strong>Answer:</strong> Dennis cannot force Selina not to sell below the fixed price. Selina is a <strong>third party</strong> to the contract between Dennis and David. The doctrine of privity means only a party to a contract can bring a claim under it.
+                </div>
+            </div>
+        <div class="key-terms">
+            <h2>🔑 Key Terms — Bilingual Glossary</h2>
+            <table class="kt-table">
+                <tr><th>English Term</th><th>中文</th><th>Exam Focus</th></tr>
+                <tr><td>privity of contract</td><td>合同相对性</td><td>General rule: third party cannot enforce rights</td></tr>
+                <tr><td>third party</td><td>第三方</td><td>Person not a party to the contract</td></tr>
+                <tr><td>CRTPA 1999</td><td>第三方权利法1999</td><td>Statutory exception; no consideration needed; can be excluded</td></tr>
+                <tr><td>assignment</td><td>权利转让</td><td>Must be permitted, absolute, in writing, with notice</td></tr>
+                <tr><td>agency</td><td>代理</td><td>Party acts as agent; requires authority + consideration from third party</td></tr>
+                <tr><td>collateral contract</td><td>附带合同</td><td>Separate contract giving third party direct rights (Shanklin Pier)</td></tr>
+                <tr><td>trust</td><td>信托</td><td>Promisee holds rights on trust; requires declaration of trust</td></tr>
+                <tr><td>contract of convenience</td><td>便利合同</td><td>Promisee recovers for third parties (holidays, meals, taxis)</td></tr>
+                <tr><td>St Martins Property exception</td><td>圣马丁地产例外</td><td>Commercial; promisee recovers for third party with no own loss</td></tr>
+                <tr><td>specific performance</td><td>实际履行</td><td>Discretionary; via promisee; when damages inadequate</td></tr>
+                <tr><td>injunction</td><td>禁令</td><td>Prevents promisor from doing what they agreed not to do</td></tr>
+                <tr><td>consideration</td><td>对价</td><td>Not required under CRTPA 1999; required for agency</td></tr>
+            </table>
+        </div>
+
+        <!-- Practice Questions -->
+        <div class="qa-section">
+            <h2>📝 Practice Questions</h2>
+
+            <div class="qa-box">
+                <div class="question">Q1. A manufacturer sells chairs to a dealer with a price-fixing condition. The dealer sells to a discounter who agrees not to sell below the fixed price. The discounter sells below the fixed price. Can the manufacturer enforce the price-fixing term against the discounter?</div>
+                <div class="answer">
+                    <strong>Answer: No</strong> — The CRTPA 1999 enforceability criteria are not satisfied. There is no express statement in the contract that the discounter may enforce a term, and no term purports to confer a benefit on the manufacturer. There is no evidence of agency or a collateral contract. The doctrine of privity prevents the manufacturer from claiming against the discounter.
+                </div>
+            </div>
+        <div class="qa-section">
+            <h2>📝 Practice Questions</h2>
+
+            <div class="qa-box">
+                <div class="question">Q1. A manufacturer sells chairs to a dealer with a price-fixing condition. The dealer sells to a discounter who agrees not to sell below the fixed price. The discounter sells below the fixed price. Can the manufacturer enforce the price-fixing term against the discounter?</div>
+                <div class="answer">
+                    <strong>Answer: No</strong> — The CRTPA 1999 enforceability criteria are not satisfied. There is no express statement in the contract that the discounter may enforce a term, and no term purports to confer a benefit on the manufacturer. There is no evidence of agency or a collateral contract. The doctrine of privity prevents the manufacturer from claiming against the discounter.
+                </div>
+            </div>
+
+            <div class="qa-box">
+                <div class="question">Q2. A woman sold her business to a company, which agreed to "complete outstanding orders taking into account any deposits paid by customers" and "pay any liabilities properly incurred." A customer with a defective bathroom claims against the company under CRTPA 1999. Can he?</div>
+                <div class="answer">
+                    <strong>Answer: No</strong> — The enforceability criteria are not satisfied. The customer is not <strong>expressly identified</strong> by name or as a class of persons. The term "liabilities" encompasses unidentified classes of third parties and does not satisfy the CRTPA 1999 requirements.
+                </div>
+            </div>
+
+            <div class="qa-box">
+                <div class="question">Q3. A developer instructs a decorating company to buy paint from a manufacturer whose advertisement promises the paint will last ten years. The contract between decorator and manufacturer excludes CRTPA 1999. The paint washes off after one week. Can the developer claim against the manufacturer?</div>
+                <div class="answer">
+                    <strong>Answer: Yes</strong> — Under a <strong>collateral contract</strong>. The manufacturer's advertisement is a unilateral offer; the developer accepts by instructing the decorator to buy the paint; the developer's consideration is the instruction to the decorator. The exclusion of CRTPA 1999 in the decorator-manufacturer contract does not affect the separate collateral contract.
+                </div>
+            </div>
+
+            <div class="qa-box">
+                <div class="question">Q4. A mother books a restaurant meal for herself, her husband, and six children. The food is inedible and everyone gets food poisoning. Can the mother claim for her family's losses?</div>
+                <div class="answer">
+                    <strong>Answer: Yes</strong> — This is a <strong>contract of convenience</strong>. The mother contracted on behalf of herself and her family. She can recover damages for her own loss and for the loss of those on whose behalf she made the contract.
+                </div>
+            </div>
+
+            <div class="qa-box">
+                <div class="question">Q5. A developer hires a cleaning company to decontaminate land, excluding CRTPA 1999. The developer tells the cleaning company she plans to sell the land. The cleaning company does defective work. The developer sells to a builder who finds contamination. Can the builder claim?</div>
+                <div class="answer">
+                    <strong>Answer: Yes, through the developer</strong> — The <strong>St Martins Property exception</strong> applies. The developer can sue the cleaning company for the builder's loss even though the developer has suffered no loss herself. Both parties contemplated the property transfer, and the contract was intended to benefit future owners. CRTPA 1999 exclusion is irrelevant because this is a common law exception.
+                </div>
+            </div>
+
+            <div class="qa-box">
+                <div class="question">Q6. A assigns his contractual right to receive £10,000 to C. The contract permits assignment. A gives notice to B (the promisor). Is the assignment effective?</div>
+                <div class="answer">
+                    <strong>Answer: Yes</strong> — All three requirements are satisfied: (1) the contract permits assignment, (2) the assignment is absolute (final transfer of the right), (3) it is in writing. Notice has been given to B. C can now enforce the right against B.
+                </div>
+            </div>
+
+            <div class="qa-box">
+                <div class="question">Q7. A shipping company's contract with a freight forwarder limits liability to £1,000 and states this applies to "any sub-contractor acting on behalf of the freight forwarder." The freight forwarder acts as agent for a sub-contractor who damages cargo. Can the sub-contractor rely on the limitation?</div>
+                <div class="answer">
+                    <strong>Answer: Yes</strong> — The <strong>agency</strong> structure applies. The agreement clearly intends to protect sub-contractors, the freight forwarder acts as agent with the sub-contractor's authority, and the sub-contractor provides consideration by performing the unloading work.
+                </div>
+            </div>
+
+            <div class="qa-box">
+                <div class="question">Q8. A contract states "This agreement does not confer any rights on third parties under the Contracts (Rights of Third Parties) Act 1999." A third party tries to enforce a term. Will they succeed?</div>
+                <div class="answer">
+                    <strong>Answer: No</strong> — The CRTPA 1999 has been <strong>expressly excluded</strong> by clear statement in the contract. The third party cannot rely on statutory rights and must look to common law exceptions (assignment, agency, collateral contract, or trust).
+                </div>
+            </div>
+
+            <div class="qa-box">
+                <div class="question">Q9. A landlord leases a shop to a tenant. The lease contains a clause limiting the liability of "any previous tenant" under a guarantee to £5,000. The tenant assigns the lease and guarantees the new tenant's obligations. The new tenant defaults on £10,000 rent. Can the landlord claim the full £10,000 from the guarantor?</div>
+                <div class="answer">
+                    <strong>Answer: No</strong> — The guarantor falls within the description of "any previous tenant" in the lease. Under <strong>CRTPA 1999</strong>, the guarantor can rely on the limitation clause capping liability at £5,000. The landlord's claim is limited to £5,000.
+                </div>
+            </div>
+
+            <div class="qa-box">
+                <div class="question">Q10. A person declares that they hold their contractual rights "on trust for" their sibling. The promisor is not aware of this declaration. Can the sibling enforce the rights?</div>
+                <div class="answer">
+                    <strong>Answer: No</strong> — A valid trust requires a <strong>declaration of trust</strong>, and the promisor must be aware of it. Since the promisor is not aware of the declaration, the trust is not effective. The sibling cannot enforce the rights through the trust structure.
+                </div>
+            </div>
+
+            <div class="qa-box">
+                <div class="question">Q11. A tenant hires a contractor to repair a building. Both know the tenant plans to assign the lease to a new tenant. The contractor does defective work. After the assignment, the new tenant discovers the defects. The original tenant has suffered no loss. Can the original tenant sue for the new tenant's loss?</div>
+                <div class="answer">
+                    <strong>Answer: Yes</strong> — The <strong>St Martins Property exception</strong> applies. Both parties contemplated the property transfer, and the contract was intended to benefit future owners. The original tenant can sue the contractor for the new tenant's loss even without having suffered any loss.
+                </div>
+            </div>
+
+            <div class="qa-box">
+                <div class="question">Q12. True or false? A third party relying on CRTPA 1999 must provide consideration to the promisor.</div>
+                <div class="answer">
+                    <strong>Answer: False</strong> — Unlike at common law (where agency requires consideration from the third party), CRTPA 1999 does <strong>not</strong> require the third party to provide any consideration to acquire rights under the contract.
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center; padding: 30px; color: #666; font-size: 0.9em;">
+            <p>Lesson 10: Privity of Contract and Rights of Third Parties | SQE1 Contract Law</p>
+            <p>Part 1: Doctrine of Privity</p>
+        </div>
+    </div>
+</body>
+</html>
