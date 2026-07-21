@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SQE · Privity of Contract — Quiz & Sticker Collection</title>
+<style>
+:root {
+    --paper: #f4ecd8;
+    --paper-2: #e8dcb8;
+    --ink: #2a2620;
+    --ink-soft: #5a5246;
+    --seal: #8b1a1a;
+    --gold: #b8860b;
+    --gold-light: #daa520;
+    --ok: #2e6b3e;
+    --line: #8a7a5c;
+    --fs-body: 18px;
+    --fs-h1: 24px;
+    --fs-h2: 20px;
+    --fs-card: 18px;
+    --fs-small: 14px;
+}
+body.fs-lg { --fs-body: 22px; --fs-h1: 28px; --fs-h2: 24px; --fs-card: 22px; --fs-small: 17px; }
+body.fs-xl { --fs-body: 26px; --fs-h1: 32px; --fs-h2: 28px; --fs-card: 26px; --fs-small: 20px; }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: var(--fs-body);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* Topbar */
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background: var(--paper-2);
+    border-bottom: 2px solid var(--line);
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.topbar .title {
+    font-size: var(--fs-h1);
+    font-weight: bold;
+    color: var(--ink);
+    white-space: nowrap;
+}
+.topbar .right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.topbar .coins {
+    font-size: var(--fs-body);
+    font-weight: bold;
+    color: var(--gold);
+    background: var(--paper);
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--gold-light);
+}
+.topbar .fs-btn {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 4px 10px;
+    cursor: pointer;
+    font-size: var(--fs-small);
+    color: var(--ink);
+    font-family: Georgia, serif;
+}
+.topbar .fs-btn:hover { background: var(--paper-2); }
+
+/* Stars */
+.stars {
+    display: flex;
+    gap: 2px;
+    align-items: center;
+}
+.stars .star {
+    font-size: var(--fs-h2);
+    color: var(--ink-soft);
+    opacity: 0.3;
+}
+.stars .star.filled {
+    color: var(--gold);
+    opacity: 1;
+}
+
+/* Main layout */
+.main {
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+    gap: 0;
+    min-height: calc(100vh - 60px);
+}
+
+/* Sticker columns */
+.sticker-col {
+    width: 200px;
+    padding: 8px 6px;
+    background: var(--paper-2);
+    border-right: 1px solid var(--line);
+    border-left: 1px solid var(--line);
+}
+.sticker-col.col-right {
+    border-right: none;
+    border-left: 1px solid var(--line);
+}
+.sticker-col .col-label {
+    text-align: center;
+    font-size: var(--fs-small);
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.sticker-col .sticker-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 6px;
+}
+.sticker-slot {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    background: var(--paper);
+    border: 1px dashed var(--line);
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+    transition: background 0.2s;
+}
+.sticker-slot:hover { background: var(--paper-2); }
+.sticker-slot.filled {
+    border-style: solid;
+    border-color: var(--gold);
+    background: var(--paper);
+}
+.sticker-slot .empty-hint {
+    color: var(--ink-soft);
+    opacity: 0.4;
+    font-size: var(--fs-h2);
+}
+.sticker-slot .remove-x {
+    position: absolute;
+    top: -2px;
+    right: 2px;
+    color: var(--seal);
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+    background: var(--paper);
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Quiz area */
+.quiz-area {
+    padding: 20px 30px;
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+}
+.quiz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.quiz-header .chapter {
+    font-size: var(--fs-small);
+    color: var(--seal);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.quiz-header .progress {
+    font-size: var(--fs-small);
+    color: var(--ink-soft);
+}
+.quiz-header .nav-btns {
+    display: flex;
+    gap: 6px;
+}
+.quiz-header .nav-btns button {
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 2px 10px;
+    cursor: pointer;
+    font-size: var(--fs-small);
+    font-family: Georgia, serif;
+    color: var(--ink);
+}
+.quiz-header .nav-btns button:disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+.quiz-header .nav-btns button:hover:not(:disabled) {
+    background: var(--paper);
+}
+.bookmark-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: var(--fs-h2);
+    color: var(--ink-soft);
+    opacity: 0.5;
+}
+.bookmark-btn.active { color: var(--gold); opacity: 1; }
+
+.question-text {
+    font-size: var(--fs-body);
+    margin: 16px 0;
+    line-height: 1.7;
+}
+.options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+.option {
+    padding: 12px 16px;
+    background: var(--paper);
+    border: 2px solid var(--line);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: var(--fs-body);
+    font-family: Georgia, serif;
+    color: var(--ink);
+    text-align: left;
+    transition: all 0.2s;
+}
+.option:hover { border-color: var(--gold); background: var(--paper-2); }
+.option.selected {
+    border-color: var(--gold);
+    background: var(--paper-2);
+}
+.option.correct {
+    border-color: var(--ok);
+    background: #d4edda;
+}
+.option.wrong {
+    border-color: var(--seal);
+    background: #f8d7da;
+}
+.option.previous-wrong {
+    border-color: #d0a8a8;
+    background: #fbeeee;
+    color: #8a5555;
+}
+.option.disabled { cursor: default; }
+
+.answer-status {
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: var(--fs-small);
+    margin-bottom: 12px;
+    border: 1px solid;
+}
+.answer-status.good {
+    background: #e8f5e9;
+    border-color: var(--ok);
+    color: #2e6b32;
+}
+.answer-status.bad {
+    background: #fdf2f2;
+    border-color: var(--seal);
+    color: #8a2828;
+}
+.feedback.hint {
+    background: var(--paper-2);
+    border: 1px dashed var(--ink-soft);
+    color: var(--ink-soft);
+    display: block;
+}
+
+.feedback {
+    margin: 16px 0;
+    padding: 14px 18px;
+    border-radius: 8px;
+    font-size: var(--fs-body);
+    display: none;
+}
+.feedback.show { display: block; }
+.feedback.correct {
+    background: #d4edda;
+    border: 1px solid var(--ok);
+    color: var(--ok);
+}
+.feedback.wrong {
+    background: #f8d7da;
+    border: 1px solid var(--seal);
+    color: var(--seal);
+}
+.feedback .principle {
+    margin-top: 8px;
+    font-size: var(--fs-body);
+    color: var(--ink);
+}
+.feedback .principle-cn {
+    margin-top: 6px;
+    font-size: var(--fs-small);
+    color: var(--ink-soft);
+}
+.feedback .cite {
+    margin-top: 6px;
+    font-size: var(--fs-small);
+    color: var(--ink-soft);
+    font-style: italic;
+}
+
+.next-btn {
+    background: var(--seal);
+    color: var(--paper);
+    border: none;
+    padding: 10px 28px;
+    border-radius: 8px;
+    font-size: var(--fs-body);
+    font-family: Georgia, serif;
+    cursor: pointer;
+    display: none;
+}
+.next-btn.show { display: inline-block; }
+.next-btn:hover { background: #6b1414; }
+
+.review-btn {
+    background: var(--gold);
+    color: var(--paper);
+    border: none;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: var(--fs-small);
+    font-family: Georgia, serif;
+    cursor: pointer;
+    margin-left: 10px;
+}
+.review-btn:hover { background: var(--gold-light); }
+
+/* Shop modal */
+.shop-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
+}
+.shop-overlay.show { display: flex; }
+.shop-modal {
+    background: var(--paper);
+    border-radius: 12px;
+    padding: 20px;
+    max-width: 700px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    border: 2px solid var(--gold);
+}
+.shop-modal h2 {
+    font-size: var(--fs-h1);
+    color: var(--ink);
+    margin-bottom: 4px;
+    text-align: center;
+}
+.shop-modal .shop-coins {
+    text-align: center;
+    font-size: var(--fs-body);
+    color: var(--gold);
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+.shop-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+}
+.shop-item {
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.shop-item:hover { border-color: var(--gold); }
+.shop-item.owned { opacity: 0.5; cursor: default; }
+.shop-item.owned::after {
+    content: '✓ Owned';
+    display: block;
+    font-size: var(--fs-small);
+    color: var(--ok);
+    margin-top: 4px;
+}
+.shop-item .icon { font-size: 36px; }
+.shop-item .name { font-size: var(--fs-small); color: var(--ink); margin-top: 4px; }
+.shop-item .price { font-size: var(--fs-small); color: var(--gold); font-weight: bold; margin-top: 4px; }
+.shop-item button {
+    background: var(--seal);
+    color: var(--paper);
+    border: none;
+    padding: 4px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: var(--fs-small);
+    font-family: Georgia, serif;
+    margin-top: 6px;
+}
+.shop-item button:disabled { background: var(--ink-soft); cursor: default; }
+.shop-close {
+    display: block;
+    margin: 16px auto 0;
+    background: var(--ink-soft);
+    color: var(--paper);
+    border: none;
+    padding: 8px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: var(--fs-body);
+    font-family: Georgia, serif;
+}
+
+/* Placement mode */
+.placement-banner {
+    display: none;
+    background: var(--gold);
+    color: var(--paper);
+    padding: 8px 20px;
+    text-align: center;
+    font-size: var(--fs-body);
+    font-weight: bold;
+}
+.placement-banner.show { display: block; }
+.placement-banner .cancel-btn {
+    background: var(--paper);
+    color: var(--gold);
+    border: none;
+    padding: 2px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: var(--fs-small);
+    font-family: Georgia, serif;
+    margin-left: 12px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .main {
+        grid-template-columns: 80px 1fr 80px;
+    }
+    .sticker-col {
+        width: 80px;
+        padding: 4px 3px;
+    }
+    .sticker-col .sticker-grid {
+        gap: 3px;
+    }
+    .sticker-slot {
+        font-size: 18px;
+    }
+    .sticker-slot .empty-hint {
+        font-size: var(--fs-small);
+    }
+    .quiz-area {
+        padding: 12px 8px;
+    }
+    .topbar {
+        padding: 8px 10px;
+    }
+    .topbar .title {
+        font-size: var(--fs-h2);
+    }
+    .shop-grid {
+        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="title">⚖ SQE · Privity of Contract</div>
+  <div class="stars" id="stars-top"></div>
+  <div class="right">
+    <div class="coins">💰 <span class="val" id="coins">0</span></div>
+    <button class="fs-btn" onclick="changeFS(-1)">A-</button>
+    <button class="fs-btn" onclick="changeFS(1)">A+</button>
+  </div>
+</div>
+
+<div class="placement-banner" id="placement-banner">
+  Tap a slot to place your sticker!
+  <button class="cancel-btn" onclick="cancelPlacement()">Cancel</button>
+</div>
+
+<div class="main">
+  <div class="sticker-col col-left" id="col-left">
+    <div class="col-label">Left</div>
+  </div>
+
+  <div class="quiz-area">
+    <div class="quiz-header">
+      <div>
+        <span class="chapter" id="chapter"></span>
+        <span class="progress" id="progress" style="margin-left:12px;"></span>
+      </div>
+      <div class="nav-btns">
+        <button id="prev-btn" onclick="prevQuestion()">← Prev</button>
+        <button id="review-btn" class="review-btn" onclick="startReview()" style="display:none;">Review Wrong</button>
+        <button id="next-nav-btn" onclick="nextQuestion()">Next →</button>
+        <button class="bookmark-btn" id="bookmark-btn" onclick="toggleBookmark()">☆</button>
+      </div>
+    </div>
+    <div class="stars" id="stars-quiz" style="justify-content:center; margin: 4px 0;"></div>
+    <div class="question-text" id="question-text"></div>
+    <div class="options" id="options"></div>
+    <div class="feedback" id="feedback"></div>
+    <button class="next-btn" id="next-btn" onclick="nextQuestion()">Next →</button>
+  </div>
+
+  <div class="sticker-col col-right" id="col-right">
+    <div class="col-label">Right</div>
+  </div>
+</div>
+
+<!-- Shop -->
+<div class="shop-overlay" id="shop-overlay">
+  <div class="shop-modal">
+    <h2>🏷️ Sticker Shop</h2>
+    <div class="shop-coins">💰 Coins: <span id="shop-coins">0</span></div>
+    <div class="shop-grid" id="shop-grid"></div>
+    <button class="shop-close" onclick="closeShop()">Close</button>
+  </div>
+</div>
+
+<script>
+const STORAGE_KEY = 'sqe-l10-stickers-v2';
+const SLOTS_PER_COL = 10;
+
+const DEFAULT_STATE = {
+  coins: 0,
+  qIndex: 0,
+  answered: [],
+  wrong: {},
+  bookmarked: [],
+  stickers: {},
+  placementItem: null,
+  fsLevel: 0,
+  reviewMode: false,
+  reviewQueue: [],
+  lastAnsweredKey: null,
+  lastAnsweredCorrect: null
+};
+
+const STICKERS = [
+  { id: 'daisy',       name: 'Daisy',           icon: '🌼', price: 50 },
+  { id: 'tulip',       name: 'Tulip',           icon: '🌷', price: 50 },
+  { id: 'rose',        name: 'Rose',            icon: '🌹', price: 80 },
+  { id: 'sunflower',   name: 'Sunflower',       icon: '🌻', price: 80 },
+  { id: 'clover',      name: 'Clover',          icon: '🍀', price: 100 },
+  { id: 'cactus',      name: 'Cactus',          icon: '🌵', price: 120 },
+  { id: 'palm',        name: 'Palm',            icon: '🌴', price: 150 },
+  { id: 'fir',         name: 'Fir Tree',        icon: '🌲', price: 150 },
+  { id: 'book',        name: 'Law Book',        icon: '📕', price: 100 },
+  { id: 'scroll',      name: 'Scroll',          icon: '📜', price: 120 },
+  { id: 'trophy',      name: 'Trophy',          icon: '🏆', price: 200 },
+  { id: 'medal',       name: 'Medal',           icon: '🎖', price: 200 },
+  { id: 'ribbon',      name: 'Ribbon',          icon: '🎗', price: 150 },
+  { id: 'star',        name: 'Star',            icon: '⭐', price: 100 },
+  { id: 'gem',         name: 'Gem',             icon: '💎', price: 300 },
+  { id: 'crown',       name: 'Crown',           icon: '👑', price: 500 },
+  { id: 'anchor',      name: 'Anchor',          icon: '⚓', price: 250 },
+  { id: 'key',         name: 'Key',             icon: '🔑', price: 180 },
+  { id: 'balance',     name: 'Scales',          icon: '⚖', price: 350 },
+  { id: 'gavel',       name: 'Gavel',           icon: '🔨', price: 400 }
+];
+
+const QUESTIONS = [
+  {
+    "key": "c1",
+    "chapter": "1 · Doctrine of Privity",
+    "text": "A manufacturer sells chairs to a dealer with a price-fixing condition. The dealer sells to a discounter who agrees not to sell below the fixed price. The discounter sells below the fixed price. Can the manufacturer enforce the price-fixing term against the discounter?",
+    "options": [
+      "Yes — the discounter agreed to the price-fixing term when purchasing.",
+      "No — the CRTPA 1999 enforceability criteria are not satisfied. There is no express statement that the discounter may enforce a term, and no term purports to confer a benefit on the manufacturer. There is no evidence of agency or a collateral contract.",
+      "Yes — the manufacturer is an identified third party under CRTPA 1999.",
+      "No — but the manufacturer can sue the dealer for breach of the price-fixing term."
+    ],
+    "best": 1,
+    "principle": "The doctrine of privity prevents a third party from acquiring rights under a contract. The CRTPA 1999 enforceability criteria require either express identification of the third party or a term purporting to confer a benefit. Neither is satisfied here. There is no evidence of agency or a collateral contract.",
+    "cite": "Revise SQE Contract Law, Ch 4; Dunlop v Selfridge [1915]",
+    "principleCN": "合同相对性原则阻止第三方获得合同权利。CRTPA 1999的可执行性标准要求明确识别第三方或条款赋予其利益。此处均不满足。也没有代理或附带合同的证据。",
+    "citeCN": "Revise SQE 合同法, 第4章; Dunlop v Selfridge [1915]"
+  },
+  {
+    "key": "c2",
+    "chapter": "2 · CRTPA 1999",
+    "text": "A woman sold her business to a company, which agreed to 'complete outstanding orders taking into account any deposits paid by customers' and 'pay any liabilities properly incurred.' A customer with a defective bathroom claims against the company under CRTPA 1999. Can he?",
+    "options": [
+      "Yes — the customer is identified as a beneficiary of the agreement.",
+      "Yes — the term 'liabilities' confers a benefit on customers.",
+      "No — the customer is not expressly identified by name or as a class of persons. The term 'liabilities' encompasses unidentified classes of third parties and does not satisfy the CRTPA 1999 enforceability criteria.",
+      "No — CRTPA 1999 only applies to commercial contracts, not sale of business agreements."
+    ],
+    "best": 2,
+    "principle": "For a third party to acquire rights under CRTPA 1999, they must be expressly identified by name or as a member of a class of persons. The term 'liabilities' is too vague — it encompasses unidentified classes of third parties. The enforceability criteria are not satisfied.",
+    "cite": "Revise SQE Contract Law, Ch 4; CRTPA 1999 s 1(1)",
+    "principleCN": "第三方要依据CRTPA 1999获得权利，必须被明确通过姓名或作为一类人识别。'liabilities'一词过于模糊——涵盖了未识别的第三方类别。可执行性标准不满足。",
+    "citeCN": "Revise SQE 合同法, 第4章; CRTPA 1999 s 1(1)"
+  },
+  {
+    "key": "c3",
+    "chapter": "3 · Collateral Contracts",
+    "text": "A developer instructs a decorating company to buy paint from a manufacturer whose advertisement promises the paint will last ten years. The contract between decorator and manufacturer excludes CRTPA 1999. The paint washes off after one week. Can the developer claim against the manufacturer?",
+    "options": [
+      "No — CRTPA 1999 has been excluded in the decorator-manufacturer contract.",
+      "Yes — under a collateral contract. The manufacturer's advertisement is a unilateral offer; the developer accepts by instructing the decorator to buy the paint; the developer's consideration is the instruction to the decorator. The CRTPA exclusion does not affect the separate collateral contract.",
+      "Yes — the developer can rely on CRTPA 1999 despite the exclusion clause.",
+      "No — the developer is a third party and has no rights."
+    ],
+    "best": 1,
+    "principle": "A collateral contract is a separate contract between the promisor and the third party. The manufacturer's advertisement is an offer; the developer accepts by instructing the decorator to buy the paint; consideration is the instruction itself. The CRTPA 1999 exclusion in the main contract does not affect the separate collateral contract.",
+    "cite": "Revise SQE Contract Law, Ch 4; Shanklin Pier v Detel Products [1951]",
+    "principleCN": "附带合同是承诺人与第三方之间的独立合同。制造商的广告是要约；开发商通过指示装饰公司购买来接受；对价是指示行为。主合同中排除CRTPA 1999不影响独立的附带合同。",
+    "citeCN": "Revise SQE 合同法, 第4章; Shanklin Pier v Detel Products [1951]"
+  },
+  {
+    "key": "c4",
+    "chapter": "4 · Contracts of Convenience",
+    "text": "A mother books a restaurant meal for herself, her husband, and six children. The food is inedible and everyone gets food poisoning. Can the mother claim for her family's losses?",
+    "options": [
+      "Yes — this is a contract of convenience. The mother contracted on behalf of herself and her family. She can recover damages for her own loss and for the loss of those on whose behalf she made the contract.",
+      "No — the mother can only claim for her own loss under the doctrine of privity.",
+      "Yes — but only if she can prove she paid for everyone's meal.",
+      "No — the husband and children must each bring their own claims."
+    ],
+    "best": 0,
+    "principle": "Contracts of convenience are an exception to the rule that a promisee can only recover for their own loss. The mother contracted on behalf of herself and her family. She can recover for all family members' losses. Key examples: family holidays, meals in restaurants, hiring taxis.",
+    "cite": "Revise SQE Contract Law, Ch 4; Jackson v Horizon Holidays [1975]",
+    "principleCN": "便利合同是承诺人只能为自己的损失获赔规则的例外。母亲代表自己和家人签订合同，可以为所有家庭成员的损失获赔。典型例子：家庭度假、餐厅用餐、雇出租车。",
+    "citeCN": "Revise SQE 合同法, 第4章; Jackson v Horizon Holidays [1975]"
+  },
+  {
+    "key": "c5",
+    "chapter": "4 · St Martins Property Exception",
+    "text": "A developer hires a cleaning company to decontaminate land, excluding CRTPA 1999. The developer tells the cleaning company she plans to sell the land. The cleaning company does defective work. The developer sells to a builder who finds contamination. Can the builder claim?",
+    "options": [
+      "Yes — the builder can claim directly against the cleaning company under CRTPA 1999.",
+      "Yes, through the developer — the St Martins Property exception applies. The developer can sue the cleaning company for the builder's loss even though the developer has suffered no loss herself. Both parties contemplated the property transfer.",
+      "No — CRTPA 1999 has been excluded and there are no other exceptions.",
+      "No — the developer has suffered no loss and therefore cannot bring a claim."
+    ],
+    "best": 1,
+    "principle": "The St Martins Property exception applies where: (1) Party A engages Party B to do work on property, (2) both parties know the property will be transferred to Party C, (3) Party B's work is defective. Party A can sue Party B for Party C's loss even if Party A has suffered no loss. CRTPA exclusion is irrelevant — this is a common law exception.",
+    "cite": "Revise SQE Contract Law, Ch 4; St Martins Property Corp v Sir Robert McAlpine [1994]",
+    "principleCN": "圣马丁地产例外适用于：(1) 甲雇佣乙对财产施工，(2) 双方都知道财产将转让给丙，(3) 乙的施工有缺陷。甲可以为丙的损失起诉乙，即使甲自己没有损失。CRTPA排除不相关——这是普通法例外。",
+    "citeCN": "Revise SQE 合同法, 第4章; St Martins Property v McAlpine [1994]"
+  },
+  {
+    "key": "c6",
+    "chapter": "2 · CRTPA 1999",
+    "text": "A contract states 'This agreement does not confer any rights on third parties under the Contracts (Rights of Third Parties) Act 1999.' A third party tries to enforce a term. Will they succeed?",
+    "options": [
+      "Yes — CRTPA 1999 cannot be excluded by agreement.",
+      "Yes — but only if the third party provided consideration.",
+      "No — CRTPA 1999 has been expressly excluded by clear statement in the contract. The third party cannot rely on statutory rights and must look to common law exceptions.",
+      "No — third parties can never enforce contract terms."
+    ],
+    "best": 2,
+    "principle": "The parties to a contract may exclude CRTPA 1999 by clearly stating in the agreement that the Act does not apply. This prevents third parties from acquiring statutory rights. The third party must then look to common law exceptions (assignment, agency, collateral contract, or trust).",
+    "cite": "Revise SQE Contract Law, Ch 4; CRTPA 1999 s 2",
+    "principleCN": "合同当事人可以通过在协议中明确声明法案不适用来排除CRTPA 1999。第三方不能依赖法定权利，必须寻求普通法例外（转让、代理、附带合同或信托）。",
+    "citeCN": "Revise SQE 合同法, 第4章; CRTPA 1999 s 2"
+  },
+  {
+    "key": "c7",
+    "chapter": "3 · Agency",
+    "text": "A shipping company's contract with a freight forwarder limits liability to £1,000 and states this applies to 'any sub-contractor acting on behalf of the freight forwarder.' The freight forwarder acts as agent for a sub-contractor who damages cargo. Can the sub-contractor rely on the limitation?",
+    "options": [
+      "No — the sub-contractor is a third party and cannot rely on the limitation clause.",
+      "Yes — the agency structure applies. The agreement clearly intends to protect sub-contractors, the freight forwarder acts as agent with the sub-contractor's authority, and the sub-contractor provides consideration by performing the work.",
+      "Yes — under CRTPA 1999, the sub-contractor is an identified class.",
+      "No — the sub-contractor did not provide consideration to the shipping company."
+    ],
+    "best": 1,
+    "principle": "For the agency structure to apply: (1) the main contract must clearly intend to protect the third party, (2) the party must act as agent for the third party, (3) the agent must have authority from the third party, (4) the third party must provide consideration. All requirements are satisfied here.",
+    "cite": "Revise SQE Contract Law, Ch 4",
+    "principleCN": "代理结构适用要求：(1) 主合同明确意图保护第三方，(2) 当事人作为第三方代理人，(3) 代理人获得第三方授权，(4) 第三方提供对价。此处全部满足。",
+    "citeCN": "Revise SQE 合同法, 第4章"
+  },
+  {
+    "key": "c8",
+    "chapter": "3 · Assignment",
+    "text": "A assigns his contractual right to receive £10,000 to C. The contract permits assignment. A gives notice to B (the promisor). Is the assignment effective?",
+    "options": [
+      "No — assignments require the promisor's consent.",
+      "No — C must provide consideration to A for the assignment to be effective.",
+      "Yes — all three requirements are satisfied: (1) the contract permits assignment, (2) the assignment is absolute (final transfer of the right), (3) it is in writing. Notice has been given to B. C can now enforce the right against B.",
+      "Yes — but only if B acknowledges the assignment in writing."
+    ],
+    "best": 2,
+    "principle": "For an assignment to be effective: (1) it must be permitted under the terms of the relevant agreement, (2) it must be absolute (final), (3) it must be in writing. Notice must be given to the person against whom the third party acquires rights. All requirements are satisfied.",
+    "cite": "Revise SQE Contract Law, Ch 4",
+    "principleCN": "有效转让要求：(1) 协议条款允许转让，(2) 转让是绝对的（最终的权利转移），(3) 必须以书面形式。必须向被转让方发出通知。此处全部满足。",
+    "citeCN": "Revise SQE 合同法, 第4章"
+  },
+  {
+    "key": "c9",
+    "chapter": "3 · Trusts",
+    "text": "A person declares that they hold their contractual rights 'on trust for' their sibling. The promisor is not aware of this declaration. Can the sibling enforce the rights?",
+    "options": [
+      "Yes — a declaration of trust creates enforceable rights for the beneficiary.",
+      "Yes — the sibling as beneficiary can always enforce trust rights.",
+      "No — a valid trust requires a declaration of trust, AND the promisor must be aware of it. Since the promisor is not aware of the declaration, the trust is not effective.",
+      "No — contractual rights cannot be held on trust."
+    ],
+    "best": 2,
+    "principle": "For a trust to be effective in the privity context: (1) there must be a declaration of trust by the promisee, AND (2) the promisor must be aware of the declaration. If the promisor is not aware, the trust is not effective and the beneficiary cannot enforce the rights.",
+    "cite": "Revise SQE Contract Law, Ch 4",
+    "principleCN": "在合同相对性语境下，信托有效要求：(1) 承诺人作出信托声明，(2) 承诺人必须知悉该声明。如果承诺人不知悉，信托无效，受益人不能强制执行权利。",
+    "citeCN": "Revise SQE 合同法, 第4章"
+  },
+  {
+    "key": "c10",
+    "chapter": "2 · CRTPA 1999",
+    "text": "A landlord leases a shop to a tenant. The lease contains a clause limiting the liability of 'any previous tenant' under a guarantee to £5,000. The tenant assigns the lease and guarantees the new tenant's obligations. The new tenant defaults on £10,000 rent. Can the landlord claim the full £10,000 from the guarantor?",
+    "options": [
+      "Yes — the guarantor is liable for the full amount of the default.",
+      "No — the guarantor falls within the description of 'any previous tenant' in the lease. Under CRTPA 1999, the guarantor can rely on the limitation clause capping liability at £5,000.",
+      "Yes — the limitation clause only applies to the original tenant.",
+      "No — but only because the guarantor paid £5,000 voluntarily."
+    ],
+    "best": 1,
+    "principle": "Under CRTPA 1999, a third party can rely on a term that limits or excludes their liability if the enforceability criteria are satisfied. The guarantor falls within the description of 'any previous tenant' — this is identification as a class of person. The CRTPA 1999 applies, giving the guarantor the right to rely on the limitation clause.",
+    "cite": "Revise SQE Contract Law, Ch 4; CRTPA 1999 s 1(1)",
+    "principleCN": "根据CRTPA 1999，如果可执行性标准满足，第三方可以依赖限制或排除其责任的条款。担保人属于'any previous tenant'的描述——作为一类人被识别。CRTPA 1999适用，担保人有权依赖限制条款。",
+    "citeCN": "Revise SQE 合同法, 第4章; CRTPA 1999 s 1(1)"
+  },
+  {
+    "key": "c11",
+    "chapter": "4 · Remedies",
+    "text": "A tenant hires a contractor to repair a building. Both know the tenant plans to assign the lease to a new tenant. The contractor does defective work. After the assignment, the new tenant discovers the defects. The original tenant has suffered no loss. Can the original tenant sue for the new tenant's loss?",
+    "options": [
+      "No — the original tenant has suffered no loss and therefore cannot bring a claim.",
+      "Yes — the St Martins Property exception applies. Both parties contemplated the property transfer, and the contract was intended to benefit future owners. The original tenant can sue the contractor for the new tenant's loss even without having suffered any loss.",
+      "Yes — but only if the new tenant joins as a co-claimant.",
+      "No — the new tenant must sue the original tenant, not the contractor."
+    ],
+    "best": 1,
+    "principle": "The St Martins Property exception allows a promisee to sue for a third party's loss even if the promisee has suffered no loss. Requirements: (1) both parties knew the property would be transferred, (2) the contract was intended to benefit future owners. Both are satisfied here.",
+    "cite": "Revise SQE Contract Law, Ch 4; St Martins Property Corp v Sir Robert McAlpine [1994]",
+    "principleCN": "圣马丁地产例外允许承诺人为第三方的损失起诉，即使承诺人自己没有损失。要求：(1) 双方都知道财产将被转让，(2) 合同意图使未来所有人受益。此处均满足。",
+    "citeCN": "Revise SQE 合同法, 第4章; St Martins Property v McAlpine [1994]"
+  },
+  {
+    "key": "c12",
+    "chapter": "2 · CRTPA 1999",
+    "text": "True or false? A third party relying on CRTPA 1999 must provide consideration to the promisor.",
+    "options": [
+      "True — consideration is always required for contractual rights.",
+      "True — but only if the third party is identified by name rather than as a class.",
+      "False — unlike at common law (where agency requires consideration from the third party), CRTPA 1999 does not require the third party to provide any consideration to acquire rights under the contract.",
+      "False — CRTPA 1999 abolished the requirement of consideration for all contracts."
+    ],
+    "best": 2,
+    "principle": "CRTPA 1999 does not require the third party to provide consideration to the promisor. This is a key difference from the common law agency structure, where the third party must provide consideration. The absence of a consideration requirement makes CRTPA 1999 a more accessible route for third parties.",
+    "cite": "Revise SQE Contract Law, Ch 4; CRTPA 1999 s 1",
+    "principleCN": "CRTPA 1999不要求第三方提供对价。这与普通法代理结构不同——代理结构中第三方必须提供对价。不需要对价使CRTPA 1999成为第三方更容易援引的途径。",
+    "citeCN": "Revise SQE 合同法, 第4章; CRTPA 1999 s 1"
+  }
+];
+
+let state = JSON.parse(JSON.stringify(DEFAULT_STATE));
+
+function load() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      const saved = JSON.parse(raw);
+      state = Object.assign(JSON.parse(JSON.stringify(DEFAULT_STATE)), saved);
+    }
+  } catch(e) { console.warn('Load failed:', e); }
+}
+
+function save() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  } catch(e) { console.warn('Save failed:', e); }
+}
+
+function applyFS() {
+  document.body.classList.remove('fs-lg', 'fs-xl');
+  if (state.fsLevel === 1) document.body.classList.add('fs-lg');
+  else if (state.fsLevel === 2) document.body.classList.add('fs-xl');
+}
+
+function changeFS(dir) {
+  state.fsLevel = Math.max(0, Math.min(2, state.fsLevel + dir));
+  applyFS();
+  save();
+}
+
+function renderCoins() {
+  document.getElementById('coins').textContent = state.coins;
+}
+
+function renderStars() {
+  const count = Object.keys(state.stickers).filter(id => {
+    const s = state.stickers[id];
+    return s.side !== null && s.slot >= 0;
+  }).length;
+  const filled = Math.floor(count / 4);
+  const html = Array.from({length: 5}, (_, i) =>
+    `<span class="star ${i < filled ? 'filled' : ''}">${i < filled ? '★' : '☆'}</span>`
+  ).join('');
+  const top = document.getElementById('stars-top');
+  const quiz = document.getElementById('stars-quiz');
+  if (top) top.innerHTML = html;
+  if (quiz) quiz.innerHTML = html;
+}
+
+function getCurrentQuestions() {
+  if (state.reviewMode && state.reviewQueue.length > 0) {
+    return state.reviewQueue;
+  }
+  return QUESTIONS;
+}
+
+function renderQuestion() {
+  const qs = getCurrentQuestions();
+  const idx = state.qIndex;
+  const q = qs[idx];
+
+  document.getElementById('chapter').textContent = q.chapter;
+  document.getElementById('progress').textContent = `Question ${idx + 1} / ${qs.length}`;
+  document.getElementById('question-text').textContent = q.text;
+
+  const optsDiv = document.getElementById('options');
+  optsDiv.innerHTML = '';
+  const answered = state.answered.includes(q.key);
+  const isCorrectSoFar = answered && state.wrong[q.key] === undefined;
+  if (answered) {
+    const status = document.createElement('div');
+    status.className = 'answer-status ' + (isCorrectSoFar ? 'good' : 'bad');
+    status.textContent = isCorrectSoFar
+      ? '✓ Last answer: Correct. You can re-answer below to confirm or change your mind.'
+      : '✗ Currently in your review list. Re-answer to remove it from review or change your choice.';
+    optsDiv.appendChild(status);
+  }
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'option';
+    btn.textContent = opt;
+    if (answered && state.wrong[q.key] === i) {
+      btn.classList.add('previous-wrong');
+    }
+    btn.onclick = () => selectOption(i);
+    optsDiv.appendChild(btn);
+  });
+
+  const fb = document.getElementById('feedback');
+  const nextBtn = document.getElementById('next-btn');
+  const justAnswered = state.lastAnsweredKey === q.key;
+  if (justAnswered) {
+    const correct = state.lastAnsweredCorrect;
+    fb.className = 'feedback show ' + (correct ? 'correct' : 'wrong');
+    let html = correct ? '✅ Correct!' : '❌ Not quite.';
+    html += `<div class="principle"><strong>Principle:</strong> ${q.principle}</div>`;
+    html += `<div class="principle-cn">${q.principleCN}</div>`;
+    html += `<div class="cite">📚 ${q.cite}</div>`;
+    html += `<div class="cite">${q.citeCN}</div>`;
+    fb.innerHTML = html;
+    nextBtn.classList.add('show');
+    nextBtn.textContent = idx + 1 < qs.length ? 'Next →' : 'Finish';
+  } else if (answered) {
+    fb.className = 'feedback show hint';
+    fb.innerHTML = '<em>Pick an option above to re-answer. The correct answer and principle will be shown after you click.</em>';
+    nextBtn.classList.remove('show');
+  } else {
+    fb.className = 'feedback';
+    fb.innerHTML = '';
+    nextBtn.classList.remove('show');
+  }
+
+  // Bookmark
+  const bmBtn = document.getElementById('bookmark-btn');
+  if (state.bookmarked.includes(q.key)) {
+    bmBtn.classList.add('active');
+    bmBtn.textContent = '★';
+  } else {
+    bmBtn.classList.remove('active');
+    bmBtn.textContent = '☆';
+  }
+
+  // Nav buttons
+  document.getElementById('prev-btn').disabled = idx === 0;
+  document.getElementById('next-nav-btn').disabled = idx === qs.length - 1;
+
+  renderReviewBtn();
+}
+
+function toggleBookmark() {
+  const q = getCurrentQuestions()[state.qIndex];
+  const i = state.bookmarked.indexOf(q.key);
+  if (i >= 0) state.bookmarked.splice(i, 1);
+  else state.bookmarked.push(q.key);
+  save();
+  renderQuestion();
+}
+
+function selectOption(i) {
+  const q = getCurrentQuestions()[state.qIndex];
+  const wasAnswered = state.answered.includes(q.key);
+  const wasWrong = state.wrong[q.key] !== undefined;
+  const isCorrect = i === q.best;
+
+  if (wasAnswered) {
+    if (wasWrong) {
+      delete state.wrong[q.key];
+    }
+    if (isCorrect && wasWrong) {
+      state.coins += 20;
+      renderCoins();
+    }
+  } else {
+    state.answered.push(q.key);
+    if (isCorrect) {
+      state.coins += 20;
+      renderCoins();
+    }
+  }
+
+  if (!isCorrect) {
+    state.wrong[q.key] = i;
+  }
+  state.lastAnsweredKey = q.key;
+  state.lastAnsweredCorrect = isCorrect;
+  save();
+  renderQuestion();
+}
+
+function nextQuestion() {
+  const qs = getCurrentQuestions();
+  if (state.qIndex < qs.length - 1) {
+    state.qIndex++;
+    state.lastAnsweredKey = null;
+    state.lastAnsweredCorrect = null;
+    save();
+    renderQuestion();
+  } else {
+    if (state.reviewMode) {
+      exitReviewMode();
+    } else {
+      state.qIndex = 0;
+      state.lastAnsweredKey = null;
+      state.lastAnsweredCorrect = null;
+      save();
+      renderQuestion();
+    }
+  }
+}
+
+function prevQuestion() {
+  if (state.qIndex > 0) {
+    state.qIndex--;
+    state.lastAnsweredKey = null;
+    state.lastAnsweredCorrect = null;
+    save();
+    renderQuestion();
+  }
+}
+
+function getReviewQuestions() {
+  return QUESTIONS.filter(q => state.wrong[q.key] !== undefined);
+}
+
+function renderReviewBtn() {
+  const reviewBtn = document.getElementById('review-btn');
+  const wrongQs = getReviewQuestions();
+  if (wrongQs.length > 0 && !state.reviewMode) {
+    reviewBtn.style.display = '';
+    reviewBtn.textContent = `Review Wrong (${wrongQs.length})`;
+  } else {
+    reviewBtn.style.display = 'none';
+  }
+}
+
+function startReview() {
+  const wrongQs = getReviewQuestions();
+  if (wrongQs.length === 0) return;
+  state.reviewMode = true;
+  state.reviewQueue = wrongQs;
+  state.qIndex = 0;
+  save();
+  renderQuestion();
+}
+
+function exitReviewMode() {
+  state.reviewMode = false;
+  state.reviewQueue = [];
+  state.qIndex = 0;
+  save();
+  renderQuestion();
+}
+
+function renderStickers() {
+  ['left', 'right'].forEach(side => {
+    const col = document.getElementById('col-' + side);
+    const label = col.querySelector('.col-label');
+    col.innerHTML = '';
+    col.appendChild(label);
+    const grid = document.createElement('div');
+    grid.style.cssText = 'display:grid; grid-template-columns: 1fr; gap: 6px;';
+    for (let i = 0; i < SLOTS_PER_COL; i++) {
+      const slot = document.createElement('div');
+      slot.className = 'sticker-slot';
+      let placedItem = null;
+      for (const [id, data] of Object.entries(state.stickers)) {
+        if (data.side === side && data.slot === i) {
+          placedItem = STICKERS.find(s => s.id === id);
+          break;
+        }
+      }
+      if (placedItem) {
+        slot.classList.add('filled');
+        slot.innerHTML = placedItem.icon;
+        const x = document.createElement('div');
+        x.className = 'remove-x';
+        x.textContent = '×';
+        x.onclick = (e) => { e.stopPropagation(); removeSticker(placedItem.id); };
+        slot.appendChild(x);
+      } else {
+        slot.innerHTML = '<span class="empty-hint">+</span>';
+      }
+      slot.onclick = () => placeSticker(side, i);
+      grid.appendChild(slot);
+    }
+    col.appendChild(grid);
+  });
+  renderStars();
+}
+
+function removeSticker(id) {
+  state.stickers[id] = { side: null, slot: -1 };
+  save();
+  renderStickers();
+}
+
+function placeSticker(side, slot) {
+  if (!state.placementItem) return;
+  // If target slot has a sticker, kick it back to stash
+  for (const [id, data] of Object.entries(state.stickers)) {
+    if (data.side === side && data.slot === slot && id !== state.placementItem) {
+      state.stickers[id] = { side: null, slot: -1 };
+      break;
+    }
+  }
+  // Place the new sticker
+  state.stickers[state.placementItem] = { side: side, slot: slot };
+  state.placementItem = null;
+  document.getElementById('placement-banner').classList.remove('show');
+  save();
+  renderStickers();
+}
+
+function cancelPlacement() {
+  state.placementItem = null;
+  document.getElementById('placement-banner').classList.remove('show');
+  save();
+}
+
+function openShop() {
+  document.getElementById('shop-coins').textContent = state.coins;
+  const grid = document.getElementById('shop-grid');
+  grid.innerHTML = '';
+  STICKERS.forEach(s => {
+    const item = document.createElement('div');
+    item.className = 'shop-item';
+    const owned = state.stickers[s.id] !== undefined;
+    const placed = owned && state.stickers[s.id].side !== null && state.stickers[s.id].slot >= 0;
+    if (owned) item.classList.add('owned');
+    item.innerHTML = `
+      <div class="icon">${s.icon}</div>
+      <div class="name">${s.name}</div>
+      <div class="price">💰 ${s.price}</div>
+    `;
+    if (!owned) {
+      const btn = document.createElement('button');
+      btn.textContent = 'Buy';
+      btn.disabled = state.coins < s.price;
+      btn.onclick = () => buySticker(s.id);
+      item.appendChild(btn);
+    } else if (!placed) {
+      const btn = document.createElement('button');
+      btn.textContent = 'Stick';
+      btn.onclick = () => startPlacement(s.id);
+      item.appendChild(btn);
+    } // placed items show no button
+  });
+  document.getElementById('shop-overlay').classList.add('show');
+}
+
+function closeShop() {
+  document.getElementById('shop-overlay').classList.remove('show');
+}
+
+function buySticker(id) {
+  const s = STICKERS.find(x => x.id === id);
+  if (!s) return;
+  if (state.coins < s.price) return;
+  state.coins -= s.price;
+  state.stickers[id] = { side: null, slot: -1 };
+  save();
+  renderCoins();
+  openShop(); // refresh shop
+  startPlacement(id);
+}
+
+function startPlacement(id) {
+  state.placementItem = id;
+  document.getElementById('placement-banner').classList.add('show');
+  closeShop();
+}
+
+function init() {
+  load();
+  applyFS();
+  renderCoins();
+  renderStickers();
+  renderStars();
+  renderQuestion();
+
+  // Add shop access via keyboard shortcut or double-click on sticker area
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 's' && e.shiftKey) {
+      e.preventDefault();
+      openShop();
+    }
+  });
+
+  // Add a shop button to the topbar area — append to right section
+  const rightDiv = document.querySelector('.topbar .right');
+  if (rightDiv) {
+    const shopBtn = document.createElement('button');
+    shopBtn.className = 'fs-btn';
+    shopBtn.textContent = '🏷️';
+    shopBtn.style.marginRight = '4px';
+    shopBtn.onclick = openShop;
+    rightDiv.insertBefore(shopBtn, rightDiv.firstChild);
+  }
+}
+
+init();
+</script>
+
+<!-- ===== SQE Star Sync to Feishu ===== -->
+<script>
+(function() {
+  const LESSON_NUM = 10;
+  const SYNC_URL = "http://localhost:9876/sync";
+  const STORAGE_KEY = "sqe-l8-stickers-v2";
+  
+  let lastStars = -1;
+  let syncedStars = -1;
+
+  function getStars() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return 0;
+      const state = JSON.parse(raw);
+      const count = Object.keys(state.stickers || {}).filter(id => {
+        const s = state.stickers[id];
+        return s && s.side !== null && s.slot >= 0;
+      }).length;
+      return Math.floor(count / 4); // same logic as renderStars
+    } catch (e) { return 0; }
+  }
+
+  function showToast(message, ok) {
+    const toast = document.createElement('div');
+    toast.style.cssText = `
+      position: fixed; bottom: 20px; right: 20px; z-index: 99999;
+      padding: 12px 20px; border-radius: 8px; font-size: 14px;
+      color: white; font-family: -apple-system, sans-serif;
+      background: ${ok ? '#4CAF50' : '#f44336'};
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: opacity 0.3s; opacity: 1;
+    `;
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    setTimeout(() => { toast.style.opacity = '0'; }, 3000);
+    setTimeout(() => { toast.remove(); }, 3500);
+  }
+
+  function syncToFeishu(stars) {
+    if (stars === syncedStars) return; // already synced
+    fetch(SYNC_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ lesson: LESSON_NUM, stars: stars })
+    })
+    .then(r => r.json())
+    .then(data => {
+      if (data.ok) {
+        syncedStars = stars;
+        const label = data.label || '';
+        showToast('✅ 飞书表格已更新: ' + label, true);
+      } else {
+        showToast('❌ 同步失败: ' + (data.error || '未知错误'), false);
+      }
+    })
+    .catch(e => {
+      // Server not running — silent fail, will retry next time
+      console.log('[Star Sync] Server not available:', e.message);
+    });
+  }
+
+  function checkStars() {
+    const stars = getStars();
+    if (stars !== lastStars) {
+      lastStars = stars;
+      if (stars > 0) {
+        syncToFeishu(stars);
+      }
+    }
+  }
+
+  // Check every 2 seconds for star changes
+  setInterval(checkStars, 2000);
+  
+  // Also check on page unload
+  window.addEventListener('beforeunload', checkStars);
+  
+  // Initial check after 1 second
+  setTimeout(checkStars, 1000);
+})();
+</script>
+<!-- ===== End Star Sync ===== -->
+
+</body>
+</html>
