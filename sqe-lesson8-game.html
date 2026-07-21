@@ -1489,6 +1489,7 @@ function openShop() {
       btn.onclick = () => startPlacement(s.id);
       item.appendChild(btn);
     } // placed items show no button
+    grid.appendChild(item);
   });
   document.getElementById('shop-overlay').classList.add('show');
 }
