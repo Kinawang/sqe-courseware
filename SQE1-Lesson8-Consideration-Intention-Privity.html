@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 8: Consideration, Intention and Privity — SQE1 Contract Law</title>
+    <style>
+        :root {
+            --primary: #4a2c8a;
+            --primary-light: #7c5cc4;
+            --accent: #ff6b6b;
+            --bg: #fafafa;
+            --card-bg: #ffffff;
+            --text: #2d2d2d;
+            --text-light: #666;
+            --border: #e8e8e8;
+            --success: #4caf50;
+            --tree-bg: linear-gradient(135deg, #f5f0ff 0%, #e8e0f5 100%);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        .lesson-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .lesson-header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        .lesson-header .subtitle {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        .lesson-header .meta {
+            margin-top: 15px;
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        /* Knowledge Tree */
+        .knowledge-tree {
+            background: var(--tree-bg);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 2px solid #d4c5e8;
+        }
+        .knowledge-tree h2 {
+            color: var(--primary);
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .kt-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+        .kt-node {
+            background: white;
+            border: 2px solid var(--primary-light);
+            border-radius: 25px;
+            padding: 12px 24px;
+            font-weight: 600;
+            color: var(--primary);
+            text-align: center;
+            max-width: 80%;
+            box-shadow: 0 2px 8px rgba(74,44,138,0.1);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .kt-node:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(74,44,138,0.2);
+        }
+        .kt-arrow {
+            font-size: 1.5em;
+            color: var(--primary-light);
+        }
+        .kt-root {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            font-size: 1.1em;
+        }
+        .kt-branch-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+        }
+        .kt-branch {
+            background: #f0e6ff;
+            border: 2px solid var(--primary-light);
+        }
+
+        /* Section styling */
+        .section {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+        .section h2 {
+            color: var(--primary);
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border);
+        }
+        .section h3 {
+            color: var(--primary-light);
+            font-size: 1.15em;
+            margin: 20px 0 12px;
+        }
+        .section p {
+            margin-bottom: 12px;
+        }
+
+        /* Key terms */
+        .key-term {
+            background: #f5f0ff;
+            border-left: 4px solid var(--primary);
+            padding: 12px 16px;
+            margin: 12px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .key-term strong {
+            color: var(--primary);
+        }
+
+        /* Exam warnings */
+        .exam-warning {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 12px 16px;
+            margin: 12px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .exam-warning strong {
+            color: #e65100;
+        }
+
+        /* Practice examples */
+        .practice-example {
+            background: #e3f2fd;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        .practice-example h4 {
+            color: #1565c0;
+            margin-bottom: 10px;
+        }
+        .answer-box {
+            background: #c8e6c9;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 12px;
+        }
+        .answer-box strong {
+            color: #2e7d32;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.95em;
+        }
+        th {
+            background: var(--primary);
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        td {
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--border);
+        }
+        tr:nth-child(even) { background: #f8f6fc; }
+
+        /* Key Terms Section */
+        .key-terms {
+            background: linear-gradient(135deg, #f5f0ff 0%, #ede7f6 100%);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 25px;
+        }
+        .key-terms h2 {
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .kt-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .kt-table th {
+            background: var(--primary);
+            color: white;
+            padding: 14px;
+            text-align: left;
+        }
+        .kt-table td {
+            padding: 12px 14px;
+            border-bottom: 1px solid #d4c5e8;
+            background: white;
+        }
+        .kt-table tr:nth-child(even) td { background: #f8f6fc; }
+
+        /* Practice Questions */
+        .qa-section {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 25px;
+        }
+        .qa-section h2 {
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        .qa-box {
+            background: #f8f6fc;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border: 1px solid #e8e0f5;
+        }
+        .qa-box .question {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        .qa-box .answer {
+            color: var(--text-light);
+            padding-top: 10px;
+            border-top: 1px dashed #d4c5e8;
+        }
+        .qa-box .answer strong {
+            color: var(--success);
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .container { padding: 12px; }
+            .lesson-header { padding: 25px 15px; }
+            .lesson-header h1 { font-size: 1.5em; }
+            .section { padding: 20px; }
+            .kt-branch-container { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="lesson-header">
+            <h1>Lesson 8: Consideration, Intention and Privity</h1>
+            <div class="subtitle">SQE1 Contract Law — Chapter 2: Consideration</div>
+            <div class="meta">Contract Law 2nd Edition | Pages 26–44 | Formation of Contract</div>
+        </div>
+
+        <!-- Knowledge Tree -->
+        <div class="knowledge-tree">
+            <h2>🌳 Knowledge Tree</h2>
+            <div class="kt-container">
+                <div class="kt-node kt-root" data-anchor="section-1-introduction">Consideration (对价)</div>
+                <div class="kt-arrow">↓</div>
+                <div class="kt-branch-container">
+                    <div class="kt-node kt-branch" data-anchor="section-1-introduction">1. Definition & Exchange<br><small>Promisor ↔ Promisee</small></div>
+                    <div class="kt-node kt-branch" data-anchor="section-2-sufficiency">2. Sufficiency vs Adequacy<br><small>Peppercorn Rent</small></div>
+                    <div class="kt-node kt-branch" data-anchor="section-3-past">3. Past Consideration<br><small>Previous Request Device</small></div>
+                    <div class="kt-node kt-branch" data-anchor="section-4-existing-duties">4. Existing Duties<br><small>Pay More / Pay Less</small></div>
+                    <div class="kt-node kt-branch" data-anchor="section-5-estoppel">5. Promissory Estoppel<br><small>Shield not Sword</small></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Part 1: Introduction -->
+        <div class="section" id="section-1-introduction">
+            <h2>📖 Part 1: Introduction to Consideration</h2>
+            
+            <p>Consideration is one of the four elements required to form a legally binding contract (along with offer, acceptance, and intention to create legal relations). It is required for all contracts except those made by <strong>deed</strong> (契约).</p>
+
+            <div class="key-term">
+                <strong>Key term: consideration (对价)</strong><br>
+                Consideration is an act, or promise, of value in exchange for an act, or promise, of value. It is the "price" paid for a promise.
+            </div>
+
+            <div class="key-term">
+                <strong>Key term: promisor (要约人/承诺人)</strong><br>
+                The party to a contract who makes a promise to the other party.
+            </div>
+
+            <div class="key-term">
+                <strong>Key term: promisee (受要约人/受承诺人)</strong><br>
+                The party to a contract to whom a promise is made (by the promisor).
+            </div>
+
+            <p>In most contracts, each party is both the <strong>promisor</strong> and the <strong>promisee</strong>. For example, if Andrew agrees to buy John's gooseberries for £2 per kilo:</p>
+            <ul>
+                <li>Andrew is the <strong>promisor</strong> (promises to pay £2) and also the <strong>promisee</strong> (John promises to deliver gooseberries)</li>
+                <li>John is the <strong>promisor</strong> (promises to deliver gooseberries) and also the <strong>promisee</strong> (Andrew promises to pay £2)</li>
+            </ul>
+
+            <div class="exam-warning">
+                <strong>Exam warning:</strong> When analysing consideration, check whether <em>each party</em> is getting consideration in exchange for his promise. The exchange of <strong>promises</strong> makes each party liable — even if nothing has actually been exchanged yet.
+            </div>
+        </div>
+
+        <!-- Part 2: Sufficiency vs Adequacy -->
+        <div class="section" id="section-2-sufficiency">
+            <h2>📖 Part 2: Sufficiency vs Adequacy</h2>
+            
+            <p>English law distinguishes between two concepts:</p>
+
+            <div class="key-term">
+                <strong>Key term: sufficient (充分的)</strong><br>
+                Consideration is sufficient provided it is what the promisor <strong>requested</strong> in exchange for his promise. It must have <em>some</em> value in the eyes of the law.
+            </div>
+
+            <div class="key-term">
+                <strong>Key term: adequate (适当的/等价的)</strong><br>
+                Consideration does <strong>not</strong> need to be adequate. There is no requirement for the economic or monetary value to match what is given in exchange.
+            </div>
+
+            <p>The classic example is <strong>peppercorn rent</strong> (胡椒粒租金): a landlord can agree to rent a flat in exchange for a single peppercorn. The peppercorn is valid consideration because:</p>
+            <ul>
+                <li>It is what the landlord <strong>asked for</strong> (sufficient)</li>
+                <li>Its value does not need to match the flat's worth (adequacy irrelevant)</li>
+            </ul>
+
+            <div class="practice-example">
+                <h4>Practice Example 2.1</h4>
+                <p>Corinne sells her diamond ring to a pawnbroker for £5. The ring is worth much more. Corinne changes her mind and claims the contract is not binding because the consideration is inadequate.</p>
+                <div class="answer-box">
+                    <strong>Answer:</strong> No. The contract is binding. English law is not concerned with whether consideration is <em>adequate</em> — only whether it is <em>sufficient</em>. The £5 is what the pawnbroker agreed to accept, so it is sufficient consideration.
+                </div>
+            </div>
+
+            <div class="exam-warning">
+                <strong>Exam warning:</strong> When the price paid is less than economic value, check whether the price is what the other party <strong>requested</strong>. If so, it is sufficient consideration — regardless of how low the price is.
+            </div>
+        </div>
+
+        <!-- Part 3: Past Consideration -->
+        <div class="section" id="section-3-past">
+            <h2>📖 Part 3: Past Consideration</h2>
+            
+            <p>Consideration must involve <strong>exchange</strong>. If an act is performed <em>before</em> a promise is made, there is no exchange — this is <strong>past consideration</strong> and is not valid.</p>
+
+            <div class="key-term">
+                <strong>Key term: past consideration (过去对价)</strong><br>
+                If an act is carried out <strong>before</strong> a promise is made, this is not consideration and does not make a promise binding.
+            </div>
+
+            <div class="practice-example">
+                <h4>Practice Example 2.2</h4>
+                <p>Daniel finds an escaped cow and returns it to Lynn. Lynn is happy and promises to pay £20 as a thank you. Weeks pass and Lynn does not pay.</p>
+                <div class="answer-box">
+                    <strong>Answer:</strong> Daniel cannot sue. Daniel performed the act <em>before</em> Lynn made the promise. There was no exchange — this is past consideration, which is not valid.
+                </div>
+            </div>
+
+            <h3>Exception: The Previous Request Device</h3>
+            <p>The past consideration rule does not apply when:</p>
+            <ul>
+                <li>A person performs an act at the <strong>request</strong> of another</li>
+                <li>It is understood that the act will be <strong>paid for</strong></li>
+                <li>The exact amount will be fixed later</li>
+            </ul>
+
+            <div class="practice-example">
+                <h4>Practice Example 2.3</h4>
+                <p>Areeba asked John to help market her vegan drink. John worked for two years. In 2020, Areeba signed an agreement giving John 30% ownership. Areeba's husband claims this is past consideration.</p>
+                <div class="answer-box">
+                    <strong>Answer:</strong> The agreement is binding. The <strong>previous request device</strong> applies: John performed the act at Areeba's request, and in a commercial context it is usual to be paid. Both parties understood John would be paid for his work.
+                </div>
+            </div>
+        </div>
+
+        <!-- Part 4: Existing Duties -->
+        <div class="section" id="section-4-existing-duties">
+            <h2>📖 Part 4: Existing Duties and Consideration</h2>
+            
+            <p>If a person does what they are <strong>already bound to do</strong> by contract or law, this is generally not consideration because there is no element of exchange.</p>
+
+            <h3>1. Duty Imposed by Law</h3>
+            <p>Generally, performing a legal duty is <strong>not</strong> consideration. For example, if Laila promises Nelson £1,000 to give evidence at a trial when she is already legally required to do so — this is not consideration.</p>
+            <p>However, if a person does <strong>more</strong> than required by law, the excess can be consideration. For example, if police provide <strong>additional</strong> security beyond their legal duty, this additional service is consideration.</p>
+
+            <h3>2. Duty Owed to a Third Party</h3>
+            <p>Performing a contractual duty owed to a <strong>third party</strong> <em>is</em> consideration for a separate contract. For example:</p>
+            <ul>
+                <li>You are contractually bound to repay a loan to <strong>Big Bank</strong></li>
+                <li><strong>Finance Bank</strong> agrees to lend you money <em>provided</em> you repay Big Bank</li>
+                <li>Your repayment to Big Bank is valid consideration for Finance Bank's promise</li>
+            </ul>
+
+            <h3>3. Promise to Pay More for Existing Duty</h3>
+            <p>The general rule: promising to pay more for the same performance is <strong>not</strong> binding unless the promisee provides <strong>additional</strong> consideration.</p>
+
+            <div class="practice-example">
+                <h4>Practice Example 2.4 (Stilk v Myrick scenario)</h4>
+                <p>Sinbad is a crew member. Two crew members resign. The captain promises Sinbad a 50% bonus to complete the return journey. The work is the same as before.</p>
+                <div class="answer-box">
+                    <strong>Answer:</strong> Sinbad cannot sue for the bonus. He only did what he was contractually obliged to do. No additional consideration was provided.
+                </div>
+            </div>
+
+            <h3>Exception: Practical Benefit</h3>
+            <p>If the promisor obtains a <strong>practical benefit</strong> as a result of promising to pay more, this benefit is consideration.</p>
+
+            <div class="key-term">
+                <strong>Key term: practical benefit (实际利益)</strong><br>
+                Any factual benefit that the promisor receives as a result of promising to pay more under an amendment agreement than was agreed under the original agreement.
+            </div>
+
+            <div class="practice-example">
+                <h4>Practice Example 2.5 (Williams v Roffey scenario)</h4>
+                <p>Joanna contracts to refurbish flats for Nicola. Joanna engages Ruth as sub-contractor. Ruth threatens to delay. Joanna promises to pay Ruth more to finish on time. Ruth finishes on time, allowing Joanna to avoid paying damages to Nicola.</p>
+                <div class="answer-box">
+                    <strong>Answer:</strong> Joanna is bound. Avoiding the penalty to Nicola is a <strong>practical benefit</strong> for Joanna. This practical benefit is valid consideration for the promise to pay more.
+                </div>
+            </div>
+
+            <div class="exam-warning">
+                <strong>Exam warning:</strong> For amendments to pay more, check two things:
+                <ol>
+                    <li>Did the promisee provide additional consideration (do more than originally agreed)?</li>
+                    <li>Did the promisor obtain a practical benefit?</li>
+                </ol>
+                If either is true, the promise to pay more is binding. But if the promisee used <strong>duress</strong> (威胁/胁迫), the promise is not binding.
+            </div>
+
+            <h3>4. Promise to Pay Less</h3>
+            <p>Promises to pay less than originally agreed are treated <strong>differently</strong>. The general rule (from <em>Pinnel's Case</em> and <em>Foakes v Beer</em>): paying a lesser amount on the due date is not consideration for the creditor's promise to accept less.</p>
+            <p>Two exceptions:</p>
+            <ul>
+                <li><strong>Composition with creditors</strong> (与全体债权人达成和解): If Shakira cannot pay all debts and agrees with <strong>all</strong> creditors to pay a percentage (e.g., 80%), this is consideration</li>
+                <li><strong>Payment by third party</strong> (第三方付款): If the payment is made by a third party (e.g., Shakira's sister), this is consideration</li>
+            </ul>
+        </div>
+
+        <!-- Part 5: Promissory Estoppel -->
+        <div class="section" id="section-5-estoppel">
+            <h2>📖 Part 5: Promissory Estoppel</h2>
+            
+            <p>Where there is no consideration for a contract amendment, <strong>promissory estoppel</strong> may provide a defence for the promisee.</p>
+
+            <div class="key-term">
+                <strong>Key term: promissory estoppel (允诺禁反言)</strong><br>
+                A doctrine that provides a defence to a debtor to stop a creditor from going back on his promise to accept a smaller amount than is owed under the original agreement.
+            </div>
+
+            <h3>Criteria for Promissory Estoppel</h3>
+            <table>
+                <tr>
+                    <th>Criterion</th>
+                    <th>Requirement</th>
+                </tr>
+                <tr>
+                    <td>Clear and unambiguous promise</td>
+                    <td>The promisor must clearly promise not to enforce rights under the contract</td>
+                </tr>
+                <tr>
+                    <td>Applies to amendments, not formation</td>
+                    <td>Must be an amendment to an <em>existing</em> contract, not a new contract</td>
+                </tr>
+                <tr>
+                    <td>Reliance by promisee</td>
+                    <td>The promisee must have relied on the promise (e.g., changed position)</td>
+                </tr>
+                <tr>
+                    <td>Inequitable to go back</td>
+                    <td>It must be unfair for the promisor to break the promise</td>
+                </tr>
+            </table>
+
+            <div class="exam-warning">
+                <strong>Important limitation:</strong> Promissory estoppel is a <strong>shield</strong> (防御) but not a <strong>sword</strong> (攻击). It only prevents the promisor from going back on their promise — it does not create a positive right to enforce the promise as a contract would.
+            </div>
+
+            <div class="practice-example">
+                <h4>Practice Example 2.7</h4>
+                <p>Central Properties leases flats to Woodland Properties for £10,000/flat/year. In March 2020, COVID-19 causes vacancies. Central Properties agrees to reduce rent to £5,000/flat. By June 2021, tenants return. Central Properties demands back-payment of the full £10,000 for March 2020 – June 2021.</p>
+                <div class="answer-box">
+                    <strong>Answer:</strong> Woodland Properties is <strong>not</strong> bound to pay the back-payment. Despite lack of consideration, <strong>promissory estoppel</strong> applies: (1) clear promise to accept less rent; (2) amendment to existing contract; (3) Woodland relied on the promise (kept renting, did not look elsewhere); (4) inequitable for Central to go back on its word.
+                </div>
+            </div>
+
+            <div class="exam-warning">
+                <strong>Exam warning:</strong> Where a scenario concerns an amendment agreement that is not legally binding due to lack of consideration, <strong>always consider</strong> whether promissory estoppel can provide the promisee with a defence. Check all four criteria systematically.
+            </div>
+        </div>
+
+        <!-- Key Point Checklist -->
+        <div class="section">
+            <h2>📝 Key Point Checklist</h2>
+            <ul>
+                <li>Consideration is one of four elements required for a legally binding contract (except deeds)</li>
+                <li>Consideration is generally a promise of an act or omission, in exchange for the same</li>
+                <li>Consideration must be <strong>sufficient</strong> but does not need to be <strong>adequate</strong></li>
+                <li>Consideration must not be <strong>past</strong> — exchange is a key element (exception: previous request device)</li>
+                <li>Performance of a legal duty is <strong>not</strong> consideration</li>
+                <li>Performance of a duty owed to a <strong>third party</strong> <em>is</em> consideration for a separate contract</li>
+                <li>Promise to pay more: generally not binding unless additional consideration or <strong>practical benefit</strong></li>
+                <li>Promise to pay less: generally not consideration (exceptions: composition with creditors, third party payment)</li>
+                <li>Where no consideration exists, check <strong>promissory estoppel</strong> — shield, not sword</li>
+            </ul>
+        </div>
+
+        <!-- Key Terms Table -->
+        <div class="key-terms">
+            <h2>🔑 Key Terms — Bilingual Glossary</h2>
+            <table class="kt-table">
+                <tr>
+                    <th>English Term</th>
+                    <th>中文</th>
+                    <th>Exam Focus</th>
+                </tr>
+                <tr>
+                    <td>consideration</td>
+                    <td>对价</td>
+                    <td>Four elements of contract; required for all contracts except deeds</td>
+                </tr>
+                <tr>
+                    <td>promisor</td>
+                    <td>要约人/承诺人</td>
+                    <td>Party who makes the promise</td>
+                </tr>
+                <tr>
+                    <td>promisee</td>
+                    <td>受要约人/受承诺人</td>
+                    <td>Party to whom promise is made</td>
+                </tr>
+                <tr>
+                    <td>sufficient</td>
+                    <td>充分的</td>
+                    <td>Must be what promisor requested; has some legal value</td>
+                </tr>
+                <tr>
+                    <td>adequate</td>
+                    <td>适当的/等价的</td>
+                    <td>Not required; economic equivalence irrelevant</td>
+                </tr>
+                <tr>
+                    <td>past consideration</td>
+                    <td>过去对价</td>
+                    <td>Act before promise = not valid; exception: previous request device</td>
+                </tr>
+                <tr>
+                    <td>previous request device</td>
+                    <td>先前请求例外</td>
+                    <td>Act at request + understood payment → valid consideration</td>
+                </tr>
+                <tr>
+                    <td>practical benefit</td>
+                    <td>实际利益</td>
+                    <td>Factual benefit from promise to pay more; valid consideration</td>
+                </tr>
+                <tr>
+                    <td>promissory estoppel</td>
+                    <td>允诺禁反言</td>
+                    <td>Defence when no consideration; shield not sword; 4 criteria</td>
+                </tr>
+                <tr>
+                    <td>deed</td>
+                    <td>契约</td>
+                    <td>Formal contract; consideration not required</td>
+                </tr>
+                <tr>
+                    <td>duress</td>
+                    <td>胁迫</td>
+                    <td>Invalidates promise to pay more; no practical benefit</td>
+                </tr>
+                <tr>
+                    <td>composition with creditors</td>
+                    <td>与全体债权人达成和解</td>
+                    <td>Exception to Pinnel's Case: agreement with all creditors to pay less</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Practice Questions -->
+        <div class="qa-section">
+            <h2>📝 Practice Questions</h2>
+
+            <div class="qa-box">
+                <div class="question">Q1. An artist agrees to sell a painting for a basket of apples. On Tuesday, the artist receives a better offer and tells the buyer he no longer wishes to sell. Which best describes the situation?</div>
+                <div class="answer">
+                    <strong>Answer: A</strong> — The artist is bound. The basket of apples is <strong>sufficient</strong> consideration (it is what the artist requested). Adequacy is irrelevant — the apples need not match the painting's value. Promissory estoppel (D) does not apply because this is a formation contract, not an amendment.
+                </div>
+            </div>
+
+            <div class="qa-box">
+                <div class="question">Q2. True or false? Consideration must reflect the economic value of the goods or services for which it is given.</div>
+                <div class="answer">
+                    <strong>Answer: False</strong> — Consideration must be <strong>sufficient</strong> but does not need to be <strong>adequate</strong>. The economic value is irrelevant. A peppercorn can be valid consideration for a flat.
+                </div>
+            </div>
+
+            <div class="qa-box">
+                <div class="question">Q3. Daniel finds a lost dog and returns it to the owner. The owner then promises £50 as a reward. Is the promise binding?</div>
+                <div class="answer">
+                    <strong>Answer: No</strong> — This is <strong>past consideration</strong>. Daniel performed the act (returning the dog) <em>before</em> the promise was made. There was no exchange at the time of the promise. The previous request device does not apply because the owner did not request Daniel to find the dog in advance.
+                </div>
+            </div>
+
+            <div class="qa-box">
+                <div class="question">Q4. A builder is contractually bound to build a house for £100,000. Halfway through, the builder demands an extra £20,000 or will stop work. The owner agrees. Is the promise to pay extra binding?</div>
+                <div class="answer">
+                    <strong>Answer: No</strong> — The builder is only doing what he was already contractually bound to do. No additional consideration. However, if the builder provided something extra (e.g., additional features), or if the owner obtained a <strong>practical benefit</strong> (e.g., avoiding delay penalties), it might be binding. Also, if the builder used <strong>duress</strong> (threatening to stop), the promise is not binding.
+                </div>
+            </div>
+
+            <div class="qa-box">
+                <div class="question">Q5. A tenant owes £10,000 rent. The landlord promises to accept £8,000 in full settlement. The tenant pays £8,000. Can the landlord later sue for the remaining £2,000?</div>
+                <div class="answer">
+                    <strong>Answer: Yes (at common law)</strong> — Under <em>Pinnel's Case</em> and <em>Foakes v Beer</em>, paying less on the due date is not consideration. However, <strong>promissory estoppel</strong> may prevent the landlord from suing if: (1) clear promise to accept less; (2) amendment to existing contract; (3) tenant relied on the promise; (4) inequitable for landlord to go back.
+                </div>
+            </div>
+
+            <div class="qa-box">
+                <div class="question">Q6. A police officer is already legally required to patrol a street. A shop owner promises £500 for extra patrols. The officer patrols more frequently than required. Is the promise binding?</div>
+                <div class="answer">
+                    <strong>Answer: Yes</strong> — The officer is doing <strong>more</strong> than required by law. The excess patrols are valid consideration. If the officer only did what was legally required, there would be no consideration.
+                </div>
+            </div>
+
+            <div class="qa-box">
+                <div class="question">Q7. A debtor owes £1,000 to a creditor. The debtor's sister pays £800 to the creditor, who agrees to accept this in full settlement. Can the creditor later sue the debtor for £200?</div>
+                <div class="answer">
+                    <strong>Answer: No</strong> — Payment by a <strong>third party</strong> is an exception to the rule in <em>Pinnel's Case</em>. The creditor's agreement to accept £800 from the sister is binding.
+                </div>
+            </div>
+
+            <div class="qa-box">
+                <div class="question">Q8. What is the difference between a "shield" and a "sword" in the context of promissory estoppel?</div>
+                <div class="answer">
+                    <strong>Answer:</strong> Promissory estoppel is a <strong>shield</strong> (defence) — it prevents the promisor from going back on their promise and enforcing their original rights. It is <strong>not a sword</strong> — it does not create a positive right to enforce the promise or sue for damages. It is a defensive tool only.
+                </div>
+            </div>
+
+            <div class="qa-box">
+                <div class="question">Q9. A company promises its supplier to pay an extra 10% if the supplier delivers goods two weeks early. The supplier delivers early, allowing the company to fulfil a lucrative contract. Is the promise to pay extra binding?</div>
+                <div class="answer">
+                    <strong>Answer: Yes</strong> — The company obtained a <strong>practical benefit</strong> (fulfilling the lucrative contract). This practical benefit is valid consideration for the promise to pay more, following <em>Williams v Roffey</em>.
+                </div>
+            </div>
+
+            <div class="qa-box">
+                <div class="question">Q10. A tenant is struggling to pay rent due to COVID-19. The landlord agrees to reduce rent by 50% for six months. The tenant continues renting and does not look for cheaper accommodation. After six months, the landlord demands full back-payment. What is the legal position?</div>
+                <div class="answer">
+                    <strong>Answer:</strong> Despite lack of consideration, <strong>promissory estoppel</strong> applies: (1) clear promise to reduce rent; (2) amendment to existing lease; (3) tenant relied on promise (continued renting); (4) inequitable for landlord to demand back-payment. The landlord cannot enforce the full rent for the reduced period.
+                </div>
+            </div>
+
+            <div class="qa-box">
+                <div class="question">Q11. A person is contractually bound to repay Bank A. Bank B agrees to lend money on condition the person repays Bank A. Is the repayment to Bank A consideration for Bank B's loan?</div>
+                <div class="answer">
+                    <strong>Answer: Yes</strong> — Performance of an existing contractual duty owed to a <strong>third party</strong> (Bank A) is consideration for a separate contract with Bank B. The duty is not owed to Bank B, so there is still an element of exchange.
+                </div>
+            </div>
+
+            <div class="qa-box">
+                <div class="question">Q12. A employee is contractually required to work 40 hours per week. The employer promises a bonus if the employee works 45 hours. The employee works 45 hours. Is the bonus binding?</div>
+                <div class="answer">
+                    <strong>Answer: Yes</strong> — The employee is doing <strong>more</strong> than contractually required (5 extra hours). This additional work is valid consideration for the promise to pay a bonus. If the employee only worked 40 hours, there would be no consideration.
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; padding: 30px; color: var(--text-light); font-size: 0.9em;">
+            <p>Lesson 8: Consideration, Intention and Privity | SQE1 Contract Law</p>
+            <p>Next: Lesson 9 — Intention to Create Legal Relations, Certainty and Capacity (Chapter 3)</p>
+        </div>
+    </div>
+</body>
+</html>
